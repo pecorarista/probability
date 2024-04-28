@@ -8,6 +8,7 @@
 \definecolor{sBlue}{HTML}{0068B7}
 \definecolor{sRed}{HTML}{E73562}
 \definecolor{sFill}{HTML}{00A381}
+\definecolor{sLightGray}{gray}{0.85}
 
 \usepackage{polyglossia}
 \setdefaultlanguage{japanese}
@@ -34,6 +35,7 @@
     StylisticSet=1
 ]{KpMath}
 \setsansfont[BoldFont={Roboto-Medium}]{Roboto}
+\newfontfamily\sourcecodepro{Source Code Pro}
 
 \ltjnewpreset{book}{%
     mc-m = A-OTF-RyuminPro-Regular.otf,
@@ -94,6 +96,22 @@
 \renewcommand{\proofname}{証明}
 \renewcommand{\qedsymbol}{\rule{5pt}{10pt}}
 
+\usepackage{tcolorbox}
+\tcbuselibrary{%
+    skins,
+    breakable
+}
+\newtcolorbox{thmbox}{%
+    colback=sLightGray,
+    top=8pt,
+    bottom=8pt,
+    left=8pt,
+    right=8pt,
+    boxrule=0pt,
+    sharp corners,
+    frame hidden
+}
+
 \makeatletter
 \renewenvironment{proof}[1][\proofname]{\par
   \pushQED{\qed}%
@@ -142,3 +160,6 @@
 \newcommand\keyword[1]{{\bfseries\gtfamily #1}}
 
 \newcommand\PositiveInteger{\symbb{N}_{\mathord{+}}}
+\newcommand\NonNegReal{\symbb{R}_{\mathord{+}}}
+\newcommand\PositiveReal{\symbb{R}_{\mathord{+}\mathord{+}}}
+\newcommand{\placeholder}{\mathord{\cdot}}

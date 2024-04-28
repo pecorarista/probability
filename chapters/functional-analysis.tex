@@ -2,40 +2,39 @@
 \begin{document}
 \mainchapter{関数解析}
 
+\begin{thmbox}
 \begin{definition}[（代数）]
-\(X\)を\(\symbb{K}\)上のベクトル空間とする．
-積または乗法と呼ばれる\(X\)上の二項演算\(\mathord{\ast}\colon (x, y) \mapsto x y\)が以下の性質をみたすとき，
-組\((X, \mathord{\ast})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという：
+\(V\)を\(\symbb{K}\)上のベクトル空間とする．
+積または乗法と呼ばれる\(V\)上の二項演算\(\mathord{\ast}\colon (x, y) \mapsto x y\)が以下の性質をみたすとき，
+組\((V, \mathord{\ast})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという：
 \begin{conditions}
-    \item\label{algebra-mult-assoc} 任意の\(x,\,y,\,z \in V\)について\(x (yz) = (xy) z\)．
-    \item 任意の\(x,\,y,\,z \in V\)について\((x + y) z = xz + yz,\,x (y + z) = xz + xz\)．
-    \item\label{algebra-mult-scalar-assoc} 任意の\(\alpha \in \symbb{K}\)と任意の\(x,\,y \in X\)について
+    \item\label{algebra-mult-assoc} 任意の\(x, y, z \in V\)について\(x (yz) = (xy) z\)．
+    \item 任意の\(x, y, z \in V\)について\((x + y) z = xz + yz, x (y + z) = xz + xz\)．
+    \item\label{algebra-mult-scalar-assoc} 任意の\(\alpha \in \symbb{K}\)と任意の\(x, y \in X\)について
         \(\alpha (xy) = (\alpha x) y = x (\alpha y)\)．
 \end{conditions}
-通常は組\((X, \mathord{\ast})\)を単に\(X\)と書く．
+どういう演算であるかを強調したい場合以外は組\((V, \mathord{\ast})\)を単に\(V\)と書くことが多い．
 上の\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
-代数\(X\)は可換であるという：
+代数\(V\)は可換であるという：
 \begin{conditions}[resume]
-    \item 任意の\(x,\,y\in X\)について\(x y  = y x\)．
+    \item 任意の\(x, y\in V\)について\(x y  = y x\)．
 \end{conditions}
 また\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
-代数\(X\)は単位元をもつ(with unit)または単位的(unital)であるという：
+代数\(V\)は単位元をもつ(with unit)または単位的(unital)であるという：
 \begin{conditions}[resume]
-    \item ある元\(\symbf{1} \in X \setminus \{\symbf{0}\}\)が存在して，
-        任意の\(x \in X\)に対して\(\symbf{1} x  = x \symbf{1} = x\)が成り立つ．
+    \item ある元\(\symbf{1} \in V \setminus \{\symbf{0}\}\)が存在して，
+        任意の\(x \in V\)に対して\(\symbf{1} x  = x \symbf{1} = x\)が成り立つ．
         これを乗法単位元と呼ぶ．
 \end{conditions}
 \end{definition}
-
-\bigskip
+\end{thmbox}
 
 \noindent 混乱のおそれがない場合は\(\symbf{0}, \symbf{1}\)をそれぞれ単に\(0, 1\)と書く．
 
-\bigskip
-
+\begin{thmbox}
 \begin{proposition}[（コンパクトHausdorff空間上の連続関数全体の集合から作られる代数）]
 \(X\)をコンパクトHausdorff空間とし，
-\(X\)から\(\symbb{K}\)への連続関数全体の集合を\(C(X,\,\symbb{K})\)または単に\(C(X)\)と書く．
+\(X\)から\(\symbb{K}\)への連続関数全体の集合を\(C(X, \symbb{K})\)または単に\(C(X)\)と書く．
 \(C(X)\)における加法，スカラー倍，ゼロベクトル（加法単位元）をそれぞれ
 \begin{gather*}
     (f + g)(x) := f(x) + g(x),\\
@@ -51,10 +50,11 @@
 と定義するとき，\(C(X)\)は\(\symbb{K}\)上の代数となる．
 \propositionlabel{compact-hausdorff-continuous-function}
 \end{proposition}
+\end{thmbox}
 
 \begin{proof} \(C(X)\)が加法，スカラー倍，乗法について閉じていることのみを示す．
 
-\paragraph{加法について閉じていること} 任意の\(f,\,g \in C(X)\)について，\(f + g \in C(X)\)を示す．\(f\)が連続なので，任意の\(x_0 \in X\)について，任意の\(\varepsilon > 0\)をとったとき，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
+\paragraph{加法について閉じていること} 任意の\(f, g \in C(X)\)について，\(f + g \in C(X)\)を示す．\(f\)が連続なので，任意の\(x_0 \in X\)について，任意の\(\varepsilon > 0\)をとったとき，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
 \begin{align*}
     |f(x) - f(x_0)| < \frac{\varepsilon}{2}
 \end{align*}
@@ -86,7 +86,7 @@
 \end{align*}
 となり，\(\alpha f \in C(X)\)である．
 
-\paragraph{乗法について閉じていること} 任意の\(f,\,g \in X\)について\(fg \in C(X)\)を示す．任意の\(x_0 \in X\)をとる．\(f\)が\(x_0\)で連続なので，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
+\paragraph{乗法について閉じていること} 任意の\(f, g \in X\)について\(fg \in C(X)\)を示す．任意の\(x_0 \in X\)をとる．\(f\)が\(x_0\)で連続なので，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
 \begin{gather*}
   |f(x) - f(x_0)| \leq 1 \\
   |f(x) | \leq | f(x_0)| + 1
@@ -110,7 +110,76 @@
   &\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
 \end{align*}
 が成り立つ．よって\(fg \in C(X)\)である．
-
 \end{proof}
+
+\begin{thmbox}
+\begin{definition}[（ノルム）]
+\(\symbb{K}\)上のベクトル空間\(V\)において，
+\(V\)から\(\NonNegReal\)への写像\(\lVert\placeholder\rVert\colon x \mapsto \lVert x \rVert\)が
+以下の性質をみたすとき，\(\lVert \placeholder \rVert\)を\(V\)上のノルムと呼ぶ：
+\begin{conditions}
+    \item 任意の\(x \in V\)について\(\|x\| = 0\;\Leftrightarrow\;x = 0\)．
+    \item 任意の\(x \in V\)と\(\alpha \in \symbb{K}\)について\(\lVert \alpha x\rVert = |\alpha|\lVert x \rVert\)．
+    \item （三角不等式，劣加法性）任意の\(x, y \in V\)について\(\lVert x + y \rVert \leq \lVert x\rVert + \lVert y \rVert\)．
+\end{conditions}
+\end{definition}
+\end{thmbox}
+
+\noindent 代数のノルムは以下のように定義される．
+
+\begin{thmbox}
+\begin{definition}[（代数のノルム，ノルム付き代数，Banach代数）]
+代数\(V\)上の写像\(\lVert\placeholder\rVert\)が，ベクトル空間\(V\)のノルムであり，さらに以下の\ref{banach-algebra-submultiplicativity}, \ref{banach-algebra-norm-1}を満たすとき，\(\lVert\placeholder\rVert\)を代数\(V\)のノルムという：
+\begin{conditions}
+    \item\label{banach-algebra-submultiplicativity}（劣乗法性）任意の\(x, y \in X\)について\(\lVert xy \rVert \leq \lVert x \rVert \lVert y \rVert\)．
+    \item\label{banach-algebra-norm-1} \(\lVert \symbf{1} \rVert = 1\)．
+\end{conditions}
+代数\(V\)とそのノルムの組\((V, \lVert\placeholder\rVert)\)を\keyword{ノルム付き代数}(normed algebra)という．
+どういうノルムであるかを強調したい場合以外は組\((V, \lVert \placeholder \rVert)\)を単に\(V\)と書く事が多い．
+ノルム付き代数\((V, \lVert \placeholder \rVert)\)がノルム\(\lVert \placeholder \rVert\)について完備であるとき，\((V, \lVert \placeholder \rVert)\)を\keyword{Banach代数}(Banach Algebra)と呼ぶ．
+\end{definition}
+\end{thmbox}
+
+\begin{thmbox}
+\begin{proposition}
+代数\(C(X)\)に一様ノルム（ここでは最大値ノルムに一致）を入れる，すなわち任意の\(f \in C(X)\)について
+\begin{align*}
+    \lVert f \rVert_\infty = \sup_{x \in X} |f(x)|
+\end{align*}
+と定義する．このとき\((C(X), \lVert \placeholder \rVert_\infty)\)はBanach代数となる．
+\end{proposition}
+\end{thmbox}
+
+\noindent 以下では\(C(X)\)のノルムとしては一様ノルムのみを考え，\(\lVert \placeholder \rVert_\infty\)を単に\(\lVert \placeholder \rVert\)と書く．
+
+\begin{proof} 一様ノルムが代数のノルムになっていることの証明は省略し，完備であることのみを示す．
+\(C(X)\)上の任意のCauchy列\((f_n)_{n \in \PositiveInteger}\)をとる．このとき，任意の\(\varepsilon > 0\)に対して，ある\(N_1 \in \PositiveInteger\)が存在して，\(m, n \geq N_0\)ならば
+\begin{align*}
+  \lVert f_m - f_n \rVert < \varepsilon,
+\end{align*}
+すなわち，任意の\(x \in X\)で
+\begin{align*}
+  |f_m(x) - f_n(x)| < \varepsilon
+\end{align*}
+が成り立つ．\(\symbb{K}\)の完備性により\((f_n(x))_{n \in \PositiveInteger}\)はある\(\alpha_x \in \symbb{K}\)に収束する．すなわち\(f(x) := \alpha_x\)とすると，\(f\colon X \to \symbb{K}\)であり，ある\(N \in \PositiveInteger\)が存在して
+\begin{align}
+  |f_N(x) - f(x)| < \frac{\varepsilon}{3}
+  \label{complete}
+\end{align}
+を満たす．\(x \in X\)は任意だったので\((f_n)_{n \in \PositiveInteger}\)は\(f\)に一様収束する．この\(f\)が連続であることを示す．\(f_N\)は連続なので，\(x\)の近傍\(V_x\)が存在し，\(y \in V_x\)ならば
+\begin{align}
+  |f_N(y) - f_N(x)| < \frac{\varepsilon}{3}
+  \label{continuous-fn}
+\end{align}
+が成り立つ．\((\ref{complete})\)と\((\ref{continuous-fn})\)より
+\begin{align*}
+  |f(y) - f(x)|
+  &= |f(y) - f_N(y) + f_N(y) - f_N(x) + f_N(x) - f(x)| \\
+  &\leq |f(y) - f_N(y)| + |f_N(y) - f_N(x)| + |f_N(x) - f(x)| \\
+  &< \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.
+\end{align*}
+よって\(f\)は\(x\)で連続であり，\(x\)は任意だったので，\(f \in C(X)\)が示せた．
+\end{proof}
+
 
 \end{document}
