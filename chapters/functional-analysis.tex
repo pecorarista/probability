@@ -1,0 +1,116 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\mainchapter{関数解析}
+
+\begin{definition}[（代数）]
+\(X\)を\(\symbb{K}\)上のベクトル空間とする．
+積または乗法と呼ばれる\(X\)上の二項演算\(\mathord{\ast}\colon (x, y) \mapsto x y\)が以下の性質をみたすとき，
+組\((X, \mathord{\ast})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという：
+\begin{conditions}
+    \item\label{algebra-mult-assoc} 任意の\(x,\,y,\,z \in V\)について\(x (yz) = (xy) z\)．
+    \item 任意の\(x,\,y,\,z \in V\)について\((x + y) z = xz + yz,\,x (y + z) = xz + xz\)．
+    \item\label{algebra-mult-scalar-assoc} 任意の\(\alpha \in \symbb{K}\)と任意の\(x,\,y \in X\)について
+        \(\alpha (xy) = (\alpha x) y = x (\alpha y)\)．
+\end{conditions}
+通常は組\((X, \mathord{\ast})\)を単に\(X\)と書く．
+上の\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
+代数\(X\)は可換であるという：
+\begin{conditions}[resume]
+    \item 任意の\(x,\,y\in X\)について\(x y  = y x\)．
+\end{conditions}
+また\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
+代数\(X\)は単位元をもつ(with unit)または単位的(unital)であるという：
+\begin{conditions}[resume]
+    \item ある元\(\symbf{1} \in X \setminus \{\symbf{0}\}\)が存在して，
+        任意の\(x \in X\)に対して\(\symbf{1} x  = x \symbf{1} = x\)が成り立つ．
+        これを乗法単位元と呼ぶ．
+\end{conditions}
+\end{definition}
+
+\bigskip
+
+\noindent 混乱のおそれがない場合は\(\symbf{0}, \symbf{1}\)をそれぞれ単に\(0, 1\)と書く．
+
+\bigskip
+
+\begin{proposition}[（コンパクトHausdorff空間上の連続関数全体の集合から作られる代数）]
+\(X\)をコンパクトHausdorff空間とし，
+\(X\)から\(\symbb{K}\)への連続関数全体の集合を\(C(X,\,\symbb{K})\)または単に\(C(X)\)と書く．
+\(C(X)\)における加法，スカラー倍，ゼロベクトル（加法単位元）をそれぞれ
+\begin{gather*}
+    (f + g)(x) := f(x) + g(x),\\
+    (\alpha f)(x) := \alpha f(x), \\
+    \symbf{0} \colon X \to \mathbb{K}, \text{\(\symbf{0} (x) = 0\)  for all \(x \in X
+\)}
+\end{gather*}
+で定義するとき，\(C(X)\)は\(\symbb{K}\)上のベクトル空間となる．さらに乗法と乗法単位元を
+\begin{gather*}
+    (fg)(x) := f(x)g(x), \\
+    \symbf{1} \colon X \to \symbb{K},\text{\(\symbf{1}(x) = 1\) for all \(x \in X\)}
+\end{gather*}
+と定義するとき，\(C(X)\)は\(\symbb{K}\)上の代数となる．
+\propositionlabel{compact-hausdorff-continuous-function}
+\end{proposition}
+
+\begin{proof} \(C(X)\)が加法，スカラー倍，乗法について閉じていることのみを示す．
+
+\paragraph{加法について閉じていること} 任意の\(f,\,g \in C(X)\)について，\(f + g \in C(X)\)を示す．\(f\)が連続なので，任意の\(x_0 \in X\)について，任意の\(\varepsilon > 0\)をとったとき，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
+\begin{align*}
+    |f(x) - f(x_0)| < \frac{\varepsilon}{2}
+\end{align*}
+が成り立つ．\(g\)についても同様に，\(x_0\)の近傍\(V_2\)が存在して，\(x \in V_2\)ならば
+\begin{align*}
+    |g(x) - g(x_0)| < \frac{\varepsilon}{2}
+\end{align*}
+が成り立つ．よって\(x \in V_1 \cap V_2\)ならば
+\begin{align*}
+  |(f + g)(x) - (f + g)(x_0)|
+  &= |f(x) + g(x) - (f(x_0) + g(x_0))| \\
+  &= |f(x) - f(x_0) + g(x) - g(x_0)| \\
+  &\leq |f(x) - f(x_0) | + | g(x) - g(x_0)| \\
+  &< \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+\end{align*}
+となり，\(f + g\)も\(x_0 \in X\)で連続である．したがって\(f + g \in C(X)\)である．
+
+\paragraph{スカラー倍について閉じていること} \(\alpha\)を任意の実数とする．任意の\(f \ \in C(X)\)について\(\alpha f \in C(X)\)となることを示す．\(f\)が任意の\(x_0 \in X\)で連続なので，任意の\(\varepsilon > 0\)に対して，\(x_0\)の近傍\(V\)が存在して，\(x \in V\)ならば
+\begin{align*}
+  |f(x) - f(x_0)| < \frac{\varepsilon}{|\alpha| + 1}
+\end{align*}
+が成り立つ．したがって
+\begin{align*}
+  |(\alpha f)(x) - (\alpha f)(x_0)|
+  &= |\alpha f(x) - \alpha f(x_0)| \\
+  &\leq |\alpha | |f(x) - f(x_0)| \\
+  &< |\alpha | \frac{\varepsilon}{|\alpha| + 1} \\
+  & \leq \varepsilon
+\end{align*}
+となり，\(\alpha f \in C(X)\)である．
+
+\paragraph{乗法について閉じていること} 任意の\(f,\,g \in X\)について\(fg \in C(X)\)を示す．任意の\(x_0 \in X\)をとる．\(f\)が\(x_0\)で連続なので，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
+\begin{gather*}
+  |f(x) - f(x_0)| \leq 1 \\
+  |f(x) | \leq | f(x_0)| + 1
+\end{gather*}
+が成り立つ．同じく連続であることから，任意の\(\varepsilon > 0\)に対し，\(x_0\)の近傍\(V_2\)が存在して，\(x \in V_2\)ならば
+\begin{align*}
+  |f(x) - f(x_0)| < \frac{\varepsilon}{2(|g(x_0) + 1|)}
+\end{align*}
+が成り立つ．同様に\(g\)が連続なことから，\(x_0\)の近傍\(V_3\)が存在して，\(x \in V_3\)ならば
+\begin{align*}
+  |g(x) - g(x_0)| < \frac{\varepsilon}{2(|f(x_0)| + 1)}
+\end{align*}
+となる．したがって任意の\(x \in V_1 \cap V_2 \cap V_3\)について
+\begin{align*}
+  |(fg)(x) - (fg)(x_0)|
+  &= |f(x)g(x) - f(x_0)g(x_0)| \\
+  &= |f(x)g(x) - f(x)g(x_0) + f(x)g(x_0) - f(x_0)g(x_0)| \\
+  &= |f(x)(g(x) - g(x_0)) + (f(x) - f(x_0))g(x_0)| \\
+  &\leq |f(x)| |g(x) - g(x_0)| + |f(x) - f(x_0)| | g(x_0)| \\
+  &< (|f(x_0)| + 1) \frac{\varepsilon}{2(|f(x_0)| + 1)} + \frac{\varepsilon}{2(|g(x_0)| + 1)} |g(x_0)| \\
+  &\leq \frac{\varepsilon}{2} + \frac{\varepsilon}{2} = \varepsilon
+\end{align*}
+が成り立つ．よって\(fg \in C(X)\)である．
+
+\end{proof}
+
+\end{document}

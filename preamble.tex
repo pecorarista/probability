@@ -1,0 +1,144 @@
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{amsthm}
+\usepackage{bussproofs}
+\usepackage{unicode-math}
+
+\usepackage{xcolor}
+\definecolor{sBlue}{HTML}{0068B7}
+\definecolor{sRed}{HTML}{E73562}
+\definecolor{sFill}{HTML}{00A381}
+
+\usepackage{polyglossia}
+\setdefaultlanguage{japanese}
+\setotherlanguages{english,german,russian,hebrew,greek}
+
+\usepackage[
+    deluxe,%
+    expert,
+    scale=0.95
+]{luatexja-preset}
+\usepackage{luatexja-ruby}
+\setmainfont[%
+    ItalicFont=NewCM10-Italic.otf,
+    BoldFont=NewCM10-Bold.otf,
+    BoldItalicFont=NewCM10-BoldItalic.otf,
+    SmallCapsFeatures={Numbers=OldStyle},
+]{NewCM10-Regular.otf}
+\setmathfont[math-style=ISO]{New Computer Modern Math}
+\setmathfont[
+    range={
+        cal,%
+        bfcal
+    },
+    StylisticSet=1
+]{KpMath}
+\setsansfont[BoldFont={Roboto-Medium}]{Roboto}
+
+\ltjnewpreset{book}{%
+    mc-m = A-OTF-RyuminPro-Regular.otf,
+    gt-m = BIZUDGothic-Regular.ttf,
+    gt-b = BIZUDGothic-Bold.ttf,
+    mg-m = MotoyaMaruStd-W5.otf
+}
+\ltjapplypreset{book}
+\setmonojfont{HiraMaruProN-W4}
+\ltjsetparameter{%
+    jacharrange={%
+        -2, % Exclude Greek and Cyrillic letters.
+        -3, % Punctuations and miscellaneous symbols.
+        -7  % other CJK characters
+    },
+    alxspmode={`/,allow},
+    alxspmode={`#,allow},
+    alxspmode={92,allow} % backslash
+}
+
+\usepackage{wtref}
+\newref{fig}
+\setrefstyle{fig}{prefix=図}
+\newref{eq}
+\setrefstyle{eq}{prefix=式(, suffix=)}
+\newref{def}
+\setrefstyle{def}{prefix=定義}
+\newref{axiom}
+\setrefstyle{axiom}{prefix=公理}
+\newref{proposition}
+\setrefstyle{proposition}{prefix=命題}
+\newref{lemma}
+\setrefstyle{lemma}{prefix=補題}
+\newref{example}
+\newref{thm}
+\setrefstyle{thm}{prefix=定理}
+\setrefstyle{example}{prefix=例}
+\newref{sec}
+\setrefstyle{sec}{prefix={第},suffix={節}}
+
+
+\newtheoremstyle{jplain}%
+    {0.6\baselineskip}%
+    {0.6\baselineskip}%
+    {\normalfont}%
+    {}%
+    {\bfseries\gtfamily\sffamily}%
+    {}%
+    {5pt}%
+    {\thmname{#1}\thmnumber{#2}\thmnote{#3}\ignorespaces}
+\theoremstyle{jplain}
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{proposition}[theorem]{命題}
+\newtheorem{lemma}[theorem]{補題}
+\newtheorem{definition}[theorem]{定義}
+\newtheorem{example}[theorem]{例}
+\newtheorem{axiom}[theorem]{公理}
+\renewcommand{\proofname}{証明}
+\renewcommand{\qedsymbol}{\rule{5pt}{10pt}}
+
+\makeatletter
+\renewenvironment{proof}[1][\proofname]{\par
+  \pushQED{\qed}%
+  \normalfont \topsep6\p@\@plus6\p@\relax
+  \trivlist
+  \item[\hskip\labelsep\bfseries\gtfamily#1]\ignorespaces
+}{%
+  \popQED\endtrivlist\@endpefalse
+}
+\makeatother
+\AtBeginDocument{%
+  \setlength{\abovedisplayskip}{5pt}%
+  \setlength{\belowdisplayskip}{5pt}%
+}
+
+% https://note.com/yuw/n/n38dd54fb2169
+\begingroup
+\catcode`\,=\active
+\def\@x@{\def,{\normalcomma\hskip.2em}}
+\expandafter\endgroup\@x@%
+\mathcode`\,="8000
+\def\normalcomma{\mathchar"613B}
+
+\usepackage{enumitem}
+\newlist{conditions}{enumerate}{1}
+\setlist[conditions]{label=(\arabic*)}
+
+\usepackage{hyperref}
+\hypersetup{%
+    colorlinks,
+    citecolor=sBlue,
+    linkcolor=sBlue,
+    urlcolor=sBlue
+}
+
+\usepackage{titleps}
+\newpagestyle{main}{%
+    \headrule
+    \sethead[\thepage][][{\sffamily\gtfamily {\thesection}\hspace{1\zw}\sectiontitle}]{\sffamily\gtfamily 第{\thechapter}章\hspace{1\zw}\chaptertitle}{}{\thepage}
+}
+
+\newcommand\mainchapter[1]{\chapter{#1}\thispagestyle{empty}}
+\renewcommand{\jsParagraphMark}{}
+\renewcommand{\headfont}{\bfseries\gtfamily\sffamily}
+
+\newcommand\keyword[1]{{\bfseries\gtfamily #1}}
+
+\newcommand\PositiveInteger{\symbb{N}_{\mathord{+}}}
