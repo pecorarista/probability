@@ -4,32 +4,32 @@
 
 \begin{thmbox}
 \begin{definition}[（代数）]
-\(V\)を\(\symbb{K}\)上のベクトル空間とする．
-積または乗法と呼ばれる\(V\)上の二項演算\(\mathord{\ast}\colon (x, y) \mapsto x y\)が以下の性質をみたすとき，
-組\((V, \mathord{\ast})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという：
+\(A\)を\(\symbb{K}\)上のベクトル空間とする．
+積または乗法と呼ばれる\(A\)上の二項演算\(\mathord{\ast}\colon (x, y) \mapsto x y\)が以下の性質をみたすとき，
+組\((A, \mathord{\ast})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという：
 \begin{conditions}
-    \item\label{algebra-mult-assoc} 任意の\(x, y, z \in V\)について\(x (yz) = (xy) z\)．
-    \item 任意の\(x, y, z \in V\)について\((x + y) z = xz + yz, x (y + z) = xz + xz\)．
+    \item\label{algebra-mult-assoc} 任意の\(x, y, z \in A\)について\(x (yz) = (xy) z\)．
+    \item 任意の\(x, y, z \in A\)について\((x + y) z = xz + yz, x (y + z) = xz + xz\)．
     \item\label{algebra-mult-scalar-assoc} 任意の\(\alpha \in \symbb{K}\)と任意の\(x, y \in X\)について
         \(\alpha (xy) = (\alpha x) y = x (\alpha y)\)．
 \end{conditions}
-どういう演算であるかを強調したい場合以外は組\((V, \mathord{\ast})\)を単に\(V\)と書くことが多い．
+どういう演算であるかを強調したい場合以外は組\((A, \mathord{\ast})\)を単に\(A\)と書くことが多い．
 上の\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
-代数\(V\)は可換であるという：
+代数\(A\)は可換であるという：
 \begin{conditions}[resume]
-    \item 任意の\(x, y\in V\)について\(x y  = y x\)．
+    \item 任意の\(x, y\in A\)について\(x y  = y x\)．
 \end{conditions}
 また\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
-代数\(V\)は単位元をもつ(with unit)または単位的(unital)であるという：
+代数\(A\)は単位元をもつ(with unit)または単位的(unital)であるという：
 \begin{conditions}[resume]
-    \item ある元\(\symbf{1} \in V \setminus \{\symbf{0}\}\)が存在して，
-        任意の\(x \in V\)に対して\(\symbf{1} x  = x \symbf{1} = x\)が成り立つ．
+    \item ある元\(1_A \in A \setminus \{0_A\}\)が存在して，
+        任意の\(x \in A\)に対して\(1_A x  = x 1_A = x\)が成り立つ．
         これを乗法単位元と呼ぶ．
 \end{conditions}
 \end{definition}
 \end{thmbox}
 
-\noindent 混乱のおそれがない場合は\(\symbf{0}, \symbf{1}\)をそれぞれ単に\(0, 1\)と書く．
+\noindent 混乱のおそれがない場合は\(0_A\)や\(1_A\)を\(0\)や\(1\)と表す．
 
 \begin{thmbox}
 \begin{proposition}[（コンパクトHausdorff空間上の連続関数全体の集合から作られる代数）]
@@ -39,13 +39,13 @@
 \begin{gather*}
     (f + g)(x) := f(x) + g(x),\\
     (\alpha f)(x) := \alpha f(x), \\
-    \symbf{0} \colon X \to \mathbb{K}, \text{\(\symbf{0} (x) = 0\)  for all \(x \in X
+    0_{C(X)} \colon X \to \mathbb{K}, \text{\(0_{C(X)} (x) = 0\)  for all \(x \in X
 \)}
 \end{gather*}
 で定義するとき，\(C(X)\)は\(\symbb{K}\)上のベクトル空間となる．さらに乗法と乗法単位元を
 \begin{gather*}
     (fg)(x) := f(x)g(x), \\
-    \symbf{1} \colon X \to \symbb{K},\text{\(\symbf{1}(x) = 1\) for all \(x \in X\)}
+    1_{C(X)} \colon X \to \symbb{K},\text{\(1_{C(X)}(x) = 1\) for all \(x \in X\)}
 \end{gather*}
 と定義するとき，\(C(X)\)は\(\symbb{K}\)上の代数となる．
 \propositionlabel{compact-hausdorff-continuous-function}
@@ -118,7 +118,7 @@
 \(V\)から\(\NonNegReal\)への写像\(\lVert\placeholder\rVert\colon x \mapsto \lVert x \rVert\)が
 以下の性質をみたすとき，\(\lVert \placeholder \rVert\)を\(V\)上のノルムと呼ぶ：
 \begin{conditions}
-    \item 任意の\(x \in V\)について\(\|x\| = 0\;\Leftrightarrow\;x = 0\)．
+    \item 任意の\(x \in V\)について\(\|x\| = 0\;\Leftrightarrow\;x = 0_V\)．
     \item 任意の\(x \in V\)と\(\alpha \in \symbb{K}\)について\(\lVert \alpha x\rVert = |\alpha|\lVert x \rVert\)．
     \item （三角不等式，劣加法性）任意の\(x, y \in V\)について\(\lVert x + y \rVert \leq \lVert x\rVert + \lVert y \rVert\)．
 \end{conditions}
@@ -129,14 +129,14 @@
 
 \begin{thmbox}
 \begin{definition}[（代数のノルム，ノルム付き代数，Banach代数）]
-代数\(V\)上の写像\(\lVert\placeholder\rVert\)が，ベクトル空間\(V\)のノルムであり，さらに以下の\ref{banach-algebra-submultiplicativity}, \ref{banach-algebra-norm-1}を満たすとき，\(\lVert\placeholder\rVert\)を代数\(V\)のノルムという：
+代数\(A\)上の写像\(\lVert\placeholder\rVert\)が，ベクトル空間\(A\)のノルムであり，さらに以下の\ref{banach-algebra-submultiplicatiAity}, \ref{banach-algebra-norm-1}を満たすとき，\(\lVert\placeholder\rVert\)を代数\(A\)のノルムという：
 \begin{conditions}
-    \item\label{banach-algebra-submultiplicativity}（劣乗法性）任意の\(x, y \in X\)について\(\lVert xy \rVert \leq \lVert x \rVert \lVert y \rVert\)．
-    \item\label{banach-algebra-norm-1} \(\lVert \symbf{1} \rVert = 1\)．
+    \item\label{banach-algebra-submultiplicatiAity}（劣乗法性）任意の\(x, y \in A\)について\(\lVert xy \rVert \leq \lVert x \rVert \lVert y \rVert\)．
+    \item\label{banach-algebra-norm-1} \(\lVert 1_A \rVert = 1\)．
 \end{conditions}
-代数\(V\)とそのノルムの組\((V, \lVert\placeholder\rVert)\)を\keyword{ノルム付き代数}(normed algebra)という．
-どういうノルムであるかを強調したい場合以外は組\((V, \lVert \placeholder \rVert)\)を単に\(V\)と書く事が多い．
-ノルム付き代数\((V, \lVert \placeholder \rVert)\)がノルム\(\lVert \placeholder \rVert\)について完備であるとき，\((V, \lVert \placeholder \rVert)\)を\keyword{Banach代数}(Banach Algebra)と呼ぶ．
+代数\(A\)とそのノルムの組\((A, \lVert\placeholder\rVert)\)を\keyword{ノルム付き代数}(normed algebra)という．
+どういうノルムであるかを強調したい場合以外は組\((A, \lVert \placeholder \rVert)\)を単に\(A\)と書く事が多い．
+ノルム付き代数\((A, \lVert \placeholder \rVert)\)がノルム\(\lVert \placeholder \rVert\)について完備であるとき，\((A, \lVert \placeholder \rVert)\)を\keyword{Banach代数}(Banach Algebra)と呼ぶ．
 \end{definition}
 \end{thmbox}
 
@@ -179,6 +179,300 @@
   &< \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.
 \end{align*}
 よって\(f\)は\(x\)で連続であり，\(x\)は任意だったので，\(f \in C(X)\)が示せた．
+\end{proof}
+
+ベクトル空間においてその部分ベクトル空間というものを考えたのと同様に，
+代数においても部分代数というものを考える．
+
+\begin{thmbox}
+\begin{definition}[（部分代数）]
+体\(\mathbb{K}\)上の代数\(A\)の部分集合\(S\)が\(A\)における加法，スカラー倍，乗法について閉じているとき，すなわち以下の\ref{subalgebra-closed-under-addition}--\ref{subalgebra-closed-under-multiplication}が成り立つとき，\(S\)は\(A\)の\keyword{部分代数}(subalgebra)であるという．
+\begin{conditions}
+    \item\label{subalgebra-closed-under-addition} 任意の\(x, y \in S\)で\(x + y \in S\)．
+    \item 任意の\(\alpha \in \symbb{K}\)と任意の\(x \in S\)について\(\alpha x \in S\)．
+    \item\label{subalgebra-closed-under-multiplication} 任意の\(x, y \in S\)で\(xy \in S\)．
+\end{conditions}
+\end{definition}
+\end{thmbox}
+
+\begin{example} \(X = [-1, 1]\)上の多項式関数全体の集合
+\begin{align}
+    S := \left\{f\colon x \mapsto a_0 + a_1 x + \cdots + a_{n} x^{n} \; \middle| \; a_{0}, \ldots, a_{n} \in \symbb{R} \right\}
+    \eqlabel{subalgebra-polynomial}
+\end{align}
+は\(C(X)\)の部分代数である．また偶数次の項のみからなる多項式関数の全体の集合
+\begin{align}
+    S' := \left\{f\colon x \mapsto a_0 + a_2 x^2 + \cdots + a_{2n} x^{2n} \; \middle| \; a_{0}, \ldots, a_{2n} \in \symbb{R} \right\}
+    \eqlabel{subalgebra-polynomial-even}
+\end{align}
+もまた\(C(X)\)の部分代数である．
+\end{example}
+
+\(X\)の任意の異なる2点\(x_1, x_2\)に対して，\(f(x_1) \neq f(x_2)\)となるような\(f \in S\)が存在するとき，\(S\)は\(X\)を\keyword{分離}するという．
+\eqref{subalgebra-polynomial}で定義された\(S\)は，\(\identity\colon x \mapsto x\)を元としてもつため，\(\identity(x_1) \neq \identity(x_2)\)となり\(X\)を分離する．一方で\eqref{subalgebra-polynomial-even}の\(S'\)は，どのような\(f\in S'\)をとっても\(f(-1) =  f(1)\)となり\(X\)を分離することができない．
+
+\begin{thmbox}
+\begin{theorem}[（Stone--Weierstraßの定理）]
+\(X\)をコンパクトHausdorff空間とする．
+\(C(X, \symbb{R})\)の単位的な閉部分代数\(S\)が\(X\)を分離するならば，
+\(S\)は\(C(X, \symbb{R})\)で稠密になる．
+\end{theorem}
+\end{thmbox}
+
+\lemmaref{unital-subalgebra-separation}
+
+\begin{thmbox}
+\begin{lemma}
+\(C(X, \symbb{K})\)の単位的な部分代数\(S\)が\(X\)を分離するならば，
+\(X\)の任意の異なる2点\(x_1, x_2\)と任意の定数\(\alpha, \beta \in \symbb{K}\)について
+\begin{align*}
+  h(x_1) = \alpha,\quad h(x_2) = \beta
+\end{align*}
+となるような\(h \in S\)が存在する．\lemmalabel{unital-subalgebra-separation}
+\end{lemma}
+\end{thmbox}
+
+\begin{proof}
+\(S\)が\(X\)を分離することから，\(X\)の異なる任意の2点\(x_1, x_2\)に対して，\(f(x_1) \neq f(x_2)\)となるような\(f \in S\)が存在する．このとき\(h\)を
+\begin{align*}
+    h(x) = \alpha 1_{C(X)}(x) + (\beta - \alpha) \frac{f(x) - f(x_1)}{f(x_2) - f(x_1)}
+\end{align*}
+と定義すると，これは条件を満たす．
+\end{proof}
+
+任意の\(f, g \in C(X)\)について\(f \lor g\), \(f \land g\)をそれぞれ
+\begin{gather*}
+    (f \lor g)(x) := \max \{ f(x), g(x) \}, \\
+    (f \land g)(x) := \min \{ f(x), g(x) \}
+\end{gather*}
+と定義する．これらについて次の補題が成り立つ：
+
+\begin{thmbox}
+\begin{lemma}
+\(X\)をコンパクトHausdorff空間，\(S\)を\(C(X)\)の閉部分代数とする．
+\(f, g \in S\)ならば\(f \lor g, f\land g \in S\)が成り立つ．
+\end{lemma}
+\end{thmbox}
+
+\begin{proof} \(f \lor g, f \land g\)はそれぞれ
+\begin{gather*}
+  f \lor g = \frac{1}{2} (f + g + \lvert f - g \rvert), \\
+  f \land g = \frac{1}{2} (f + g - \lvert f - g \rvert)
+\end{gather*}
+と表すことができる\footnote{%
+\(\lvert f \rvert\)は\(\lvert f \rvert (x) = \lvert f(x) \rvert\)によって定義される関数を表す．}．
+したがって\(f \in S\)ならば\(\lvert f \rvert \in S\)が成り立つことを示せばよい．
+まず\(\lvert f \rvert\)が \(a_1 f + a_2 f^2 + \cdots + a_n f^n \in S\)で近似できることを示す\footnote{%
+\(S\)が単位的であると仮定していないため，定数関数\(a_0 1_{C(X)}(x)\)が\(S\)の元とは限らないことに注意する．}．
+\(\lvert t \rvert = \sqrt{t^2}\)なので，これの多項式近似を考えたいところではあるが，\(t \mapsto \sqrt{t^2}\)は扱いが難しいため，かわりに\(t \mapsto \sqrt{1 - t}\)を考える．
+関数\(p\)を
+\begin{align*}
+  p\colon(-\infty, 1] \to \symbb{R},\quad p(t) = \sqrt{1 - t}
+\end{align*}
+と定義する．
+この関数は\((-\infty, 1)\)で微分可能で，各次の導関数は以下のようになる：
+\begin{gather*}
+  p'(t) = \frac{1}{2} (1 - t)^{-1/2} \cdot (-1) = -\frac{1}{2}(1 - t)^{-1/2}, \\
+  p''(t) = -\frac{1}{2}\cdot \left(-\frac{1}{2}\right) \cdot (1 - t)^{-3/2} \cdot (-1) = - \frac{1}{4}(1 - t)^{-3/2}, \\
+  p'''(t) = -\frac{1}{4} \cdot \left(-\frac{3}{2}\right) \cdot (1 - t)^{-5/2} \cdot (-1) = - \frac{3}{8} (1 - t)^{-5/2}, \\
+  \vdots \\
+  p^{(n)}(t) = - \frac{(2 n - 3) !! }{2^n} (1 - t)^{- (2 n - 1)/2} \ (n \geq 2).
+\end{gather*}
+ここで\((2n - 3)!!\)は二重階乗\((2n - 3)\cdot(2n - 5) \cdot \cdots \cdot 5 \cdot 3 \cdot 1\)である．
+Taylorの定理により任意の\(-1 < t < 1\)について\(|\theta| < t\)が存在して
+\begin{align*}
+  \sqrt{1 - t}
+  &= p(0) + p'(0) t + \frac{1}{2} p''(0) t^2 + \frac{1}{3!}p'''(0) t^3 + \cdots + \frac{1}{(n - 1)!} f^{(n - 1)} t^{n - 1} + \frac{1}{n!}f^{(n)}(\theta) t^n \\
+  &= 1 - \frac{t}{2} -\sum_{k = 2}^{n - 1} \frac{(2k - 3)!!}{k!2^k} t^{k} -
+  \frac{(2n - 3)!!}{n!2^n} \theta^n \\
+  &= \sum_{k = 0}^{n - 1} a_k t^k - a_n \theta^n
+\end{align*}
+が成り立つ．
+ここで
+\begin{align*}
+  a_0 = 1,\quad a_1 = \frac{1}{2},\quad a_n = \frac{(2n - 3)!!}{n!2^n}\quad (n \geq 2)
+\end{align*}
+とした．
+このとき
+\begin{align*}
+\left|\sqrt{1 - t} - \left(\sum_{k = 0}^{n -1} a_k t^k \right)\right|
+  &= \left| a_n \theta^k \right| \\
+  &= \frac{(2n - 3)!!}{n!2^n} \theta^n  \\
+  &< \frac{1}{2^n (2n - 4) \cdot (2n - 6) \cdot \cdots \cdot 4 \cdot 2}  \\
+  &\leq \frac{1}{2^n} \to 0 \quad(n \to \infty)
+\end{align*}
+となるから，\(\sum_{k = 1}^\infty a_k t^k\)は区間\((-1, 1)\)で\(\sqrt{1 - t}\)に一様収束する．
+\(t = 1\)のとき\(\sum_{n = 0}^\infty a_n t^n\)が収束する，すなわち\(\sum_{n = 0}^\infty a_n\)が収束することを示す．
+Ratio testを試みると
+\begin{align}
+  \left| \frac{a_{n + 1}}{a_n } \right|
+  &=  \frac{n!2^n}{(2n - 3)!!} \frac{(2n - 1)!!}{(n + 1)!2^{n + 1}} \notag \\
+  &=  \frac{2n - 1}{2(n + 1)} \notag \\
+  &=  \frac{2(n + 1) - 3}{2(n + 1)} \notag \\
+  &= 1 - \frac{3}{2(n + 1)} \to 1 \quad(n \to \infty) \eqlabel{radius}
+\end{align}
+となるため，ratio testではなくRaabeの判定法を試みる：
+\begin{align*}
+b_n
+&:= n \left(1 - \frac{|a_{n + 1}|}{|a_n|}\right) \\
+&= n \left(1 - 1 + \frac{3}{2(n + 1)}\right) \\
+&= \frac{3 n}{2(n + 1)} \\
+&= \frac{3}{\displaystyle 2\left(1 + \frac{1}{n}\right)} \to \frac{3}{2} \quad(n \to \infty).
+\end{align*}
+\(\lim_{n \to \infty} b_n > 1\)であるから，\(\sum_{n = 0}^\infty a_n\)は絶対収束する．
+したがってAbelの連続性定理により
+\begin{align*}
+  \sum_{k = 0}^\infty a_k = \lim_{t \to 1 - 0}\sqrt{1 - t} = 0
+\end{align*}
+となる．
+ゆえに級数\(\sum_{k = 0}^\infty a_k t^k\)は\((-1, 1]\)，特に\([0, 1]\)で\(p\)に一様収束する．
+近似の様子を途中まで図示すると\figref{stone-weierstrass-approx-sqrt}のようになる．
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis equal,
+            axis lines=middle,
+            axis line style=thick,
+            xlabel={$t$},
+            ylabel={$y$},
+            ytick={1},
+            yticklabels={},
+            xtick={-1, 1},
+            domain=-1.5:2.3,
+            xmin=-1.3,
+            xmax=2,
+            ymin=-0.5,
+            ymax=2.3,
+            samples=200,
+            clip=false
+        ]
+        \addplot[sOriginalCurve, thick][domain=-1.2:0.9999] {sqrt(1 - x)};
+        \addplot[sSimpleCurve, thick, dashed][domain=-1.2:1.85] {1 - x/2};
+        \addplot[sApproxCurve, thick, dotted][domain=-1.2:1.17] {%
+            1
+            - x/2
+            - x^2 / 8
+            - 3 * x^3 / 16
+            - 5 * x^4 / 128
+            - 7 * x^5 / 256
+            - 21 * x^6 / 1024
+            - 33 * x^7 / 2048
+            - 429 * x^8 / 32768
+            - 715 * x^9 / 65536
+            - 2431 * x^10 / 262144
+            % - 4199 * x^11 / 524288
+            % - 29393 * x^12 / 4194304
+        };
+        \node (O) at (axis cs:0.15, -0.15) {$O$};
+        \node (one) at (axis cs:0.15, 1.1) {$1$};
+        \node (original) at (axis cs:-0.8, 0.8) {\textcolor{sOriginalCurve}{$\displaystyle y = \sqrt{1 - t}$}};
+        \node (line) at (axis cs:1.2, 0.95) {\textcolor{sSimpleCurve}{$\displaystyle y = 1 - \frac{t}{2}$}};
+        \node (lim) at (axis cs:1.2, -0.85) {\textcolor{sApproxCurve}{$\displaystyle y = 1 - \frac{t}{2} - \sum_{k = 2}^{10} \frac{(2k - 3)!!}{2^k k!} t^k$}};
+        \end{axis}
+    \end{tikzpicture}
+    \caption{関数\(t \mapsto \sqrt{1 - t}\)の多項式による近似．}\figlabel{stone-weierstrass-approx-sqrt}
+\end{figure}
+
+関数\(q\colon[-1, 1] \to \mathbb{R}\)を
+\begin{align*}
+  q(t) = \sum_{n = 0}^\infty a_n (1 - t^2)^n
+\end{align*}
+で定義する．
+このとき
+\begin{align*}
+  \Bigl||t| - q(t)\Bigr|
+  &= \left| \sqrt{1 - (1 - t^2)} - \sum_{k = 0}^\infty a_k (1 - t^2)^n \right|
+\end{align*}
+となるから\(q\)は\([-1, 1]\)で\(|t|\)に一様収束する．近似の様子を途中まで図示すると\figref{stone-weierstrass-approx-abs}のようになる．
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis equal,
+            axis lines=middle,
+            axis line style=thick,
+            xlabel={$t$},
+            ylabel={$y$},
+            ytick={1},
+            yticklabels={$1$},
+            xtick={-1, 1},
+            xticklabels={$-1$, $1$,},
+            domain=-2.5:2.5,
+            xmin=-2.3,
+            xmax=2.3,
+            ymin=-0.07,
+            ymax=2.5,
+            samples=200,
+            clip=false
+        ]
+            \addplot[sOriginalCurve, thick][domain=-1.9:1.9] {abs(x)};
+            \addplot[sSimpleCurve, thick, dashed][domain=-1.6:1.77] {1 - (1 - x^2)/2};
+            \addplot[sApproxCurve, thick, dotted][domain=-1.7:1.7] {%
+                1
+                - (1 - x^2)/2
+                - (1 - x^2)^2 / 8
+                - 3 * (1 - x^2)^3 / 16
+                - 5 * (1 - x^2)^4 / 128
+                - 7 * (1 - x^2)^5 / 256
+                - 21 * (1 - x^2)^6 / 1024
+                - 33 * (1 - x^2)^7 / 2048
+                - 429 * (1 - x^2)^8 / 32768
+                - 715 * (1 - x^2)^9 / 65536
+                - 2431 * (1 - x^2)^10 / 262144
+                % - 4199 * (1 - x^2)^11 / 524288
+                % - 29393 * (1 - x^2)^12 / 4194304
+            };
+            \node (O) at (axis cs:0.15, -0.15) {$O$};
+            \node (original) at (axis cs:-1.8, 2.25) {%
+                \textcolor{sOriginalCurve}{$\displaystyle y = |t| = \sqrt{1 - (1 - t^2)}$}
+            };
+            \node (curve) at (axis cs:1.65, 2.5) {\textcolor{sSimpleCurve}{%
+                $\displaystyle y = 1 - \frac{1 - t^2}{2}$}
+            };
+            \node (lim) at (axis cs:1.2, -1.2) {%
+                \textcolor{sApproxCurve}{%
+                    $\displaystyle y = 1 - \frac{1 - t^2}{2} - \sum_{k = 2}^{10} \frac{(2k - 3)!!}{2^k k!} (1 - t^2)^k$
+                }
+            };
+        \end{axis}
+    \end{tikzpicture}
+    \caption{関数\(t \mapsto |t|\)の多項式による近似．}\figlabel{stone-weierstrass-approx-abs}
+\end{figure}
+
+
+級数\(\sum_{n = 0}^\infty a_n(1 - t^2)^n\)は\(t \in [-1, 1]\)で絶対収束するから，項の順番を入れ替えて足し合わせてもよい．\(\sum_{n = 0}^\infty a_n = 0\)であったから，以下のように\(q\)を書き改めることができる．
+\begin{align*}
+  p(t)
+  &= \sum_{n = 0}^\infty a_n (1 - t^2)^n \\
+  &= a_0 + a_1 (1 - t^2) + a_2(1- 2 t^2 + t^4) + a_3 (1 - 3t^2 + 3t^4 - t^6) + \cdots \\
+  &= \sum_{n = 0}^\infty a_n - (a_1 + 2 a_2 + \cdots )t^2 + (a_2 + 3 a_3 + \cdots)t^4 + \cdots \\
+  & = \lim_{n \to \infty} \sum_{n = 1}^\infty c_n t^{2n}
+\end{align*}
+ただし記号\(\displaystyle \binom{n}{k}\)は二項係数を表しており，
+\begin{align*}
+  c_n & = (-1)^n \left(\binom{n}{n} a_n + \cdots + \binom{n + j}{n} a_{n + j} + \cdots \right) \\
+      & = (-1)^n \sum_{j = 0}^\infty \left(\binom{n + j}{n} a_{n + j} \right) \\
+\end{align*}
+である．
+
+\(t \mapsto |t|\)を多項式近似することができたので，これで\(|f|\)の多項式近似を考えることができる．\(\|f\| = 0\)，すなわち\(f = 0_{C(X)}\)のときは\(|f| = f\in S\)となる．よって以下では\(\|f\| > 0\)とする．このとき
+\begin{align*}
+  |f| = \|f\| \frac{|f|}{\|f\|}
+\end{align*}
+が成り立つので\(f \in S\)ならば\(|f|/\|f\| \in S\)を示せばよいことがわかる．任意の\(x \in X\)に対して\(f(x)/\|f\| \in [-1, 1]\)なので
+\begin{align*}
+  \sum_{k = 1}^n c_n \left( \frac{f(x)}{\|f\|} \right)^2 \in S
+\end{align*}
+であり，これは\(n \to \infty\)とすると
+\begin{align*}
+  \left|\frac{f(x)}{\|f\|}\right|
+  = \frac{|f(x)|}{\|f\|}
+  = \frac{|f|(x)}{\|f\|}
+\end{align*}
+に一様収束する．
+\(S\)が閉集合であるから\(|f|/\|f\| \in S\)である．
+よって\(f \in S\)ならば\(|f| \in S\)であり，\(f \lor g, f \land g \in S\)となる．
 \end{proof}
 
 
