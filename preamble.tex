@@ -9,7 +9,7 @@
 \usepackage{pgfplots}
 
 \usepackage{xcolor}
-\definecolor{sBlue}{HTML}{11144c}
+\definecolor{sBlue}{HTML}{0000FF}
 \colorlet{sOriginalCurve}{sBlue}
 
 \definecolor{sRed}{HTML}{a21232}
@@ -82,8 +82,8 @@
 \setrefstyle{lemma}{prefix=補題}
 \newref{example}
 \setrefstyle{example}{prefix=例}
-\newref{thm}
-\setrefstyle{thm}{prefix=定理}
+\newref{theorem}
+\setrefstyle{theorem}{prefix=定理}
 \newref{sec}
 \setrefstyle{sec}{prefix={第},suffix={節}}
 
@@ -158,6 +158,14 @@
     urlcolor=sBlue
 }
 
+\usepackage[%
+    backend=biber,
+    style=pecorarista,
+    sorting=nyvt,
+    urldate=long
+]{biblatex}
+\addbibresource{references.bib}
+
 \usepackage{titleps}
 \newpagestyle{main}{%
     \headrule
@@ -173,7 +181,8 @@
 \newcommand\PositiveInteger{\symbb{N}_{\mathord{+}}}
 \newcommand\NonNegReal{\symbb{R}_{\mathord{+}}}
 \newcommand\PositiveReal{\symbb{R}_{\mathord{+}\mathord{+}}}
-\newcommand{\placeholder}{\mathord{\cdot}}
+\newcommand\placeholder{\mathord{\cdot}}
+\newcommand\powerset[1]{\wp(#1)}
 \DeclareMathOperator{\identity}{id}
 
 \newcommand\header[1]{\multicolumn{1}{c}{\bfseries\gtfamily #1}}

@@ -1,12 +1,13 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 \mainchapter{関数解析}
+\nocite{miyajima-functional-analysis}
 
 \begin{thmbox}
 \begin{definition}[（代数）]
 \(A\)を\(\symbb{K}\)上のベクトル空間とする．
 積または乗法と呼ばれる\(A\)上の二項演算\(\mathord{\ast}\colon (x, y) \mapsto x y\)が以下の性質をみたすとき，
-組\((A, \mathord{\ast})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという：
+組\((A, \mathord{\ast})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという．
 \begin{conditions}
     \item\label{algebra-mult-assoc} 任意の\(x, y, z \in A\)について\(x (yz) = (xy) z\)．
     \item 任意の\(x, y, z \in A\)について\((x + y) z = xz + yz, x (y + z) = xz + xz\)．
@@ -15,12 +16,12 @@
 \end{conditions}
 どういう演算であるかを強調したい場合以外は組\((A, \mathord{\ast})\)を単に\(A\)と書くことが多い．
 上の\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
-代数\(A\)は可換であるという：
+代数\(A\)は可換であるという．
 \begin{conditions}[resume]
     \item 任意の\(x, y\in A\)について\(x y  = y x\)．
 \end{conditions}
 また\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
-代数\(A\)は単位元をもつ(with unit)または単位的(unital)であるという：
+代数\(A\)は単位元をもつ(with unit)または単位的(unital)であるという．
 \begin{conditions}[resume]
     \item ある元\(1_A \in A \setminus \{0_A\}\)が存在して，
         任意の\(x \in A\)に対して\(1_A x  = x 1_A = x\)が成り立つ．
@@ -29,7 +30,7 @@
 \end{definition}
 \end{thmbox}
 
-\noindent 混乱のおそれがない場合は\(0_A\)や\(1_A\)を\(0\)や\(1\)と表す．
+\noindent 混乱のおそれがない場合は\(0_A\)や\(1_A\)を単に\(0\)や\(1\)と表す．
 
 \begin{thmbox}
 \begin{proposition}[（コンパクトHausdorff空間上の連続関数全体の集合から作られる代数）]
@@ -56,15 +57,15 @@
 
 \paragraph{加法について閉じていること} 任意の\(f, g \in C(X)\)について，\(f + g \in C(X)\)を示す．\(f\)が連続なので，任意の\(x_0 \in X\)について，任意の\(\varepsilon > 0\)をとったとき，\(x_0\)の近傍\(V_1\)が存在して，\(x \in V_1\)ならば
 \begin{align*}
-    |f(x) - f(x_0)| < \frac{\varepsilon}{2}
+    \lvert f(x) - f(x_0) \rvert < \frac{\varepsilon}{2}
 \end{align*}
 が成り立つ．\(g\)についても同様に，\(x_0\)の近傍\(V_2\)が存在して，\(x \in V_2\)ならば
 \begin{align*}
-    |g(x) - g(x_0)| < \frac{\varepsilon}{2}
+    \lvert g(x) - g(x_0) \rvert < \frac{\varepsilon}{2}
 \end{align*}
 が成り立つ．よって\(x \in V_1 \cap V_2\)ならば
 \begin{align*}
-  |(f + g)(x) - (f + g)(x_0)|
+  \lvert (f + g)(x) - (f + g)(x_0) \rvert
   &= |f(x) + g(x) - (f(x_0) + g(x_0))| \\
   &= |f(x) - f(x_0) + g(x) - g(x_0)| \\
   &\leq |f(x) - f(x_0) | + | g(x) - g(x_0)| \\
@@ -74,7 +75,7 @@
 
 \paragraph{スカラー倍について閉じていること} \(\alpha\)を任意の実数とする．任意の\(f \ \in C(X)\)について\(\alpha f \in C(X)\)となることを示す．\(f\)が任意の\(x_0 \in X\)で連続なので，任意の\(\varepsilon > 0\)に対して，\(x_0\)の近傍\(V\)が存在して，\(x \in V\)ならば
 \begin{align*}
-  |f(x) - f(x_0)| < \frac{\varepsilon}{|\alpha| + 1}
+  |f(x) - f(x_0)| < \frac{\varepsilon}{\lvert \alpha \rvert + 1}
 \end{align*}
 が成り立つ．したがって
 \begin{align*}
@@ -116,7 +117,7 @@
 \begin{definition}[（ノルム）]
 \(\symbb{K}\)上のベクトル空間\(V\)において，
 \(V\)から\(\NonNegReal\)への写像\(\lVert\placeholder\rVert\colon x \mapsto \lVert x \rVert\)が
-以下の性質をみたすとき，\(\lVert \placeholder \rVert\)を\(V\)上のノルムと呼ぶ：
+以下の性質をみたすとき，\(\lVert \placeholder \rVert\)を\(V\)上のノルムと呼ぶ．
 \begin{conditions}
     \item 任意の\(x \in V\)について\(\|x\| = 0\;\Leftrightarrow\;x = 0_V\)．
     \item 任意の\(x \in V\)と\(\alpha \in \symbb{K}\)について\(\lVert \alpha x\rVert = |\alpha|\lVert x \rVert\)．
@@ -129,7 +130,7 @@
 
 \begin{thmbox}
 \begin{definition}[（代数のノルム，ノルム付き代数，Banach代数）]
-代数\(A\)上の写像\(\lVert\placeholder\rVert\)が，ベクトル空間\(A\)のノルムであり，さらに以下の\ref{banach-algebra-submultiplicatiAity}, \ref{banach-algebra-norm-1}を満たすとき，\(\lVert\placeholder\rVert\)を代数\(A\)のノルムという：
+代数\(A\)上の写像\(\lVert\placeholder\rVert\)が，ベクトル空間\(A\)のノルムであり，さらに以下の\ref{banach-algebra-submultiplicatiAity}, \ref{banach-algebra-norm-1}を満たすとき，\(\lVert\placeholder\rVert\)を代数\(A\)のノルムという．
 \begin{conditions}
     \item\label{banach-algebra-submultiplicatiAity}（劣乗法性）任意の\(x, y \in A\)について\(\lVert xy \rVert \leq \lVert x \rVert \lVert y \rVert\)．
     \item\label{banach-algebra-norm-1} \(\lVert 1_A \rVert = 1\)．
@@ -208,36 +209,55 @@
 もまた\(C(X)\)の部分代数である．
 \end{example}
 
-\(X\)の任意の異なる2点\(x_1, x_2\)に対して，\(f(x_1) \neq f(x_2)\)となるような\(f \in S\)が存在するとき，\(S\)は\(X\)を\keyword{分離}するという．
-\eqref{subalgebra-polynomial}で定義された\(S\)は，\(\identity\colon x \mapsto x\)を元としてもつため，\(\identity(x_1) \neq \identity(x_2)\)となり\(X\)を分離する．一方で\eqref{subalgebra-polynomial-even}の\(S'\)は，どのような\(f\in S'\)をとっても\(f(-1) =  f(1)\)となり\(X\)を分離することができない．
+\(X\)の任意の異なる2点\(\xi, \lambda\)に対して，\(f(\xi) \neq f(\lambda)\)となるような\(f \in S\)が存在するとき，\(S\)は\(X\)を\keyword{分離}するという．
+\eqref{subalgebra-polynomial}で定義された\(S\)は，\(\identity\colon x \mapsto x\)を元としてもつため，\(\identity(\xi) \neq \identity(\lambda)\)となり\(X\)を分離する．一方で\eqref{subalgebra-polynomial-even}の\(S'\)は，どのような\(f\in S'\)をとっても\(f(-1) =  f(1)\)となり\(X\)を分離することができない．
+
+\begin{thmbox}
+\begin{definition}[生成される部分代数] \(A\)を代数，\(S\)をその部分集合とする．
+このとき\(S\)を含むような最小の部分代数が存在する．これを\keyword{\(S\)の生成する部分代数}といい，
+（一般的な表記ではないがここでは）\(\alpha[S]\)と表す．
+\end{definition}
+\end{thmbox}
+
+集合\(A\)の部分集合族\(\symcal{S}\)を以下のように定義する．
+\begin{align*}
+    \symcal{S} = \{ R \mid \text{\(R\)は\(A\)の部分代数, \(S \subseteq R\)}\}.
+\end{align*}
+このとき\(A \in \symcal{S}\)より\(\symcal{S}\)空でない．このとき
+\begin{align*}
+    \alpha[S] = \bigcap \symcal{S}
+\end{align*}
+とすればよい．
 
 \begin{thmbox}
 \begin{theorem}[（Stone--Weierstraßの定理）]
 \(X\)をコンパクトHausdorff空間とする．
 \(C(X, \symbb{R})\)の単位的な閉部分代数\(S\)が\(X\)を分離するならば，
-\(S\)は\(C(X, \symbb{R})\)で稠密になる．
+\(S\)は\(C(X, \symbb{R})\)で稠密になる．\theoremlabel{stone-weierstrass}
 \end{theorem}
 \end{thmbox}
 
-\lemmaref{unital-subalgebra-separation}
+\theoremref{stone-weierstrass}のために2つの補題を示す．
 
 \begin{thmbox}
 \begin{lemma}
 \(C(X, \symbb{K})\)の単位的な部分代数\(S\)が\(X\)を分離するならば，
-\(X\)の任意の異なる2点\(x_1, x_2\)と任意の定数\(\alpha, \beta \in \symbb{K}\)について
+\(X\)の任意の異なる2点\(\xi, \lambda\)と任意の定数\(\alpha, \beta \in \symbb{K}\)について
 \begin{align*}
-  h(x_1) = \alpha,\quad h(x_2) = \beta
+    h_{\xi\lambda}(\xi) = \alpha,\quad h_{\xi\lambda}(\lambda) = \beta
 \end{align*}
-となるような\(h \in S\)が存在する．\lemmalabel{unital-subalgebra-separation}
+となるような\(h_{\xi\lambda} \in S\)が存在する．\lemmalabel{unital-subalgebra-separation}
 \end{lemma}
 \end{thmbox}
 
 \begin{proof}
-\(S\)が\(X\)を分離することから，\(X\)の異なる任意の2点\(x_1, x_2\)に対して，\(f(x_1) \neq f(x_2)\)となるような\(f \in S\)が存在する．このとき\(h\)を
+\(S\)が\(X\)を分離することから，\(X\)の異なる任意の2点\(\xi, \lambda\)に対して，\(f(\xi) \neq f(\lambda)\)となるような\(f \in S\)が存在する．このとき\(h_{\xi\lambda}\)を
 \begin{align*}
-    h(x) = \alpha 1_{C(X)}(x) + (\beta - \alpha) \frac{f(x) - f(x_1)}{f(x_2) - f(x_1)}
+    h_{\xi\lambda}(x) = \alpha + (\beta - \alpha) \frac{f(x) - f(\xi)}{f(\lambda) - f(\xi)}
 \end{align*}
-と定義すると，これは条件を満たす．
+と定義すると，これは条件を満たす\footnote{%
+\(S\)が単位的なので\(\alpha\)，すなわち\(\alpha 1_{C(X)}(x)\)は\(S\)の元である．
+}．
 \end{proof}
 
 任意の\(f, g \in C(X)\)について\(f \lor g\), \(f \land g\)をそれぞれ
@@ -245,12 +265,12 @@
     (f \lor g)(x) := \max \{ f(x), g(x) \}, \\
     (f \land g)(x) := \min \{ f(x), g(x) \}
 \end{gather*}
-と定義する．これらについて次の補題が成り立つ：
+と定義する．これらについて次の補題が成り立つ．
 
 \begin{thmbox}
 \begin{lemma}
 \(X\)をコンパクトHausdorff空間，\(S\)を\(C(X)\)の閉部分代数とする．
-\(f, g \in S\)ならば\(f \lor g, f\land g \in S\)が成り立つ．
+\(f, g \in S\)ならば\(f \lor g, f\land g \in S\)が成り立つ．\lemmalabel{closed-under-max-and-min}
 \end{lemma}
 \end{thmbox}
 
@@ -262,15 +282,14 @@
 と表すことができる\footnote{%
 \(\lvert f \rvert\)は\(\lvert f \rvert (x) = \lvert f(x) \rvert\)によって定義される関数を表す．}．
 したがって\(f \in S\)ならば\(\lvert f \rvert \in S\)が成り立つことを示せばよい．
-まず\(\lvert f \rvert\)が \(a_1 f + a_2 f^2 + \cdots + a_n f^n \in S\)で近似できることを示す\footnote{%
-\(S\)が単位的であると仮定していないため，定数関数\(a_0 1_{C(X)}(x)\)が\(S\)の元とは限らないことに注意する．}．
+まず\(\lvert f \rvert\)が \(a_1 f + a_2 f^2 + \cdots + a_n f^n \in S\)で近似できることを示す．
 \(\lvert t \rvert = \sqrt{t^2}\)なので，これの多項式近似を考えたいところではあるが，\(t \mapsto \sqrt{t^2}\)は扱いが難しいため，かわりに\(t \mapsto \sqrt{1 - t}\)を考える．
 関数\(p\)を
 \begin{align*}
   p\colon(-\infty, 1] \to \symbb{R},\quad p(t) = \sqrt{1 - t}
 \end{align*}
 と定義する．
-この関数は\((-\infty, 1)\)で微分可能で，各次の導関数は以下のようになる：
+この関数は\((-\infty, 1)\)で微分可能で，各次の導関数は以下のようになる．
 \begin{gather*}
   p'(t) = \frac{1}{2} (1 - t)^{-1/2} \cdot (-1) = -\frac{1}{2}(1 - t)^{-1/2}, \\
   p''(t) = -\frac{1}{2}\cdot \left(-\frac{1}{2}\right) \cdot (1 - t)^{-3/2} \cdot (-1) = - \frac{1}{4}(1 - t)^{-3/2}, \\
@@ -311,7 +330,7 @@ Ratio testを試みると
   &=  \frac{2(n + 1) - 3}{2(n + 1)} \notag \\
   &= 1 - \frac{3}{2(n + 1)} \to 1 \quad(n \to \infty) \eqlabel{radius}
 \end{align}
-となるため，ratio testではなくRaabeの判定法を試みる：
+となるため，ratio testではなくRaabeの判定法を試みる．
 \begin{align*}
 b_n
 &:= n \left(1 - \frac{|a_{n + 1}|}{|a_n|}\right) \\
@@ -437,7 +456,7 @@ b_n
             };
         \end{axis}
     \end{tikzpicture}
-    \caption{関数\(t \mapsto |t|\)の多項式による近似．}\figlabel{stone-weierstrass-approx-abs}
+    \caption{関数\(t \mapsto \lvert t \rvert\)の多項式による近似．}\figlabel{stone-weierstrass-approx-abs}
 \end{figure}
 
 
@@ -456,9 +475,9 @@ b_n
 \end{align*}
 である．
 
-\(t \mapsto |t|\)を多項式近似することができたので，これで\(|f|\)の多項式近似を考えることができる．\(\|f\| = 0\)，すなわち\(f = 0_{C(X)}\)のときは\(|f| = f\in S\)となる．よって以下では\(\|f\| > 0\)とする．このとき
+\(t \mapsto \lvert t \rvert\)を多項式近似することができたので，これで\(\lvert f \rvert\)の多項式近似を考えることができる．\(\lVert f\rVert = 0\)，すなわち\(f = 0_{C(X)}\)のときは\(|f| = f\in S\)となる．よって以下では\(\lVert f \rVert > 0\)とする．このとき
 \begin{align*}
-  |f| = \|f\| \frac{|f|}{\|f\|}
+  \lvert f \rvert = \|f\| \frac{|f|}{\|f\|}
 \end{align*}
 が成り立つので\(f \in S\)ならば\(|f|/\|f\| \in S\)を示せばよいことがわかる．任意の\(x \in X\)に対して\(f(x)/\|f\| \in [-1, 1]\)なので
 \begin{align*}
@@ -473,6 +492,45 @@ b_n
 に一様収束する．
 \(S\)が閉集合であるから\(|f|/\|f\| \in S\)である．
 よって\(f \in S\)ならば\(|f| \in S\)であり，\(f \lor g, f \land g \in S\)となる．
+\end{proof}
+
+\begin{proof}[\theoremref{stone-weierstrass}の証明]
+任意の\(f \in C(X, \symbb{R})\)と\(\varepsilon > 0\)をとる．
+\begin{align}
+    \lVert f - g \rVert < \varepsilon \eqlabel{stone-weierstrass-f-g}
+\end{align}
+任意の\(\xi \in X\)とる．また\(\xi\)とは異なる任意の\(\lambda \in X\)をとる．
+\lemmaref{unital-subalgebra-separation}より
+\(h_{\xi\lambda}(\xi) = f(\xi)\)かつ\(h_{\xi\lambda}(\lambda) = f(\lambda)\)となるような\(h_{\xi\lambda} \in S\)が存在する．集合\(U_\lambda\)を
+\begin{align*}
+    U_{\lambda} &:= {(h_{\xi\lambda} - f)}^{-1}(-\infty, \varepsilon) \\
+                &= \{ x \in X \mid h_{\xi\lambda}(x) - f(x) < \varepsilon \}
+\end{align*}
+と定める．
+\(U_\lambda\)は開集合\((-\varepsilon, \infty)\)の連続関数\(h_{\xi\lambda} - f\)による逆像なので開集合である．
+\(h_{\xi\lambda}(\lambda) - f(\lambda) = h_{\xi\lambda}(\xi) - f(\xi) = 0 < \varepsilon\)より\(\xi, \lambda \in U_\lambda\)である．
+よって\((U_\lambda)_{\lambda \in X \setminus \{\xi\}}\)は\(X\)の開被覆である．
+\(X\)はコンパクトなので有限個の\(U_{\lambda_1}, \ldots, U_{\lambda_n}\)によって\(X\)を覆うことができる：
+\begin{align*}
+    X \subseteq \bigcup_{i = 1}^n U_{\lambda_i}.
+\end{align*}
+\(h_\xi := h_{\xi\lambda_1} \land \cdots \land h_{\xi\lambda_n}\)とする．
+\lemmalabel{closed-under-max-and-min}より\(h_\xi \in S\)である．
+このとき
+\begin{align*}
+    V_\xi &={(h_\xi - f)}^{-1}(-\varepsilon, \infty) \\
+          = \{ x \in X \mid h_{\xi}(x) - f(x) > - \varepsilon\}
+\end{align*}
+とすると，\((V_\xi)_{\xi \in X}\)は\(X\)の開被覆である．
+\(X\)がコンパクトなので有限個の\(V_{\xi_1}, \ldots, V_{\xi_m}\)によって\(X\)を覆うことができる：
+\begin{align*}
+    X \subseteq \bigcup_{i = 1}^m V_{\xi_i}.
+\end{align*}
+ここで\(g := h_{\xi_1} \lor \cdots \lor h_{\xi_m}\)とすると，任意の\(x \in X\)について
+\begin{align*}
+    - \varepsilon < g(x) - f(x) < \varepsilon,
+\end{align*}
+すなわち\eqref{stone-weierstrass-f-g}が成り立つ．
 \end{proof}
 
 

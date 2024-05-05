@@ -1,0 +1,10 @@
+\RequireBibliographyStyle{authoryear}
+
+\AtEveryBibitem{%
+  \iffieldequalstr{langid}{japanese}{%
+    \DeclareFieldFormat*{title}{「#1」}
+    \DeclareFieldFormat[book]{title}{『#1』}
+  }{%
+    \relax
+  }
+}
