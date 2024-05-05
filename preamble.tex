@@ -1,5 +1,8 @@
 \usepackage{booktabs}
-\usepackage[hang,flushmargin]{footmisc}
+\usepackage[%
+    hang,
+    flushmargin
+]{footmisc}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
@@ -9,13 +12,13 @@
 \usepackage{pgfplots}
 
 \usepackage{xcolor}
-\definecolor{sBlue}{HTML}{0000FF}
+\definecolor{sBlue}{HTML}{3498DB}
 \colorlet{sOriginalCurve}{sBlue}
 
-\definecolor{sRed}{HTML}{a21232}
+\definecolor{sRed}{HTML}{FF0033}
 \colorlet{sApproxCurve}{sRed}
 
-\definecolor{sGreen}{HTML}{20615b}
+\definecolor{sGreen}{HTML}{00CC00}
 \colorlet{sSimpleCurve}{sGreen}
 
 \definecolor{sFill}{HTML}{00A381}
@@ -178,11 +181,13 @@
 
 \newcommand\keyword[1]{{\bfseries\gtfamily #1}}
 
+\newcommand\Integer{\symbb{N}}
 \newcommand\PositiveInteger{\symbb{N}_{\mathord{+}}}
 \newcommand\NonNegReal{\symbb{R}_{\mathord{+}}}
 \newcommand\PositiveReal{\symbb{R}_{\mathord{+}\mathord{+}}}
 \newcommand\placeholder{\mathord{\cdot}}
 \newcommand\powerset[1]{\wp(#1)}
+\newcommand\inlinefrac[2]{#1\mathbin{/}#2}
 \DeclareMathOperator{\identity}{id}
 
 \newcommand\header[1]{\multicolumn{1}{c}{\bfseries\gtfamily #1}}
