@@ -1,0 +1,111 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\mainchapter{位相}
+
+\begin{thmbox}
+\begin{definition}
+\(X\)を集合とし，\(\symcal{O}\)を\(X\)の部分集合族とする．
+\(\symcal{O}\)が以下の\ref{topology-empty}--\ref{topology-union}をみたすとき，
+\(\symcal{O}\)の\keyword{位相}(topology)という．
+\begin{conditions}
+    \item\label{topology-empty} \(\emptyset \in \symcal{O}\)かつ\(X \in \symcal{O}\)．
+    \item\label{topology-intersection} \(O_1,\,O_2 \in \symcal{O}\)ならば\(O_1 \cap O_2 \in \symcal{O}\)．
+    \item\label{topology-union} 集合族\({(O_\lambda)}_{\lambda \in \Lambda}\)が各\(\lambda \in \Lambda\)について\(O_\lambda \in \symcal{O}\)をみたすならば
+        \begin{align}
+            \bigcup_{\lambda \in \Lambda} \in \symcal{O}.
+        \end{align}
+\end{conditions}
+集合\(X\)とその位相\(\symcal{O}\)の組\((X, \symcal{O})\)を\keyword{位相空間}(topological space)という．
+\end{definition}
+\end{thmbox}
+
+距離空間において，連続性は以下のように定義される：
+\begin{thmbox}
+\begin{definition}
+\((X, d_{X})\), \((Y,\,d_{Y})\)を距離空間とする．
+写像\(f\colon X \to Y\)が\keyword{点}\(x \in X\)\keyword{において連続}(continuous at \(x\))であるとは，
+任意の\(\varepsilon > 0\)に対して，ある\(\delta > 0\)が存在して，
+任意の\(x' \in X\)に対して，\(d_{X}(x', x) < \delta\)ならば\(d_{Y}(f(x'), f(x)) < \varepsilon\)となることをいう．
+\deflabel{dist-continuity}
+\end{definition}
+\end{thmbox}
+
+\begin{thmbox}
+\begin{definition}
+\((X, \symcal{O}_{X})\), \((Y, \symcal{O}_{Y})\)を位相空間とする．
+写像\(f\colon X \to Y\)が点\(x \in X\)において連続であるとは，
+\(f(x)\)の\((Y, \symcal{O}_{Y})\)における任意の近傍\(V\)に対して，
+\((X, \symcal{O}_{X})\)における\(x\)のある近傍\(U\)が存在して，\(f(U) \subseteq V\)となることをいう．
+\deflabel{topology-continuity}
+\end{definition}
+\end{thmbox}
+
+\(X\)を集合とし，\(\symcal{O}_1\)と\(\symcal{O}_2\)をそれぞれ\(X\)の位相とする．
+\(\symcal{O}_1 \subseteq \symcal{O}_2\)が成り立つとき，
+\(\symcal{O}_1\)は\(\symcal{O}_2\)より\keyword{粗い}(coarser)\index{粗い@あらい}，
+または\(\symcal{O}_2\)は\(\symcal{O}_1\)より\keyword{細かい}(finer)\index{細かい@こまかい}という．
+\(X\)の位相全体の集合は関係\(\subseteq\)を順序とみなすことにより，半順序集合となる．
+
+任意の集合\(X\)について，最も粗い(coarsest)位相は密着位相であり，最も細かい(finest)位相は離散位相である．
+簡単な例として異なる2点からなる集合\(X = \{a, b\}\)を考える．
+密着位相\(\{\emptyset, X\}\)に，任意の1点だけからなる集合を1つだけ含めた集合，
+すなわち\(\{\emptyset, \{a\}, X\}\)と\(\{\emptyset, \{b\}, X\}\)もまた位相である．
+これらを\keyword{Sierpiński位相}(Sierpiński topology)と呼ぶ．
+密着位相\(\{0,\,X\}\)，任意のSierpiński位相\(\symcal{S}\)，離散位相\(\wp(X) = \{\emptyset,\,\{a\},\,\{b\},\,X\}\)について，\(\{\emptyset,\,X\} \preceq \symcal{S} \preceq \wp(X)\)が成り立つ．これらを象徴的に図示すると\figref{sierpinski}のようになる．
+2つの異なるSierpiński位相は比較可能でないことから，位相の細かさは一般的には全順序にならないことがわかる．
+
+\begin{figure}
+    \centering
+    \vspace{5.2mm}
+    \begin{tikzpicture}
+        \draw[thick] (0, 0) ellipse (1.2 and 0.6);
+        \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=1pt, minimum size=3pt] at (-0.5, 0) {};
+        \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=1pt, minimum size=3pt] at (0.5, 0) {};
+        \node at (0, -1.3) {密着位相};
+
+        \draw[thick] (4, 0) ellipse (1.2 and 0.6);
+        \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=1pt, minimum size=3pt] at (3.5, 0) {};
+        \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=1pt, minimum size=3pt] at (4.5, 0) {};
+        \draw[thick] (3.5, 0) circle (0.3);
+        \node at (4, -1.3) {Sierpiński位相};
+
+        \draw[thick] (8, 0) ellipse (1.2 and 0.6);
+        \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=1pt, minimum size=3pt] at (7.5, 0) {};
+        \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=1pt, minimum size=3pt] at (8.5, 0) {};
+        \draw[thick] (7.5, 0) circle (0.3);
+        \draw[thick] (8.5, 0) circle (0.3);
+        \node at (8, -1.3) {離散位相};
+    \end{tikzpicture}
+    \vspace{4mm}
+    \caption{各位相を象徴的に表した図．図における点は集合の元，点を囲む円はその元を含む開集合に対応している．}
+    \figlabel{sierpinski}
+\end{figure}
+
+\begin{thmbox}
+\begin{definition}
+位相空間\((X, \symcal{O})\)の部分集合\(A\)が\(\overline{A} = X\)をみたすとき，
+\(A\)は\(X\)において\keyword{稠密}(dense)であるという．
+\end{definition}
+\end{thmbox}
+
+稠密であることは次のように言い換えられる．
+
+\begin{thmbox}
+\begin{proposition}
+位相空間\((X, \symcal{O})\)の部分集合\(A\)が稠密であることは，
+任意の\(O \in \symcal{O} \setminus \{\emptyset\}\)について\(A \cap O \neq \emptyset\)が成り立つことと同値である．
+\propositionlabel{dense-paraphrase}
+\end{proposition}
+\end{thmbox}
+
+\begin{proof}(\(\Rightarrow\))任意の\(O \in \symcal{O} \setminus \{\emptyset\}\)をとる．
+\(O\)は空でないから，ある\(x \in O\)が存在する．
+\(x \in O \subset X\)であり，仮定\(X \subseteq \overline{A}\)より\(x \in \overline{A}\)である．
+したがって触点の性質から\(A \cap O \neq \emptyset\)が成り立つ．
+
+\noindent (\(\Leftarrow\))任意の\(x \in X\)をとる．
+仮定から\(x\)の任意の開近傍\(V\)について\(A \cap V \neq \emptyset\)が成り立つ．
+したがって\(x \in \overline{A}\)，すなわち\(X \subseteq \overline{A}\)が示された．
+\end{proof}
+
+\end{document}

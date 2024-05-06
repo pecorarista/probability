@@ -354,7 +354,7 @@ Ratio testを試みると
   &=  \frac{2(n + 1) - 3}{2(n + 1)} \notag \\
   &= 1 - \frac{3}{2(n + 1)} \to 1 \quad(n \to \infty) \eqlabel{radius}
 \end{align}
-となるため，ratio testではなくRaabeの判定法を試みる．
+となるため，ratio testではなくRaabeの判定法（\theoremref{raabe}）を試みる．
 \begin{align*}
 b_n
 &:= n \left(1 - \frac{|a_{n + 1}|}{|a_n|}\right) \\
@@ -363,7 +363,7 @@ b_n
 &= \frac{3}{\displaystyle 2\left(1 + \frac{1}{n}\right)} \to \frac{3}{2} \quad(n \to \infty).
 \end{align*}
 \(\lim_{n \to \infty} b_n > 1\)であるから，\(\sum_{n = 0}^\infty a_n\)は絶対収束する．
-したがってAbelの連続性定理により
+したがってAbelの連続性定理（\theoremref{abel}）により
 \begin{align*}
   \sum_{k = 0}^\infty a_k = \lim_{t \to 1 - 0}\sqrt{1 - t} = 0
 \end{align*}
@@ -392,7 +392,7 @@ b_n
         ]
         \addplot[sOriginalCurve, thick][domain=-1.2:0.9999] {sqrt(1 - x)};
         \addplot[sSimpleCurve, thick, dashed][domain=-1.2:1.85] {1 - x/2};
-        \addplot[sApproxCurve, thick, dotted][domain=-1.2:1.17] {%
+        \addplot[sApproxCurve, thick, dotted][domain=-1.2:1.18] {%
             1
             - x/2
             - x^2 / 8
@@ -450,8 +450,8 @@ b_n
             clip=false
         ]
             \addplot[sOriginalCurve, thick][domain=-1.9:1.9] {abs(x)};
-            \addplot[sSimpleCurve, thick, dashed][domain=-1.6:1.77] {1 - (1 - x^2)/2};
-            \addplot[sApproxCurve, thick, dotted][domain=-1.7:1.7] {%
+            \addplot[sSimpleCurve, thick, dashed][domain=-1.705:1.74] {1 - (1 - x^2)/2};
+            \addplot[sApproxCurve, thick, dotted][domain=-1.701:1.701] {%
                 1
                 - (1 - x^2)/2
                 - (1 - x^2)^2 / 8
@@ -518,12 +518,12 @@ b_n
 \end{proof}
 
 \begin{proof}[\theoremref{stone-weierstrass}の証明]
-任意の\(f \in C(X, \symbb{R})\)をとる．
-任意の\(\varepsilon > 0\)に対して\(g \in S\)が存在して
+任意の\(f \in C(X, \symbb{R})\)と\(\varepsilon > 0\)に対して，
+ある\(g \in S\)で
 \begin{align}
-    \lVert f - g \rVert < \varepsilon \eqlabel{stone-weierstrass-f-g}
+    \lVert g - f \rVert < \varepsilon \eqlabel{stone-weierstrass-f-g}
 \end{align}
-となることを示す．
+をみたすものが存在することを示す（\propositionref{dense-paraphrase}）．
 任意の\(\xi \in X\)とる．また\(\xi\)とは異なる任意の\(\lambda \in X\)をとる．
 \lemmaref{unital-subalgebra-separation}より
 \(h_{\xi\lambda}(\xi) = f(\xi)\)かつ\(h_{\xi\lambda}(\lambda) = f(\lambda)\)となるような\(h_{\xi\lambda} \in S\)が存在する．集合\(U_\lambda\)を
@@ -559,21 +559,5 @@ b_n
 したがって\(S\)は\(X\)において稠密である．
 \(S\)が閉集合であるので\(S = \overline{S} = C(X, \symbb{R})\)が成り立つ．
 \end{proof}
-
-\begin{definition}
-位相空間\((X, \symcal{O})\)の部分集合\(A\)が\(\overline{A} = X\)をみたすとき，
-\(A\)は\(X\)において\keyword{稠密}(dense)であるという．
-\end{definition}
-
-\begin{proposition}
-位相空間\((X, \symcal{O})\)の部分集合\(A\)が稠密であることは，
-任意の\(O \in \symcal{O} \setminus \{\emptyset\}\)について\(A \cap O \neq \emptyset\)が成り立つことと同値である．
-\end{proposition}
-
-\begin{proof}
-\paragraph{\((\Leftarrow)\)} a
-\paragraph{\((\Rightarrow)\)} b
-\end{proof}
-
 
 \end{document}
