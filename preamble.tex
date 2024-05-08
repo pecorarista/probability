@@ -8,6 +8,7 @@
 \usepackage{amsthm}
 \usepackage{bussproofs}
 \usepackage{unicode-math}
+\usepackage{customdice}
 \usepackage{tikz}
 \usepackage{pgfplots}
 
@@ -35,11 +36,13 @@
 ]{luatexja-preset}
 \usepackage{luatexja-ruby}
 \setmainfont[%
-    ItalicFont=NewCM10-Italic.otf,
-    BoldFont=NewCM10-Bold.otf,
-    BoldItalicFont=NewCM10-BoldItalic.otf,
+    Extension=.otf,
+    UprightFont=*-Regular,
+    ItalicFont=*-Italic,
+    BoldFont=*-Bold,
+    BoldItalicFont=*-BoldItalic,
     SmallCapsFeatures={Numbers=OldStyle},
-]{NewCM10-Regular.otf}
+]{NewCM10}
 \setmathfont[math-style=ISO]{New Computer Modern Math}
 \setmathfont[
     range={
@@ -49,7 +52,6 @@
     StylisticSet=1
 ]{KpMath}
 \setsansfont[BoldFont={Roboto-Medium}]{Roboto}
-\newfontfamily\sourcecodepro{Source Code Pro}
 
 \ltjnewpreset{book}{%
     mc-m = A-OTF-RyuminPro-Regular.otf,
@@ -75,8 +77,8 @@
 \setrefstyle{fig}{prefix=図}
 \newref{eq}
 \setrefstyle{eq}{prefix=式(, suffix=)}
-\newref{def}
-\setrefstyle{def}{prefix=定義}
+\newref{definition}
+\setrefstyle{definition}{prefix=定義}
 \newref{axiom}
 \setrefstyle{axiom}{prefix=公理}
 \newref{proposition}
@@ -183,12 +185,16 @@
 
 \newcommand\Integer{\symbb{N}}
 \newcommand\PositiveInteger{\symbb{N}_{\mathord{+}}}
+\newcommand\Sequence[1]{{( #1_n )}_{n \in \PositiveInteger}}
 \newcommand\NonNegReal{\symbb{R}_{\mathord{+}}}
 \newcommand\PositiveReal{\symbb{R}_{\mathord{+}\mathord{+}}}
 \newcommand\placeholder{\mathord{\cdot}}
 \newcommand\powerset[1]{\wp(#1)}
 \newcommand\inlinefrac[2]{#1\mathbin{/}#2}
+\newcommand{\setcomp}[1]{{#1}^{\mathsf{c}}}
 \DeclareMathOperator{\identity}{id}
+\DeclareMathOperator{\trace}{trace}
 
 \newcommand\header[1]{\multicolumn{1}{c}{\bfseries\gtfamily #1}}
-\newcommand{\pronunciation}[4]{#1 \texttt{#2} [#3] #4．}
+\newcommand\pronunciation[4]{#1 \texttt{#2} [#3] #4．}
+\newcommand\primarystress{\mbox{}\char"02C8}

@@ -1,0 +1,64 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\mainchapter{測度と確率}
+
+\keyword{モデル化}(modeling)とは，現実世界にあるものやそこで生じる現象を，興味のない部分は捨象し，興味のある部分だけを別な単純なものに対応させる行為である．対応させた先の単純なものを\keyword{モデル}(model)という．
+力学でボールを\(\symbb{R}^2\)の点に対応させてそれに働く力を議論したり，
+経済学で消費者の好みを選好関係\footnote{%
+消費者にとって何らかの価値をもっているものを財(good)と呼ぶ．
+財の集合を\(G\)とする．消費者\(i\)が\(x \in G\)を\(y \in G\)より好むならば\(y \prec_i x\)，どちらも同程度に好ましいと考えるならば\(y \sim_i x\)と表す．また「\(y \prec_i x\)または\(y \sim_i x\)」が成り立つとき\(y \precsim_i x\)と表す．このように定めた各\(R \in \{\prec_i, \sim_i, \precsim_i\}\)は\(G\)上の関係（\(G \times G\)の部分集合）である．
+}で表現したりするのはモデル化の例である．
+科学において\keyword{確率}(probability)とはあらかじめ結果を知ることができない実験や観測をモデル化するため，起こりうるそれぞれの「結果」にその起こりやすさを割り振る方法である．
+実験や観測の「結果」はそれをモデル化する者が適切に設定する必要がある．
+サイコロを1度投げる実験を例にとると，それぞれの目が出ることを\(\dice{1}\)のような記号で表すとき，「結果」全体の集合は
+\begin{align}
+    \Omega = \{\dice{1}, \dice{2}, \dice{3}, \dice{4}, \dice{5}, \dice{6}\} \eqlabel{dice}
+\end{align}
+のように表すことができるだろう．もちろん記号の選び方は自由であり\(\Omega = \{1, 2, 3, 4, 5, 6\}\)のように表してもよい．
+このような「結果」全体の集合を\keyword{標本空間}(sample space)と呼び，しばしば\(\Omega\)で表す．
+「結果」という語は\(\dice{1}\)のように単一の記号で表されるものを指す場合と，「目が\(2\)以下である」(\(\{\dice{1}, \dice{2}\}\))のような複数の記号の集合で表されるものを指す場合がある．
+これらを区別するため，\(\dice{1}\)のような，これ以上分割ができないとみなせる実験や観測の結果を\keyword{根源事象}(atomic event)と呼び，根源事象を元にもつ集合で表される結果を\keyword{事象}(event)を呼ぶ．
+この用語を使うと，確率は各事象に起こりやすさを対応させる関数と定義することができる．
+個々の根源事象（例えば\(\dice{1}\)）については確率を直接は定義しない．
+なぜならば各事象の確率を定めることによって単一の根源事象からなる事象（例えば\(\{\dice{1}\}\)）の確率が定まり，結果として根源事象の確率とみなせるものが定まるからである．
+応用分野では「事象\(\{\omega\}\)の確率」が単に「\(\omega\)の確率」と書かれたり，\(P(\{\omega\})\)を単に\(P(\omega)\)のように書かれたりすることが多い．
+しかしこのような表現は初学者の混乱を招く可能性が高いため本書では避ける．
+
+\section{集合代数}
+確率を数学的に正確に定義するため，まずは確率の定義域と終域を定める必要がある．
+有限集合の場合，定義域として標本空間の\(\Omega\)の冪集合\(\wp(\Omega)\)を考えるのが普通である．
+例えば\(\Omega\)を\eqref{dice}とするとき，多くの場合
+\begin{align*}
+    & \wp(\Omega) = \{ \\
+    & \ \ \ \ \emptyset, \{\dice{1}\}, \{\dice{2}\}, \ldots, \{\dice{6}\}, \\
+    & \ \ \ \ \{\dice{1}, \dice{2}\}, \{\dice{1}, \dice{3}\}, \ldots,
+                  \{\dice{5}, \dice{6}\}, \\
+    & \ \ \ \ \{\dice{1}, \dice{2}, \dice{3}\}, \{\dice{1}, \dice{2}, \dice{4}\}, \ldots, \{\dice{4}, \dice{5}, \dice{6}\}, \\
+    & \ \ \ \ \Omega \setminus \{\dice{1}, \dice{2}\},  \Omega \setminus \{\dice{1}, \dice{3}\}, \ldots, \Omega \setminus \{\dice{5}, \dice{6}\}, \\
+    & \ \ \ \  \Omega \setminus \{\dice{1}\}, \Omega \setminus \{\dice{2}\}, \ldots, \Omega \setminus \{\dice{6}\}, \Omega \\
+    & \}
+\end{align*}
+をという\(2^6 = 64\)個の元をもつ集合をとる．
+しかし標本空間が無限集合の場合，確率の定義域を標本空間の冪集合としてしまうと，実用的に不要な集合が大量に含まれてしまい，確率の性質の議論が困難になってしまう．
+そこで
+
+\begin{thmbox}
+\begin{definition}
+\(X\)を集合とし，\(\symcal{F}\)をその部分集合族とする．
+\(\symcal{F}\)が以下の性質\ref{sigma-algebra-x-in-f}--\ref{sigma-algebra-sigma-cup-closed}をみたすとき，
+\(\symcal{F}\)を\(X\)上の\keyword{\(\symbf{\sigma}\)-代数}(\(\sigma\)-algebra)という{\footnotemark}．
+\begin{conditions}
+    \item\label{sigma-algebra-x-in-f}
+        \(X \in \symcal{F}\)．
+    \item\label{sigma-algebra-comp-closed} （\(\setcomp{\placeholder}\)-閉性） \(A \in \symcal{F}\)ならば\(\setcomp{A} \in \symcal{F}\)．
+    \item\label{sigma-algebra-sigma-cup-closed} （\(\sigma\)-\(\mathord{\cup}\)-閉性）\(\symcal{F}\)の任意の列\(\Sequence{A}\)について
+        \begin{align*}
+            \bigcup_{n \in \PositiveInteger} A_n \in \symcal{F}.
+        \end{align*}
+\end{conditions}
+\end{definition}
+\end{thmbox}
+
+\footnotetext{\inhibitglue 「\(\sigma\)-加法族」という訳語もよく用いられる．}
+
+\end{document}

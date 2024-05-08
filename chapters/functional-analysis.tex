@@ -6,15 +6,15 @@
 \begin{thmbox}
 \begin{definition}[（代数）]
 \(A\)を\(\symbb{K}\)上のベクトル空間とする．
-積または乗法と呼ばれる\(A\)上の二項演算\(\mathord{\ast}\colon (x, y) \mapsto x y\)が以下の性質をみたすとき，
-組\((A, \mathord{\ast})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという．
+積または乗法と呼ばれる\(A\)上の二項演算\((x, y) \mapsto x \mathbin{\times} y\)（通常\(x \mathbin{\times} y\)を単に\(xy\)を書く）が以下の性質をみたすとき，
+組\((A, \mathord{\times})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという．
 \begin{conditions}
     \item\label{algebra-mult-assoc} 任意の\(x, y, z \in A\)について\(x (yz) = (xy) z\)．
     \item 任意の\(x, y, z \in A\)について\((x + y) z = xz + yz, x (y + z) = xz + xz\)．
     \item\label{algebra-mult-scalar-assoc} 任意の\(\alpha \in \symbb{K}\)と任意の\(x, y \in X\)について
         \(\alpha (xy) = (\alpha x) y = x (\alpha y)\)．
 \end{conditions}
-どういう演算であるかを強調したい場合以外は組\((A, \mathord{\ast})\)を単に\(A\)と書くことが多い．
+どういう演算であるかを強調したい場合以外は組\((A, \mathord{\times})\)を単に\(A\)と書くことが多い．
 上の\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
 代数\(A\)は可換であるという．
 \begin{conditions}[resume]
@@ -129,38 +129,70 @@
 \noindent 代数のノルムは以下のように定義される．
 
 \begin{thmbox}
-\begin{definition}[（代数のノルム，ノルム付き代数，Banach代数）]
-代数\(A\)上の写像\(\lVert\placeholder\rVert\)が，ベクトル空間\(A\)のノルムであり，さらに以下の\ref{banach-algebra-submultiplicatiAity}, \ref{banach-algebra-norm-1}を満たすとき，\(\lVert\placeholder\rVert\)を代数\(A\)のノルムという．
+\begin{definition}[（代数のノルム，ノルム付き代数，Banach{\protect\footnotemark}代数）]
+代数\(A\)上の写像\(\lVert\placeholder\rVert\)が，ベクトル空間\(A\)のノルムであり，さらに以下の\ref{banach-algebra-submultiplicativity}, \ref{banach-algebra-norm-1}を満たすとき，\(\lVert\placeholder\rVert\)を代数\(A\)のノルムという．
 \begin{conditions}
-    \item\label{banach-algebra-submultiplicatiAity}（劣乗法性）任意の\(x, y \in A\)について\(\lVert xy \rVert \leq \lVert x \rVert \lVert y \rVert\)．
+    \item\label{banach-algebra-submultiplicativity}（劣乗法性）任意の\(x, y \in A\)について\(\lVert xy \rVert \leq \lVert x \rVert \lVert y \rVert\)．
     \item\label{banach-algebra-norm-1} \(\lVert 1_A \rVert = 1\)．
 \end{conditions}
 代数\(A\)とそのノルムの組\((A, \lVert\placeholder\rVert)\)を\keyword{ノルム付き代数}(normed algebra)という．
 どういうノルムであるかを強調したい場合以外は組\((A, \lVert \placeholder \rVert)\)を単に\(A\)と書く事が多い．
 ノルム付き代数\((A, \lVert \placeholder \rVert)\)がノルム\(\lVert \placeholder \rVert\)について完備であるとき，\((A, \lVert \placeholder \rVert)\)を\keyword{Banach代数}(Banach Algebra)と呼ぶ．
+\definitionlabel{algebra-norm}
 \end{definition}
 \end{thmbox}
 
+\footnotetext{\pronunciation{Banach}{pl}{{\primarystress}banax}{バナッハ}}
+
+\noindent 劣乗法性のような制約は付くが，大まかにいえばBanach代数は乗法が定義されたBanach空間である．
+
+\begin{example}[（数列空間\(\ell^\infty\)）] 有界な\(\symbb{C}\)の元の列全体の集合を\(X\)とする：
+\begin{align*}
+    X = \{ x \colon \PositiveInteger \to \symbb{C} \mid \text{ある\(M > 0\)が存在して，任意の\(n \in \PositiveInteger\)について\(\lvert x_n \rvert < M\)}\}
+\end{align*}
+    \(X\)の任意の元\(x = \Sequence{x}\), \(y = \Sequence{y}\)と任意の\(\alpha \in \symbb{C}\)について，それらの加法，スカラー倍，乗法を以下のように定義する：
+\begin{gather*}
+    x + y = (x_1 + y_1, x_2 + y_2, \ldots), \\
+    xy = (x_1 + y_1, x_2 + y_2, \ldots), \\
+    \alpha x = (\alpha x_1, \alpha x_2, \ldots).
+\end{gather*}
+加法単位元を\(0_X = (0, 0, \ldots)\)，乗法単位元を\(1_X = (1, 1, \ldots)\)とする．
+このとき\(X\)はノルム付き代数になる．\(X\)のノルムを
+\begin{align*}
+    \lVert x \rVert_\infty = \sup \{ \lvert x_n \rvert \mid n \in \PositiveInteger\}
+\end{align*}
+と定めると，数列空間\(\ell^\infty := (X, \lVert \placeholder \rVert_\infty)\)はBanach代数となる．
+証明は次の\propositionref{c-of-x-is-a-banach-algebra}とあまり変わらないため省略する．
+\end{example}
+
 \begin{thmbox}
 \begin{proposition}
-代数\(C(X)\)に一様ノルム（ここでは最大値ノルムに一致）を入れる，すなわち任意の\(f \in C(X)\)について
+代数\(C(X)\)に一様ノルムを入れる，すなわち任意の\(f \in C(X)\)について
 \begin{align*}
-    \lVert f \rVert_\infty = \sup_{x \in X} |f(x)|
+    \lVert f \rVert_\infty = \sup \{ \lvert f(x) \rvert \mid x \in X \}
 \end{align*}
 と定義する．このとき\((C(X), \lVert \placeholder \rVert_\infty)\)はBanach代数となる．
+\propositionlabel{c-of-x-is-a-banach-algebra}
 \end{proposition}
 \end{thmbox}
 
-\noindent 以下では\(C(X)\)のノルムとしては一様ノルムのみを考え，\(\lVert \placeholder \rVert_\infty\)を単に\(\lVert \placeholder \rVert\)と書く．
-
-\begin{proof} 一様ノルムが代数のノルムになっていることの証明は省略し，完備であることのみを示す．
-\(C(X)\)上の任意のCauchy列\((f_n)_{n \in \PositiveInteger}\)をとる．このとき，任意の\(\varepsilon > 0\)に対して，ある\(N_1 \in \PositiveInteger\)が存在して，\(m, n \geq N_0\)ならば
+\begin{proof} \(C(X)\)が代数であることは\propositionref{compact-hausdorff-continuous-function}で確認した．一様ノルムがベクトル空間のノルムであることの証明は省略する．一様ノルムが劣乗法性をみたすことは，任意の\(x \in X\)について
 \begin{align*}
-  \lVert f_m - f_n \rVert < \varepsilon,
+    f(x)g(x)
+    &\leq \lvert f(x) g(x) \vert \\
+    &\leq \lvert f(x) \rvert \lvert g(x) \vert \\
+    &\leq \lVert f \rVert_\infty \lVert g(x) \rVert_\infty
+\end{align*}
+が成り立つことからわかる．\(\lVert 1_{C(X)} \rVert = 1\)が成り立つことは明らかである．
+
+\(C(X)\)が一様ノルムについて完備であることを示す．
+\(C(X)\)上の任意のCauchy列\(\Sequence{f}\)をとる．このとき，任意の\(\varepsilon > 0\)に対して，ある\(N_1 \in \PositiveInteger\)が存在して，\(m, n \geq N_0\)ならば
+\begin{align*}
+  \lVert f_m - f_n \rVert_\infty < \varepsilon,
 \end{align*}
 すなわち，任意の\(x \in X\)で
 \begin{align*}
-  |f_m(x) - f_n(x)| < \varepsilon
+  \lvert f_m(x) - f_n(x) \rvert < \varepsilon
 \end{align*}
 が成り立つ．\(\symbb{K}\)の完備性により\((f_n(x))_{n \in \PositiveInteger}\)はある\(\alpha_x \in \symbb{K}\)に収束する．すなわち\(f(x) := \alpha_x\)とすると，\(f\colon X \to \symbb{K}\)であり，ある\(N \in \PositiveInteger\)が存在して
 \begin{align}
@@ -169,21 +201,24 @@
 \end{align}
 を満たす．\(x \in X\)は任意だったので\((f_n)_{n \in \PositiveInteger}\)は\(f\)に一様収束する．この\(f\)が連続であることを示す．\(f_N\)は連続なので，\(x\)の近傍\(V_x\)が存在し，\(y \in V_x\)ならば
 \begin{align}
-  |f_N(y) - f_N(x)| < \frac{\varepsilon}{3}
+  \lvert f_N(y) - f_N(x) \rvert < \frac{\varepsilon}{3}
   \label{continuous-fn}
 \end{align}
 が成り立つ．\((\ref{complete})\)と\((\ref{continuous-fn})\)より
 \begin{align*}
-  |f(y) - f(x)|
-  &= |f(y) - f_N(y) + f_N(y) - f_N(x) + f_N(x) - f(x)| \\
+  \lvert f(y) - f(x) \rvert
+  &= \lvert f(y) - f_N(y) + f_N(y) - f_N(x) + f_N(x) - f(x) \rvert \\
   &\leq |f(y) - f_N(y)| + |f_N(y) - f_N(x)| + |f_N(x) - f(x)| \\
   &< \frac{\varepsilon}{3} + \frac{\varepsilon}{3} + \frac{\varepsilon}{3} = \varepsilon.
 \end{align*}
 よって\(f\)は\(x\)で連続であり，\(x\)は任意だったので，\(f \in C(X)\)が示せた．
 \end{proof}
 
+\(X\)がコンパクトかつ\(C(X)\)の任意の元が連続関数であることから，一様ノルムというかわりに最大値ノルムといってもよい（Weierstraßの最大値定理）．
+以下では\(C(X)\)のノルムとしては一様ノルムのみを考え，\(\lVert \placeholder \rVert_\infty\)を単に\(\lVert \placeholder \rVert\)と書く．
+
 ベクトル空間においてその部分ベクトル空間というものを考えたのと同様に，
-代数においても部分代数というものを考える．
+代数においても部分代数というものを考えることができる．
 
 \begin{thmbox}
 \begin{definition}[（部分代数）]
