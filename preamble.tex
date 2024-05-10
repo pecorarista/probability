@@ -11,6 +11,7 @@
 \usepackage{customdice}
 \usepackage{tikz}
 \usepackage{pgfplots}
+\usetikzlibrary{patterns}
 
 \usepackage{xcolor}
 \definecolor{sBlue}{HTML}{3498DB}
@@ -91,7 +92,6 @@
 \setrefstyle{theorem}{prefix=定理}
 \newref{sec}
 \setrefstyle{sec}{prefix={第},suffix={節}}
-
 
 \newtheoremstyle{jplain}%
     {0.6\baselineskip}%
@@ -188,10 +188,15 @@
 \newcommand\Sequence[1]{{( #1_n )}_{n \in \PositiveInteger}}
 \newcommand\NonNegReal{\symbb{R}_{\mathord{+}}}
 \newcommand\PositiveReal{\symbb{R}_{\mathord{+}\mathord{+}}}
+\newcommand\Generatedtopology[1]{\tau\left[#1\right]}
+
 \newcommand\placeholder{\mathord{\cdot}}
 \newcommand\powerset[1]{\wp(#1)}
 \newcommand\inlinefrac[2]{#1\mathbin{/}#2}
-\newcommand{\setcomp}[1]{{#1}^{\mathsf{c}}}
+\newcommand\setcomp[1]{{#1}^{\mathsf{c}}}
+% https://zrbabbler.hatenablog.com/entry/20120411/1334151482
+\newcommand{\relmiddle}[1]{\mathrel{}\middle#1\mathrel{}}
+
 \DeclareMathOperator{\identity}{id}
 \DeclareMathOperator{\trace}{trace}
 

@@ -15,7 +15,7 @@
             \bigcup_{\lambda \in \Lambda} \in \symcal{O}.
         \end{align}
 \end{conditions}
-集合\(X\)とその位相\(\symcal{O}\)の組\((X, \symcal{O})\)を\keyword{位相空間}(topological space)という．
+集合\(X\)とその位相\(\symcal{O}\)の組\((X, \symcal{O})\)を\keyword{位相空間}(topological space)という．\definitionlabel{topology}
 \end{definition}
 \end{thmbox}
 
@@ -80,6 +80,102 @@
     \caption{各位相を象徴的に表した図．図における点は集合の元，点を囲む円はその元を含む開集合に対応している．}
     \figlabel{sierpinski}
 \end{figure}
+
+\section{直積集合と位相}
+位相空間\((X, \symcal{O}_X)\)と \((Y, \symcal{O}_Y)\)が与えられたとき，
+直積\(X \times Y\)に位相を定める方法はいくつかある．
+その1つは
+\begin{align*}
+    \symcal{R} = \{ U \times V \mid U \in \symcal{O}_X, V \in \symcal{O}_Y\}
+\end{align*}
+が生成する位相\(\Box := \Generatedtopology{\symcal{R}}\)を\(X \times Y\)の位相とする方法である．
+\(\symcal{R}\)自身は一般的には位相にならない．
+例えば\(X = Y = \symbb{R}\)において，
+\(X\)の開区間\(U_1, U_2\)と
+\(Y\)の開区間\(V_1, V_2\)を
+\figref{box-topology}のように
+\((U_1 \times V_1) \cup (U_2 \times V_2)\)がS-テトロミノに似た形になるようにとる．
+このとき\(U_1 \times V_1\)と\(U_2 \times V_2\)は\(\symcal{R}\)の元であるが，
+その和集合\((U_1 \times V_1) \cup (U_2 \times V_2)\)は\(\symcal{R}\)の元ではない．
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \begin{axis}[
+            axis lines=middle,
+            axis line style=thick,
+            xlabel={$x$},
+            ylabel={$y$},
+            xtick=\empty,
+            ytick=\empty,
+            xmin=-0.5,
+            xmax=5,
+            ymin=-0.5,
+            ymax=3,
+            samples=200,
+            clip=false
+        ]
+        % vertical lines
+        \addplot[dotted, sBlue] coordinates {(0.5, -0.25) (0.5, 2.5)};
+        \addplot[dotted, sRed] coordinates {(1.5, -0.25) (1.5, 2.5)};
+        \addplot[dotted, sBlue] coordinates {(2, -0.25) (2, 3)};
+        \addplot[dotted, sRed] coordinates {(3, -0.25) (3, 3)};
+        \addplot[ultra thick, sBlue] coordinates {(0.03, 0.5) (0.03, 1.5)};
+        \addplot[ultra thick, sRed] coordinates {(-0.03, 1) (-0.03, 2)};
+        % horizontal lines
+        \addplot[dotted, sBlue] coordinates {(-0.25, 0.5) (3.5, 0.5)};
+        \addplot[dotted, sRed] coordinates {(-0.25, 1) (3.5, 1)};
+        \addplot[dotted, sBlue] coordinates {(-0.25, 1.5) (3.5, 1.5)};
+        \addplot[dotted, sRed] coordinates {(-0.25, 2) (3.5, 2)};
+        \addplot[ultra thick, sBlue] coordinates {(0.5, 0.03) (2, 0.03)};
+        \addplot[ultra thick, sRed] coordinates {(1.5, -0.03) (3, -0.03)};
+
+        \node at (axis cs:-0.2, -0.2) {$O$};
+        \node at (axis cs:1.25, -0.2) {\textcolor{sBlue}{$U_1$}};
+        \node at (axis cs:2.25, -0.2) {\textcolor{sRed}{$U_2$}};
+        \node at (axis cs:0.3, 1) {\textcolor{sBlue}{$V_1$}};
+        \node at (axis cs:-0.2, 1.5) {\textcolor{sRed}{$V_2$}};
+        \node at (axis cs:0.8, 1.7) {\textcolor{sBlue}{$U_1 \times V_1$}};
+        \node at (axis cs:2.25, 2.2) {\textcolor{sRed}{$U_2 \times V_2$}};
+        \node[anchor=west] at (axis cs:3.2, 1.25) {$(U_1 \times V_1) \cup (U_2 \times V_2)$};
+
+        \fill[pattern=north east lines, pattern color=sBlue] (axis cs:0.5, 1.5) rectangle (axis cs:2, 0.5);
+        \fill[pattern=north west lines, pattern color=sRed] (axis cs:1.5, 2) rectangle (axis cs:3, 1);
+
+        \addplot[thick] coordinates {%
+            (0.5, 1.5)
+            (0.5, 0.5)
+            (2, 0.5)
+            (2, 1)
+            (3, 1)
+            (3, 2)
+            (1.5, 2)
+            (1.5, 1.5)
+        } -- cycle;
+
+        \end{axis}
+    \end{tikzpicture}
+    \caption{\(\symbb{R} \times \symbb{R}\)の箱位相の元の例．}\figlabel{box-topology}
+\end{figure}
+
+一般に位相空間の族\(({(X_\lambda, \symcal{O}_\lambda))}_{\lambda \in \Lambda}\)が与えられたとき，
+\begin{align*}
+    \symcal{R} = \left\{
+        \prod_{\lambda \in \Lambda} O_\lambda
+        \relmiddle|
+        \text{任意の\(\lambda \in \Lambda\)について\(O_\lambda \in \symcal{O}_\lambda\)}
+        \right\}
+\end{align*}
+が生成する位相\(\Box := \Generatedtopology{\symcal{R}}\)を\({((X_\lambda, \symcal{O}_\lambda))}_{\lambda \in \Lambda}\)の\keyword{箱位相}(box topology)という．
+
+\begin{thmbox}
+\begin{proposition}
+\(\symbb{R} \times \symbb{R}\)の箱位相\(\Box\)は\(\symbb{R}^2\)の通常の位相\(\symcal{O}\)と一致する．
+\end{proposition}
+\end{thmbox}
+
+\begin{proof} (\(\Box \subseteq \symcal{O}\))任意の\(O \in \Box\)をとる．
+\end{proof}
 
 \begin{thmbox}
 \begin{definition}
