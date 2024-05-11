@@ -38,24 +38,28 @@
 \usepackage{luatexja-ruby}
 \setmainfont[%
     Extension=.otf,
+    % UprightFont=*-Book,
     UprightFont=*-Regular,
     ItalicFont=*-Italic,
     BoldFont=*-Bold,
     BoldItalicFont=*-BoldItalic,
     SmallCapsFeatures={Numbers=OldStyle},
 ]{NewCM10}
-\setmathfont[math-style=ISO]{New Computer Modern Math}
-\setmathfont[
-    range={
-        cal,%
+\setmathfont[%
+    math-style=ISO
+]{NewCMMath-Book.otf}
+\setmathfont[%
+    range={%
+        cal,
         bfcal
     },
     StylisticSet=1
-]{KpMath}
+]{KpMath-Regular.otf}
 \setsansfont[BoldFont={Roboto-Medium}]{Roboto}
 
 \ltjnewpreset{book}{%
     mc-m = A-OTF-RyuminPro-Regular.otf,
+    % mc-m = HiraMinProN-W3.otf,
     gt-m = BIZUDGothic-Regular.ttf,
     gt-b = BIZUDGothic-Bold.ttf,
     mg-m = MotoyaMaruStd-W5.otf

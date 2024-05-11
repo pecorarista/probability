@@ -1,7 +1,22 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 \mainchapter{位相}
+\nocite{uchida}
+\nocite{introduction-to-topology}
 
+\section{距離空間}
+\begin{thmbox}
+\begin{definition}
+\((X, d_{X})\), \((Y,\,d_{Y})\)を距離空間とする．
+写像\(f\colon X \to Y\)が\keyword{点}\(x \in X\)\keyword{において連続}(continuous at \(x\))であるとは，
+任意の\(\varepsilon > 0\)に対して，ある\(\delta > 0\)が存在して，
+任意の\(x' \in X\)に対して，\(d_{X}(x', x) < \delta\)ならば\(d_{Y}(f(x'), f(x)) < \varepsilon\)となることをいう．
+\definitionlabel{dist-continuity}
+\end{definition}
+\end{thmbox}
+
+
+\section{位相空間}
 \begin{thmbox}
 \begin{definition}
 \(X\)を集合とし，\(\symcal{O}\)を\(X\)の部分集合族とする．
@@ -19,24 +34,9 @@
 \end{definition}
 \end{thmbox}
 
-距離空間において，連続性は以下のように定義される：
 \begin{thmbox}
 \begin{definition}
-\((X, d_{X})\), \((Y,\,d_{Y})\)を距離空間とする．
-写像\(f\colon X \to Y\)が\keyword{点}\(x \in X\)\keyword{において連続}(continuous at \(x\))であるとは，
-任意の\(\varepsilon > 0\)に対して，ある\(\delta > 0\)が存在して，
-任意の\(x' \in X\)に対して，\(d_{X}(x', x) < \delta\)ならば\(d_{Y}(f(x'), f(x)) < \varepsilon\)となることをいう．
-\definitionlabel{dist-continuity}
-\end{definition}
-\end{thmbox}
-
-\begin{thmbox}
-\begin{definition}
-\((X, \symcal{O}_{X})\), \((Y, \symcal{O}_{Y})\)を位相空間とする．
-写像\(f\colon X \to Y\)が点\(x \in X\)において連続であるとは，
-\(f(x)\)の\((Y, \symcal{O}_{Y})\)における任意の近傍\(V\)に対して，
-\((X, \symcal{O}_{X})\)における\(x\)のある近傍\(U\)が存在して，\(f(U) \subseteq V\)となることをいう．
-\definitionlabel{topology-continuity}
+\(\symbb{R}^n\)において
 \end{definition}
 \end{thmbox}
 
@@ -50,7 +50,7 @@
 簡単な例として異なる2点からなる集合\(X = \{a, b\}\)を考える．
 密着位相\(\{\emptyset, X\}\)に，任意の1点だけからなる集合を1つだけ含めた集合，
 すなわち\(\{\emptyset, \{a\}, X\}\)と\(\{\emptyset, \{b\}, X\}\)もまた位相である．
-これらを\keyword{Sierpiński位相}(Sierpiński topology)と呼ぶ．
+これらを\keyword{Sierpiński\footnote{\pronunciation{Sierpiński}{pl}{ɕɛr{\primarystress}pi\~{\j}sk\textsuperscript{j}i}{シェルピンスキー}}位相}(Sierpiński topology)と呼ぶ．
 密着位相\(\{0,\,X\}\)，任意のSierpiński位相\(\symcal{S}\)，離散位相\(\wp(X) = \{\emptyset,\,\{a\},\,\{b\},\,X\}\)について，\(\{\emptyset,\,X\} \preceq \symcal{S} \preceq \wp(X)\)が成り立つ．これらを象徴的に図示すると\figref{sierpinski}のようになる．
 2つの異なるSierpiński位相は比較可能でないことから，位相の細かさは一般的には全順序にならないことがわかる．
 
@@ -80,6 +80,55 @@
     \caption{各位相を象徴的に表した図．図における点は集合の元，点を囲む円はその元を含む開集合に対応している．}
     \figlabel{sierpinski}
 \end{figure}
+
+\begin{thmbox}
+\begin{definition}
+\((X, \symcal{O})\)を位相空間とする．\(\symcal{O}\)の部分集合\(\symcal{B}\)について，
+任意の\(O \in \symcal{O}\)に対して，ある\(\symcal{B}_0 \subseteq \symcal{B}\)が存在して，
+\begin{align*}
+    O = \bigcup \symcal{B}_0
+\end{align*}
+とできるとき，
+\(\symcal{B}\)を\(\symcal{O}\)の\keyword{開基}(basis)という．
+\end{definition}
+\end{thmbox}
+
+\begin{example} \(\symbb{R}\)において開区間全体の集合\(\symcal{I} = \{ (a, b) \mid a,  b \in \symbb{R}\}\)は開基である．
+\end{example}
+
+% Singh 1.4.5
+\begin{thmbox}
+\begin{theorem}
+\(X\)を集合とする．部分集合族\(\symcal{B} \subseteq \wp(X)\)が
+以下をみたすとき，
+\begin{conditions}
+    \item \(X = \bigcup \symcal{B}\).
+    \item 任意の\(B_1, B_2 \in \symcal{B}\)と\(x \in B_1 \cap B_2\)に対して，
+        ある\(B_3 \in \symcal{B}\)が存在して，\(B_1 \cap B_2\)
+\end{conditions}
+\end{theorem}
+\end{thmbox}
+
+\begin{thmbox}
+\begin{definition}
+\(X, \symcal{O}\)を位相空間とする．
+\(\symcal{O}\)の部分集合\(\symcal{S}\)について，
+任意の\(O \in \symcal{O}\)と\(x \in O\)に対して，
+有限個の\(V_1, \ldots, V_r \)をとって
+\(x \in V_1 \cap \cdots \cap V_r\)かつ\(V_1 \cap \cdots \cap V_r \subseteq O\)とできるとき，
+\(\symcal{S}\)を\(\symcal{O}\)の\keyword{準開基}(subbasis)という．
+\end{definition}
+\end{thmbox}
+
+\begin{example} \(\symbb{R}\)において
+\begin{align*}
+    \symcal{I} =
+        \{ (-\infty, x) \mid x \in \symbb{R} \}
+        \cup
+        \{ (x, \infty) \mid x \in \symbb{R} \}
+\end{align*}
+は準開基である．\(\symbb{R}\)の開集合を
+\end{example}
 
 \section{直積集合と位相}
 位相空間\((X, \symcal{O}_X)\)と \((Y, \symcal{O}_Y)\)が与えられたとき，
@@ -203,5 +252,17 @@
 仮定から\(x\)の任意の開近傍\(V\)について\(A \cap V \neq \emptyset\)が成り立つ．
 したがって\(x \in \overline{A}\)，すなわち\(X \subseteq \overline{A}\)が示された．
 \end{proof}
+
+\section{連続写像}
+\begin{thmbox}
+\begin{definition}
+\((X, \symcal{O}_{X})\), \((Y, \symcal{O}_{Y})\)を位相空間とする．
+写像\(f\colon X \to Y\)が点\(x \in X\)において連続であるとは，
+\(f(x)\)の\((Y, \symcal{O}_{Y})\)における任意の近傍\(V\)に対して，
+\((X, \symcal{O}_{X})\)における\(x\)のある近傍\(U\)が存在して，\(f(U) \subseteq V\)となることをいう．
+\definitionlabel{topology-continuity}
+\end{definition}
+\end{thmbox}
+
 
 \end{document}
