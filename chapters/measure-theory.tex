@@ -26,21 +26,112 @@
 
 \section{集合代数}
 確率を数学的に正確に定義するため，まずは確率の定義域と終域を定める必要がある．
-有限集合の場合，定義域として標本空間の\(\Omega\)の冪集合\(\wp(\Omega)\)を考えるのが普通である．
+標本空間が有限集合の場合，定義域として標本空間の\(\Omega\)の冪集合\(\wp(\Omega)\)を考えるのが普通である．
 例えば\(\Omega\)を\eqref{dice}とするとき，多くの場合
 \begin{align*}
     & \wp(\Omega) = \{ \\
-    & \ \ \ \ \emptyset, \{\dice{1}\}, \{\dice{2}\}, \ldots, \{\dice{6}\}, \\
-    & \ \ \ \ \{\dice{1}, \dice{2}\}, \{\dice{1}, \dice{3}\}, \ldots,
-                  \{\dice{5}, \dice{6}\}, \\
-    & \ \ \ \ \{\dice{1}, \dice{2}, \dice{3}\}, \{\dice{1}, \dice{2}, \dice{4}\}, \ldots, \{\dice{4}, \dice{5}, \dice{6}\}, \\
-    & \ \ \ \ \Omega \setminus \{\dice{1}, \dice{2}\},  \Omega \setminus \{\dice{1}, \dice{3}\}, \ldots, \Omega \setminus \{\dice{5}, \dice{6}\}, \\
-    & \ \ \ \  \Omega \setminus \{\dice{1}\}, \Omega \setminus \{\dice{2}\}, \ldots, \Omega \setminus \{\dice{6}\}, \Omega \\
+    & \ \ \ \ \emptyset, \{\dice{1}\}, \{\dice{2}\}, \{\dice{3}\}, \{\dice{4}\}, \{\dice{5}\}, \{\dice{6}\}, \\
+    & \ \ \ \ 
+        \{\dice{1}, \dice{2}\},
+        \{\dice{1}, \dice{3}\},
+        \{\dice{1}, \dice{4}\},
+        \{\dice{1}, \dice{5}\},
+        \{\dice{1}, \dice{6}\}, \\
+    & \ \ \ \ 
+        \{\dice{2}, \dice{3}\},
+        \{\dice{2}, \dice{4}\},
+        \{\dice{2}, \dice{5}\},
+        \{\dice{2}, \dice{6}\},
+        \{\dice{3}, \dice{4}\}, \\
+    & \ \ \ \ 
+        \{\dice{3}, \dice{5}\},
+        \{\dice{3}, \dice{6}\},
+        \{\dice{4}, \dice{5}\},
+        \{\dice{4}, \dice{6}\},
+        \{\dice{5}, \dice{6}\}, \\
+    & \ \ \ \ 
+        \{\dice{1}, \dice{2}, \dice{3}\},
+        \{\dice{1}, \dice{2}, \dice{4}\},
+        \{\dice{1}, \dice{2}, \dice{5}\},
+        \{\dice{1}, \dice{2}, \dice{6}\},
+        \{\dice{1}, \dice{3}, \dice{4}\}, \\
+    & \ \ \ \ 
+        \{\dice{1}, \dice{3}, \dice{5}\},
+        \{\dice{1}, \dice{3}, \dice{6}\},
+        \{\dice{1}, \dice{4}, \dice{5}\},
+        \{\dice{1}, \dice{4}, \dice{6}\},
+        \{\dice{1}, \dice{5}, \dice{6}\}, \\
+    & \ \ \ \ 
+        \{\dice{2}, \dice{3}, \dice{4}\},
+        \{\dice{2}, \dice{3}, \dice{5}\},
+        \{\dice{2}, \dice{3}, \dice{6}\},
+        \{\dice{2}, \dice{4}, \dice{5}\},
+        \{\dice{2}, \dice{4}, \dice{6}\}, \\
+    & \ \ \ \ 
+        \{\dice{2}, \dice{5}, \dice{6}\},
+        \{\dice{3}, \dice{4}, \dice{5}\},
+        \{\dice{3}, \dice{4}, \dice{6}\},
+        \{\dice{3}, \dice{5}, \dice{6}\},
+        \{\dice{4}, \dice{5}, \dice{6}\}, \\
+    & \ \ \ \ 
+        \Omega \setminus \{\dice{1}, \dice{2}\},
+        \Omega \setminus \{\dice{1}, \dice{3}\},
+        \Omega \setminus \{\dice{1}, \dice{4}\},
+        \Omega \setminus \{\dice{1}, \dice{5}\},
+        \Omega \setminus \{\dice{1}, \dice{6}\}, \\
+    & \ \ \ \ 
+        \Omega \setminus \{\dice{2}, \dice{3}\},
+        \Omega \setminus \{\dice{2}, \dice{4}\},
+        \Omega \setminus \{\dice{2}, \dice{5}\},
+        \Omega \setminus \{\dice{2}, \dice{6}\},
+        \Omega \setminus \{\dice{3}, \dice{4}\}, \\
+    & \ \ \ \ 
+        \Omega \setminus \{\dice{3}, \dice{5}\},
+        \Omega \setminus \{\dice{3}, \dice{6}\},
+        \Omega \setminus \{\dice{4}, \dice{5}\},
+        \Omega \setminus \{\dice{4}, \dice{6}\},
+        \Omega \setminus \{\dice{5}, \dice{6}\}, \\
+    & \ \ \ \  \Omega \setminus \{\dice{1}\}, \Omega \setminus \{\dice{2}\}, \Omega \setminus \{\dice{3}\}, \Omega \setminus \{\dice{4}\}, \Omega \setminus \{\dice{5}\}, \Omega \setminus \{\dice{6}\}, \Omega \\
     & \}
 \end{align*}
 をという\(2^6 = 64\)個の元をもつ集合をとる．
-しかし標本空間が無限集合の場合，確率の定義域を標本空間の冪集合としてしまうと，実用的に不要な集合が大量に含まれてしまい，確率の性質の議論が困難になってしまう．
-そこで
+
+次に標本空間が無限集合の場合を考える．
+まだサイコロやコインなどを使った実験のモデリングでしか確率を扱ったことのない初学者には
+そもそも標本空間が無限集合の場合を考える必要があるのかという疑問が生じるかもしれない．
+例えば円板にダーツの矢を1回だけ投げる実験を考える．
+この円板には中心\(O\)と円周上の点\(A\)が与えられているとする．
+ダーツの矢が当たった点を\(P\)とし，\(\omega := \angle AOP\)に着目する（\figref{darts}）．
+このとき標本空間は\(\Omega = \{ \omega \mid 0 \leq \omega < 2\pi\}\)のような無限集合になる．
+確率の定義域として\(\Omega\)の冪集合\(\wp(\Omega)\)をとることが最初に思いつくが，
+この集合は非常に大きな\footnote{a}
+そのうち興味があるのは区間や複数の区間の和集合，それらの補集合などごく限られた形のものだろう．
+今は極めて単純な実験を考えたが，一般的にも同様であり，
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \coordinate (O) at (0, 0);
+        \node at (-0.2cm, -0.2cm) {\(O\)};
+        \draw[thick] (O) circle [radius=2cm];
+        \coordinate (A) at (2cm, 0);
+        \node at (2.3cm, -0.2cm) {\(A\)};
+        \coordinate (B) at ({2cm * cos(60)}, {2cm * sin(60)});
+        \pic[%
+            draw=sRed,
+            thick,
+            -stealth,
+            angle radius=0.7cm,
+        ] {angle=A--O--B};
+        \node at ({1.1cm * cos(30)}, {1.1cm * sin(30)}) {\textcolor{sRed}{\(\omega\)}};
+        \draw[thick] (A) -- (O);
+        \draw[dotted] (O) -- (B);
+        \draw[fill] ({1.4cm * cos(60)}, {1.4cm * sin(60)}) circle (1.5pt) node[left=0.2cm] {$P$};
+    \end{tikzpicture}
+    \caption{あ．}\figlabel{darts}
+\end{figure}
+
+
 
 \begin{thmbox}
 \begin{definition}
