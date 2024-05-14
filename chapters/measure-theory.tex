@@ -1,4 +1,4 @@
-\documentclass[../main.tex]{subfiles}
+\documentclass[main.tex]{subfiles}
 \begin{document}
 \mainchapter{測度と確率}
 
@@ -24,9 +24,20 @@
 応用分野では「事象\(\{\omega\}\)の確率」が単に「\(\omega\)の確率」と書かれたり，\(P(\{\omega\})\)を単に\(P(\omega)\)のように書かれたりすることが多い．
 しかしこのような表現は初学者の混乱を招く可能性が高いため本書では避ける．
 
-\section{集合代数}
+古典的な確率の定義\cite{laplace}
+
+\trigloss{La théorie des hasards consiste à réduire}
+         {la teɔʁi de azaʁ {k\~{ɔ}sist\liaison} a ʁedɥiʁ}
+         {\textsc{det}.\textsc{f}.\textsc{sg} theory of\shortunderscore\textsc{det}.\textsc{pl}}
+         {偶然の理論は}
+\trigloss{tous les événements du même genre à un certain nombre}
+         {tu lez evɛnm\~{ɑ} dy mɛm}
+         {\textsc{det}.\textsc{f}.\textsc{sg} theory of\shortunderscore\textsc{det}.\textsc{pl}}
+         {偶然の理論は}
+
 確率を数学的に正確に定義するため，まずは確率の定義域と終域を定める必要がある．
-標本空間が有限集合の場合，定義域として標本空間の\(\Omega\)の冪集合\(\wp(\Omega)\)を考えるのが普通である．
+終域は
+1つの代表的な方法として定義域として標本空間の\(\Omega\)の冪集合\(\wp(\Omega)\)を考えるのが普通である．
 例えば\(\Omega\)を\eqref{dice}とするとき，多くの場合
 \begin{align*}
     & \wp(\Omega) = \{ \\
@@ -130,7 +141,6 @@
     \end{tikzpicture}
     \caption{あ．}\figlabel{darts}
 \end{figure}
-
 
 
 \begin{thmbox}

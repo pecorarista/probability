@@ -1,3 +1,4 @@
+\usepackage{graphicx}
 \usepackage{booktabs}
 \usepackage[%
     hang,
@@ -28,7 +29,13 @@
 
 \usepackage{polyglossia}
 \setdefaultlanguage{japanese}
-\setotherlanguages{english,german,russian,hebrew,greek}
+\setotherlanguages{english,french,german,russian,hebrew,greek}
+
+\usepackage{covington}
+\setglossoptions{%
+    fstl=\normalfont\upshape\rmfamily\mcfamily,
+    enquotetl=false,
+}
 
 \usepackage[
     deluxe,%
@@ -59,6 +66,7 @@
 
 \ltjnewpreset{book}{%
     mc-m = A-OTF-RyuminPro-Regular.otf,
+    % mc-m = NotoSerifJP-Regular.otf,
     % mc-m = HiraMinProN-W3.otf,
     gt-m = BIZUDGothic-Regular.ttf,
     gt-b = BIZUDGothic-Bold.ttf,
@@ -111,7 +119,7 @@
 \newtheorem{proposition}[theorem]{命題}
 \newtheorem{lemma}[theorem]{補題}
 \newtheorem{definition}[theorem]{定義}
-\newtheorem{example}[theorem]{例}
+\newtheorem{exa}[theorem]{例}
 \newtheorem{axiom}[theorem]{公理}
 \renewcommand{\proofname}{証明}
 \renewcommand{\qedsymbol}{\rule{5pt}{10pt}}
@@ -207,3 +215,6 @@
 \newcommand\header[1]{\multicolumn{1}{c}{\bfseries\gtfamily #1}}
 \newcommand\pronunciation[4]{#1 \texttt{#2} [#3] #4．}
 \newcommand\primarystress{\mbox{}\char"02C8}
+
+\newcommand\liaison{\hspace*{0.1em}\raisebox{-0.8ex}{\rotatebox{90}{(}}\hspace*{0.1em}}
+\newcommand\shortunderscore{\scalebox{0.7}[1]{\_}}
