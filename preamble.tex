@@ -7,12 +7,21 @@
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{amsthm}
+% \usepackage{mtpro2}
 \usepackage{bussproofs}
-\usepackage{unicode-math}
+\usepackage[
+    math-style=ISO
+]{unicode-math}
 \usepackage{customdice}
 \usepackage{tikz}
 \usepackage{pgfplots}
-\usetikzlibrary{patterns,intersections,calc,angles,quotes}
+\usetikzlibrary{%
+    patterns,
+    intersections,
+    calc,
+    angles,
+    quotes
+}
 
 \usepackage{xcolor}
 \definecolor{sBlue}{HTML}{3498DB}
@@ -27,6 +36,17 @@
 \definecolor{sFill}{HTML}{00A381}
 \definecolor{sLightGray}{gray}{0.85}
 
+\usepackage{framed}
+
+\usepackage[
+    % no-math
+]{fontspec}
+\usepackage[
+    deluxe,%
+    expert,
+    scale=0.95
+]{luatexja-preset}
+
 \usepackage{polyglossia}
 \setdefaultlanguage{japanese}
 \setotherlanguages{english,french,german,russian,hebrew,greek}
@@ -37,36 +57,32 @@
     enquotetl=false,
 }
 
-\usepackage[
-    deluxe,%
-    expert,
-    scale=0.95
-]{luatexja-preset}
 \usepackage{luatexja-ruby}
+% \setmainfont[%
+%     Extension=.otf,
+%     UprightFont=*-Book,
+%     UprightFont=*-Regular,
+%     ItalicFont=*-Italic,
+%     BoldFont=*-Bold,
+%     BoldItalicFont=*-BoldItalic,
+%     SmallCapsFeatures={Numbers=OldStyle},
+% ]{NewCM10}
 \setmainfont[%
-    Extension=.otf,
-    % UprightFont=*-Book,
+    Extension=.ttf,
+    UprightFont=*MT,
+    ItalicFont=*-ItalicMT,
+    BoldFont=*-BoldMT,
+    BoldItalicFont=*-BoldItalicMT
+]{TimesNewRomanPS}
+\setsansfont[
+    Extension=.ttf,
     UprightFont=*-Regular,
-    ItalicFont=*-Italic,
-    BoldFont=*-Bold,
-    BoldItalicFont=*-BoldItalic,
-    SmallCapsFeatures={Numbers=OldStyle},
-]{NewCM10}
-\setmathfont[%
-    math-style=ISO
-]{NewCMMath-Book.otf}
-\setmathfont[%
-    range={%
-        cal,
-        bfcal
-    },
-    StylisticSet=1
-]{KpMath-Regular.otf}
-\setsansfont[BoldFont={Roboto-Medium}]{Roboto}
+    BoldFont=*-Medium
+]{Roboto}
 
 \ltjnewpreset{book}{%
-    mc-m = A-OTF-RyuminPro-Regular.otf,
-    % mc-m = NotoSerifJP-Regular.otf,
+    % mc-m = A-OTF-RyuminPro-Regular.otf,
+    mc-m = NotoSerifJP-Regular.otf,
     % mc-m = HiraMinProN-W3.otf,
     gt-m = BIZUDGothic-Regular.ttf,
     gt-b = BIZUDGothic-Bold.ttf,
@@ -183,12 +199,6 @@
 ]{biblatex}
 \addbibresource{references.bib}
 
-\usepackage{titleps}
-\newpagestyle{main}{%
-    \headrule
-    \sethead[\thepage][][{\sffamily\gtfamily {\thesection}\hspace{1\zw}\sectiontitle}]{\sffamily\gtfamily 第{\thechapter}章\hspace{1\zw}\chaptertitle}{}{\thepage}
-}
-
 \newcommand\mainchapter[1]{\chapter{#1}\thispagestyle{empty}}
 \renewcommand{\jsParagraphMark}{}
 \renewcommand{\headfont}{\bfseries\gtfamily\sffamily}
@@ -218,3 +228,6 @@
 
 \newcommand\liaison{\hspace*{0.1em}\raisebox{-0.8ex}{\rotatebox{90}{(}}\hspace*{0.1em}}
 \newcommand\shortunderscore{\scalebox{0.7}[1]{\_}}
+% \newcommand\symbb[1]{\mathbb{#1}}
+% \newcommand\symcal[1]{\mathcal{#1}}
+% \newcommand\symbf[1]{\mathbf{#1}}
