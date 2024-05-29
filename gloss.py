@@ -13,10 +13,10 @@ def main() -> None:
             if len(line.strip()) == 0:
                 (fr, pr, en, trans) = zip(*q.queue)
                 s = f'''
-    \\trigloss{{{' '.join(fr)}}}
-              {{{' '.join(pr)}}}
-              {{{' '.join(en)}}}
-              {{{' '.join(trans)}}}\n'''
+    \\trigloss{{{' '.join(fr).strip()}}}
+              {{{' '.join(pr).strip()}}}
+              {{{' '.join(en).strip()}}}
+              {{{' '.join(trans).strip()}}}\n'''
                 w.write(s)
                 q = queue.Queue()
             else:

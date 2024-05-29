@@ -24,49 +24,7 @@
 応用分野では「事象\(\{\omega\}\)の確率」が単に「\(\omega\)の確率」と書かれたり，\(P(\{\omega\})\)を単に\(P(\omega)\)のように書かれたりすることが多い．
 しかしこのような表現は初学者の混乱を招く可能性が高いため本書では避ける．
 
-古典的な確率の定義\cite{laplace}
-\begin{leftbar}
-\trigloss{L-a théorie des hasard-s consist-e à réduire tous l-es événement-s}
-         {la teɔʁi de azaʁ {k\~{ɔ}sist\liaison} a ʁedɥiʁ tu {lez\liaison} evɛnm\~{ɑ}}
-         {the-\textsc{f}.\textsc{sg} theory {of{\textunderscore}the[\textsc{m}.\textsc{pl}]} chance-\textsc{pl} consist-3\textsc{sg}.\textsc{pres} to {reduce[\textsc{inf}]} all the-\textsc{m}.\textsc{pl} event-\textsc{pl}}
-         {確率論は}
-\trigloss{du même genre à un certain nombre de cas également possible-s,}
-         {dy mɛm {ʒ\~{ɑ}ʁ{\liaison}} a \~{œ} sɛʁt\~{ɛ} n\~{ɔ}bʁ də kɑ eɡalm\~{ɑ} pɔsibl}
-         {{of{\textunderscore}the[\textsc{m}.\textsc{sg}]} same kind to a certain number of {case[\textsc{pl}]} equally possible-\textsc{pl}}
-         {同じ種類からなる事象すべてを，同程度起こりやすいいくつかの場合，}
-\trigloss{c'-est-à-dire tel-s que nous soyons également indécis sur}
-         {sɛtadiʁ tɛl kə nu swaj\~{ɔ} egalm\~{ɑ} \~{ɛ}desi syʁ}
-         {that-is-to-say such-\textsc{pl} that we {be[1\textsc{pl}.\textsc{pres}.\textsc{subj}]} equally {uncertain[\textsc{m}.\textsc{pl}]} on}
-         {すなわち私たちがそれらの存在について同程度に確信をもてないような場合に還元すること，}
-\trigloss{leur existence, et à déterminer l-e nombre de cas favorable-s}
-         {{lœʁ\liaison} ɛgzist\~{ɑ}s e a detɛʁmine lə n\~{ɔ}bʁ də kɑ {favɔʁabl\liaison}}
-         {their existence and to {determine[\textsc{inf}]} the-\textsc{m}.\textsc{sg} number of {case[\textsc{pl}]} favorable-\textsc{pl}}
-         {そして確からしさを知りたい事象に関連する場合の数を決定すること}
-\trigloss{à l' événement dont on cherch-e l-a probabilité.}
-         {a {l{\liaison}} evɛnm\~{ɑ} d\~{ɔ} \~{ɔ} ʃɛʁʃə la prɔbabilite}
-         {to {the[\textsc{m}.\textsc{sg}]} event of{\textunderscore}which {people (3\textsc{sg})} seek-3\textsc{sg}.\textsc{pres} {the-\textsc{f}.\textsc{sg}} probability.}
-         {に帰着される．}
-\trigloss{L-e rapport de ce nombre à celui de tous l-es cas}
-         {lə ʁapɔʁ də sə {n\~{ɔ}bʁ{\liaison}} a səlɥi də tu le kɑ}
-         {the-\textsc{m}.\textsc{sg} ratio of {this[\textsc{m}.\textsc{sg}]} number to {that[\textsc{m}.\textsc{sg}]} of all {the-\textsc{m}.\textsc{pl}} {case[\textsc{pl}]}}
-         {この場合の数をすべての場合の数と比べた割合が}
-\trigloss{possible-s est l-a mesure de cette probabilité,}
-         {{pɔsibl{\liaison}} ɛ la məzyʁ də sɛt pʁɔbabilite}
-         {possible-\textsc{m}.\textsc{pl} {be[3\textsc{sg}.\textsc{pres}]} the-\textsc{f}.\textsc{sg} measure of {this[\textsc{f}.\textsc{sg}]} probability}
-         {その事象の確からしさの尺度である．}
-\trigloss{qui n' est ainsi qu' une fraction dont l-e numérateur}
-         {ki n {ɛt{\liaison}} \~{ɛ}si {k{\liaison}} yn fʁaksj\~{ɔ} d\~{ɔ} lə {nymeʁatœʁ\liaison}}
-         {which \textsc{neg} {be[3\textsc{sg}.\textsc{pres}]} thus only one fraction whose the numerator}
-         {すなわち，それは分子が}
-\trigloss{est l-e nombre des cas favorable-s, et dont}
-         {ɛ lə n\~{ɔ}bʁ de kɑ favɔʁabl e d\~{ɔ}}
-         {{be[3\textsc{sg}.\textsc{pres}]} the-\textsc{m}.\textsc{sg} number {of{\textunderscore}the[\textsc{m}.\textsc{pl}]} {case[\textsc{pl}]} favorable and whose}
-         {関連する場合の数であり，}
-\trigloss{l-e dénominateur est l-e nombre de tous l-es cas possible-s.}
-         {lə {denɔminatœʁ\liaison} ɛ lə n\~{ɔ}bʁ də tu le kɑ pɔsibl}
-         {the-\textsc{m}.\textsc{sg} denominator {be[3\textsc{sg}.\textsc{pres}]} the-\textsc{m}.\textsc{sg} number of all the-\textsc{m}.\textsc{sg} case[\textsc{pl}] possible-\textsc{pl}}
-         {分母が起こり得るすべて場合の数である分数にすぎない．}
-\end{leftbar}
+古典的な確率の定義\cite{laplace}は付録参照．
 
 確率を数学的に正確に定義するため，まずは確率の定義域と終域を定める必要がある．
 終域は
@@ -143,9 +101,10 @@
 次に標本空間が無限集合の場合を考える．
 まだサイコロやコインなどを使った実験のモデリングでしか確率を扱ったことのない初学者には
 そもそも標本空間が無限集合の場合を考える必要があるのかという疑問が生じるかもしれない．
-例えば円板にダーツの矢を1回だけ投げる実験を考える．
-この円板には中心\(O\)と円周上の点\(A\)が与えられているとする．
-ダーツの矢が当たった点を\(P\)とし，\(\omega := \angle AOP\)に着目する（\figref{darts}）．
+例えばルーレットを回す実験を考える．
+ルーレット盤は\(O\)を中心とする半径\(1\)の円であるとする．
+ルーレットを回す行為は円周上の1点\(A\)が正方向に移動するとしても
+円周外の固定されている点ダーツの矢が当たった点を\(P\)とし，\(\omega := \angle AOP\)に着目する（\figref{darts}）．
 このとき標本空間は\(\Omega = \{ \omega \mid 0 \leq \omega < 2\pi\}\)のような無限集合になる．
 確率の定義域として\(\Omega\)の冪集合\(\wp(\Omega)\)をとることが最初に思いつくが，
 この集合は非常に大きな\footnote{a}
@@ -156,21 +115,28 @@
     \centering
     \begin{tikzpicture}
         \coordinate (O) at (0, 0);
-        \node at (-0.2cm, -0.2cm) {\(O\)};
+        \node at (-0.3cm, -0.3cm) {\(O\)};
         \draw[thick] (O) circle [radius=2cm];
-        \coordinate (A) at (2cm, 0);
-        \node at (2.3cm, -0.2cm) {\(A\)};
-        \coordinate (B) at ({2cm * cos(60)}, {2cm * sin(60)});
+        \coordinate (A) at ({2cm * cos(-20)}, {2cm * sin(-20)});
+        \draw[fill] ({2cm * cos(-20)}, {2cm * sin(-20)}) circle (1.4pt) node[right=0.22cm, below=0.05cm] {\(A\)};
+        \coordinate (As) at ({2.4cm * cos(-15)}, {2.4cm * sin(-15)});
+        \coordinate (Ae) at ({2.4cm * cos(10)}, {2.4cm * sin(10)});
+        \coordinate (S) at ({2.4cm * cos(90)}, {2.4cm * sin(90)});
+        \draw[fill] ({2.4cm * cos(90)}, {2.4cm * sin(90)}) circle (1.4pt) node[right=0.18cm] {\(S\)};
         \pic[%
             draw=sRed,
             thick,
             -stealth,
             angle radius=0.7cm,
-        ] {angle=A--O--B};
-        \node at ({1.1cm * cos(30)}, {1.1cm * sin(30)}) {\textcolor{sRed}{\(\omega\)}};
-        \draw[thick] (A) -- (O);
-        \draw[dotted] (O) -- (B);
-        \draw[fill] ({1.4cm * cos(60)}, {1.4cm * sin(60)}) circle (1.5pt) node[left=0.2cm] {$P$};
+        ] {angle=A--O--S};
+        \pic[%
+            draw,
+            thick,
+            -stealth,
+            angle radius=2.4cm,
+        ] {angle=As--O--Ae};
+        \node at ({1.1cm * cos(35)}, {1.1cm * sin(35)}) {\textcolor{sRed}{\(\omega\)}};
+        \draw[thick, dotted] (A) -- (O) -- (S);
     \end{tikzpicture}
     \caption{あ．}\figlabel{darts}
 \end{figure}
