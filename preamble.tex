@@ -74,15 +74,28 @@
     BoldFont=*-BoldMT,
     BoldItalicFont=*-BoldItalicMT
 ]{TimesNewRomanPS}
+% \setmainfont{STIX Two Text}
 \setsansfont[
     Extension=.ttf,
     UprightFont=*-Regular,
     BoldFont=*-Medium
 ]{Roboto}
+% \setmathfont[
+%    math-style=ISO,
+%    StylisticSet=1
+% ]{STIX Two Math}
+\setmathfont{NewCMMath-Book.otf}
+\setmathfont[%
+    range={%
+        cal,
+        bfcal
+    },
+    StylisticSet=1
+]{KpMath-Regular.otf}
 
 \ltjnewpreset{book}{%
-    % mc-m = A-OTF-RyuminPro-Regular.otf,
-    mc-m = NotoSerifJP-Regular.otf,
+    mc-m = A-OTF-RyuminPro-Regular.otf,
+    % mc-m = NotoSerifJP-Regular.otf,
     % mc-m = HiraMinProN-W3.otf,
     gt-m = BIZUDGothic-Regular.ttf,
     gt-b = BIZUDGothic-Bold.ttf,
