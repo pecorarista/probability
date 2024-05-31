@@ -22,12 +22,19 @@
 個々の根源事象（例えば\(\dice{1}\)）については確率を直接は定義しない．
 なぜならば各事象の確率を定めることによって単一の根源事象からなる事象（例えば\(\{\dice{1}\}\)）の確率が定まり，結果として根源事象の確率とみなせるものが定まるからである．
 応用分野では「事象\(\{\omega\}\)の確率」が単に「\(\omega\)の確率」と書かれたり，\(P(\{\omega\})\)を単に\(P(\omega)\)のように書かれたりすることが多い．
-しかしこのような表現は初学者の混乱を招く可能性が高いため本書では避ける．
+しかしこのような表現は初学者の混乱を招く可能性が高いため，本書では使う際には断りを入れる．
+
+最もよく用いられる確率の定義は\begin{german}Kolmogoroff\end{german}\footnote{%
+\pronunciation{\begin{russian}Колмогоров\end{russian}}{ru}{kəlmɐˈɡorəf}{コルモゴロフ}}によるもので，その本質は確率がみたしてほしい性質を列挙したものである．
+定義の正確な内容を示す前に，どうしてそれらの性質が必要とされるのかを説明しよう．
+1つ目の性質は，任意の事象\(A\)についてその確率\(P(A)\)は\(0 \leq P(A) \leq 1\)であるというものである．その理由としては，古典的な確率がもともと割合を表すものだったということ，またそれと整合的であるほうが便利だということが大きい\footnote{%
+もちろん数学においては定義として確立されてしまえば，
+その背景にある思想は
+}．
 
 古典的な確率の定義\cite{laplace}は付録参照．
 
-確率を数学的に正確に定義するため，まずは確率の定義域と終域を定める必要がある．
-終域は
+
 1つの代表的な方法として定義域として標本空間の\(\Omega\)の冪集合\(\wp(\Omega)\)を考えるのが普通である．
 例えば\(\Omega\)を\eqref{dice}とするとき，多くの場合
 \begin{align*}
@@ -101,13 +108,13 @@
 次に標本空間が無限集合の場合を考える．
 まだサイコロやコインなどを使った実験のモデリングでしか確率を扱ったことのない初学者には
 そもそも標本空間が無限集合の場合を考える必要があるのかという疑問が生じるかもしれない．
-例えばルーレットを回す実験を考える．
-ルーレット盤は\(O\)を中心とする半径\(1\)の円であるとする．
-ルーレットを回す行為は円周上の1点\(A\)が正方向に移動するとしても
-円周外の固定されている点ダーツの矢が当たった点を\(P\)とし，\(\omega := \angle AOP\)に着目する（\figref{darts}）．
-このとき標本空間は\(\Omega = \{ \omega \mid 0 \leq \omega < 2\pi\}\)のような無限集合になる．
-確率の定義域として\(\Omega\)の冪集合\(\wp(\Omega)\)をとることが最初に思いつくが，
-この集合は非常に大きな\footnote{a}
+無限集合の例としてルーレットを回す実験を考える．
+ルーレット盤を\(\symbb{R}^2\)における原点\(O = (0, 0)\)を中心とする半径\(1\)の円板とし，
+その円周上にルーレットの回転に合わせて動く点\(P = (x, y)\)と，回転とは無関係な点\(A = (0, 1)\)をとる．
+我々が興味をもっているのはルーレット盤を適当に回した後の\(\angle AOP\)の大きさだとする．
+このとき標本空間は\([-\pi, \pi)\)や\([0, 2\pi)\)のような無限集合になる．
+
+この集合は非常に大きな
 そのうち興味があるのは区間や複数の区間の和集合，それらの補集合などごく限られた形のものだろう．
 今は極めて単純な実験を考えたが，一般的にも同様であり，
 
@@ -115,28 +122,28 @@
     \centering
     \begin{tikzpicture}
         \coordinate (O) at (0, 0);
-        \node at (-0.3cm, -0.3cm) {\(O\)};
-        \draw[thick] (O) circle [radius=2cm];
-        \coordinate (A) at ({2cm * cos(-20)}, {2cm * sin(-20)});
-        \draw[fill] ({2cm * cos(-20)}, {2cm * sin(-20)}) circle (1.4pt) node[right=0.22cm, below=0.05cm] {\(A\)};
-        \coordinate (As) at ({2.4cm * cos(-15)}, {2.4cm * sin(-15)});
-        \coordinate (Ae) at ({2.4cm * cos(10)}, {2.4cm * sin(10)});
-        \coordinate (S) at ({2.4cm * cos(90)}, {2.4cm * sin(90)});
-        \draw[fill] ({2.4cm * cos(90)}, {2.4cm * sin(90)}) circle (1.4pt) node[right=0.18cm] {\(S\)};
+        \draw[fill] (0, 0) circle (1.4pt) node[left=0.2cm, below=0.2cm] {\(O\)};
+        \coordinate (A) at ({2cm * cos(0)}, {2cm * sin(0)});
+        \draw[fill] ({2cm * cos(0)}, {2cm * sin(0)}) circle (1.4pt) node[right=0.2cm] {\(A\)};
+        \coordinate (P) at ({2cm * cos(120)}, {2cm * sin(120)});
+        \draw[fill] ({2cm * cos(120)}, {2cm * sin(120)}) circle (1.4pt) node[above=0.15cm, left=0.13cm] {\(P\)};
         \pic[%
             draw=sRed,
             thick,
             -stealth,
-            angle radius=0.7cm,
-        ] {angle=A--O--S};
+            angle radius=2cm,
+        ] {angle=A--O--P};
         \pic[%
             draw,
             thick,
-            -stealth,
-            angle radius=2.4cm,
-        ] {angle=As--O--Ae};
-        \node at ({1.1cm * cos(35)}, {1.1cm * sin(35)}) {\textcolor{sRed}{\(\omega\)}};
-        \draw[thick, dotted] (A) -- (O) -- (S);
+            angle radius=2cm,
+        ] {angle=P--O--A};
+        \node at ({2.4cm * cos(60)}, {2.4cm * sin(60)}) {\textcolor{sRed}{\(\omega\)}};
+        \draw[thick, dotted] (A) -- (O) -- (P);
+        \coordinate (X) at (1.6cm, 0);
+        \coordinate (Y) at (2.2cm, 0.2cm);
+        \coordinate (Z) at (2.2cm, -0.2cm);
+        \fill[fill=sBlue, fill opacity=0.5] (X) -- (Y) -- (Z) -- cycle;
     \end{tikzpicture}
     \caption{あ．}\figlabel{darts}
 \end{figure}
