@@ -24,89 +24,37 @@
 応用分野では「事象\(\{\omega\}\)の確率」が単に「\(\omega\)の確率」と書かれたり，\(P(\{\omega\})\)を単に\(P(\omega)\)のように書かれたりすることが多い．
 しかしこのような表現は初学者の混乱を招く可能性が高いため，本書では使う際には断りを入れる．
 
-最もよく用いられる確率の定義は\begin{german}Kolmogoroff\end{german}\footnote{%
-\pronunciation{\begin{russian}Колмогоров\end{russian}}{ru}{kəlmɐˈɡorəf}{コルモゴロフ}}によるもので，その本質は確率がみたしてほしい性質を列挙したものである．
+最もよく用いられる確率の定義は\begin{german}Kolmogorov\end{german}\footnote{%
+\pronunciation{\begin{russian}Колмогоров\end{russian}}{ru}{kəlmɐˈɡorəf}{コルモゴロフ．現代の一般的なラテン文字転写ではKolmogorovと綴られるが，出版物の著者名としてはKolmogoroffが使われている}}によるもので，その本質は確率がみたしてほしい性質を列挙したものである．
 定義の正確な内容を示す前に，どうしてそれらの性質が必要とされるのかを説明しよう．
 もちろん定義にはそのような「気持ち」は含まれていないので筆者による解釈が含まれている．
+数学において定義の解釈は無限に存在し，確率の定義もまた例外ではない\footnote{%
+詳しくは\secref{kolmogorov}の\begin{german}\citetitle{kolmogorov}\end{german}の引用およびその解説を参照せよ．}．
 
+1つ目の性質は，任意の事象\(A\)についてその確率\(P(A)\)は\(0 \leq P(A) \leq 1\)であるというものである．その理由としては，古典的な確率がもともと割合を表すものだったということ，またそれと整合的であるほうが便利だということが大きいだろう．古典的な確率の定義は例えばLaplace\footnote{%
+\pronunciation{\begin{french}Laplace\end{french}}{fr}{laplas}{ラプラス}
+}によると，
+結果全体を同じくらい起こりやすい場合に分けて，着目する事象に当てはまる場合の数をすべての場合の数で割ったものをその事象の確率とする\footnote{%
+\secref{laplace}の\begin{french}\citetitle{laplace}\end{french}の引用およびその解説も参照せよ．}．
+例えば2個のサイコロを投げるとき，すべての場合の数は次の36通りとするのが妥当だろう．
+\begin{align*}
+    & (\dice{1}, \dice{1}), (\dice{1}, \dice{2}), (\dice{1}, \dice{3}), (\dice{1}, \dice{4}), (\dice{1}, \dice{5}), (\dice{1}, \dice{6}), \\
+    & (\dice{2}, \dice{1}), (\dice{2}, \dice{2}), (\dice{2}, \dice{3}), (\dice{2}, \dice{4}), (\dice{2}, \dice{5}), (\dice{2}, \dice{6}), \\
+    & (\dice{3}, \dice{1}), (\dice{3}, \dice{2}), (\dice{3}, \dice{3}), (\dice{3}, \dice{4}), (\dice{3}, \dice{5}), (\dice{3}, \dice{6}), \\
+    & (\dice{4}, \dice{1}), (\dice{4}, \dice{2}), (\dice{4}, \dice{3}), (\dice{4}, \dice{4}), (\dice{4}, \dice{5}), (\dice{4}, \dice{6}), \\
+    & (\dice{5}, \dice{1}), (\dice{5}, \dice{2}), (\dice{5}, \dice{3}), (\dice{5}, \dice{4}), (\dice{5}, \dice{5}), (\dice{5}, \dice{6}), \\
+    & (\dice{6}, \dice{1}), (\dice{6}, \dice{2}), (\dice{6}, \dice{3}), (\dice{6}, \dice{4}), (\dice{6}, \dice{5}), (\dice{6}, \dice{6}).
+\end{align*}
+もし着目している事象が「ゾロ目が出る」であればこれに当てはまる場合は
+\begin{align*}
+    (\dice{1}, \dice{1}), (\dice{2}, \dice{2}), (\dice{3}, \dice{3}), (\dice{4}, \dice{4}), (\dice{5}, \dice{5}), (\dice{6}, \dice{6})
+\end{align*}
+の6通りである．したがってゾロ目が出る事象の確率は\(\inlinefrac{6}{36} = \inlinefrac{1}{6}\)となる．
 
-
-1つ目の性質は，任意の事象\(A\)についてその確率\(P(A)\)は\(0 \leq P(A) \leq 1\)であるというものである．その理由としては，古典的な確率がもともと割合を表すものだったということ，またそれと整合的であるほうが便利だということが大きい\footnote{%
-もちろん数学においては定義として確立されてしまえば，
-その背景にある思想は
-}．
-
-古典的な確率の定義\cite{laplace}は付録参照．
 
 
 1つの代表的な方法として定義域として標本空間の\(\Omega\)の冪集合\(\wp(\Omega)\)を考えるのが普通である．
 例えば\(\Omega\)を\eqref{dice}とするとき，多くの場合
-\begin{align*}
-    & \wp(\Omega) = \{ \\
-    & \ \ \ \ \emptyset, \{\dice{1}\}, \{\dice{2}\}, \{\dice{3}\}, \{\dice{4}\}, \{\dice{5}\}, \{\dice{6}\}, \\
-    & \ \ \ \ 
-        \{\dice{1}, \dice{2}\},
-        \{\dice{1}, \dice{3}\},
-        \{\dice{1}, \dice{4}\},
-        \{\dice{1}, \dice{5}\},
-        \{\dice{1}, \dice{6}\}, \\
-    & \ \ \ \ 
-        \{\dice{2}, \dice{3}\},
-        \{\dice{2}, \dice{4}\},
-        \{\dice{2}, \dice{5}\},
-        \{\dice{2}, \dice{6}\},
-        \{\dice{3}, \dice{4}\}, \\
-    & \ \ \ \ 
-        \{\dice{3}, \dice{5}\},
-        \{\dice{3}, \dice{6}\},
-        \{\dice{4}, \dice{5}\},
-        \{\dice{4}, \dice{6}\},
-        \{\dice{5}, \dice{6}\}, \\
-    & \ \ \ \ 
-        \{\dice{1}, \dice{2}, \dice{3}\},
-        \{\dice{1}, \dice{2}, \dice{4}\},
-        \{\dice{1}, \dice{2}, \dice{5}\},
-        \{\dice{1}, \dice{2}, \dice{6}\},
-        \{\dice{1}, \dice{3}, \dice{4}\}, \\
-    & \ \ \ \ 
-        \{\dice{1}, \dice{3}, \dice{5}\},
-        \{\dice{1}, \dice{3}, \dice{6}\},
-        \{\dice{1}, \dice{4}, \dice{5}\},
-        \{\dice{1}, \dice{4}, \dice{6}\},
-        \{\dice{1}, \dice{5}, \dice{6}\}, \\
-    & \ \ \ \ 
-        \{\dice{2}, \dice{3}, \dice{4}\},
-        \{\dice{2}, \dice{3}, \dice{5}\},
-        \{\dice{2}, \dice{3}, \dice{6}\},
-        \{\dice{2}, \dice{4}, \dice{5}\},
-        \{\dice{2}, \dice{4}, \dice{6}\}, \\
-    & \ \ \ \ 
-        \{\dice{2}, \dice{5}, \dice{6}\},
-        \{\dice{3}, \dice{4}, \dice{5}\},
-        \{\dice{3}, \dice{4}, \dice{6}\},
-        \{\dice{3}, \dice{5}, \dice{6}\},
-        \{\dice{4}, \dice{5}, \dice{6}\}, \\
-    & \ \ \ \ 
-        \Omega \setminus \{\dice{1}, \dice{2}\},
-        \Omega \setminus \{\dice{1}, \dice{3}\},
-        \Omega \setminus \{\dice{1}, \dice{4}\},
-        \Omega \setminus \{\dice{1}, \dice{5}\},
-        \Omega \setminus \{\dice{1}, \dice{6}\}, \\
-    & \ \ \ \ 
-        \Omega \setminus \{\dice{2}, \dice{3}\},
-        \Omega \setminus \{\dice{2}, \dice{4}\},
-        \Omega \setminus \{\dice{2}, \dice{5}\},
-        \Omega \setminus \{\dice{2}, \dice{6}\},
-        \Omega \setminus \{\dice{3}, \dice{4}\}, \\
-    & \ \ \ \ 
-        \Omega \setminus \{\dice{3}, \dice{5}\},
-        \Omega \setminus \{\dice{3}, \dice{6}\},
-        \Omega \setminus \{\dice{4}, \dice{5}\},
-        \Omega \setminus \{\dice{4}, \dice{6}\},
-        \Omega \setminus \{\dice{5}, \dice{6}\}, \\
-    & \ \ \ \  \Omega \setminus \{\dice{1}\}, \Omega \setminus \{\dice{2}\}, \Omega \setminus \{\dice{3}\}, \Omega \setminus \{\dice{4}\}, \Omega \setminus \{\dice{5}\}, \Omega \setminus \{\dice{6}\}, \Omega \\
-    & \}
-\end{align*}
 をという\(2^6 = 64\)個の元をもつ集合をとる．
 
 次に標本空間が無限集合の場合を考える．
