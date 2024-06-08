@@ -14,6 +14,7 @@
 ]{unicode-math}
 \usepackage{customdice}
 \usepackage{tikz}
+\usepackage{tikz-qtree}
 \usepackage{pgfplots}
 \usetikzlibrary{%
     patterns,
@@ -248,8 +249,11 @@
 
 \DeclareMathOperator{\identity}{id}
 \DeclareMathOperator{\trace}{trace}
+\DeclareMathOperator{\len}{len}
 \newcommand\symdiffsymbol{\mathord{\triangle}}
 \newcommand\symdiff[2]{#1\mathbin{\triangle}#2}
+\newfontfamily\treefont[ItalicFont={Roboto Light Italic}]{Roboto Light}
+\newcommand\formallang[1]{{\treefont\itshape #1}}
 
 \newcommand\header[1]{\multicolumn{1}{c}{\bfseries\gtfamily #1}}
 \newcommand\pronunciation[4]{#1 \texttt{#2} [#3] #4．}

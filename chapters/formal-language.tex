@@ -1,0 +1,128 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\mainchapter{形式言語}
+
+\begin{thmbox}
+\begin{definition}
+空ではない有限集合のことを\keyword{アルファベット}(alphabet)といい，
+しばしば\(\Sigma\)で表す．
+アルファベットの元を\keyword{記号}(symbol)と呼ぶ．
+\definitionlabel{alphabet}
+\end{definition}
+\end{thmbox}
+
+\begin{exa} \(\Sigma = \{\symtt{0}, \symtt{1}\}\)はアルファベットである．
+\end{exa}
+
+\begin{exa} 現代英語で主に用いられるラテン小文字の集合\(\Sigma = \{\symtt{a}, \ldots, \symtt{z}\}\)はアルファベットである．
+\end{exa}
+
+\begin{exa} 記号が1文字で表される必要はないので\(\symcal{V} = \{\text{\ttfamily 株価}, \text{\ttfamily 上がる}, \text{\ttfamily 下がる}\}\)\footnote{語彙(vocabulary)のような意味合いをこめて\(\symcal{V}\)と表した．}などもまたアルファベットである．
+\end{exa}
+
+アルファベット\(\Sigma\)の\keyword{Kleene\footnote{\pronunciation{Kleene}{en}{ˈkleɪni}{クリーネ}}スター}(Kleene star)を以下のように定義する：
+\begin{align*}
+    \Sigma^{\mathord{+}}
+    &:= \bigcup_{\ell \in \symbb{N}} \prod_{i = 1}^\ell \Sigma^\ell \\
+    &= \bigcup_{\ell \in \symbb{N}} \{(a_1, \ldots, a_\ell) \mid a_1, \ldots, a_\ell \in \Sigma\}.
+\end{align*}
+\(\Sigma^{\mathord{+}}\)の元\(\alpha = (a_1, a_2,\ldots, a_n)\)をしばしば\(a_1 a_2 \cdots a_n\)のように表す．
+\(\Sigma^{\mathord{+}}\)の2元\(s = a_1 \cdots a_n\), \(t = b_1 \cdots b_m\)に対して
+\keyword{連結}(concatenation)と呼ばれる二項演算を
+\begin{align}
+    s \doubleplus t = a_1 \cdots a_n b_1 \cdots b_m
+    % \in \Sigma^{n + m} \subseteq \Sigma^{\mathord{+}}
+    \eqlabel{concatenation}
+\end{align}
+で定義する．\(s \doubleplus t\)は単に\(st\)と書かれることが多い．
+
+\bigskip
+
+任意の\(s \in \Sigma^{\mathord{+}}\)に対して
+\begin{align}
+    \varepsilon s = s \varepsilon = s \eqlabel{empty-string}
+\end{align}
+となるような元\(\varepsilon\)を\keyword{空文字列}(empty string)と呼ぶ．
+\begin{align}
+    \Sigma^{\mathord{*}} := \{\varepsilon\} \cup \Sigma^{\mathord{+}}
+    \eqlabel{kleene-star}
+\end{align}
+を\(\Sigma\)の\keyword{Kleeneスター}(Kleene star)といい，
+\(\Sigma^{\mathord{*}}\)の元を\(\Sigma\)上の\keyword{文字列}(string)という．
+\(\tuple{ \Sigma^*, \doubleplus, \varepsilon }\)はモノイドである．
+
+\begin{exa} \(\Sigma = \{\symtt{0}, \symtt{1}\}\)とすると，
+\(\symtt{0000}\)や\(\symtt{0101}\)は文字列である．
+\end{exa}
+
+\begin{thmbox}
+\begin{definition}
+文字列の\keyword{長さ}(length) \(\len\colon \Sigma^{\mathord{*}} \to \symbb{N}\)を以下のように定義する：
+\begin{enumerate}
+    \item \(\len (\varepsilon) = 0\)，
+    \item \(s \in \Sigma^n\)ならば\(\len (s) = n\)．
+\end{enumerate}
+\end{definition}
+\end{thmbox}
+
+\begin{exa} \(\Sigma = \{\symtt{0}, \symtt{1}\}\)とすると\(\len(\symtt{0110}) = 4\)であり，
+\(\Sigma = \{\symtt{01}, \symtt{10}\}\)とすると\(\len(\symtt{0110}) = 2\)である．
+\end{exa}
+
+
+\begin{definition} \(\Sigma^{\mathord{*}}\)の部分集合を\(\Sigma\)上の\keyword{言語}(language)という．
+\begin{itemize}
+    \item \(L_1, L_2\)が言語ならば\(L_1L_2 = \{ w \doubleplus v \mid w \in L_1, v \in L_2 \}\)
+    \item \(L^{\symup{R}} = \{ \}\)
+\end{itemize}
+\end{definition}
+
+
+\begin{definition}
+\(\langle Q, \Sigma, \delta, q_0, F \rangle\)
+\(Q\)は有限集合で，\(Q\)の元は\keyword{状態}(state)と呼ばれる．
+\(\Sigma\)は有限集合で，\(\Sigma\)の元は\keyword{入力記号}(input symbol)と呼ばれる．
+\(q_0 \in Q\)は初期状態
+\(F \subseteq Q\)は
+\(\delta\colon Q \times \Sigma \to \wp(Q)\)
+\end{definition}
+
+\(Q = \{q_0, q_1, q_2\}\)
+\(\Sigma = \{0, 1\}\)
+
+\begin{definition}
+言語\(L = \Sigma^{\mathord{*}}\)
+言語の連結\(L\)
+\end{definition}
+
+\begin{itemize}
+    \item \formallang{S} \(\to\) \formallang{NP} \formallang{VP}
+    \item \formallang{VP} \(\to\) \formallang{V}
+    \item \formallang{V} \(\to\) \formallang{V}
+\end{itemize}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[every node/.append style={font=\treefont\itshape}]
+    \Tree [.S [.NP [.Det the ] [.N cat ] ]
+    [.VP [.V sat ]
+    [.PP [.P on ]
+    [.NP [.Det the ] [.N mat ] ] ] ] ];
+    \end{tikzpicture}
+\end{figure}
+
+\begin{definition} \(G = \langle V, \Sigma, S \rangle\)を\keyword{文脈自由文法}(context-free grammar, CFG)と呼ぶ．
+\begin{itemize}
+    \item \(\Sigma\)は終端記号(terminal symbol)と呼ばれる記号の集合
+    \item \(N\)は\keyword{非終端記号}(nonterminal symbol)と呼ばれる全体の集合
+    \item \(S \in N\)は開始記号(start symbol)と呼ばれる非終端記号
+    \item \(S \in N\)は開始記号(start symbol)と呼ばれる非終端記号
+\end{itemize}
+
+\(V = N \cup \Sigma\)
+
+\end{definition}
+
+\textgreek{Καραθεοδωρή}
+
+\end{document}
