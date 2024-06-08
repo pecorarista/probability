@@ -51,7 +51,27 @@
 \end{align*}
 の6通りである．したがってゾロ目が出る事象の確率は\(\inlinefrac{6}{36} = \inlinefrac{1}{6}\)となる．
 
-
+2つ目の性質は，同時に起こることがない任意の2つの事象\(A\)と\(B\)について
+\begin{align*}
+    P(\text{\(A\)または\(B\)}) = P(A) + P(B)
+\end{align*}
+が成り立つというものである．たとえば\(A\)を「2つの目の合計が3以下」，
+\(B\)を「2つの目の合計が10以上」とする．
+\(A\)に当てはまる場合は
+\begin{align*}
+    (\dice{1}, \dice{1}), (\dice{1}, \dice{2}), (\dice{2}, \dice{1})
+\end{align*}
+の3通りであり，\(B\)に当てはまる場合は
+\begin{align*}
+    (\dice{4}, \dice{6}), (\dice{6}, \dice{4}), (\dice{5}, \dice{5}),
+    (\dice{5}, \dice{6}), (\dice{6}, \dice{5}), (\dice{6}, \dice{6})
+\end{align*}
+の6通りである．
+このとき\(A\)または\(B\)に当てはまるのは\(9\)通りであり
+\begin{align*}
+    P(\text{\(A\)または\(B\)}) = \frac{10}{36} = \frac{3}{36} + \frac{6}{36} = P(A) + P(B)
+\end{align*}
+が成り立つ．
 
 1つの代表的な方法として定義域として標本空間の\(\Omega\)の冪集合\(\wp(\Omega)\)を考えるのが普通である．
 例えば\(\Omega\)を\eqref{dice}とするとき，多くの場合
@@ -101,6 +121,51 @@
 \end{figure}
 
 
+\section{部分集合族の代数的性質}
+
+\(\symcal{F}\)を集合\(X\)の部分集合族とする．
+\(\symcal{F}\)上の演算について
+\begin{itemize}
+    \item （\(\mathord{\cap}\)-閉性）\(A, B \in \symcal{F}\)ならば\(A \cap B \in \symcal{F}\)が成り立つ．
+    \item （\(\mathord{\cup}\)-閉性）\(A, B \in \symcal{F}\)ならば\(A \cup B \in \symcal{F}\)が成り立つ．
+    \item （\(\mathord{\setminus}\)-閉性）\(A, B \in \symcal{F}\)ならば\(A \setminus B \in \symcal{F}\)が成り立つ．
+    \item （\(\setcomp{\placeholder}\)-閉性）\(A \in \symcal{F}\)ならば\(\setcomp{A} = X \setminus A \in \symcal{F}\)が成り立つ．
+    \item （\(\sigma\)-\(\mathord{\cup}\)-閉性）\(\symcal{F}\)の任意の列\(\Sequence{A}\)について
+        \begin{align*}
+            \bigcup_{n \in \PositiveInteger} A_n \in \symcal{F}.
+        \end{align*}
+\end{itemize}
+\(\mathord{*}\)を\(\symcal{F}\)上の演算とする．
+\(\symcal{F}\)が\(\mathord{*}\)-閉性をみたすとき，\(\symcal{F}\)は\(\mathord{*}\)-閉(\(\mathord{*}\)-closed)である，あるいは\(\mathord{*}\)について閉じている(closed under \(\mathord{*}\))ということもある．
+「\(\sigma\)-\(\mathord{\cup}\)-閉」の〈\(\sigma\)〉は可算個の集合の和集合に関係しているものにつけられる接辞で，ドイツ語において和や和集合を意味する\begin{german}«Summe»\end{german}\footnote{\begin{german}Summe\end{german} [ˈzʊmə].現代のドイツ語で和集合を意味する語としては\textgerman{«Vereinigung»} [fɛ\invbreve{ɐ}ˈʔa\invbreve{ɪ}nɪgʊŋ]のほうが一般的である．
+% 可算個の集合の共通部分に関係しているものには\textgerman{«Durchschnitt»}
+% [ˈdʊʁçʃnɪt]
+% にちなんで\(\delta\)が使われる．
+% 例えば可算個の開集合\textgerman{«Gebiet»} [ɡə\/ˈbiːt]の共通部分であるような集合を\(G_\delta\)と呼ぶ．
+}の\emphchar{s}に対応するギリシャ文字である．
+
+\begin{thmbox}
+\begin{definition}
+集合\(X\)の部分集合族\(\symcal{F}\)が演算\(\mathord{\cap}\)について閉じているとき，\(\symcal{F}\)を
+\keyword{\(\symbf{\pi}\)-システム}(\(\pi\)-system)という．
+\end{definition}
+\end{thmbox}
+
+\begin{thmbox}
+\begin{definition}
+集合\(X\)の部分集合族\(\symcal{F}\)が次の性質をみたすとき，\(\symcal{F}\)を\keyword{集合半環}(semiring of sets)という：
+\begin{conditions}
+    \item\label{semiring-emptyset} \(\emptyset \in \symcal{F}\).
+    \item （\(\mathord{\cap}\)-閉性）\(A, B \in \symcal{F}\)ならば\(A \cap B \in \symcal{F}\)が成り立つ．
+    \item\label{semiring-setminus}（区分的\(\mathord{\setminus}\)-閉性\footnotemark）
+        \(A, B \in \symcal{F}\)ならば，互いに素な\(C_1, \ldots, C_n \in \symcal{F}\)が存在して\(A \setminus B = \bigcup_{i = 1}^n C_i\)が成り立つ．
+\end{conditions}
+\definitionlabel{semiring-of-sets}
+\end{definition}
+\end{thmbox}
+
+\footnote{「区分的\(\mathord{\setminus}\)-閉性」は便宜的につけたもので一般的な名称ではない．}
+
 \begin{thmbox}
 \begin{definition}
 \(X\)を集合とし，\(\symcal{F}\)をその部分集合族とする．
@@ -119,5 +184,63 @@
 \end{thmbox}
 
 \footnotetext{\inhibitglue 「\(\sigma\)-加法族」という訳語もよく用いられる．}
+
+一般に集合半環は代数学の意味での半環ではないが，よく似た性質をもっている．
+まず\(\symcal{F}\)上の加法を\keyword{対称差}(symmetric difference)とする．
+対称差とは\(\symdiff{A}{B} = (A \setminus B) \cup (B \setminus A)\)と定義されるもので，図示すると\figref{symmetric-difference}のようになる．
+\(\symcal{F}\)が集合半環の条件をみたすならば，\(\symcal{F}\)は\(\symdiffsymbol\)について閉じている．
+また\(\symdiffsymbol\)について結合律と可換律が成り立つ．
+この演算の単位元\(\emptyset\)は定義から\(\symcal{F}\)に含まれている．
+よって\(\langle \symcal{F}, \mathord{\triangle}, \emptyset \rangle\)は可換モノイドである．
+次に\(\symcal{F}\)上の乗法を\(\mathord{\cap}\)とする．
+これは結合律・可換律・分配律をみたしている．
+また加法単位元\(\emptyset\)は乗法\(\mathord{\cap}\)によって\(\symcal{F}\)を零化する．
+しかし乗法単位元\(X\)が\(\symcal{F}\)に含まれるかどうかは上の定義からわからない．
+したがって集合半環は全体集合を含んでいれば代数学の意味での半環でもあり，
+そうでなければ代数学の意味での半環にはあと一歩足りないということになる．
+
+\begin{figure}[h]
+    \centering
+    \begin{tikzpicture}[draw opacity=1, fill opacity=0.4, text opacity=1]
+        \draw[thick] (-2.35, 1.9) rectangle (2.35, -1.9);
+        \draw[thick, fill=sRed, even odd rule] (-0.65, 0) circle (1) (0.65, 0) circle (1);
+        \node at (0, 1.3) {\(\symdiff{A}{B}\)};
+        \node at (-2, 1.5) {\(X\)};
+        \node at (-1.0, 0.6) {\(A\)};
+        \node at (0.9, 0.6) {\(B\)};
+    \end{tikzpicture}
+    \caption{\(X\)の部分集合\(A\)と\(B\)の対称差\(\symdiff{A}{B}\)．}
+    \figlabel{symmetric-difference}
+\end{figure}
+
+\begin{example}
+\(\symbb{R}\)の左開右閉区間の集合\(\symcal{I} = \{(a, b] \mid a \leq b\}\)は集合半環である．
+\examplelabel{interval-semiring}
+\end{example}
+
+\begin{proof} \(\emptyset = (a, a] \in \symcal{I}\)である．
+\(\mathord{\cap}\)-閉であることは
+\begin{align*}
+    (a, b] \cap (c, d] =
+    \begin{cases}
+        \emptyset          & \text{\((a, b] \cap (c, d] = \emptyset\)のとき，} \\
+        (a, b]             & \text{\((a, b] \subseteq (c, d]\)のとき，} \\
+        (c, d]             & \text{\((a, b] \supseteq (c, d]\)のとき，} \\
+        (c, b]             & \text{それ以外のとき}
+    \end{cases}
+\end{align*}
+からわかる．また区分的\(\mathord{\setminus}\)-閉であることは
+\begin{align}
+    (a, b] \setminus (c, d] =
+    \begin{cases}
+        (a, b]             & \text{\((a, b] \cap (c, d] = \emptyset\)のとき，} \\
+        \emptyset          & \text{\((a, b] \subseteq (c, d]\)のとき，} \\
+        (a, c] \cup (d, b] & \text{\((a, b] \supseteq (c, d]\)のとき，} \\
+        (a, c] \cup (b, d] & \text{それ以外のとき}
+        \eqlabel{setminus-cases}
+    \end{cases}
+\end{align}
+からわかる．
+\end{proof}
 
 \end{document}

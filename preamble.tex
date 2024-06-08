@@ -229,6 +229,7 @@
 \renewcommand{\headfont}{\bfseries\gtfamily\sffamily}
 
 \newcommand\keyword[1]{{\bfseries\gtfamily #1}}
+\newcommand\emphchar[1]{\ltjalchar`‹#1\ltjalchar`›}
 
 \newcommand\Integer{\symbb{N}}
 \newcommand\PositiveInteger{\symbb{N}_{\mathord{+}}}
@@ -246,6 +247,8 @@
 
 \DeclareMathOperator{\identity}{id}
 \DeclareMathOperator{\trace}{trace}
+\newcommand\symdiffsymbol{\mathord{\triangle}}
+\newcommand\symdiff[2]{#1\mathbin{\triangle}#2}
 
 \newcommand\header[1]{\multicolumn{1}{c}{\bfseries\gtfamily #1}}
 \newcommand\pronunciation[4]{#1 \texttt{#2} [#3] #4．}
