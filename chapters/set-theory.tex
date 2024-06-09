@@ -1,6 +1,7 @@
 \documentclass[../main.tex]{subfiles}
 \begin{document}
 \mainchapter{集合論}
+\nocite{saito-kiso}
 
 \begin{thmbox}
 \begin{axiom}[（\ltjruby{対}{つい}の公理）]
@@ -14,7 +15,7 @@
 これは集合\(x, y\)について\(x, y\)のみを元としてもつ集合が存在するということを述べている．
 外延性公理によりこのような集合は\(1\)つだけであるから，それを\(\{x, y\}\)のように書く．
 これを\(x\)と\(y\)の\keyword{非順序対}(unordered pair)という．
-集合\(a\)について\(\{a, a\}\)を\keyword{\(1\)元集合}(singleton)といい，\(\{a\}\)で表す．
+集合\(a\)について\(\{a, a\}\)を\keyword{\(1\)元集合}(singleton)といい\(\{a\}\)で表す．
 
 \begin{thmbox}
 \begin{definition}
@@ -22,16 +23,24 @@
 \end{definition}
 \end{thmbox}
 
-\begin{proposition} \(\tuple{a, b} = \tuple{a', b'}\)は\(a = a'\)かつ\(b = b'\)と同値である．
+\begin{proposition}
+\begin{align*}
+    \tuple{a, b} = \tuple{a', b'} \leftrightarrow a = a' \land b = b'
+\end{align*}
 \end{proposition}
+
+\begin{proof} (\(\leftarrow\)) 明らか．
+
+\noindent (\(\rightarrow\))
+\(\{a\} \in \{\{a\}, \{a', b'\}\} \subseteq \{\{a'\}, \{a', b'\}\}\)である．
+したがって\(\{a\} = \{a'\}\)または\(\{a\} = \{a', b'\}\)となる．
+\end{proof}
 
 順序対を\(2\)-タプル(\(2\)-tuple)ともいう．
 任意の「自然数」\footnote{%
-ここでの自然数は集合論の枠組みの中で構成された自然数ではなく，
-その外にある日常的な意味での自然数\(1, 2, 3, \ldots\)を指す．
+ここで「自然数」と括弧をつけたのは，これが集合論の枠組みの中で構成された自然数を指しているのではなく，その外にある日常的な意味での自然数\(0, 1, 2, \ldots\)を指しているからである．
 }\(n\)について\keyword{\(n\)-タプル}を以下のように定義する．
 まず\(0\)-タプルあるいは\keyword{空タプル}(empty tuple)は空集合\(\emptyset\)を指すものとする．
-これを\(\tuple{}\)と表すこともある．
 \(n\)まで\(n\)-タプルが定義されているとき，\((n + 1)\)-タプルを
 \begin{align*}
     \tuple{a_1, \ldots, a_{n - 1}, a_n} = \tuple{\tuple{a_1, \ldots, a_{n -1}}, a_n}
