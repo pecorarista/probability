@@ -1,0 +1,41 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\mainchapter{集合論}
+
+\begin{thmbox}
+\begin{axiom}[（\ltjruby{対}{つい}の公理）]
+\axiomlabel{axiom-of-paring}
+\begin{align}
+    \forall x \forall y \exists z \forall w (w \in z \leftrightarrow w \in x \lor w = y)
+\end{align}
+\end{axiom}
+\end{thmbox}
+
+これは集合\(x, y\)について\(x, y\)のみを元としてもつ集合が存在するということを述べている．
+外延性公理によりこのような集合は\(1\)つだけであるから，それを\(\{x, y\}\)のように書く．
+これを\(x\)と\(y\)の\keyword{非順序対}(unordered pair)という．
+集合\(a\)について\(\{a, a\}\)を\keyword{\(1\)元集合}(singleton)といい，\(\{a\}\)で表す．
+
+\begin{thmbox}
+\begin{definition}
+集合\(a, b\)に対し，\(\{\{a\}, \{a, b\}\}\)を\(a\)と\(b\)の\keyword{順序\ltjruby{対}{つい}}(ordered pair)といい，\(\tuple{a, b}\)と表す．
+\end{definition}
+\end{thmbox}
+
+\begin{proposition} \(\tuple{a, b} = \tuple{a', b'}\)は\(a = a'\)かつ\(b = b'\)と同値である．
+\end{proposition}
+
+順序対を\(2\)-タプル(\(2\)-tuple)ともいう．
+任意の「自然数」\footnote{%
+ここでの自然数は集合論の枠組みの中で構成された自然数ではなく，
+その外にある日常的な意味での自然数\(1, 2, 3, \ldots\)を指す．
+}\(n\)について\keyword{\(n\)-タプル}を以下のように定義する．
+まず\(0\)-タプルあるいは\keyword{空タプル}(empty tuple)は空集合\(\emptyset\)を指すものとする．
+これを\(\tuple{}\)と表すこともある．
+\(n\)まで\(n\)-タプルが定義されているとき，\((n + 1)\)-タプルを
+\begin{align*}
+    \tuple{a_1, \ldots, a_{n - 1}, a_n} = \tuple{\tuple{a_1, \ldots, a_{n -1}}, a_n}
+\end{align*}
+と定義する．
+
+\end{document}
