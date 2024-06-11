@@ -4,36 +4,7 @@
 \nocite{miyajima-functional-analysis}
 
 \begin{thmbox}
-\begin{definition}[（代数）]
-\(A\)を\(\symbb{K}\)上のベクトル空間とする．
-積または乗法と呼ばれる\(A\)上の二項演算\((x, y) \mapsto x \mathbin{\times} y\)（通常\(x \mathbin{\times} y\)を単に\(xy\)を書く）が以下の性質をみたすとき，
-組\((A, \mathord{\times})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという．
-\begin{conditions}
-    \item\label{algebra-mult-assoc} 任意の\(x, y, z \in A\)について\(x (yz) = (xy) z\)．
-    \item 任意の\(x, y, z \in A\)について\((x + y) z = xz + yz, x (y + z) = xz + xz\)．
-    \item\label{algebra-mult-scalar-assoc} 任意の\(\alpha \in \symbb{K}\)と任意の\(x, y \in X\)について
-        \(\alpha (xy) = (\alpha x) y = x (\alpha y)\)．
-\end{conditions}
-どういう演算であるかを強調したい場合以外は組\((A, \mathord{\times})\)を単に\(A\)と書くことが多い．
-上の\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
-代数\(A\)は可換であるという．
-\begin{conditions}[resume]
-    \item 任意の\(x, y\in A\)について\(x y  = y x\)．
-\end{conditions}
-また\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
-代数\(A\)は単位元をもつ(with unit)または単位的(unital)であるという．
-\begin{conditions}[resume]
-    \item ある元\(1_A \in A \setminus \{0_A\}\)が存在して，
-        任意の\(x \in A\)に対して\(1_A x  = x 1_A = x\)が成り立つ．
-        これを乗法単位元と呼ぶ．
-\end{conditions}
-\end{definition}
-\end{thmbox}
-
-\noindent 混乱のおそれがない場合は\(0_A\)や\(1_A\)を単に\(0\)や\(1\)と表す．
-
-\begin{thmbox}
-\begin{proposition}[（コンパクトHausdorff空間上の連続関数全体の集合から作られる代数）]
+\begin{proposition}
 \(X\)をコンパクトHausdorff空間とし，
 \(X\)から\(\symbb{K}\)への連続関数全体の集合を\(C(X, \symbb{K})\)または単に\(C(X)\)と書く．
 \(C(X)\)における加法，スカラー倍，ゼロベクトル（加法単位元）をそれぞれ

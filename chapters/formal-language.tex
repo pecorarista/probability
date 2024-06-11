@@ -22,19 +22,30 @@
 
 \begin{thmbox}
 \begin{definition}
-\(n\)を任意の自然数とする．アルファベットを要素にもつ\(n\)-タプルを\keyword{文字列}(string)と呼ぶ．
-また空タプルを\keyword{空文字列}(empty string)と呼ぶ．
+\(n\)を任意の自然数とする．アルファベット\(\Sigma\)の元からなる\(n\)-タプル全体の集合を
+\(\Sigma^*\)と書くとき，\(\Sigma^*\)の元を\keyword{文字列}(string)と呼ぶ．
+特に\(0\)-タプル\(\tuple{}\)を\(\Sigma\)上の\keyword{空文字列}(empty string)と呼び，しばしば\(\varepsilon\)で表される．
 \end{definition}
 \end{thmbox}
 
-アルファベット\(\Sigma\)の\keyword{Kleene\footnote{\pronunciation{Kleene}{en}{ˈkleɪni}{クリーネ}}スター}(Kleene star)を以下のように定義する：
+\(\Sigma\)上の文字列全体の集合とはすなわち
 \begin{align*}
-    \Sigma^{\mathord{+}}
-    &:= \bigcup_{\ell \in \symbb{N}} \prod_{i = 1}^\ell \Sigma^\ell \\
-    &= \bigcup_{\ell \in \symbb{N}} \{(a_1, \ldots, a_\ell) \mid a_1, \ldots, a_\ell \in \Sigma\}.
+    \Sigma^{\mathord{*}}
+    &:= \{\tuple{}\} \cup \{\tuple{a_1} \mid a_1 \in \Sigma \} \cup \{\tuple{a_1, a_2} \mid a_1, a_2 \in \Sigma \} \cup \cdots \\
+    &= \{\tuple{}\} \cup \bigcup_{\ell \in \PositiveInteger} \{\tuple{a_1, \ldots, a_\ell} \mid a_1, \ldots, a_\ell \in \Sigma\} \\
+    &= \bigcup_{\ell \in \symbb{N}} \prod_{i = 1}^\ell \Sigma^i \\
 \end{align*}
-\(\Sigma^{\mathord{+}}\)の元\(\alpha = (a_1, a_2,\ldots, a_n)\)をしばしば\(a_1 a_2 \cdots a_n\)のように表す．
-\(\Sigma^{\mathord{+}}\)の2元\(s = a_1 \cdots a_n\), \(t = b_1 \cdots b_m\)に対して
+である．\(2\)行目から\(3\)行目の変形では
+\begin{align*}
+    \prod_{i = 1}^0 \Sigma^i
+    = \prod_{i \in \{n \mid n \in \symbb{N}, 1 \leq n \leq 0\}} \Sigma^i
+    = \prod_{i \in \emptyset} \Sigma^i
+    = \{\tuple{}\}
+\end{align*}
+を利用している．
+
+文字列\(\alpha = \tuple{a_1, a_2,\ldots, a_n}\)をしばしば\(a_1 a_2 \cdots a_n\)のように表す．
+\(\Sigma^{\mathord{*}}\)の2元\(s = a_1 \cdots a_n\), \(t = b_1 \cdots b_m\)に対して
 \keyword{連結}(concatenation)と呼ばれる二項演算を
 \begin{align}
     s \doubleplus t = a_1 \cdots a_n b_1 \cdots b_m
@@ -42,21 +53,11 @@
     \eqlabel{concatenation}
 \end{align}
 で定義する．\(s \doubleplus t\)は単に\(st\)と書かれることが多い．
-
-\bigskip
-
-任意の\(s \in \Sigma^{\mathord{+}}\)に対して
+任意の\(s \in \Sigma^{\mathord{*}}\)に対して
 \begin{align}
     \varepsilon s = s \varepsilon = s \eqlabel{empty-string}
 \end{align}
-となるような元\(\varepsilon\)を\keyword{空文字列}(empty string)と呼ぶ．
-\begin{align}
-    \Sigma^{\mathord{*}} := \{\varepsilon\} \cup \Sigma^{\mathord{+}}
-    \eqlabel{kleene-star}
-\end{align}
-を\(\Sigma\)の\keyword{Kleeneスター}(Kleene star)といい，
-\(\Sigma^{\mathord{*}}\)の元を\(\Sigma\)上の\keyword{文字列}(string)という．
-\(\tuple{ \Sigma^*, \doubleplus, \varepsilon }\)はモノイドである．
+が成り立つ．したがって\(\tuple{ \Sigma^*, \doubleplus, \varepsilon }\)はモノイドである．
 
 \begin{exa} \(\Sigma = \{\symtt{0}, \symtt{1}\}\)とすると，
 \(\symtt{0000}\)や\(\symtt{0101}\)は文字列である．
@@ -64,11 +65,10 @@
 
 \begin{thmbox}
 \begin{definition}
-文字列の\keyword{長さ}(length) \(\len\colon \Sigma^{\mathord{*}} \to \symbb{N}\)を以下のように定義する：
-\begin{enumerate}
-    \item \(\len (\varepsilon) = 0\)，
-    \item \(s \in \Sigma^n\)ならば\(\len (s) = n\)．
-\end{enumerate}
+アルファベット\(\Sigma\)上の任意の文字列について，その\keyword{長さ}(length)を以下のように定義する：
+\begin{align*}
+    \len (s) = n \; \Longleftrightarrow \; s \in \Sigma^n.
+\end{align*}
 \end{definition}
 \end{thmbox}
 
@@ -80,7 +80,7 @@
 \begin{definition} \(\Sigma^{\mathord{*}}\)の部分集合を\(\Sigma\)上の\keyword{言語}(language)という．
 \begin{itemize}
     \item \(L_1, L_2\)が言語ならば\(L_1L_2 = \{ w \doubleplus v \mid w \in L_1, v \in L_2 \}\)
-    \item \(L^{\symup{R}} = \{ \}\)
+    \item \(L^{\symsf{R}} = \{ \}\)
 \end{itemize}
 \end{definition}
 

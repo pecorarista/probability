@@ -50,7 +50,7 @@
 \end{thmbox}
 
 モノイド\(\langle X, \mathord{\star} \rangle\)の単位元が\(e\)であるとき，それを\(\tuple{ X, \mathord{\star}, e }\)のように表すこともある．
-どのような演算や単位元を考えているのか，書き手・読み手間あるいは話し手・聞き手間で共有されている場合，集合と同じく単に\(X\)と表すことが多い．
+どのような演算や単位元を考えているのか，書き手・読み手間あるいは話し手・聞き手間で共有されている場合，集合と同じく単に\(X\)と表すことが多い．以下この種の注釈は省く．
 
 \begin{exa} 整数全体の集合\(\symbb{Z}\)とその上の通常の加法\(\mathord{+}\)の組\(\tuple{ \symbb{Z}, \mathord{+} }\)はモノイドである．
 \end{exa}
@@ -60,15 +60,17 @@
 
 \begin{thmbox}
 \begin{definition} 以下の性質をみたすとき，組\(\langle X, \mathord{+}, \mathord{\cdot} \rangle\)を\keyword{半環}(semiring)\index{半環 semiring@はんかん}という．
-\begin{itemize}
+\begin{conditions}
     \item \(\langle X, \mathord{+}, 0 \rangle\)は可換モノイドである．
     \item \(\langle X, \mathord{\cdot}, 1 \rangle\)はモノイドである．
     \item 分配律が成り立つ．
-    \item 加法単位元\(0\)による乗法は\(R\)を零化する(annihilate)，すなわち
+    \item 乗法によって加法単位元\(0\)が\(R\)を\keyword{消す}(annihilate)．すなわち
+        任意の\(a \in R\)について
         \begin{align}
-            0 \times a = a \times 0 = 0
+            0 \cdot a = a \cdot 0 = 0
         \end{align}
-\end{itemize}
+        が成り立つ．
+\end{conditions}
 \definitionlabel{semiring}
 \end{definition}
 \end{thmbox}
@@ -109,15 +111,15 @@
 \end{definition}
 
 
-\begin{example} 正の無限大を含む実数全体の集合\(\symbb{R} \cup \{\infty\}\)上の加法\(\oplus\)を
+\begin{exa} 正の無限大を含む実数全体の集合\(\symbb{R} \cup \{\infty\}\)上の加法\(\land\)を
 \begin{align*}
-    a \oplus b = \min \{a, b\}
+    a \land b = \min \{a, b\}
 \end{align*}
-とすると，\(\langle \symbb{R} \cup \{\infty\}, \oplus, \infty\rangle\)は可換モノイドである．
-また乗法\(\otimes\)を\(\symbb{R}\)における通常の加法に，無限大に関する規則（\definitionref{extended-real}）を加えたものとする．このとき\(\langle \symbb{R} \cup \{\infty\}, \mathord{\otimes}, 0 \rangle\)はモノイドである．
+とすると，\(\langle \symbb{R} \cup \{\infty\}, \land, \infty\rangle\)は可換モノイドである．
+また乗法\(\mathord{\ast}\)を\(\symbb{R}\)における通常の加法に，無限大に関する規則（\definitionref{extended-real}）を付け加えたものとする．このとき\(\langle \symbb{R} \cup \{\infty\}, \mathord{\ast}, 0 \rangle\)はモノイドである．
 分配律が成り立つことは以下のように確認できる：
 \begin{align*}
-    a \otimes (b \oplus c)
+    a \mathbin{\ast} (b \land c)
     &= a + \min \{b, c\} \\
     &= a +
     \begin{cases}
@@ -129,11 +131,10 @@
         a + b  & \text{if \(b \geq c\),} \\
         a + c & \text{otherwise}
     \end{cases} \\
-    &= (a \otimes c) \oplus (a \otimes c).
+    &= (a \mathbin{\ast} b) \land (a \mathbin{\ast} c).
 \end{align*}
-最後に加法単位元\(\infty\)が任意の\(a \in \symbb{R} \cup \{\infty\}\)に対し\(a \otimes \infty = a + \infty = \infty\)となることから，\(\langle \symbb{R}, \mathord{\oplus}, \mathord{\otimes}\rangle\)は半環である．
-    この半環をトロピカル半環(tropical semiring)
-\end{example}
+    加法単位元\(\infty\)は任意の\(a \in \symbb{R} \cup \{\infty\}\)について\(a \mathbin{\ast} \infty = a + \infty = \infty\)をみたすので\(\symbb{R}\cup\{\infty\}\)を消す．したがって\(\tuple{ \symbb{R} \cup \{\infty\}, \mathord{\land}, \mathord{\ast} }\)は半環である．この半環をトロピカル半環(tropical semiring)という．
+\end{exa}
 
 \begin{thmbox}
 \begin{definition}[（ベクトル空間）]
@@ -142,8 +143,32 @@
 
 \begin{thmbox}
 \begin{definition}[（代数）]
+\(A\)を\(\symbb{K}\)上のベクトル空間とする．
+積または乗法と呼ばれる\(A\)上の二項演算\((x, y) \mapsto x \mathbin{\times} y\)（通常\(x \mathbin{\times} y\)を単に\(xy\)を書く）が以下の性質をみたすとき，
+組\((A, \mathord{\times})\)は\(\symbb{K}\)上の\keyword{代数}(algebra)であるという．
+\begin{conditions}
+    \item\label{algebra-mult-assoc} 任意の\(x, y, z \in A\)について\(x (yz) = (xy) z\)．
+    \item 任意の\(x, y, z \in A\)について\((x + y) z = xz + yz, x (y + z) = xz + xz\)．
+    \item\label{algebra-mult-scalar-assoc} 任意の\(\alpha \in \symbb{K}\)と任意の\(x, y \in X\)について
+        \(\alpha (xy) = (\alpha x) y = x (\alpha y)\)．
+\end{conditions}
+どういう演算であるかを強調したい場合以外は組\((A, \mathord{\times})\)を単に\(A\)と書くことが多い．
+上の\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
+代数\(A\)は可換であるという．
+\begin{conditions}[resume]
+    \item 任意の\(x, y\in A\)について\(x y  = y x\)．
+\end{conditions}
+また\ref{algebra-mult-assoc}--\ref{algebra-mult-scalar-assoc}に加えて次をみたすとき，
+代数\(A\)は単位元をもつ(with unit)または単位的(unital)であるという．
+\begin{conditions}[resume]
+    \item ある元\(1_A \in A \setminus \{0_A\}\)が存在して，
+        任意の\(x \in A\)に対して\(1_A x  = x 1_A = x\)が成り立つ．
+        これを乗法単位元と呼ぶ．
+\end{conditions}
 \end{definition}
 \end{thmbox}
+
+\noindent 混乱のおそれがない場合は\(0_A\)や\(1_A\)を単に\(0\)や\(1\)と表す．
 
 \section{部分集合族の代数的性質}
 
