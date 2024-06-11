@@ -3,6 +3,46 @@
 \mainchapter{集合論}
 \nocite{saito-kiso}
 
+直感的自然数
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \node at (-2, 0) {\emoji{red-apple}};
+
+        \node at (0.65, 0) {\emoji{red-apple}};
+        \node at (1.35, 0) {\emoji{red-apple}};
+
+        \node at (3.65, 0) {\emoji{red-apple}};
+        \node at (4.35, 0) {\emoji{red-apple}};
+        \node at (4, 0.65) {\emoji{red-apple}};
+
+        \node at (-5, -1) {\(0\)};
+        \node at (-2, -1) {\(1\)};
+
+        \node at (1, -1) {\(2\)};
+        \node at (4, -1) {\(3\)};
+    \end{tikzpicture}
+    \caption{直感的自然数．}
+\end{figure}
+
+
+\begin{itemize}
+    \item 1階の言語
+        \begin{itemize}
+            \item 論理記号
+            \item 非論理記号\footnote{a}
+                \begin{itemize}
+                    \item a
+                \end{itemize}
+        \end{itemize}
+    \item 論理の公理
+        \begin{itemize}
+            \item a
+        \end{itemize}
+    \item 集合論の公理
+\end{itemize}
+
 \begin{thmbox}
 \begin{axiom}[（\ltjruby{対}{つい}の公理）]
 \axiomlabel{axiom-of-paring}
@@ -36,15 +76,10 @@
 したがって\(\{a\} = \{a'\}\)または\(\{a\} = \{a', b'\}\)となる．
 \end{proof}
 
-順序対を\(2\)-タプル(\(2\)-tuple)ともいう．
-任意の「自然数」\footnote{%
-ここで「自然数」と括弧をつけたのは，これが集合論の枠組みの中で構成された自然数を指しているのではなく，その外にある日常的な意味での自然数\(0, 1, 2, \ldots\)を指しているからである．
-}\(n\)について\keyword{\(n\)-タプル}を以下のように定義する．
-まず\(0\)-タプルあるいは\keyword{空タプル}(empty tuple)は空集合\(\emptyset\)を指すものとする．
-\(n\)まで\(n\)-タプルが定義されているとき，\((n + 1)\)-タプルを
-\begin{align*}
-    \tuple{a_1, \ldots, a_{n - 1}, a_n} = \tuple{\tuple{a_1, \ldots, a_{n -1}}, a_n}
-\end{align*}
-と定義する．
+\begin{thmbox}
+\begin{proposition}
+\(a, b\)が集合であるとき，\(a\)の元\(x\)と\(b\)の元\(y\)の順序対\(\tuple{x, y}\)全部集めたものは集合である．
+\end{proposition}
+\end{thmbox}
 
 \end{document}
