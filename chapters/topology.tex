@@ -7,7 +7,7 @@
 \section{距離空間}
 \begin{thmbox}
 \begin{definition}
-\((X, d_{X})\), \((Y,\,d_{Y})\)を距離空間とする．
+\(\tuple{X, d_{X}}\), \(\tuple{Y, d_{Y}}\)を距離空間とする．
 写像\(f\colon X \to Y\)が\keyword{点}\(x \in X\)\keyword{において連続}(continuous at \(x\))であるとは，
 任意の\(\varepsilon > 0\)に対して，ある\(\delta > 0\)が存在して，
 任意の\(x' \in X\)に対して，\(d_{X}(x', x) < \delta\)ならば\(d_{Y}(f(x'), f(x)) < \varepsilon\)となることをいう．
@@ -24,7 +24,7 @@
 \(\symcal{O}\)の\keyword{位相}(topology)という．
 \begin{conditions}
     \item\label{topology-empty} \(\emptyset \in \symcal{O}\)かつ\(X \in \symcal{O}\)．
-    \item\label{topology-intersection} \(O_1,\,O_2 \in \symcal{O}\)ならば\(O_1 \cap O_2 \in \symcal{O}\)．
+    \item\label{topology-intersection} \(O_1, O_2 \in \symcal{O}\)ならば\(O_1 \cap O_2 \in \symcal{O}\)．
     \item\label{topology-union} 集合族\({(O_\lambda)}_{\lambda \in \Lambda}\)が各\(\lambda \in \Lambda\)について\(O_\lambda \in \symcal{O}\)をみたすならば
         \begin{align}
             \bigcup_{\lambda \in \Lambda} \in \symcal{O}.
@@ -51,7 +51,7 @@
 密着位相\(\{\emptyset, X\}\)に，任意の1点だけからなる集合を1つだけ含めた集合，
 すなわち\(\{\emptyset, \{a\}, X\}\)と\(\{\emptyset, \{b\}, X\}\)もまた位相である．
 これらを\keyword{Sierpiński\footnote{\pronunciation{Sierpiński}{pl}{ɕɛr{\primarystress}pi\~{\j}sk\textsuperscript{j}i}{シェルピンスキー}}位相}(Sierpiński topology)と呼ぶ．
-密着位相\(\{0,\,X\}\)，任意のSierpiński位相\(\symcal{S}\)，離散位相\(\wp(X) = \{\emptyset,\,\{a\},\,\{b\},\,X\}\)について，\(\{\emptyset,\,X\} \preceq \symcal{S} \preceq \wp(X)\)が成り立つ．これらを象徴的に図示すると\figref{sierpinski}のようになる．
+密着位相\(\{0, X\}\)，任意のSierpiński位相\(\symcal{S}\)，離散位相\(\wp(X) = \{\emptyset, \{a\}, \{b\}, X\}\)について，\(\{\emptyset, X\} \preceq \symcal{S} \preceq \wp(X)\)が成り立つ．これらを象徴的に図示すると\figref{sierpinski}のようになる．
 2つの異なるSierpiński位相は比較可能でないことから，位相の細かさは一般的には全順序にならないことがわかる．
 
 \begin{figure}
@@ -210,7 +210,7 @@
 \begin{align*}
     \symcal{R} = \left\{
         \prod_{\lambda \in \Lambda} O_\lambda
-        \relmiddle|
+        \relmiddle{|}
         \text{任意の\(\lambda \in \Lambda\)について\(O_\lambda \in \symcal{O}_\lambda\)}
         \right\}
 \end{align*}
@@ -252,6 +252,30 @@
 したがって\(x \in \overline{A}\)，すなわち\(X \subseteq \overline{A}\)が示された．
 \end{proof}
 
+\begin{thmbox}
+\begin{definition}
+\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)を位相空間の族とし，
+\(X = \prod_{\lambda \in \Lambda} X_\lambda\)とする．
+\(\Lambda\)の任意の有限部分集合全体の集合を\(\symcal{I}\)とする．任意の\(I \in \symcal{I}\)について
+\begin{align*}
+    \Pi_I = \left\{ f\colon \Lambda \to \bigcup_{\lambda \in \Lambda} X_\lambda \relmiddle{|} \text{\parbox{7cm}{\(f(i) \in \symcal{O}_i\) for all \(i \in I\) and \(f(\lambda) \in X_\lambda\) for all \(\lambda \in \Lambda \setminus I\)}}\right\}
+    % \Pi_I = \left\{ f\colon \Lambda \to \bigcup_{\lambda \in \Lambda} X_\lambda \relmiddle{|} \text{各\(i \in I\)について\(\symcal{O}_i\)かつ\(\lambda \in \Lambda \setminus I\)について\(f(\lambda) \in X_\lambda\)}\right\}
+\end{align*}
+と定義する．このとき\(\bigcup_{I \in \symcal{I}} \Pi_I\)が生成する位相\(\symcal{O}:=\tau[\bigcup_{I \in \symcal{I}}\Pi_I]\)を\(X\)の\keyword{直積位相}(product topology)という．
+\end{definition}
+\end{thmbox}
+
+直積\(X = \prod_{\lambda \in \Lambda} X_\lambda\)について，その位相としては特に断らない限り上で定義した\(\symcal{O}\)をとる．組\(\tuple{X, O}\)を\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)の\keyword{直積位相空間}(product topological space)と呼ぶ．
+
+
+\begin{thmbox}
+\begin{theorem}[（Tikhonovの定理）]
+\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)を位相空間の族とする．
+各\(\lambda \in \Lambda\)で\(X_\lambda\)がコンパクトならば，
+\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)の直積位相空間もまたコンパクトである．
+\end{theorem}
+\end{thmbox}
+
 \section{連続写像}
 \begin{thmbox}
 \begin{definition}
@@ -262,6 +286,92 @@
 \definitionlabel{topology-continuity}
 \end{definition}
 \end{thmbox}
+
+\begin{thmbox}
+\begin{definition}
+空でない集合\(A\)上と，以下の\ref{directed-set-reflex}--\ref{directed-set-upper}を満たす
+関係\(\preceq\)の組\(\tuple{A, \preceq}\)を\keyword{有向集合}(directed set)という．
+関係\(\preceq\)が明らかな場合は\(\tuple{A, \preceq}\)を単に\(A\)と書く．
+\begin{conditions}
+    \item\label{directed-set-reflex} （反射律）任意の\(\alpha \in A\)について\(\alpha \preceq \alpha\)．
+    \item\label{directed-set-trans} （推移律）任意の\(\alpha, \beta, \gamma \in A\)について\(\alpha \preceq \beta\)かつ\(\beta \preceq \gamma\)ならば\(\alpha \preceq \gamma\)．
+    \item\label{directed-set-upper} 任意の\(\alpha, \beta \in A\)に対して\(\alpha \preceq \gamma\)かつ\(\beta \preceq \gamma\)をみたす\(\gamma \in A\)が存在する．
+\end{conditions}
+\end{definition}
+\end{thmbox}
+
+上の定義の\ref{directed-set-reflex}と\ref{directed-set-trans}は順序の公理から反対称律を除いたものである．
+この\(2\)つを満たす関係を\keyword{前順序}(preorder)と呼ぶ\footnote{%
+前順序を「ぜんじゅんじょ」と読んでしまうと全順序と紛らわしいので「まえじゅんじょ」と読んだり，
+preorderと呼んだりするほうがいいだろう．}．有向集合に用いて列の一般化であるネットが定義される．
+
+\begin{thmbox}
+\begin{definition}
+有向集合\(\Lambda\)から集合\(X\)への写像\(f \colon \Lambda \to X\)を\(X\)の\keyword{ネット}(net in \(X\))という．
+\end{definition}
+\end{thmbox}
+
+ネットはしばしば列や族と同様に\(\Family{x}\)のように書かれる．
+
+\begin{exa}
+Riemann積分の定義に用いられる\keyword{分割}(partition)\index{ぶんかつ@分割 partition}は有向集合の例である．
+分割とは，区間\(I = [a, b]\)が与えられたとき，\(a = x_0 < x_1 < \cdots < x_n = b\)を満たすような組\(\tuple{x_0, \ldots, x_n}\)のことをいう．
+2つの分割\(\Delta = (x_0, \ldots, x_n)\)と\(\Delta' = (x_0', \ldots, x_m')\)が与えられたとき，任意の\(i \in \{0, \ldots, n\}\)について\(x_i = x_j'\)となるような\(j\)が存在するとき，\(\Delta'\)は\(\Delta\)の\keyword{細分}(refinement)\index{さいぶん@細分 refinement}であるという．
+関係\(\preceq\)を\(\Delta'\)が\(\Delta\)の細分であることによって定義する．すなわち\(\Delta'\)が\(\Delta\)の細分ならば（よりきめ細かければ）\(\Delta \preceq \Delta'\)と定める．このとき\(I\)の分割全体の集合は有向集合になる．有向集合の定義\ref{directed-set-reflex}と\ref{directed-set-trans}が成り立つのは明らかである．
+\ref{directed-set-upper}については，分割\(\Delta = (x_0, \ldots, x_n)\)と\(\Delta' = (x_0', \ldots, x_m')\)が与えられたとき，\(\{x_0, \ldots, x_n\}\cup\{x_0', \ldots, x_m'\}\)の元を用いた分割\(\Delta^*\)について\(\Delta \preceq \Delta^*\)と\(\Delta' \preceq \Delta^*\)となることからわかる．
+
+閉区間\(I\)上で定義される実数値関数\(f\)について，\(I\)の分割\(\Delta = (x_0, \ldots, x_n)\)による\keyword{過剰和}(upper sum)と\keyword{不足和}(lower sum)を以下で定義する：
+\begin{gather}
+    U(f, \Delta) := \sum_{i = 1}^n \sup \{ f(x) \mid x \in [x_{i - 1}, x_i] \} (x_i - x_{i - 1}), \\
+    L(f, \Delta) := \sum_{i = 1}^n \inf \{ f(x) \mid x \in [x_{i - 1}, x_i] \} (x_i - x_{i - 1}).
+\end{gather}
+このとき\(u\colon \Delta \mapsto U(f, \Delta)\), \(\ell\colon \Delta \mapsto L(f, \Delta)\)はそれぞれネットになっている．
+\end{exa}
+
+\begin{thmbox}
+\begin{definition}
+ネット\(f\colon A \to X\)について，ある\(\alpha \in A\)が存在して，任意の\(\alpha' \geq \alpha\)について
+\(f(\alpha') \in Y\)が成り立つとき，\(f\)は\keyword{最終的に}\(Y\)\keyword{に入る}\((f\) is eventually in \(Y)\)という．
+\end{definition}
+\end{thmbox}
+
+列\(\Sequence{x}\)の部分列(subsequence)は，狭義単調増加関数\(\varphi\colon\PositiveInteger\to\PositiveInteger\)を用いて\((x_{\varphi(n)})_{n \in \symbb{Z}_+}\)と表されるような列のことである．
+あるいは列\(f\)の部分列は合成写像\(f\circ \varphi\)であると言い換えてもよい．
+ネットの部分列に対応するものはサブネットと呼ばれ，以下のように定義される：
+
+\begin{definition}[（サブネット）] \(A\)の部分集合\(B\)
+    \begin{enumerate}
+        \item\label{subnet-comp} \(g = f \circ \varphi\)．
+        \item\label{subnet-exists-beta} 任意の\(\alpha \in A\)に対して，ある\(\beta \in B\)が存在して，\(\beta' \succeq \beta\)ならば\(\alpha \preceq \varphi(\beta')\)が成り立つ．
+    \end{enumerate}
+\end{definition}
+
+部分列がサブネットであることを確認する．
+\ref{subnet-comp}は明らかなので，\ref{subnet-exists-beta}について確認する．
+一般に，任意の\(n \in \symbb{Z}_{+}\)と狭義単調増加\(\varphi\colon\symbb{Z}_{+}\to\symbb{Z}_{+}\)について\(n \leq \varphi(n)\)が成り立つことを示す．
+\(n = 1\)のとき\(\varphi(1) \geq \min \symbb{Z}_{+} = 1\)となり成り立つ．
+\(k = n\)まで成り立っていると仮定し，\(k = n + 1\)で成り立つことを示す．
+\(\varphi\)が狭義単調増加であることから\(\varphi(n) < \varphi(n + 1)\)が成り立つ．
+また仮定から\(n  \leq \varphi(n)\)なので，\(n \leq \varphi(n) < \varphi(n + 1)\)が成り立つ．
+もし\(n < \varphi(n)\)ならば，\(n + 1 \leq \varphi(n) \leq \varphi(n + 1)\)となり成り立つ．
+もし\(n = \varphi(n)\)ならば，\(n + 1 \leq \varphi(n + 1)\)となり成り立つ．
+よって任意の\(n \in \symbb{Z}_{+}\)で\(n \leq \varphi(n)\)となる．
+\ref{subnet-exists-beta}の確認に戻る．
+\(\tuple{A, \preceq_A} = \tuple{B, \preceq_B} = \tuple{\PositiveInteger, \leq}\)とする．
+\(\alpha = n\)に対して\(\beta = \varphi(n)\)とすれば，
+任意の\(\beta' \geq \beta\)について\(\alpha = n \leq \varphi(n) = \beta \leq \beta' \leq \varphi(\beta')\)となる．
+
+\begin{exa}サブネットであるが部分列ではない例として
+\end{exa}
+
+\begin{thmbox}
+\begin{definition}
+\(S\)を\(X\)の任意の部分集合とする．
+\(X\)のネット\(f\)が，\(S\)または\(X \setminus S\)のいずれかに最終的に含まれるならば，
+\(f\)は\keyword{普遍的な}(universal)ネットであるという．
+\end{definition}
+\end{thmbox}
+
 
 
 \end{document}
