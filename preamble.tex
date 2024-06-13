@@ -236,10 +236,11 @@
 
 \newcommand\Integer{\symbb{N}}
 \newcommand\PositiveInteger{\symbb{N}_{\mathord{+}}}
-\newcommand\Sequence[1]{{\langle #1_n \rangle}_{n \in \PositiveInteger}}
-\newcommand\Sequencen[1]{{\langle #1_n \rangle}_{n \in \PositiveInteger}}
-\newcommand\SimpleSequencen[1]{{\langle #1_n \rangle}_{n}}
-\newcommand\Family[1]{{\langle #1_\lambda \rangle}_{\lambda \in \Lambda}}
+\newcommand\Sequence[2]{{\langle {#1}_{#2} \rangle}_{#2 \in \PositiveInteger}}
+\newcommand\Subsequence[1]{{\langle {#1}_{\varphi(n)} \rangle}_{n \in \PositiveInteger}}
+\newcommand\Sequencen[1]{{\langle {#1}_n \rangle}_{n \in \PositiveInteger}}
+\newcommand\SimpleSequencen[1]{{\langle {#1}_n \rangle}_{n}}
+\newcommand\Family[1]{{\langle {#1}_\lambda \rangle}_{\lambda \in \Lambda}}
 \newcommand\SimpleFamily[1]{{\langle #1_\lambda \rangle}_{\lambda}}
 \newcommand\NonNegReal{\symbb{R}_{\mathord{+}}}
 \newcommand\PositiveReal{\symbb{R}_{\mathord{+}\mathord{+}}}

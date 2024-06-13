@@ -111,7 +111,7 @@
 
 \begin{thmbox}
 \begin{definition}
-\(X, \symcal{O}\)を位相空間とする．
+\(\tuple{X, \symcal{O}}\)を位相空間とする．
 \(\symcal{O}\)の部分集合\(\symcal{S}\)について，
 任意の\(O \in \symcal{O}\)と\(x \in O\)に対して，
 有限個の\(V_1, \ldots, V_r \)をとって
@@ -131,7 +131,7 @@
 \end{example}
 
 \section{直積集合と位相}
-位相空間\((X, \symcal{O}_X)\)と \((Y, \symcal{O}_Y)\)が与えられたとき，
+位相空間\(\tuple{X, \symcal{O}_X}\)と \(\tuple{Y, \symcal{O}_Y}\)が与えられたとき，
 直積\(X \times Y\)に位相を定める方法はいくつかある．
 その1つは
 \begin{align*}
@@ -227,7 +227,7 @@
 
 \begin{thmbox}
 \begin{definition}
-位相空間\((X, \symcal{O})\)の部分集合\(A\)が\(\overline{A} = X\)をみたすとき，
+位相空間\(\tuple{X, \symcal{O}}\)の部分集合\(A\)が\(\overline{A} = X\)をみたすとき，
 \(A\)は\(X\)において\keyword{稠密}(dense)であるという．
 \end{definition}
 \end{thmbox}
@@ -236,7 +236,7 @@
 
 \begin{thmbox}
 \begin{proposition}
-位相空間\((X, \symcal{O})\)の部分集合\(A\)が稠密であることは，
+位相空間\(\tuple{X, \symcal{O}}\)の部分集合\(A\)が稠密であることは，
 任意の\(O \in \symcal{O} \setminus \{\emptyset\}\)について\(A \cap O \neq \emptyset\)が成り立つことと同値である．
 \propositionlabel{dense-paraphrase}
 \end{proposition}
@@ -279,14 +279,16 @@
 \section{連続写像}
 \begin{thmbox}
 \begin{definition}
-\((X, \symcal{O}_{X})\), \((Y, \symcal{O}_{Y})\)を位相空間とする．
+\(\tuple{X, \symcal{O}_{X}}\), \(\tuple{Y, \symcal{O}_{Y}}\)を位相空間とする．
 写像\(f\colon X \to Y\)が点\(x \in X\)において連続であるとは，
-\(f(x)\)の\((Y, \symcal{O}_{Y})\)における任意の近傍\(V\)に対して，
-\((X, \symcal{O}_{X})\)における\(x\)のある近傍\(U\)が存在して，\(f(U) \subseteq V\)となることをいう．
+\(f(x)\)の\(\tuple{Y, \symcal{O}_{Y}}\)における任意の近傍\(V\)に対して，
+\(\tuple{X, \symcal{O}_{X}}\)における\(x\)のある近傍\(U\)が存在して，\(f(U) \subseteq V\)となることをいう．
 \definitionlabel{topology-continuity}
 \end{definition}
 \end{thmbox}
 
+
+\section{ネット}
 \begin{thmbox}
 \begin{definition}
 空でない集合\(A\)上と，以下の\ref{directed-set-reflex}--\ref{directed-set-upper}を満たす
@@ -311,21 +313,22 @@ preorderと呼んだりするほうがいいだろう．}．有向集合に用�
 \end{definition}
 \end{thmbox}
 
-ネットはしばしば列や族と同様に\(\Family{x}\)のように書かれる．
+ネットはしばしば列や族と同様に\(\Family{x}\)や単に\(\SimpleFamily{x}\)のように書かれる．
+以降，厳密に使い分けることはせず，\(f, g\)のような表記と\(\Family{x}\)のような表記を併せて用いる．
 
 \begin{exa}
 Riemann積分の定義に用いられる\keyword{分割}(partition)\index{ぶんかつ@分割 partition}は有向集合の例である．
 分割とは，区間\(I = [a, b]\)が与えられたとき，\(a = x_0 < x_1 < \cdots < x_n = b\)を満たすような組\(\tuple{x_0, \ldots, x_n}\)のことをいう．
-2つの分割\(\Delta = (x_0, \ldots, x_n)\)と\(\Delta' = (x_0', \ldots, x_m')\)が与えられたとき，任意の\(i \in \{0, \ldots, n\}\)について\(x_i = x_j'\)となるような\(j\)が存在するとき，\(\Delta'\)は\(\Delta\)の\keyword{細分}(refinement)\index{さいぶん@細分 refinement}であるという．
+2つの分割\(\Delta = \tuple{x_0, \ldots, x_n}\)と\(\Delta' = \tuple{x_0', \ldots, x_m'}\)が与えられたとき，任意の\(i \in \{0, \ldots, n\}\)について\(x_i = x_j'\)となるような\(j\)が存在するとき，\(\Delta'\)は\(\Delta\)の\keyword{細分}(refinement)\index{さいぶん@細分 refinement}であるという．
 関係\(\preceq\)を\(\Delta'\)が\(\Delta\)の細分であることによって定義する．すなわち\(\Delta'\)が\(\Delta\)の細分ならば（よりきめ細かければ）\(\Delta \preceq \Delta'\)と定める．このとき\(I\)の分割全体の集合は有向集合になる．有向集合の定義\ref{directed-set-reflex}と\ref{directed-set-trans}が成り立つのは明らかである．
-\ref{directed-set-upper}については，分割\(\Delta = (x_0, \ldots, x_n)\)と\(\Delta' = (x_0', \ldots, x_m')\)が与えられたとき，\(\{x_0, \ldots, x_n\}\cup\{x_0', \ldots, x_m'\}\)の元を用いた分割\(\Delta^*\)について\(\Delta \preceq \Delta^*\)と\(\Delta' \preceq \Delta^*\)となることからわかる．
+\ref{directed-set-upper}については，分割\(\Delta = \tuple{x_0, \ldots, x_n}\)と\(\Delta' = \tuple{x_0', \ldots, x_m'}\)が与えられたとき，\(\{x_0, \ldots, x_n\}\cup\{x_0', \ldots, x_m'\}\)の元を用いた分割\(\Delta^*\)について\(\Delta \preceq \Delta^*\)と\(\Delta' \preceq \Delta^*\)となることからわかる．
 
 閉区間\(I\)上で定義される実数値関数\(f\)について，\(I\)の分割\(\Delta = (x_0, \ldots, x_n)\)による\keyword{過剰和}(upper sum)と\keyword{不足和}(lower sum)を以下で定義する：
 \begin{gather}
     U(f, \Delta) := \sum_{i = 1}^n \sup \{ f(x) \mid x \in [x_{i - 1}, x_i] \} (x_i - x_{i - 1}), \\
     L(f, \Delta) := \sum_{i = 1}^n \inf \{ f(x) \mid x \in [x_{i - 1}, x_i] \} (x_i - x_{i - 1}).
 \end{gather}
-このとき\(u\colon \Delta \mapsto U(f, \Delta)\), \(\ell\colon \Delta \mapsto L(f, \Delta)\)はそれぞれネットになっている．
+このとき\(\Delta \mapsto U(f, \Delta)\), \(\Delta \mapsto L(f, \Delta)\)はそれぞれネットになっている．
 \end{exa}
 
 \begin{thmbox}
@@ -335,27 +338,29 @@ Riemann積分の定義に用いられる\keyword{分割}(partition)\index{ぶん
 \end{definition}
 \end{thmbox}
 
-列\(\Sequence{x}\)の部分列(subsequence)は，狭義単調増加関数\(\varphi\colon\PositiveInteger\to\PositiveInteger\)を用いて\((x_{\varphi(n)})_{n \in \symbb{Z}_+}\)と表されるような列のことである．
+列\(\Sequencen{x}\)の部分列(subsequence)は，狭義単調増加関数\(\varphi\colon\PositiveInteger\to\PositiveInteger\)を用いて\(\Subsequence{x}\)と表されるような列のことである．
 あるいは列\(f\)の部分列は合成写像\(f\circ \varphi\)であると言い換えてもよい．
 ネットの部分列に対応するものはサブネットと呼ばれ，以下のように定義される：
 
+\begin{thmbox}
 \begin{definition}[（サブネット）] \(A\)の部分集合\(B\)
-    \begin{enumerate}
+    \begin{conditions}
         \item\label{subnet-comp} \(g = f \circ \varphi\)．
         \item\label{subnet-exists-beta} 任意の\(\alpha \in A\)に対して，ある\(\beta \in B\)が存在して，\(\beta' \succeq \beta\)ならば\(\alpha \preceq \varphi(\beta')\)が成り立つ．
-    \end{enumerate}
+    \end{conditions}
 \end{definition}
+\end{thmbox}
 
 部分列がサブネットであることを確認する．
 \ref{subnet-comp}は明らかなので，\ref{subnet-exists-beta}について確認する．
-一般に，任意の\(n \in \symbb{Z}_{+}\)と狭義単調増加\(\varphi\colon\symbb{Z}_{+}\to\symbb{Z}_{+}\)について\(n \leq \varphi(n)\)が成り立つことを示す．
-\(n = 1\)のとき\(\varphi(1) \geq \min \symbb{Z}_{+} = 1\)となり成り立つ．
-\(k = n\)まで成り立っていると仮定し，\(k = n + 1\)で成り立つことを示す．
+一般に，任意の正整数\(n\)と狭義単調増加\(\varphi\colon\PositiveInteger\to\PositiveInteger\)について\(n \leq \varphi(n)\)が成り立つことを示す．
+\(n = 1\)のとき\(\varphi(1) \geq \min \PositiveInteger = 1\)となり成り立つ．
+\(n\)まで\(n \leq \varphi(n)\)が成り立っていると仮定し，\(n + 1 \leq \varphi(n + 1)\)が成り立つことを示す．
 \(\varphi\)が狭義単調増加であることから\(\varphi(n) < \varphi(n + 1)\)が成り立つ．
 また仮定から\(n  \leq \varphi(n)\)なので，\(n \leq \varphi(n) < \varphi(n + 1)\)が成り立つ．
 もし\(n < \varphi(n)\)ならば，\(n + 1 \leq \varphi(n) \leq \varphi(n + 1)\)となり成り立つ．
-もし\(n = \varphi(n)\)ならば，\(n + 1 \leq \varphi(n + 1)\)となり成り立つ．
-よって任意の\(n \in \symbb{Z}_{+}\)で\(n \leq \varphi(n)\)となる．
+もし\(n = \varphi(n)\)ならば，\(n + 1 = \varphi(n) + 1 < \varphi(n + 1) + 1\)となり成り立つ．
+よって任意の\(n \in \PositiveInteger\)で\(n \leq \varphi(n)\)となる．
 \ref{subnet-exists-beta}の確認に戻る．
 \(\tuple{A, \preceq_A} = \tuple{B, \preceq_B} = \tuple{\PositiveInteger, \leq}\)とする．
 \(\alpha = n\)に対して\(\beta = \varphi(n)\)とすれば，
@@ -372,6 +377,43 @@ Riemann積分の定義に用いられる\keyword{分割}(partition)\index{ぶん
 \end{definition}
 \end{thmbox}
 
+\begin{thmbox}
+\begin{definition}
+\(\tuple{X, \symcal{O}}\)を位相空間とする．
+\(x\)の任意の開近傍\(U\)について，ある\(\lambda_0 \in \Lambda\)が存在して，
+任意の\(\lambda \preceq \lambda_0\)について\(x_\lambda \in U\)が成り立つとき，
+\keyword{\(\SimpleFamily{x}\)は\(x\)に収束する}(\(\SimpleFamily{x}\) converges to \(x\))といい，
+\(x_\lambda \to x\)と書く．
+この\(x\)を\(\SimpleFamily{x}\)の\keyword{極限}(limit point)という．
+\end{definition}
+\end{thmbox}
 
+一般の位相空間において，ネットは複数の極限をもつことがある．
+たとえば\(X = \{0, 1\}\)に密着位相\(\symcal{O} = \{\emptyset, X\}\)を入れた\(\tuple{X, \symcal{O}}\)を考える．
+このとき任意の\(f\colon \PositiveInteger \to \{0, 1\}\)は\(0\)と\(1\)に収束する．
+
+\begin{thmbox}
+\begin{definition}
+\(X\)を位相空間とする．
+\(X\)の任意の異なる\(2\)点\(x, y\)に対し，
+\(x\)の近傍\(U\)と\(y\)の近傍\(V\)で\(U \cap V = \emptyset\)をみたすものがとれるとき，
+\(X\)を\keyword{Hausdorff{\footnotemark}空間}(Hausdorff space)という．
+\end{definition}
+\end{thmbox}
+
+\begin{thmbox}
+\begin{proposition}
+Hausdorff空間において収束するネットの極限はただ\(1\)つに定まる．
+\end{proposition}
+\end{thmbox}
+
+\begin{proof} \(X\)をHausdorff空間とする．
+任意の収束するネット\(\Family{x}\)をとる．
+\(\Family{x}\)が\(x\)と\(y\)に収束するとする．
+このとき十分大きな\(\lambda\)において
+\(x_\lambda \in U\)
+\end{proof}
+
+\footnotetext{\pronunciation{Hausdorff}{de}{ˈha\invbreve{ʊ}sdɔʀf}{ハウスドルフ}}
 
 \end{document}
