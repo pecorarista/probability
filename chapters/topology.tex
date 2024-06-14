@@ -306,6 +306,35 @@
 この\(2\)つを満たす関係を\keyword{前順序}(preorder)と呼ぶ\footnote{%
 前順序を「ぜんじゅんじょ」と読んでしまうと全順序と紛らわしいので「まえじゅんじょ」と読んだり，
 preorderと呼んだりするほうがいいだろう．}．有向集合に用いて列の一般化であるネットが定義される．
+\ref{directed-set-upper}は数列のように無限に続くこと、また以下の図のようにずっと分岐していくことがないことを要請している．
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}[scale=.6]
+      \node (emptyset) at (0, -2.5) {$\emptyset$};
+      \node (p1) at (-3, 0) {$\{1\}$};
+      \node (p2) at (0, 0) {$\{2\}$};
+      \node (p3) at (3, 0) {$\{3\}$};
+      \node (p12) at (-3, 2.5) {$\{1,\,2\}$};
+      \node (p23) at (0, 2.5) {$\{2,\,3\}$};
+      \node (p31) at (3, 2.5) {$\{3,\,1\}$};
+      \node (p123) at (0, 5) {$\{1,\,2,\,3\}$};
+      \draw[-stealth,] (emptyset) -- (p1);
+      \draw[-stealth,] (emptyset) -- (p2);
+      \draw[-stealth,] (emptyset) -- (p3);
+      \draw[-stealth,] (p1) -- (p12);
+      \draw[-stealth,] (p1) -- (p31);
+      \draw[-stealth,] (p2) -- (p12);
+      \draw[-stealth,] (p2) -- (p23);
+      \draw[-stealth,] (p3) -- (p23);
+      \draw[-stealth,] (p3) -- (p31);
+      \draw[-stealth,] (p12) -- (p123);
+      \draw[-stealth,] (p23) -- (p123);
+      \draw[-stealth,] (p31) -- (p123);
+    \end{tikzpicture}
+    \caption{TODO}
+    \figlabel{subset-order-hasse-diagram}
+\end{figure}
 
 \begin{thmbox}
 \begin{definition}
@@ -317,11 +346,11 @@ preorderと呼んだりするほうがいいだろう．}．有向集合に用�
 以降，厳密に使い分けることはせず，\(f, g\)のような表記と\(\Family{x}\)のような表記を併せて用いる．
 
 \begin{exa}
-Riemann積分の定義に用いられる\keyword{分割}(partition)\index{ぶんかつ@分割 partition}は有向集合の例である．
-分割とは，区間\(I = [a, b]\)が与えられたとき，\(a = x_0 < x_1 < \cdots < x_n = b\)を満たすような組\(\tuple{x_0, \ldots, x_n}\)のことをいう．
-2つの分割\(\Delta = \tuple{x_0, \ldots, x_n}\)と\(\Delta' = \tuple{x_0', \ldots, x_m'}\)が与えられたとき，任意の\(i \in \{0, \ldots, n\}\)について\(x_i = x_j'\)となるような\(j\)が存在するとき，\(\Delta'\)は\(\Delta\)の\keyword{細分}(refinement)\index{さいぶん@細分 refinement}であるという．
-関係\(\preceq\)を\(\Delta'\)が\(\Delta\)の細分であることによって定義する．すなわち\(\Delta'\)が\(\Delta\)の細分ならば（よりきめ細かければ）\(\Delta \preceq \Delta'\)と定める．このとき\(I\)の分割全体の集合は有向集合になる．有向集合の定義\ref{directed-set-reflex}と\ref{directed-set-trans}が成り立つのは明らかである．
-\ref{directed-set-upper}については，分割\(\Delta = \tuple{x_0, \ldots, x_n}\)と\(\Delta' = \tuple{x_0', \ldots, x_m'}\)が与えられたとき，\(\{x_0, \ldots, x_n\}\cup\{x_0', \ldots, x_m'\}\)の元を用いた分割\(\Delta^*\)について\(\Delta \preceq \Delta^*\)と\(\Delta' \preceq \Delta^*\)となることからわかる．
+Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の定義に用いられる\keyword{分割}(partition)\index{ぶんかつ@分割 partition}は有向集合の例である．
+分割とは，区間\(I = [a, b]\)が与えられたとき，\(a = x_0 < x_1 < \cdots < x_n = b\)を満たすような点の集合\(\{x_0, \ldots, x_n\}\)のことをいう．
+2つの分割\(\Delta = \{x_0, \ldots, x_n\}\)と\(\Delta' = \{y_0, \ldots, y_m\}\)について\(\Delta \subseteq \Delta' \)が成り立つとき，\(\Delta'\)は\(\Delta\)の\keyword{細分}(refinement)\index{さいぶん@細分 refinement}であるという．
+\(\Delta'\)が\(\Delta\)の細分であるとき関係\(\Delta \preceq \Delta'\)が成り立つと定める．このとき\(I\)の分割全体の集合は有向集合である．有向集合の定義\ref{directed-set-reflex}と\ref{directed-set-trans}が成り立つのは明らかである．
+\ref{directed-set-upper}については，分割\(\Delta\)と\(\Delta'\)が与えられたとき，\(\Delta \cup \Delta'\)の元を用いた分割\(\Delta^*\)について\(\Delta \preceq \Delta^*\)と\(\Delta' \preceq \Delta^*\)となることからわかる．
 
 閉区間\(I\)上で定義される実数値関数\(f\)について，\(I\)の分割\(\Delta = (x_0, \ldots, x_n)\)による\keyword{過剰和}(upper sum)と\keyword{不足和}(lower sum)を以下で定義する：
 \begin{gather}
@@ -330,6 +359,92 @@ Riemann積分の定義に用いられる\keyword{分割}(partition)\index{ぶん
 \end{gather}
 このとき\(\Delta \mapsto U(f, \Delta)\), \(\Delta \mapsto L(f, \Delta)\)はそれぞれネットになっている．
 \end{exa}
+
+\pgfmathdeclarefunction{curve}{1}{%
+    \pgfmathparse{1.7 * sin(0.72 * deg(#1)) + 2.2}%
+}
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \pgfdeclarepatternformonly{north east lines wide}
+           {\pgfqpoint{-1pt}{-1pt}}
+           {\pgfqpoint{10pt}{10pt}}
+           {\pgfqpoint{9pt}{9pt}}
+           {%
+             \pgfsetlinewidth{0.4pt}
+             \pgfpathmoveto{\pgfqpoint{0pt}{0pt}}
+             \pgfpathlineto{\pgfqpoint{9.1pt}{9.1pt}}
+             \pgfusepath{stroke}
+           }
+        \begin{axis}[
+            domain=-0.5:8,
+            samples=200,
+            axis lines=middle,
+            xlabel={\(x\)},
+            ylabel={\(y\)},
+            xmin=-0.8,
+            xmax=8.5,
+            ymin=-2.0,
+            ymax=5,
+            xtick=\empty,
+            xticklabels=\empty,
+            ytick=\empty,
+            yticklabels=\empty,
+            width=15cm,
+            height=7cm,
+        ]
+        \node at (axis cs: -0.25, -0.4) {\(O\)};
+
+        \pgfplotsinvokeforeach{0, ..., 4}{%
+            \node at (axis cs: {#1 + 1}, -0.1) [anchor=north] {\(x_#1\)};
+            \node at (axis cs: {#1 + 1}, -0.6) [anchor=north] {\rotatebox[origin=c]{90}{\(=\)}};
+        }
+        \pgfplotsinvokeforeach{2, ..., 5}{%
+            \node at (axis cs: #1, -1.2) [anchor=north] {\(y_#1\)};
+        }
+
+        \node at (axis cs: 1, -1.2) [anchor=north] {\(y_0\)};
+        \node at (axis cs: 1.5, -1.2) [anchor=north] {\(y_1\)};
+
+        \node at (axis cs: 5.5, -0.5) [anchor=west] {\(\Delta = \{x_0, \ldots, x_4\}\)};
+        \node at (axis cs: 5.5, -1.5) [anchor=west] {\(\Delta' = \{y_0, \ldots, y_5\}\)};
+
+        \addplot[sBlue, thick] {curve(x)};
+        \pgfmathsetmacro\dx{1};
+        \foreach \ii in {1, ..., 4} {%
+            \pgfmathsetmacro\xleft{\ii * \dx};
+            \pgfmathsetmacro\xright{\ii * \dx + \dx};
+            \pgfmathsetmacro\yleft{curve(\xleft)};
+            \pgfmathsetmacro\yright{curve(\xright)};
+            \pgfmathsetmacro\yminimum{min(\yleft, \yright)};
+            \addplot [
+                pattern=north east lines wide,
+                pattern color=sRed,
+                draw,
+            ] coordinates {%
+                (\xleft, 0)
+                (\xleft, \yminimum)
+                (\xright, \yminimum)
+                (\xright, 0)
+                (\xleft, 0)
+            };
+        }
+        \addplot [
+            pattern=north east lines wide,
+            pattern color=sRed,
+            draw,
+        ] coordinates {%
+            (1.5, 0)
+            (1.5, {curve(1.5)})
+            (2, {curve(1.5)})
+            (2, 0)
+            (1.5, 0)
+        };
+        \draw[dashed] (axis cs: 1.5, -0) -- (axis cs: 1.5, -1.2);
+        \end{axis}
+    \end{tikzpicture}
+\end{figure}
 
 \begin{thmbox}
 \begin{definition}
@@ -403,17 +518,19 @@ Riemann積分の定義に用いられる\keyword{分割}(partition)\index{ぶん
 
 \begin{thmbox}
 \begin{proposition}
-Hausdorff空間において収束するネットの極限はただ\(1\)つに定まる．
+Hausdorff空間においてネットが収束するならば，その極限はただ\(1\)つである．
 \end{proposition}
 \end{thmbox}
 
 \begin{proof} \(X\)をHausdorff空間とする．
-任意の収束するネット\(\Family{x}\)をとる．
-\(\Family{x}\)が\(x\)と\(y\)に収束するとする．
-このとき十分大きな\(\lambda\)において
-\(x_\lambda \in U\)
+任意の収束するネット\(\Family{x}\)をとり，その極限を\(x\)とする．
+また\(\Family{x}\)が\(x\)とは異なる点\(y\)にも収束すると仮定する．
+\(X\)がHausdorff空間なので\(x\)の開近傍\(U\)と\(y\)の開近傍\(V\)で\(U \cap V = \emptyset\)であるようなものをとることができる．\(x_\lambda \to x\)より，ある\(\lambda_0 \in \Lambda\)が存在して，
+任意の\(\lambda \succeq \lambda_0\)で\(x_\lambda \in U\)が成り立つ．
+また\(x_\lambda \to y\)より，ある\(\lambda_0' \in \Lambda\)が存在して，
+任意の\(\lambda \succeq \lambda_0\)で\(x_\lambda \in V\)が成り立つ．
+したがって\(\lambda \succeq \max \{\lambda_0, \lambda_0'\}\)ならば
+\(x_\lambda \in U \cap V\)となるが，これは\(U \cap V = \emptyset\)であったことと矛盾する．
 \end{proof}
 
 \footnotetext{\pronunciation{Hausdorff}{de}{ˈha\invbreve{ʊ}sdɔʀf}{ハウスドルフ}}
-
-\end{document}
