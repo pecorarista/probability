@@ -1,4 +1,10 @@
-\documentclass[../main.tex]{subfiles}
+\documentclass{ltjsbook}
+\usepackage[%
+    textwidth=40\zw,
+    lines=38,
+    centering
+]{geometry}
+\input{preamble}
 \begin{document}
 \mainchapter{位相}
 \nocite{uchida}
@@ -14,7 +20,6 @@
 \definitionlabel{dist-continuity}
 \end{definition}
 \end{thmbox}
-
 
 \section{位相空間}
 \begin{thmbox}
@@ -287,7 +292,6 @@
 \end{definition}
 \end{thmbox}
 
-
 \section{ネット}
 \begin{thmbox}
 \begin{definition}
@@ -305,36 +309,8 @@
 上の定義の\ref{directed-set-reflex}と\ref{directed-set-trans}は順序の公理から反対称律を除いたものである．
 この\(2\)つを満たす関係を\keyword{前順序}(preorder)と呼ぶ\footnote{%
 前順序を「ぜんじゅんじょ」と読んでしまうと全順序と紛らわしいので「まえじゅんじょ」と読んだり，
-preorderと呼んだりするほうがいいだろう．}．有向集合に用いて列の一般化であるネットが定義される．
-\ref{directed-set-upper}は数列のように無限に続くこと、また以下の図のようにずっと分岐していくことがないことを要請している．
-
-\begin{figure}
-    \centering
-    \begin{tikzpicture}[scale=.6]
-      \node (emptyset) at (0, -2.5) {$\emptyset$};
-      \node (p1) at (-3, 0) {$\{1\}$};
-      \node (p2) at (0, 0) {$\{2\}$};
-      \node (p3) at (3, 0) {$\{3\}$};
-      \node (p12) at (-3, 2.5) {$\{1,\,2\}$};
-      \node (p23) at (0, 2.5) {$\{2,\,3\}$};
-      \node (p31) at (3, 2.5) {$\{3,\,1\}$};
-      \node (p123) at (0, 5) {$\{1,\,2,\,3\}$};
-      \draw[-stealth,] (emptyset) -- (p1);
-      \draw[-stealth,] (emptyset) -- (p2);
-      \draw[-stealth,] (emptyset) -- (p3);
-      \draw[-stealth,] (p1) -- (p12);
-      \draw[-stealth,] (p1) -- (p31);
-      \draw[-stealth,] (p2) -- (p12);
-      \draw[-stealth,] (p2) -- (p23);
-      \draw[-stealth,] (p3) -- (p23);
-      \draw[-stealth,] (p3) -- (p31);
-      \draw[-stealth,] (p12) -- (p123);
-      \draw[-stealth,] (p23) -- (p123);
-      \draw[-stealth,] (p31) -- (p123);
-    \end{tikzpicture}
-    \caption{TODO}
-    \figlabel{subset-order-hasse-diagram}
-\end{figure}
+preorderと呼んだりするほうがいいだろう．}．
+有向集合を用いて列の一般化であるネットが定義される．
 
 \begin{thmbox}
 \begin{definition}
@@ -342,7 +318,7 @@ preorderと呼んだりするほうがいいだろう．}．有向集合に用�
 \end{definition}
 \end{thmbox}
 
-ネットはしばしば列や族と同様に\(\Family{x}\)や単に\(\SimpleFamily{x}\)のように書かれる．
+ネットはしばしば列や族と同様に\(\Family{x}\)のように書かれる．
 以降，厳密に使い分けることはせず，\(f, g\)のような表記と\(\Family{x}\)のような表記を併せて用いる．
 
 \begin{exa}
@@ -352,7 +328,7 @@ Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の
 \(\Delta'\)が\(\Delta\)の細分であるとき関係\(\Delta \preceq \Delta'\)が成り立つと定める．このとき\(I\)の分割全体の集合は有向集合である．有向集合の定義\ref{directed-set-reflex}と\ref{directed-set-trans}が成り立つのは明らかである．
 \ref{directed-set-upper}については，分割\(\Delta\)と\(\Delta'\)が与えられたとき，\(\Delta \cup \Delta'\)の元を用いた分割\(\Delta^*\)について\(\Delta \preceq \Delta^*\)と\(\Delta' \preceq \Delta^*\)となることからわかる．
 
-閉区間\(I\)上で定義される実数値関数\(f\)について，\(I\)の分割\(\Delta = (x_0, \ldots, x_n)\)による\keyword{過剰和}(upper sum)と\keyword{不足和}(lower sum)を以下で定義する：
+閉区間\(I\)上で定義される実数値関数\(f\)について，\(I\)の分割\(\Delta = (x_0, \ldots, x_n)\)による\keyword{過剰和}(upper sum)と\keyword{不足和}(lower sum)（\figref{partition-of-interval}）を以下で定義する：
 \begin{gather}
     U(f, \Delta) := \sum_{i = 1}^n \sup \{ f(x) \mid x \in [x_{i - 1}, x_i] \} (x_i - x_{i - 1}), \\
     L(f, \Delta) := \sum_{i = 1}^n \inf \{ f(x) \mid x \in [x_{i - 1}, x_i] \} (x_i - x_{i - 1}).
@@ -407,14 +383,16 @@ Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の
         \node at (axis cs: 1, -1.2) [anchor=north] {\(y_0\)};
         \node at (axis cs: 1.5, -1.2) [anchor=north] {\(y_1\)};
 
-        \node at (axis cs: 5.5, -0.5) [anchor=west] {\(\Delta = \{x_0, \ldots, x_4\}\)};
-        \node at (axis cs: 5.5, -1.5) [anchor=west] {\(\Delta' = \{y_0, \ldots, y_5\}\)};
+        \node at (axis cs: 5.5, -0.6) [anchor=west] {\(\Delta = \{x_0, \ldots, x_4\}\)};
+        \node at (axis cs: 5.5, -1.4) [anchor=west] {\(\Delta' = \{y_0, \ldots, y_5\}\)};
 
         \addplot[sBlue, thick] {curve(x)};
+        \node at (axis cs: 5.7, 1.8)  {\(y = f(x)\)};
+
         \pgfmathsetmacro\dx{1};
-        \foreach \ii in {1, ..., 4} {%
-            \pgfmathsetmacro\xleft{\ii * \dx};
-            \pgfmathsetmacro\xright{\ii * \dx + \dx};
+        \foreach \k in {1, ..., 4} {%
+            \pgfmathsetmacro\xleft{\k * \dx};
+            \pgfmathsetmacro\xright{\k * \dx + \dx};
             \pgfmathsetmacro\yleft{curve(\xleft)};
             \pgfmathsetmacro\yright{curve(\xright)};
             \pgfmathsetmacro\yminimum{min(\yleft, \yright)};
@@ -444,14 +422,78 @@ Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の
         \draw[dashed] (axis cs: 1.5, -0) -- (axis cs: 1.5, -1.2);
         \end{axis}
     \end{tikzpicture}
+    \caption{分割\(\Delta\)とその細分\(\Delta'\)，そしてそれらの作る不足和の例．}\figlabel{partition-of-interval}
 \end{figure}
 
 \begin{thmbox}
 \begin{definition}
-ネット\(f\colon A \to X\)について，ある\(\alpha \in A\)が存在して，任意の\(\alpha' \geq \alpha\)について
-\(f(\alpha') \in Y\)が成り立つとき，\(f\)は\keyword{最終的に}\(Y\)\keyword{に入る}\((f\) is eventually in \(Y)\)という．
+ネット\(f\colon \Lambda \to X\)について，ある\(\lambda_0 \in \Lambda\)が存在して，任意の\(\lambda \succeq \lambda_0\)について\(f(\lambda) \in Y\)が成り立つとき，\(f\)は\keyword{最終的に\(Y\)に入る}\((f\) is eventually in \(Y)\)という．
+一般的な表記ではないが本書では\(\eventuallyin{f}{Y}\)と書く．
+点\(x \in X\)の任意の開近傍\(U\)について\(\eventuallyin{f}{U}\)が成り立つとき，
+\keyword{\(\Family{x}\)は\(x\)に収束する}(\(\Family{x}\) converges to \(x\))といい，\(x_\lambda \to x\)と書く．
+この\(x\)を\(\Family{x}\)の\keyword{極限}(limit point)という．
 \end{definition}
 \end{thmbox}
+
+一般の位相空間において，ネットは複数の極限をもつことがある．
+たとえば\(X = \{0, 1\}\)に密着位相\(\symcal{O} = \{\emptyset, X\}\)を入れた\(\tuple{X, \symcal{O}}\)を考える．
+このとき任意の\(f\colon \PositiveInteger \to \{0, 1\}\)は\(0\)と\(1\)に収束する．
+したがって極限が一意に定まるためには位相に条件を付ける必要がある．
+それが次のHausdorff空間\footnote{\pronunciation{Hausdorff}{de}{ˈha\invbreve{ʊ}sdɔʀf}{ハウスドルフ}}である．
+
+\begin{thmbox}
+\begin{definition}
+\(X\)を位相空間とする．
+\(X\)の任意の異なる\(2\)点\(x, y\)に対し，
+\(x\)の近傍\(U\)と\(y\)の近傍\(V\)で\(U \cap V = \emptyset\)をみたすものがとれるとき，
+\(X\)を\keyword{Hausdorff空間}(Hausdorff space)という．
+\end{definition}
+\end{thmbox}
+
+\figref{hausdorff-space}に図示したように，この空間は\(2\)点を分離できるような空間と捉えることができる．
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \tikzset{%
+            Point/.style={%
+                circle,
+                draw=black,
+                fill=black,
+                inner sep=0pt,
+                outer sep=1pt,
+                minimum size=3pt
+            }
+        }
+        \node[Point] at (1.6, 0) {};
+        \node at (1.6, 0.5) {\(x\)};
+        \node at (0.2, 1.1) {\(U\)};
+        \node[Point] at (2.8, 0) {};
+        \node at (2.8, 0.5) {\(y\)};
+        \node at (4, 1.3) {\(V\)};
+        \draw[thick, dotted] (1.1, 0) ellipse (1cm and 1cm);
+        \draw[thick, dotted] (3.3, 0) ellipse (1cm and 1.1cm);
+    \end{tikzpicture}
+    \caption{Hausdorff空間．}\figlabel{hausdorff-space}
+\end{figure}
+
+\begin{thmbox}
+\begin{proposition}
+Hausdorff空間においてネットが収束するならば，その極限はただ\(1\)つである．
+\end{proposition}
+\end{thmbox}
+
+\begin{proof} \(X\)をHausdorff空間とする．
+任意の収束するネット\(\Family{x}\)をとり，その極限を\(x\)とする．
+また\(\Family{x}\)が\(x\)とは異なる点\(y\)にも収束すると仮定する．
+\(X\)がHausdorff空間なので\(x\)の開近傍\(U\)と\(y\)の開近傍\(V\)で\(U \cap V = \emptyset\)であるようなものをとることができる．\(x_\lambda \to x\)より，ある\(\lambda_0 \in \Lambda\)が存在して，
+任意の\(\lambda \succeq \lambda_0\)で\(x_\lambda \in U\)が成り立つ．
+また\(x_\lambda \to y\)より，ある\(\lambda_0' \in \Lambda\)が存在して，
+任意の\(\lambda \succeq \lambda_0\)で\(x_\lambda \in V\)が成り立つ．
+したがって\(\lambda \succeq \max \{\lambda_0, \lambda_0'\}\)ならば
+\(x_\lambda \in U \cap V\)となるが，これは\(U \cap V = \emptyset\)であったことと矛盾する．
+\end{proof}
+
 
 列\(\Sequencen{x}\)の部分列(subsequence)は，狭義単調増加関数\(\varphi\colon\PositiveInteger\to\PositiveInteger\)を用いて\(\Subsequence{x}\)と表されるような列のことである．
 あるいは列\(f\)の部分列は合成写像\(f\circ \varphi\)であると言い換えてもよい．
@@ -487,50 +529,8 @@ Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の
 \begin{thmbox}
 \begin{definition}
 \(S\)を\(X\)の任意の部分集合とする．
-\(X\)のネット\(f\)が，\(S\)または\(X \setminus S\)のいずれかに最終的に含まれるならば，
-\(f\)は\keyword{普遍的な}(universal)ネットであるという．
+\(X\)のネット\(f\)が\(\eventuallyin{f}{S}\)または\(\eventuallyin{f}{X \setminus S}\)をみたすとき，\(f\)は\keyword{ユニバーサルネット}(universal net)であるという．
 \end{definition}
 \end{thmbox}
 
-\begin{thmbox}
-\begin{definition}
-\(\tuple{X, \symcal{O}}\)を位相空間とする．
-\(x\)の任意の開近傍\(U\)について，ある\(\lambda_0 \in \Lambda\)が存在して，
-任意の\(\lambda \preceq \lambda_0\)について\(x_\lambda \in U\)が成り立つとき，
-\keyword{\(\SimpleFamily{x}\)は\(x\)に収束する}(\(\SimpleFamily{x}\) converges to \(x\))といい，
-\(x_\lambda \to x\)と書く．
-この\(x\)を\(\SimpleFamily{x}\)の\keyword{極限}(limit point)という．
-\end{definition}
-\end{thmbox}
-
-一般の位相空間において，ネットは複数の極限をもつことがある．
-たとえば\(X = \{0, 1\}\)に密着位相\(\symcal{O} = \{\emptyset, X\}\)を入れた\(\tuple{X, \symcal{O}}\)を考える．
-このとき任意の\(f\colon \PositiveInteger \to \{0, 1\}\)は\(0\)と\(1\)に収束する．
-
-\begin{thmbox}
-\begin{definition}
-\(X\)を位相空間とする．
-\(X\)の任意の異なる\(2\)点\(x, y\)に対し，
-\(x\)の近傍\(U\)と\(y\)の近傍\(V\)で\(U \cap V = \emptyset\)をみたすものがとれるとき，
-\(X\)を\keyword{Hausdorff{\footnotemark}空間}(Hausdorff space)という．
-\end{definition}
-\end{thmbox}
-
-\begin{thmbox}
-\begin{proposition}
-Hausdorff空間においてネットが収束するならば，その極限はただ\(1\)つである．
-\end{proposition}
-\end{thmbox}
-
-\begin{proof} \(X\)をHausdorff空間とする．
-任意の収束するネット\(\Family{x}\)をとり，その極限を\(x\)とする．
-また\(\Family{x}\)が\(x\)とは異なる点\(y\)にも収束すると仮定する．
-\(X\)がHausdorff空間なので\(x\)の開近傍\(U\)と\(y\)の開近傍\(V\)で\(U \cap V = \emptyset\)であるようなものをとることができる．\(x_\lambda \to x\)より，ある\(\lambda_0 \in \Lambda\)が存在して，
-任意の\(\lambda \succeq \lambda_0\)で\(x_\lambda \in U\)が成り立つ．
-また\(x_\lambda \to y\)より，ある\(\lambda_0' \in \Lambda\)が存在して，
-任意の\(\lambda \succeq \lambda_0\)で\(x_\lambda \in V\)が成り立つ．
-したがって\(\lambda \succeq \max \{\lambda_0, \lambda_0'\}\)ならば
-\(x_\lambda \in U \cap V\)となるが，これは\(U \cap V = \emptyset\)であったことと矛盾する．
-\end{proof}
-
-\footnotetext{\pronunciation{Hausdorff}{de}{ˈha\invbreve{ʊ}sdɔʀf}{ハウスドルフ}}
+\end{document}
