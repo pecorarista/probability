@@ -232,6 +232,51 @@
 
 \begin{thmbox}
 \begin{definition}
+\(\tuple{X, \symcal{O}}\)を位相空間とする．
+\(X\)の部分集合\(N\)が点\(x \in X\)の\keyword{近傍}(neighborhood)であるとは\(x\)が\(N\)の内点となることをいう．すなわち開集合\(U\)で\(x \in U\)かつ\(U \subseteq N\)が存在することをいう．
+特に\(N\)が開集合であるとき，\(N\)は\keyword{開近傍}(open neighborhood)であるという．
+\end{definition}
+\end{thmbox}
+
+点\(x\)の近傍全体の集合を\(\Neighborhood{x}\)で表す．
+
+\begin{figure}
+    \centering
+    \begin{tikzpicture}
+        \tikzset{%
+            Point/.style={%
+                circle,
+                draw=black,
+                fill=black,
+                inner sep=0pt,
+                outer sep=1pt,
+                minimum size=3pt
+            }
+        }
+        \node[Point] at (0, 0) {};
+        \node at (0.2, 0.2) {\(x\)};
+        \draw[thick, dotted] (0, 0) circle (0.7);
+        \draw[thick] (-1.4, 1.4) rectangle (1.4, -1.4);
+        \node at (0.8, 0.8) {\(U\)};
+        \node at (1.8, 1.2) {\(N\)};
+    \end{tikzpicture}
+    \caption{ユークリッド空間\(\symbb{R}^2\)の点\(x\)とその近傍の例．\(r\)を任意の正の実数として\(N = [x - r, x + r]^2\)とする．このとき例えば開集合\(U = B(x, \inlinefrac{r}{2})\)をとると，\(x \in U\)かつ\(U \subseteq N\)が成り立つので\(N\)は\(x\)の近傍である．}\figlabel{neighborhood}
+\end{figure}
+
+\begin{thmbox}
+\begin{proposition}
+\(\Neighborhood{x}\)の任意の\(2\)元\(N_1, N_2\)について，その共通部分\(N_1 \cap N_2\)もまた\(\Neighborhood{x}\)の元である．
+\end{proposition}
+\end{thmbox}
+
+\begin{proof}
+各\(i \in \{1, 2\}\)について\(N_i \in \Neighborhood{x}\)より\(x \in U_i\)かつ\(U_i \subseteq N_i\)をみたす開集合\(U_i\)が存在する．
+ゆえに\(x \in U_1 \cap U_2\)かつ\(U_1 \cap U_2 \subseteq  N_1 \cap N_2\)が成り立つ．位相の定義（\definitionlabel{topology}）の\ref{topology-intersection}より，
+\(U_1 \cap U_2\)もまた開集合である．ゆえに\(N_1 \cap N_2 \in \Neighborhood{x}\)が成り立つ．
+\end{proof}
+
+\begin{thmbox}
+\begin{definition}
 位相空間\(\tuple{X, \symcal{O}}\)の部分集合\(A\)が\(\overline{A} = X\)をみたすとき，
 \(A\)は\(X\)において\keyword{稠密}(dense)であるという．
 \end{definition}
@@ -310,7 +355,16 @@
 この\(2\)つを満たす関係を\keyword{前順序}(preorder)と呼ぶ\footnote{%
 前順序を「ぜんじゅんじょ」と読んでしまうと全順序と紛らわしいので「まえじゅんじょ」と読んだり，
 preorderと呼んだりするほうがいいだろう．}．
-有向集合を用いて列の一般化であるネットが定義される．
+
+\begin{exa} \(\symbb{N}\), \(\symbb{Z}\), \(\symbb{Q}\), \(\symbb{R}\)はそれぞれ有向集合である．
+\end{exa}
+
+\begin{exa} 位相空間\(X\)の任意の点\(x\)をとる．
+\(x\)の開近傍全体の集合を\(\symcal{N}_x\)とし，
+順序\(\mathord{\preceq}\)を\(A \supseteq B \Leftrightarrow A \preceq B\)
+で定義する．このとき\(\tuple{\symcal{N}_x, \mathord{\preceq}}\)は全順序であり，
+\(C := A \cap B \in\symcal{N}_x\)が\(A \preceq C\)と\(B \prec C\)をみたすので有向集合である．
+\end{exa}
 
 \begin{thmbox}
 \begin{definition}
@@ -428,7 +482,7 @@ Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の
 \begin{thmbox}
 \begin{definition}
 ネット\(f\colon \Lambda \to X\)について，ある\(\lambda_0 \in \Lambda\)が存在して，任意の\(\lambda \succeq \lambda_0\)について\(f(\lambda) \in Y\)が成り立つとき，\(f\)は\keyword{最終的に\(Y\)に入る}\((f\) is eventually in \(Y)\)という．
-一般的な表記ではないが本書では\(\eventuallyin{f}{Y}\)と書く．
+一般的な表記ではないが以降はこのことを\(\eventuallyin{f}{Y}\)と書く．
 点\(x \in X\)の任意の開近傍\(U\)について\(\eventuallyin{f}{U}\)が成り立つとき，
 \keyword{\(\Family{x}\)は\(x\)に収束する}(\(\Family{x}\) converges to \(x\))といい，\(x_\lambda \to x\)と書く．
 この\(x\)を\(\Family{x}\)の\keyword{極限}(limit point)という．
@@ -494,10 +548,27 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(x_\lambda \in U \cap V\)となるが，これは\(U \cap V = \emptyset\)であったことと矛盾する．
 \end{proof}
 
+\begin{thmbox}
+\begin{definition}
+\(X\)を位相空間，\(Y\)を\(X\)の部分集合とする．
+ネット\(f \colon \Lambda \to X\)は，どのような\(\lambda_0 \in \Lambda\)に対しても
+\(f(\lambda) \in Y\)となるような\(\lambda \succeq \lambda_0\)が存在するとき，
+\keyword{頻繁に\(Y\)に入る}\((f\) is frequently in \(Y)\))という．
+一般的な表記ではないが以降はこのことを\(\frequentlyin{f}{Y}\)と書く．
+ネット\(f\)が点\(x \in X\)の任意の近傍\(U\)について\(\frequentlyin{f}{U}\)をみたすとき，
+\(x\)を\(f\)の\keyword{集積点}(cluster point)という．
+\end{definition}
+\end{thmbox}
+
+\begin{exa}
+ネット\(f\colon \symbb{Z} \to \symbb{R}\)を\(x_n = (-1)^n\)と定義する．
+このとき\(1\)と\(-1\)は\(f\)の集積点である．
+\end{exa}
+
 
 列\(\Sequencen{x}\)の部分列(subsequence)は，狭義単調増加関数\(\varphi\colon\PositiveInteger\to\PositiveInteger\)を用いて\(\Subsequence{x}\)と表されるような列のことである．
 あるいは列\(f\)の部分列は合成写像\(f\circ \varphi\)であると言い換えてもよい．
-ネットの部分列に対応するものはサブネットと呼ばれ，以下のように定義される：
+ネットにおいて部分列に相当するものはサブネットと呼ばれ，以下のように定義される．
 
 \begin{thmbox}
 \begin{definition}[（サブネット）] \(A\)の部分集合\(B\)
@@ -532,5 +603,27 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(X\)のネット\(f\)が\(\eventuallyin{f}{S}\)または\(\eventuallyin{f}{X \setminus S}\)をみたすとき，\(f\)は\keyword{ユニバーサルネット}(universal net)であるという．
 \end{definition}
 \end{thmbox}
+
+\begin{thmbox}
+\begin{theorem}
+位相空間\(X\)の点\(x\)がネット\(f\colon \Lambda \to X\)の集積点であることと，
+\(f\)のサブネットで\(x\)に収束するものが存在することは同値である．
+\end{theorem}
+\end{thmbox}
+
+\begin{proof} (\(\Rightarrow\))
+以下では有向集合\(\Lambda\)の順序を\(\mathord{\preceq}_\Lambda\)と書くことにする．
+点\(x\)の開近傍全体の集合を\(\symcal{N}_x\)とする．
+集合\(\symcal{D}\)を
+\begin{align*}
+    \symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \symcal{N}_x\), and \(f(\lambda) \in U\)}\}
+\end{align*}
+と定義する．\(\symcal{D}\)の任意の元\(\tuple{\lambda, U}\)と\(\tuple{\lambda', V}\)について
+\begin{align*}
+    \tuple{\lambda, U} \preceq \tuple{\lambda, V} \Leftrightarrow \text{\(\lambda \preceq_\Lambda \lambda'\) and \(U \supseteq V\)}
+\end{align*}
+と定める．
+
+\end{proof}
 
 \end{document}
