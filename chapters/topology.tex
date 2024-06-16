@@ -238,7 +238,7 @@
 \end{definition}
 \end{thmbox}
 
-点\(x\)の近傍全体の集合を\(\Neighborhood{x}\)で表す．
+点\(x\)の開近傍全体の集合を\(\Neighborhood{x}\)で表す．
 
 \begin{figure}
     \centering
@@ -262,18 +262,6 @@
     \end{tikzpicture}
     \caption{ユークリッド空間\(\symbb{R}^2\)の点\(x\)とその近傍の例．\(r\)を任意の正の実数として\(N = [x - r, x + r]^2\)とする．このとき例えば開集合\(U = B(x, \inlinefrac{r}{2})\)をとると，\(x \in U\)かつ\(U \subseteq N\)が成り立つので\(N\)は\(x\)の近傍である．}\figlabel{neighborhood}
 \end{figure}
-
-\begin{thmbox}
-\begin{proposition}
-\(\Neighborhood{x}\)の任意の\(2\)元\(N_1, N_2\)について，その共通部分\(N_1 \cap N_2\)もまた\(\Neighborhood{x}\)の元である．
-\end{proposition}
-\end{thmbox}
-
-\begin{proof}
-各\(i \in \{1, 2\}\)について\(N_i \in \Neighborhood{x}\)より\(x \in U_i\)かつ\(U_i \subseteq N_i\)をみたす開集合\(U_i\)が存在する．
-ゆえに\(x \in U_1 \cap U_2\)かつ\(U_1 \cap U_2 \subseteq  N_1 \cap N_2\)が成り立つ．位相の定義（\definitionlabel{topology}）の\ref{topology-intersection}より，
-\(U_1 \cap U_2\)もまた開集合である．ゆえに\(N_1 \cap N_2 \in \Neighborhood{x}\)が成り立つ．
-\end{proof}
 
 \begin{thmbox}
 \begin{definition}
@@ -360,10 +348,12 @@ preorderと呼んだりするほうがいいだろう．}．
 \end{exa}
 
 \begin{exa} 位相空間\(X\)の任意の点\(x\)をとる．
-\(x\)の開近傍全体の集合を\(\symcal{N}_x\)とし，
-順序\(\mathord{\preceq}\)を\(A \supseteq B \Leftrightarrow A \preceq B\)
-で定義する．このとき\(\tuple{\symcal{N}_x, \mathord{\preceq}}\)は全順序であり，
-\(C := A \cap B \in\symcal{N}_x\)が\(A \preceq C\)と\(B \prec C\)をみたすので有向集合である．
+集合\(\Neighborhood{x}\)の前順序\(\mathord{\preceq}\)を\(U \supseteq V \Leftrightarrow U \preceq V\)
+で定める．
+任意の\(U_1, U_2 \in \Neighborhood{x}\)をとる．
+このとき\(U := U_1 \cap U_2\)とすると，\(U\)もまた\(x\)の開近傍である．
+また\(U_1 \preceq U\), \(U_2 \preceq U\)が成り立つ
+したがって\(\tuple{\Neighborhood{x}, \mathord{\preceq}}\)は有向集合である．\examplelabel{neighborhood-directed-set}
 \end{exa}
 
 \begin{thmbox}
@@ -561,8 +551,8 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{thmbox}
 
 \begin{exa}
-ネット\(f\colon \symbb{Z} \to \symbb{R}\)を\(x_n = (-1)^n\)と定義する．
-このとき\(1\)と\(-1\)は\(f\)の集積点である．
+ネット\(f\colon \PositiveInteger \to \symbb{R}\)を\(x_n = n + (-1)^n n\)と定義する．
+このとき\(0\)は\(f\)の集積点である．
 \end{exa}
 
 
@@ -612,17 +602,24 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{thmbox}
 
 \begin{proof} (\(\Rightarrow\))
-以下では有向集合\(\Lambda\)の順序を\(\mathord{\preceq}_\Lambda\)と書くことにする．
-点\(x\)の開近傍全体の集合を\(\symcal{N}_x\)とする．
 集合\(\symcal{D}\)を
 \begin{align*}
-    \symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \symcal{N}_x\), and \(f(\lambda) \in U\)}\}
+    \symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \Neighborhood{x}\), and \(f(\lambda) \in U\)}\}
 \end{align*}
-と定義する．\(\symcal{D}\)の任意の元\(\tuple{\lambda, U}\)と\(\tuple{\lambda', V}\)について
+と定義する．\(\symcal{D}\)の任意の元\(\tuple{\lambda, U}\)と\(\tuple{\lambda', U}\)について
 \begin{align*}
-    \tuple{\lambda, U} \preceq \tuple{\lambda, V} \Leftrightarrow \text{\(\lambda \preceq_\Lambda \lambda'\) and \(U \supseteq V\)}
+    \tuple{\lambda, N} \preceq \tuple{\lambda', N} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(N \supseteq N'\)}
 \end{align*}
-と定める．
+と定める．このとき\(\symcal{D}\)は有向集合になる．
+そのことは次のようにして確認できる．
+
+任意の\(\tuple{\lambda_1, U_1}, \tuple{\lambda_2, U_2} \in \symcal{D}\)をとる．
+\exampleref{neighborhood-directed-set}で見たように，
+\(U := U_1 \cap U_2\)は\(U \in \Neighborhood{x}\), \(U_1 \preceq U\), \(U_2 \preceq N\)をみたす．
+\(x\)が\(f\)の集積点なので，この\(U\)に対して，ある\(\lambda \in \Lambda\)が存在して，
+\(\lambda \succeq \lambda_1\), \(\lambda \succeq \lambda_2\), \(x_\lambda \in U\)となる．
+したがって\(\tuple{\lambda_1, U} \preceq \tuple{\lambda, U}\)かつ\(\tuple{\lambda_2, U_2} \preceq \tuple{\lambda, U}\)となる\(\tuple{\lambda, U}\)の存在がいえた．
+
 
 \end{proof}
 
