@@ -234,11 +234,15 @@
 \begin{definition}
 \(\tuple{X, \symcal{O}}\)を位相空間とする．
 \(X\)の部分集合\(N\)が点\(x \in X\)の\keyword{近傍}(neighborhood)であるとは\(x\)が\(N\)の内点となることをいう．すなわち開集合\(U\)で\(x \in U\)かつ\(U \subseteq N\)が存在することをいう．
-特に\(N\)が開集合であるとき，\(N\)は\keyword{開近傍}(open neighborhood)であるという．
+特に\(N\)自身が開集合であるとき，\(N\)は\keyword{開近傍}(open neighborhood)であるという．
 \end{definition}
 \end{thmbox}
 
-点\(x\)の開近傍全体の集合を\(\Neighborhood{x}\)で表す．
+\begin{exa}
+ユークリッド空間\(\symbb{R}^2\)の点\(x\)をとる．
+\(r\)を任意の正の実数として\(N = [x - r, x + r]^2\)と定める．
+このとき例えば開集合\(U = B(x, \inlinefrac{r}{2})\)をとると\(x \in U\)かつ\(U \subseteq N\)が成り立つので，\(N\)は\(x\)の近傍である（\figref{neighborhood}）．
+\end{exa}
 
 \begin{figure}
     \centering
@@ -260,7 +264,7 @@
         \node at (0.8, 0.8) {\(U\)};
         \node at (1.8, 1.2) {\(N\)};
     \end{tikzpicture}
-    \caption{ユークリッド空間\(\symbb{R}^2\)の点\(x\)とその近傍の例．\(r\)を任意の正の実数として\(N = [x - r, x + r]^2\)とする．このとき例えば開集合\(U = B(x, \inlinefrac{r}{2})\)をとると，\(x \in U\)かつ\(U \subseteq N\)が成り立つので\(N\)は\(x\)の近傍である．}\figlabel{neighborhood}
+    \caption{\exampleref{neighborhood}を図示したもの．}\figlabel{neighborhood}
 \end{figure}
 
 \begin{thmbox}
@@ -602,11 +606,12 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{thmbox}
 
 \begin{proof} (\(\Rightarrow\))
+\(x\)の開近傍全体の集合を\(\symcal{U}(x)\)とする．
 集合\(\symcal{D}\)を
 \begin{align*}
     \symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \Neighborhood{x}\), and \(f(\lambda) \in U\)}\}
 \end{align*}
-と定義する．\(\symcal{D}\)の任意の元\(\tuple{\lambda, U}\)と\(\tuple{\lambda', U}\)について
+で定義する．\(\symcal{D}\)の任意の元\(\tuple{\lambda, U}\)と\(\tuple{\lambda', U}\)について
 \begin{align*}
     \tuple{\lambda, N} \preceq \tuple{\lambda', N} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(N \supseteq N'\)}
 \end{align*}
@@ -615,11 +620,15 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 
 任意の\(\tuple{\lambda_1, U_1}, \tuple{\lambda_2, U_2} \in \symcal{D}\)をとる．
 \exampleref{neighborhood-directed-set}で見たように，
-\(U := U_1 \cap U_2\)は\(U \in \Neighborhood{x}\), \(U_1 \preceq U\), \(U_2 \preceq N\)をみたす．
-\(x\)が\(f\)の集積点なので，この\(U\)に対して，ある\(\lambda \in \Lambda\)が存在して，
-\(\lambda \succeq \lambda_1\), \(\lambda \succeq \lambda_2\), \(x_\lambda \in U\)となる．
-したがって\(\tuple{\lambda_1, U} \preceq \tuple{\lambda, U}\)かつ\(\tuple{\lambda_2, U_2} \preceq \tuple{\lambda, U}\)となる\(\tuple{\lambda, U}\)の存在がいえた．
+\(U_1 \cap U_2\)は\(U \in \Neighborhood{x}\), \(U_1 \preceq U_1 \cap U_2\), \(U_2 \preceq U_1 \cap U_2\)をみたす．
+\(x\)が\(f\)の集積点なので，\(U_1 \cap U_2\)に対して，ある\(\lambda_0 \in \Lambda\)が存在して，
+\(\lambda_1 \preceq \lambda_0\), \(\lambda_2 \preceq \lambda_0\), \(x_{\lambda_0} \in U\)となる．
+したがって\(d := \tuple{\lambda_0, U_1 \cap U_2}\)は\(\tuple{\lambda_1, U} \preceq d\)かつ\(\tuple{\lambda_2, U_2} \preceq d\)をみたす．
 
+\(\varphi \colon \symcal{D} \to \Lambda\)を\(\varphi\colon \tuple{\lambda, U} \mapsto \lambda\)と定める．このとき\(f \circ \varphi\)は\(f\)のサブネットである．
+\(f\)は\(x\)に収束する．
+
+(\(\Leftarrow\)) \(\eventuallyin{f \circ \varphi}{x}\)より
 
 \end{proof}
 
