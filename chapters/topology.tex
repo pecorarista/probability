@@ -613,7 +613,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{align*}
 で定義する．\(\symcal{D}\)の任意の元\(\tuple{\lambda, U}\)と\(\tuple{\lambda', U}\)について
 \begin{align*}
-    \tuple{\lambda, N} \preceq \tuple{\lambda', N} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(N \supseteq N'\)}
+    \tuple{\lambda, U} \preceq \tuple{\lambda', U'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(U \supseteq U'\)}
 \end{align*}
 と定める．このとき\(\symcal{D}\)は有向集合になる．
 そのことは次のようにして確認できる．
@@ -621,13 +621,14 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 任意の\(\tuple{\lambda_1, U_1}, \tuple{\lambda_2, U_2} \in \symcal{D}\)をとる．
 \exampleref{neighborhood-directed-set}で見たように，
 \(U_1 \cap U_2\)は\(U \in \Neighborhood{x}\), \(U_1 \preceq U_1 \cap U_2\), \(U_2 \preceq U_1 \cap U_2\)をみたす．
-\(x\)が\(f\)の集積点なので，\(U_1 \cap U_2\)に対して，ある\(\lambda_0 \in \Lambda\)が存在して，
-\(\lambda_1 \preceq \lambda_0\), \(\lambda_2 \preceq \lambda_0\), \(x_{\lambda_0} \in U\)となる．
-したがって\(d := \tuple{\lambda_0, U_1 \cap U_2}\)は\(\tuple{\lambda_1, U} \preceq d\)かつ\(\tuple{\lambda_2, U_2} \preceq d\)をみたす．
+\(x\)が\(f\)の集積点なので，\(U_3 := U_1 \cap U_2\)に対して，ある\(\lambda_3 \in \Lambda\)が存在して，
+\(\lambda_1 \preceq \lambda_3\), \(\lambda_2 \preceq \lambda_3\), \(x_{\lambda_3} \in U_3\)となる．
+ゆえに\(\tuple{\lambda_3, U_3}\)は\(\tuple{\lambda_1, U_3} \preceq \tuple{\lambda_3, U_3}\)かつ\(\tuple{\lambda_2, U_2} \preceq \tuple{\lambda_3, U_3}\)をみたす．
 
 \(\varphi \colon \symcal{D} \to \Lambda\)を\(\varphi\colon \tuple{\lambda, U} \mapsto \lambda\)と定める．このとき\(f \circ \varphi\)は\(f\)のサブネットである．
-\(f\)は\(x\)に収束する．
+\(x\)が集積点なので，任意の\(U \in \symcal{U}(x)\)について，任意の\(\alpha \in \Lambda\)に対して，ある\(\beta \in \Lambda\)が存在して，\(x_{\beta} \in U\)が成り立つ．\(\tuple{\beta', U} \succeq \tuple{\beta, U}\)ならば\(\alpha \preceq \varphi(\beta', U) = \beta'\)が成り立つ．
 
+\(f\)は\(x\)に収束する．
 (\(\Leftarrow\)) \(\eventuallyin{f \circ \varphi}{x}\)より
 
 \end{proof}
