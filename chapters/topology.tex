@@ -569,7 +569,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
     \begin{conditions}
         \item\label{subnet-comp} \(g = f \circ \varphi\)．
         \item\label{subnet-exists-beta} 任意の\(\alpha \in A\)に対して，ある\(\beta \in B\)が存在して，\(\beta' \succeq \beta\)ならば\(\alpha \preceq \varphi(\beta')\)が成り立つ．
-    \end{conditions}
+    \end{conditions}\definitionlabel{subnet}
 \end{definition}
 \end{thmbox}
 
@@ -616,17 +616,16 @@ Hausdorff空間においてネットが収束するならば，その極限は�
     \tuple{\lambda, U} \preceq \tuple{\lambda', U'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(U \supseteq U'\)}
 \end{align*}
 と定める．このとき\(\symcal{D}\)は有向集合になる．
-そのことは次のようにして確認できる．
-
-任意の\(\tuple{\lambda_1, U_1}, \tuple{\lambda_2, U_2} \in \symcal{D}\)をとる．
+それは次のようにして確認できる．任意の\(\tuple{\lambda_1, U_1}, \tuple{\lambda_2, U_2} \in \symcal{D}\)をとる．
 \exampleref{neighborhood-directed-set}で見たように，
-\(U_3 := U_1 \cap U_2\)は\(U_3 \in \Neighborhood{x}\), \(U_1 \preceq U_3\), \(U_2 \preceq U_3\)をみたす．
-\(x\)が\(f\)の集積点なので，この\(U_3\)に対して，ある\(\lambda_3 \in \Lambda\)が存在して，
+\(U_3 := U_1 \cap U_2\)とするとこれは\(U_3 \in \Neighborhood{x}\), \(U_1 \preceq U_3\), \(U_2 \preceq U_3\)をみたす．
+\(x\)は\(f\)の集積点であるから，この\(U_3\)に対して，ある\(\lambda_3 \in \Lambda\)が存在して，
 \(\lambda_1 \preceq \lambda_3\), \(\lambda_2 \preceq \lambda_3\), \(x_{\lambda_3} \in U_3\)が成り立つ．
 ゆえに\(\tuple{\lambda_3, U_3}\)は\(\tuple{\lambda_1, U_1} \preceq \tuple{\lambda_3, U_3}\)かつ\(\tuple{\lambda_2, U_2} \preceq \tuple{\lambda_3, U_3}\)をみたす．
 
 \(\varphi \colon \symcal{D} \to \Lambda\)を\(\varphi\colon \tuple{\lambda, U} \mapsto \lambda\)と定める．このとき\(f \circ \varphi\)は\(f\)のサブネットである．
-\(x\)が集積点なので，任意の\(U \in \symcal{U}(x)\)について，任意の\(\alpha \in \Lambda\)に対して，ある\(\beta \in \Lambda\)が存在して，\(x_{\beta} \in U\)が成り立つ．\(\tuple{\beta', U} \succeq \tuple{\beta, U}\)ならば\(\alpha \preceq \varphi(\beta', U) = \beta'\)が成り立つ．
+サブネットの定義（\definitionref{subnet}）の\ref{subnet-exists-beta}が成り立つことは，任意の\(\alpha \in \Lambda\)について\(\tuple{\alpha, X} \in \symcal{D}\)をとると，
+任意の\(\tuple{\beta, U} \succeq \tuple{\alpha, X}\)について\(\alpha \preceq \beta = \varphi(\tuple{\beta, U})\)からわかる．
 
 \(f\)は\(x\)に収束する．
 (\(\Leftarrow\)) \(\eventuallyin{f \circ \varphi}{x}\)より
