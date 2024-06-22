@@ -565,13 +565,15 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 ネットにおいて部分列に相当するものはサブネットと呼ばれ，以下のように定義される．
 
 \begin{thmbox}
-\begin{definition}[（サブネット）] \(A\)の部分集合\(B\)
+\begin{definition}[（サブネット）] ネット\(g \colon B \to X\)がネット\(f \colon A \to X\)の\keyword{サブネット}(subnet)であるとは，写像\(\varphi \colon B \to A\)が存在して，次の2つをみたすことをいう．
     \begin{conditions}
         \item\label{subnet-comp} \(g = f \circ \varphi\)．
-        \item\label{subnet-exists-beta} 任意の\(\alpha \in A\)に対して，ある\(\beta \in B\)が存在して，\(\beta' \succeq \beta\)ならば\(\alpha \preceq \varphi(\beta')\)が成り立つ．
+        \item\label{subnet-exists-beta} （共終性）任意の\(\alpha \in A\)に対して，ある\(\beta \in B\)が存在して，\(\beta \preceq \beta'\)ならば\(\alpha \preceq \varphi(\beta')\)が成り立つ．
     \end{conditions}\definitionlabel{subnet}
 \end{definition}
 \end{thmbox}
+
+一般に前順序集合\(\tuple{A, \mathord{\preceq}}\)の部分集合\(A' \subseteq A\)が\keyword{共終}(cofinal)であるとは，任意の\(\alpha \in A\)に対してある\(\alpha' \in A'\)が存在して\(\alpha \preceq \alpha'\)となることをいう．また関数\(\varphi \colon B \to A\)が共終であるとは像\(\varphi(B) \subseteq A\)が共終であることをいう．したがって\ref{subnet-exists-beta}は\(\varphi(\{ \beta' \in B \mid \beta' \succeq \beta\})\)が共終であると言い換えることができる．
 
 部分列がサブネットであることを確認する．
 \ref{subnet-comp}は明らかなので，\ref{subnet-exists-beta}について確認する．
@@ -625,7 +627,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(\lambda_1 \preceq \lambda_3\), \(\lambda_2 \preceq \lambda_3\), \(x_{\lambda_3} \in U_3\)が成り立つ．
 ゆえに\(\tuple{\lambda_3, U_3}\)は\(\tuple{\lambda_1, U_1} \preceq \tuple{\lambda_3, U_3}\)かつ\(\tuple{\lambda_2, U_2} \preceq \tuple{\lambda_3, U_3}\)をみたす．
 
-\(\varphi \colon \symcal{D} \to \Lambda\)を\(\varphi\colon \tuple{\lambda, U} \mapsto \lambda\)と定める．このとき\(f \circ \varphi\)は\(f\)のサブネットである．
+\(\varphi \colon \symcal{D} \to \Lambda\)を\(\varphi\colon \tuple{\lambda, U} \mapsto \lambda\)と定義する．このとき\(f \circ \varphi\)は\(f\)のサブネットである．
 サブネットの定義（\definitionref{subnet}）の\ref{subnet-exists-beta}が成り立つことは，任意の\(\alpha \in \Lambda\)について\(\tuple{\alpha, X} \in \symcal{D}\)をとると，
 任意の\(\tuple{\beta, U} \succeq \tuple{\alpha, X}\)について\(\alpha \preceq \beta = \varphi(\tuple{\beta, U})\)からわかる．
 
