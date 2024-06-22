@@ -114,27 +114,6 @@
 \end{theorem}
 \end{thmbox}
 
-\begin{thmbox}
-\begin{definition}
-\(\tuple{X, \symcal{O}}\)を位相空間とする．
-\(\symcal{O}\)の部分集合\(\symcal{S}\)について，
-任意の\(O \in \symcal{O}\)と\(x \in O\)に対して，
-有限個の\(V_1, \ldots, V_r \)をとって
-\(x \in V_1 \cap \cdots \cap V_r\)かつ\(V_1 \cap \cdots \cap V_r \subseteq O\)とできるとき，
-\(\symcal{S}\)を\(\symcal{O}\)の\keyword{準開基}(subbasis)という．
-\end{definition}
-\end{thmbox}
-
-\begin{example} \(\symbb{R}\)において
-\begin{align*}
-    \symcal{I} =
-        \{ (-\infty, x) \mid x \in \symbb{R} \}
-        \cup
-        \{ (x, \infty) \mid x \in \symbb{R} \}
-\end{align*}
-は準開基である．\(\symbb{R}\)の開集合を
-\end{example}
-
 \section{直積集合と位相}
 位相空間\(\tuple{X, \symcal{O}_X}\)と \(\tuple{Y, \symcal{O}_Y}\)が与えられたとき，
 直積\(X \times Y\)に位相を定める方法はいくつかある．
@@ -233,7 +212,7 @@
 \begin{thmbox}
 \begin{definition}
 \(\tuple{X, \symcal{O}}\)を位相空間とする．
-\(X\)の部分集合\(N\)が点\(x \in X\)の\keyword{近傍}(neighborhood)であるとは\(x\)が\(N\)の内点となることをいう．すなわち開集合\(U\)で\(x \in U\)かつ\(U \subseteq N\)が存在することをいう．
+\(X\)の部分集合\(N\)が点\(x \in X\)の\keyword{近傍}(neighborhood)であるとは\(x\)が\(N\)の内点となることをいう．すなわち開集合\(U\)で\(x \in U\)かつ\(U \subseteq N\)をみたすものが存在することをいう．
 特に\(N\)自身が開集合であるとき，\(N\)は\keyword{開近傍}(open neighborhood)であるという．
 \end{definition}
 \end{thmbox}
@@ -241,7 +220,7 @@
 \begin{exa}
 ユークリッド空間\(\symbb{R}^2\)の点\(x\)をとる．
 \(r\)を任意の正の実数として\(N = [x - r, x + r]^2\)と定める．
-このとき例えば開集合\(U = B(x, \inlinefrac{r}{2})\)をとると\(x \in U\)かつ\(U \subseteq N\)が成り立つので，\(N\)は\(x\)の近傍である（\figref{neighborhood}）．
+このとき例えば開集合\(U = B(x, \inlinefrac{r}{2})\)をとると\(x \in U\)かつ\(U \subseteq N\)が成り立つので，\(N\)は\(x\)の近傍である（\figref{neighborhood}）．\examplelabel{neighborhood}
 \end{exa}
 
 \begin{figure}
@@ -266,6 +245,27 @@
     \end{tikzpicture}
     \caption{\exampleref{neighborhood}を図示したもの．}\figlabel{neighborhood}
 \end{figure}
+
+
+\begin{thmbox}
+\begin{proposition}
+位相空間\(\tuple{X, \symcal{O}}\)の点\(x\)の近傍全体の集合を\(\Neighborhood{x}\)とする．
+このとき以下が成り立つ．
+\begin{conditions}
+    \item\label{neighborhood-cap} 任意の\(N_1, N_2 \in \Neighborhood{x}\)について\(N_1 \cap N_2 \in \Neighborhood{x}\)．
+\end{conditions}
+\end{proposition}
+\propositionlabel{neighborhood-properties}
+\end{thmbox}
+
+\begin{proof} (1) \(N_1 \in \Neighborhood{x}\)より，ある\(U_1 \in \symcal{O}\)が存在して，
+\(x \in U_2 \subseteq N_1\)が成り立つ．
+同様に\(N_2 \in \Neighborhood{x}\)より，ある\(U_2 \in \symcal{O}\)が存在して，
+\(x \in U_2 \subseteq N_2\)が成り立つ．
+位相の定義から\(U_1 \cap U_2 \in \symcal{O}\)であり，
+これは\(x \in U_1 \cap U_2 \subseteq N_1 \cap N_2\)をみたすので，
+\(N_1 \cap N_2 \in \Neighborhood{x}\)が成り立つ．
+\end{proof}
 
 \begin{thmbox}
 \begin{definition}
@@ -338,8 +338,9 @@
 \begin{conditions}
     \item\label{directed-set-reflex} （反射律）任意の\(\alpha \in A\)について\(\alpha \preceq \alpha\)．
     \item\label{directed-set-trans} （推移律）任意の\(\alpha, \beta, \gamma \in A\)について\(\alpha \preceq \beta\)かつ\(\beta \preceq \gamma\)ならば\(\alpha \preceq \gamma\)．
-    \item\label{directed-set-upper} 任意の\(\alpha, \beta \in A\)に対して\(\alpha \preceq \gamma\)かつ\(\beta \preceq \gamma\)をみたす\(\gamma \in A\)が存在する．
+    \item\label{directed-set-upper} （上界の存在） 任意の\(\alpha, \beta \in A\)に対して\(\alpha \preceq \gamma\)かつ\(\beta \preceq \gamma\)をみたす\(\gamma \in A\)が存在する．
 \end{conditions}
+\definitionlabel{directed-set}
 \end{definition}
 \end{thmbox}
 
@@ -352,12 +353,11 @@ preorderと呼んだりするほうがいいだろう．}．
 \end{exa}
 
 \begin{exa} 位相空間\(X\)の任意の点\(x\)をとる．
-集合\(\Neighborhood{x}\)の前順序\(\mathord{\preceq}\)を\(U \supseteq V \Leftrightarrow U \preceq V\)
-で定める．
-任意の\(U_1, U_2 \in \Neighborhood{x}\)をとる．
-このとき\(U := U_1 \cap U_2\)とすると，\(U\)もまた\(x\)の開近傍である．
-また\(U_1 \preceq U\), \(U_2 \preceq U\)が成り立つ
-したがって\(\tuple{\Neighborhood{x}, \mathord{\preceq}}\)は有向集合である．\examplelabel{neighborhood-directed-set}
+集合\(\Neighborhood{x}\)に関係\(\mathord{\preceq}\)を\(N \supseteq N' \Leftrightarrow N' \preceq N\)で定める．
+これが反射律と推移律をみたすことは明らかである．
+上界の存在については，
+\(x\)の任意の近傍\(N_1, N_2\)について，
+\(N_1 \cap N_2\)をとると，これもまた\(x\)の近傍であり（\propositionref{neighborhood-properties}の\ref{neighborhood-cap}），\(N_1 \cap N_2 \subseteq N_1\)かつ\(N_1 \cap N_2 \subseteq N_2\)をみたすことからわかる．\examplelabel{neighborhood-directed-set}
 \end{exa}
 
 \begin{thmbox}
@@ -615,10 +615,12 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \begin{align*}
     \tuple{\lambda, U} \preceq \tuple{\lambda', U'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(U \supseteq U'\)}
 \end{align*}
-と定める．このとき\(\symcal{D}\)は有向集合になる．
-それは次のようにして確認できる．任意の\(\tuple{\lambda_1, U_1}, \tuple{\lambda_2, U_2} \in \symcal{D}\)をとる．
-\exampleref{neighborhood-directed-set}で見たように，
-\(U_3 := U_1 \cap U_2\)とするとこれは\(U_3 \in \Neighborhood{x}\), \(U_1 \preceq U_3\), \(U_2 \preceq U_3\)をみたす．
+と定める．このとき\(\symcal{D}\)は有向集合になることを示す．
+反射律と推移律は明らかである．
+上界の存在を示す．
+任意の\(\tuple{\lambda_1, U_1}, \tuple{\lambda_2, U_2} \in \symcal{D}\)をとる．
+\propositionref{neighborhood-properties}の\ref{neighborhood-cap}で見たように，
+\(U_3 := U_1 \cap U_2\)は\(U_3 \in \Neighborhood{x}\), \(U_1 \preceq U_3\), \(U_2 \preceq U_3\)をみたす．
 \(x\)は\(f\)の集積点であるから，この\(U_3\)に対して，ある\(\lambda_3 \in \Lambda\)が存在して，
 \(\lambda_1 \preceq \lambda_3\), \(\lambda_2 \preceq \lambda_3\), \(x_{\lambda_3} \in U_3\)が成り立つ．
 ゆえに\(\tuple{\lambda_3, U_3}\)は\(\tuple{\lambda_1, U_1} \preceq \tuple{\lambda_3, U_3}\)かつ\(\tuple{\lambda_2, U_2} \preceq \tuple{\lambda_3, U_3}\)をみたす．
