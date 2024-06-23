@@ -13,7 +13,7 @@
 \section{距離空間}
 \begin{thmbox}
 \begin{definition}
-\(\tuple{X, d_{X}}\), \(\tuple{Y, d_{Y}}\)を距離空間とする．
+\(\tuple{X, d_{X}}\)と\(\tuple{Y, d_{Y}}\)を距離空間とする．
 写像\(f\colon X \to Y\)が\keyword{点}\(x \in X\)\keyword{において連続}(continuous at \(x\))であるとは，
 任意の\(\varepsilon > 0\)に対して，ある\(\delta > 0\)が存在して，
 任意の\(x' \in X\)に対して，\(d_{X}(x', x) < \delta\)ならば\(d_{Y}(f(x'), f(x)) < \varepsilon\)となることをいう．
@@ -568,30 +568,27 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \begin{definition}[（サブネット）] ネット\(g \colon B \to X\)がネット\(f \colon A \to X\)の\keyword{サブネット}(subnet)であるとは，写像\(\varphi \colon B \to A\)が存在して，次の2つをみたすことをいう．
     \begin{conditions}
         \item\label{subnet-comp} \(g = f \circ \varphi\)．
-        \item\label{subnet-exists-beta} （共終性）任意の\(\alpha \in A\)に対して，ある\(\beta \in B\)が存在して，\(\beta \preceq \beta'\)ならば\(\alpha \preceq \varphi(\beta')\)が成り立つ．
+        \item\label{subnet-exists-beta} （共終性）任意の\(\alpha \in A\)に対して，ある\(\beta \in B\)が存在して，\(\beta' \succeq \beta\)ならば\(\alpha \preceq \varphi(\beta')\)が成り立つ．
     \end{conditions}\definitionlabel{subnet}
 \end{definition}
 \end{thmbox}
 
 一般に前順序集合\(\tuple{A, \mathord{\preceq}}\)の部分集合\(A' \subseteq A\)が\keyword{共終}(cofinal)であるとは，任意の\(\alpha \in A\)に対してある\(\alpha' \in A'\)が存在して\(\alpha \preceq \alpha'\)となることをいう．また関数\(\varphi \colon B \to A\)が共終であるとは像\(\varphi(B) \subseteq A\)が共終であることをいう．したがって\ref{subnet-exists-beta}は\(\varphi(\{ \beta' \in B \mid \beta' \succeq \beta\})\)が共終であると言い換えることができる．
 
-部分列がサブネットであることを確認する．
-\ref{subnet-comp}は明らかなので，\ref{subnet-exists-beta}について確認する．
-一般に，任意の正整数\(n\)と狭義単調増加\(\varphi\colon\PositiveInteger\to\PositiveInteger\)について\(n \leq \varphi(n)\)が成り立つことを示す．
-\(n = 1\)のとき\(\varphi(1) \geq \min \PositiveInteger = 1\)となり成り立つ．
-\(n\)まで\(n \leq \varphi(n)\)が成り立っていると仮定し，\(n + 1 \leq \varphi(n + 1)\)が成り立つことを示す．
-\(\varphi\)が狭義単調増加であることから\(\varphi(n) < \varphi(n + 1)\)が成り立つ．
-また仮定から\(n  \leq \varphi(n)\)なので，\(n \leq \varphi(n) < \varphi(n + 1)\)が成り立つ．
-もし\(n < \varphi(n)\)ならば，\(n + 1 \leq \varphi(n) \leq \varphi(n + 1)\)となり成り立つ．
-もし\(n = \varphi(n)\)ならば，\(n + 1 = \varphi(n) + 1 < \varphi(n + 1) + 1\)となり成り立つ．
-よって任意の\(n \in \PositiveInteger\)で\(n \leq \varphi(n)\)となる．
-\ref{subnet-exists-beta}の確認に戻る．
-\(\tuple{A, \preceq_A} = \tuple{B, \preceq_B} = \tuple{\PositiveInteger, \leq}\)とする．
-\(\alpha = n\)に対して\(\beta = \varphi(n)\)とすれば，
-任意の\(\beta' \geq \beta\)について\(\alpha = n \leq \varphi(n) = \beta \leq \beta' \leq \varphi(\beta')\)となる．
+列\(\Sequencen{x}\)をネットとみなしたときの部分列\(\Subsequence{x}\)はサブネットである．
+このことは以下のように確認できる．
+\(\varphi\)の単調性から，任意の\(n \in \PositiveInteger\)に対して，\(n' \geq n\)ならば\(\varphi(n) \leq \varphi(n')\)が成り立つ．
+また\propositionref{n-leq-phi-of-n}より\(n \leq \varphi(n)\)が成り立つので，\(\varphi \{ n \in \PositiveInteger \mid n' \geq n\}\)は共終であり，\(\Subsequence{x}\)がサブネットであることが確認できた．
 
-\begin{exa}サブネットであるが部分列ではない例として
-\end{exa}
+\begin{thmbox}
+\begin{proposition} \(\tuple{N, \mathord{\leq}}\)を整列集合，\(\varphi\colon N \to N\)を狭義単調増加関数とする．このとき任意の\(n \in N\)について\(n \leq \varphi(n)\)が成り立つ．\propositionlabel{n-leq-phi-of-n}
+\end{proposition}
+\end{thmbox}
+
+\begin{proof} \(n_0 > \varphi(n_0)\)となる\(n_0 \in N\)が存在すると仮定する．
+このとき\(S = \{ n \in N \mid n > \varphi(n)\}\)とすると，\(S\)は\(N\)の空でない部分集合であるから，最小元\(\submin{n}\)をもつ．
+すると\(\submin{n} > \varphi(\submin{n})\)であり，単調性から\(\varphi(\varphi(\submin{n})) < \varphi(\submin{n}) < \submin{n}\)であるが，これは\(\submin{n}\)の最小性に反する．
+\end{proof}
 
 \begin{thmbox}
 \begin{definition}
@@ -628,10 +625,12 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 ゆえに\(\tuple{\lambda_3, U_3}\)は\(\tuple{\lambda_1, U_1} \preceq \tuple{\lambda_3, U_3}\)かつ\(\tuple{\lambda_2, U_2} \preceq \tuple{\lambda_3, U_3}\)をみたす．
 
 \(\varphi \colon \symcal{D} \to \Lambda\)を\(\varphi\colon \tuple{\lambda, U} \mapsto \lambda\)と定義する．このとき\(f \circ \varphi\)は\(f\)のサブネットである．
-サブネットの定義（\definitionref{subnet}）の\ref{subnet-exists-beta}が成り立つことは，任意の\(\alpha \in \Lambda\)について\(\tuple{\alpha, X} \in \symcal{D}\)をとると，
-任意の\(\tuple{\beta, U} \succeq \tuple{\alpha, X}\)について\(\alpha \preceq \beta = \varphi(\tuple{\beta, U})\)からわかる．
+共終性は任意の\(\alpha \in \Lambda\)について\(\tuple{\alpha, X} \in \symcal{D}\)をとると，
+\(\tuple{\beta, U} \succeq \tuple{\alpha, X}\)をみたす任意の\(\tuple{\beta, U}\)について\(\alpha \preceq \beta = \varphi(\beta, U)\)からわかる．
 
-\(f\)は\(x\)に収束する．
+\(f \circ \varphi \to x\)を示す．
+\(x\)の任意の開近傍\(U\)に対して，ある\(\lambda_0 \in \Lambda\)で\(x_{\lambda_0} \in U\)となるものが存在する．したがって\(\tuple{\lambda_0, U} \preceq \tuple{\beta, V}\)をみたす任意の\(\tuple{\beta, V} \in \symcal{D}\)について\((f \circ \varphi)(\beta, V) = \varphi(\beta) \in V \subseteq U\)となる．
+
 (\(\Leftarrow\)) \(\eventuallyin{f \circ \varphi}{x}\)より
 
 \end{proof}

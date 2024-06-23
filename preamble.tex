@@ -235,7 +235,8 @@
 \newcommand\keyword[1]{{\bfseries\gtfamily #1}}
 \newcommand\emphchar[1]{\ltjalchar`‹#1\ltjalchar`›}
 
-\newcommand\Integer{\symbb{N}}
+\newcommand\NaturalNumber{\symbb{N}}
+\newcommand\Integer{\symbb{Z}}
 \newcommand\PositiveInteger{\symbb{N}_{\mathord{+}}}
 \newcommand\Sequence[2]{{\langle {#1}_{#2} \rangle}_{#2 \in \PositiveInteger}}
 \newcommand\Subsequence[1]{{\langle {#1}_{\varphi(n)} \rangle}_{n \in \PositiveInteger}}
@@ -267,6 +268,8 @@
 \newcommand\pronunciation[4]{#1 \texttt{#2} [#3] #4．}
 \newcommand\primarystress{\mbox{}\char"02C8}
 
+\newcommand\submin[1]{#1_{\text{min}}}
+
 \newcommand\liaison{\hspace*{0.1em}\raisebox{-0.8ex}{\rotatebox{90}{(}}\hspace*{0.1em}}
 \newcommand\shortunderscore{\scalebox{0.7}[1]{\_}}
 \newcommand\invbreve[1]{#1{\char"032F}}
@@ -274,8 +277,8 @@
 % \newcommand\symcal[1]{\mathcal{#1}}
 % \newcommand\symbf[1]{\mathbf{#1}}
 
-\newcommand\eventuallyin[2]{#1 \mathrel{\text{evntly in}} #2}
-\newcommand\frequentlyin[2]{#1 \mathrel{\text{frqntly in}} #2}
+\newcommand\eventuallyin[2]{#1 \mathrel{\text{eventually in}} #2}
+\newcommand\frequentlyin[2]{#1 \mathrel{\text{frequently in}} #2}
 
 \renewcommand{\labelitemii}{\(\circ\)}
 \renewcommand{\labelitemiii}{\(\diamond\)}
