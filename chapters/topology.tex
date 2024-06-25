@@ -246,11 +246,10 @@
     \caption{\exampleref{neighborhood}を図示したもの．}\figlabel{neighborhood}
 \end{figure}
 
-
 \begin{thmbox}
 \begin{proposition}
-位相空間\(\tuple{X, \symcal{O}}\)の点\(x\)の近傍全体の集合を\(\Neighborhood{x}\)とする．
-このとき以下が成り立つ．
+\(\tuple{X, \symcal{O}}\)を位相空間とする．
+点\(x \in X\)の近傍全体の集合\(\Neighborhood{x}\)について以下が成り立つ．
 \begin{conditions}
     \item\label{neighborhood-cap} 任意の\(N_1, N_2 \in \Neighborhood{x}\)について\(N_1 \cap N_2 \in \Neighborhood{x}\)．
 \end{conditions}
@@ -565,15 +564,16 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 ネットにおいて部分列に相当するものはサブネットと呼ばれ，以下のように定義される．
 
 \begin{thmbox}
-\begin{definition}[（サブネット）] ネット\(g \colon B \to X\)がネット\(f \colon A \to X\)の\keyword{サブネット}(subnet)であるとは，写像\(\varphi \colon B \to A\)が存在して，次の2つをみたすことをいう．
+\begin{definition}[（サブネット）] ネット\(g \colon \Xi \to X\)がネット\(f \colon \Lambda \to X\)の\keyword{サブネット}(subnet)であるとは，写像\(\varphi \colon \Xi \to \Lambda\)が存在して，次の2つをみたすことをいう．
     \begin{conditions}
         \item\label{subnet-comp} \(g = f \circ \varphi\)．
-        \item\label{subnet-exists-beta} （共終性）任意の\(\alpha \in A\)に対して，ある\(\beta \in B\)が存在して，\(\beta' \succeq \beta\)ならば\(\alpha \preceq \varphi(\beta')\)が成り立つ．
+        \item\label{subnet-exists-beta} （共終性）任意の\(\kappa \in \Lambda\)に対して，ある\(\xi_0 \in \Xi\)が存在して，\(\xi \succeq \xi_0\)ならば\(\kappa \preceq \varphi(\xi)\)が成り立つ．
     \end{conditions}\definitionlabel{subnet}
 \end{definition}
 \end{thmbox}
 
-一般に前順序集合\(\tuple{A, \mathord{\preceq}}\)の部分集合\(A' \subseteq A\)が\keyword{共終}(cofinal)であるとは，任意の\(\alpha \in A\)に対してある\(\alpha' \in A'\)が存在して\(\alpha \preceq \alpha'\)となることをいう．また関数\(\varphi \colon B \to A\)が共終であるとは像\(\varphi(B) \subseteq A\)が共終であることをいう．したがって\ref{subnet-exists-beta}は\(\varphi(\{ \beta' \in B \mid \beta' \succeq \beta\})\)が共終であると言い換えることができる．
+一般に前順序集合\(\tuple{\Lambda, \mathord{\preceq}}\)の部分集合\(A \subseteq \Lambda\)が\keyword{共終}(cofinal)であるとは，任意の\(\lambda \in \Lambda\)に対してある\(\alpha \in A\)が存在して\(\lambda \preceq \alpha\)となることをいう．また関数\(\varphi \colon \Xi \to \Lambda\)が共終であるとは像\(\varphi(\Xi) \subseteq \Lambda\)が共終であることをいう．したがって\ref{subnet-exists-beta}は\(\varphi(\{ \xi \in \Xi \mid \xi \succeq \xi_0\})\)が共終であると言い換えることができる．
+以下では写像\(\varphi\)であるといった場合，\definitionref{subnet}の\ref{subnet-exists-beta}が成り立つことを意味するものとする．
 
 列\(\Sequencen{x}\)をネットとみなしたときの部分列\(\Subsequence{x}\)はサブネットである．
 このことは以下のように確認できる．
@@ -585,7 +585,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{proposition}
 \end{thmbox}
 
-\begin{proof} \(n_0 > \varphi(n_0)\)となる\(n_0 \in N\)が存在すると仮定する．
+\begin{proof} \(n_0 \gt \varphi(n_0)\)となる\(n_0 \in N\)が存在すると仮定する．
 このとき\(S = \{ n \in N \mid n > \varphi(n)\}\)とすると，\(S\)は\(N\)の空でない部分集合であるから，最小元\(\submin{n}\)をもつ．
 すると\(\submin{n} > \varphi(\submin{n})\)であり，単調性から\(\varphi(\varphi(\submin{n})) < \varphi(\submin{n}) < \submin{n}\)であるが，これは\(\submin{n}\)の最小性に反する．
 \end{proof}
@@ -604,35 +604,37 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{theorem}
 \end{thmbox}
 
-\begin{proof} (\(\Rightarrow\))
-\(x\)の開近傍全体の集合を\(\symcal{U}(x)\)とする．
-集合\(\symcal{D}\)を
+\begin{proof} (\(\Rightarrow\)) 集合\(\symcal{D}\)を
 \begin{align*}
-    \symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \Neighborhood{x}\), and \(f(\lambda) \in U\)}\}
+    \symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \OpenNeighborhood{x}\), and \(f(\lambda) \in U\)}\}
 \end{align*}
-で定義する．\(\symcal{D}\)の任意の元\(\tuple{\lambda, U}\)と\(\tuple{\lambda', U}\)について
-\begin{align*}
-    \tuple{\lambda, U} \preceq \tuple{\lambda', U'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(U \supseteq U'\)}
-\end{align*}
-と定める．このとき\(\symcal{D}\)は有向集合になることを示す．
+と定義する．\(\symcal{D}\)の前順序\(\mathord{\preceq}\)を\(\tuple{\lambda, U} \preceq \tuple{\lambda', U'} \Leftrightarrow \lambda \preceq \lambda'\ \text{and}\ U \supseteq U'\)と定める．
+このとき\(\symcal{D}\)は有向集合になることを示す．
 反射律と推移律は明らかである．
 上界の存在を示す．
 任意の\(\tuple{\lambda_1, U_1}, \tuple{\lambda_2, U_2} \in \symcal{D}\)をとる．
 \propositionref{neighborhood-properties}の\ref{neighborhood-cap}で見たように，
-\(U_3 := U_1 \cap U_2\)は\(U_3 \in \Neighborhood{x}\), \(U_1 \preceq U_3\), \(U_2 \preceq U_3\)をみたす．
+\(U_3 := U_1 \cap U_2\)は\(U_3 \in \OpenNeighborhood{x}\), \(U_1 \preceq U_3\), \(U_2 \preceq U_3\)をみたす．
 \(x\)は\(f\)の集積点であるから，この\(U_3\)に対して，ある\(\lambda_3 \in \Lambda\)が存在して，
 \(\lambda_1 \preceq \lambda_3\), \(\lambda_2 \preceq \lambda_3\), \(x_{\lambda_3} \in U_3\)が成り立つ．
 ゆえに\(\tuple{\lambda_3, U_3}\)は\(\tuple{\lambda_1, U_1} \preceq \tuple{\lambda_3, U_3}\)かつ\(\tuple{\lambda_2, U_2} \preceq \tuple{\lambda_3, U_3}\)をみたす．
 
 \(\varphi \colon \symcal{D} \to \Lambda\)を\(\varphi\colon \tuple{\lambda, U} \mapsto \lambda\)と定義する．このとき\(f \circ \varphi\)は\(f\)のサブネットである．
-共終性は任意の\(\alpha \in \Lambda\)について\(\tuple{\alpha, X} \in \symcal{D}\)をとると，
-\(\tuple{\beta, U} \succeq \tuple{\alpha, X}\)をみたす任意の\(\tuple{\beta, U}\)について\(\alpha \preceq \beta = \varphi(\beta, U)\)からわかる．
+任意の\(\alpha \in \Lambda\)について\(\tuple{\alpha, X} \in \symcal{D}\)をとる．
+このとき\(\tuple{\beta, U} \succeq \tuple{\alpha, X}\)をみたす任意の\(\tuple{\beta, U}\)について\(\alpha \preceq \beta = \varphi(\beta, U)\)から共終性が成り立つ．
 
 \(f \circ \varphi \to x\)を示す．
-\(x\)の任意の開近傍\(U\)に対して，ある\(\lambda_0 \in \Lambda\)で\(x_{\lambda_0} \in U\)となるものが存在する．したがって\(\tuple{\lambda_0, U} \preceq \tuple{\beta, V}\)をみたす任意の\(\tuple{\beta, V} \in \symcal{D}\)について\((f \circ \varphi)(\beta, V) = \varphi(\beta) \in V \subseteq U\)となる．
+\(x\)の任意の開近傍\(U\)に対して，ある\(\lambda_0 \in \Lambda\)で\(x_{\lambda_0} \in U\)となるものが存在する．したがって\(\tuple{\lambda_0, U} \preceq \tuple{\beta, V}\)をみたす任意の\(\tuple{\xi, V} \in \symcal{D}\)について\((f \circ \varphi)(\beta, V) = \varphi(\beta) \in V \subseteq U\)となる．
 
-(\(\Leftarrow\)) \(\eventuallyin{f \circ \varphi}{x}\)より
+\noindent (\(\Leftarrow\)) 任意の\(\kappa \in \Lambda\)と\(U \in \OpenNeighborhood{x}\)をとる．
+\(f\)のあるサブネット\(g = f \circ \varphi\)が\(x\)に収束するので，
+ある\(\lambda_1 \in \Lambda\)が存在して，任意の\(\lambda \succeq \lambda_1\)で\(x_\lambda \in U\)となる．
 
+また\(\varphi\)の共終性より，ある\(\lambda_2 \in B\)が存在して，
+\(\lambda \succeq \lambda_2\)をみたす任意の\(\lambda \in \Lambda\)について\(\varphi(\lambda) \succeq \alpha\)が成り立つ．
+
+\(\Lambda\)が有向集合であるから\(\lambda_0 \succeq \kappa\)が存在する．
+この\(\lambda\)について\(x_\lambda \in U\)より\(\frequentlyin{g}{U}\)が成り立つ．
 \end{proof}
 
 \end{document}
