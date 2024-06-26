@@ -614,27 +614,30 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 上界の存在を示す．
 任意の\(\tuple{\lambda_1, U_1}, \tuple{\lambda_2, U_2} \in \symcal{D}\)をとる．
 \propositionref{neighborhood-properties}の\ref{neighborhood-cap}で見たように，
-\(U_3 := U_1 \cap U_2\)は\(U_3 \in \OpenNeighborhood{x}\), \(U_1 \preceq U_3\), \(U_2 \preceq U_3\)をみたす．
+\(U_3 := U_1 \cap U_2\)は\(U_3 \in \OpenNeighborhood{x}\), \(U_3 \succeq U_1\), \(U_3 \succeq U_2\)をみたす．
 \(x\)は\(f\)の集積点であるから，この\(U_3\)に対して，ある\(\lambda_3 \in \Lambda\)が存在して，
-\(\lambda_1 \preceq \lambda_3\), \(\lambda_2 \preceq \lambda_3\), \(x_{\lambda_3} \in U_3\)が成り立つ．
-ゆえに\(\tuple{\lambda_3, U_3}\)は\(\tuple{\lambda_1, U_1} \preceq \tuple{\lambda_3, U_3}\)かつ\(\tuple{\lambda_2, U_2} \preceq \tuple{\lambda_3, U_3}\)をみたす．
+\(\lambda_3 \succeq \lambda_1\), \(\lambda_3 \succeq \lambda_1\), \(f(\lambda_3) \in U_3\)が成り立つ．
+ゆえに\(\tuple{\lambda_3, U_3}\)は\(\tuple{\lambda_3, U_3} \succeq \tuple{\lambda_3, U_3}\)かつ\(\tuple{\lambda_3, U_3} \succeq \tuple{\lambda_2, U_2}\)をみたす．
 
-\(\varphi \colon \symcal{D} \to \Lambda\)を\(\varphi\colon \tuple{\lambda, U} \mapsto \lambda\)と定義する．このとき\(f \circ \varphi\)は\(f\)のサブネットである．
-任意の\(\alpha \in \Lambda\)について\(\tuple{\alpha, X} \in \symcal{D}\)をとる．
-このとき\(\tuple{\beta, U} \succeq \tuple{\alpha, X}\)をみたす任意の\(\tuple{\beta, U}\)について\(\alpha \preceq \beta = \varphi(\beta, U)\)から共終性が成り立つ．
+\(\varphi \colon \symcal{D} \to \Lambda\)を\(\varphi\colon \tuple{\lambda, U} \mapsto \lambda\)と定義すると\(g := f \circ \varphi\)は\(f\)のサブネットになることを示す．
+任意の\(\kappa \in \Lambda\)について\(\tuple{\kappa, X} \in \symcal{D}\)をとる．
+このとき\(\tuple{\xi, U} \succeq \tuple{\kappa, X}\)をみたす任意の\(\tuple{\xi, U}\)について\(\kappa \preceq \xi = \varphi(\xi, U)\)から共終性が成り立つ．
 
-\(f \circ \varphi \to x\)を示す．
-\(x\)の任意の開近傍\(U\)に対して，ある\(\lambda_0 \in \Lambda\)で\(x_{\lambda_0} \in U\)となるものが存在する．したがって\(\tuple{\lambda_0, U} \preceq \tuple{\beta, V}\)をみたす任意の\(\tuple{\xi, V} \in \symcal{D}\)について\((f \circ \varphi)(\beta, V) = \varphi(\beta) \in V \subseteq U\)となる．
+\(g \to x\)を示す．
+\(x\)が\(f\)の集積点なので，任意の\(U \in \OpenNeighborhood{x}\)に対して，ある\(\lambda_0 \in \Lambda\)で\(f(\lambda_0) \in U\)となるものが存在する．
+したがって\(\tuple{\xi, V} \succeq \tuple{\lambda_0, U}\)をみたす任意の\(\tuple{\xi, V} \in \symcal{D}\)について\(g(\xi, V) = \varphi(\xi) \in V \subseteq U\)となる．
 
 \noindent (\(\Leftarrow\)) 任意の\(\kappa \in \Lambda\)と\(U \in \OpenNeighborhood{x}\)をとる．
-\(f\)のあるサブネット\(g = f \circ \varphi\)が\(x\)に収束するので，
-ある\(\xi_1 \in \Xi\)が存在して，任意の\(\xi \succeq \xi_1\)で\(x_\xi \in U\)となる．
+\(f\)のサブネット\(g \colon \Xi \to X\)が\(x\)に収束するので，
+ある\(\xi_1 \in \Xi\)が存在して，任意の\(\xi \succeq \xi_1\)で\(g(\xi) \in U\)となる．
 
-また\(\varphi\)の共終性より，ある\(\xi_2 \in \Xi\)が存在して，
+\(g\)は共終な写像\(\varphi \colon \Lambda \to \Xi\)を用いて\(g = f \circ \varphi\)と表される．
+共終性から，ある\(\xi_2 \in \Xi\)が存在して，
 \(\xi \succeq \xi_2\)をみたす任意の\(\xi \in \Xi\)について\(\varphi(\xi) \succeq \kappa\)が成り立つ．
 
-\(\Lambda\)が有向集合であるから\(\tuple{\lambda_0, U} \succeq \kappa\)が存在する．
-この\(\lambda\)について\(x_\lambda \in U\)より\(\frequentlyin{g}{U}\)が成り立つ．
+\(\Xi\)が有向集合であるから\(\xi \succeq \xi_1\), \(\xi \succeq \xi_2\)をみたす\(\xi \in \Xi\)が存在する．
+この\(\xi\)について\(\varphi(\xi) \succeq \kappa\)かつ\(f(\varphi(\xi)) = g(\xi)\in U\)が成り立つ．
+したがって\(x\)は\(f\)の集積点である．
 \end{proof}
 
 \end{document}
