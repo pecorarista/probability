@@ -585,7 +585,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{proposition}
 \end{thmbox}
 
-\begin{proof} \(n_0 \gt \varphi(n_0)\)となる\(n_0 \in N\)が存在すると仮定する．
+\begin{proof} \(n_0 > \varphi(n_0)\)となる\(n_0 \in N\)が存在すると仮定する．
 このとき\(S = \{ n \in N \mid n > \varphi(n)\}\)とすると，\(S\)は\(N\)の空でない部分集合であるから，最小元\(\submin{n}\)をもつ．
 すると\(\submin{n} > \varphi(\submin{n})\)であり，単調性から\(\varphi(\varphi(\submin{n})) < \varphi(\submin{n}) < \submin{n}\)であるが，これは\(\submin{n}\)の最小性に反する．
 \end{proof}
@@ -599,16 +599,17 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 
 \begin{thmbox}
 \begin{theorem}
-位相空間\(X\)の点\(x\)がネット\(f\colon \Lambda \to X\)の集積点であることと，
-\(f\)のサブネットで\(x\)に収束するものが存在することは同値である．
+\(X\)を位相空間，\(f \colon \Lambda \to X\)をネットとする．
+以下の2つは同値である．
+\begin{conditions}
+    \item\label{compact-equiv-cluster} \(x \in X\)がネット\(f\)の集積点である．
+    \item\label{compact-equiv-subnet} \(f\)のサブネットで\(x\)に収束するものが存在する．
+\end{conditions}
 \end{theorem}
 \end{thmbox}
 
-\begin{proof} (\(\Rightarrow\)) 集合\(\symcal{D}\)を
-\begin{align*}
-    \symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \OpenNeighborhood{x}\), and \(f(\lambda) \in U\)}\}
-\end{align*}
-と定義する．\(\symcal{D}\)の前順序\(\mathord{\preceq}\)を\(\tuple{\lambda, U} \preceq \tuple{\lambda', U'} \Leftrightarrow \lambda \preceq \lambda'\ \text{and}\ U \supseteq U'\)と定める．
+\begin{proof} \(\text{\ref{compact-equiv-cluster}} \Rightarrow \text{\ref{compact-equiv-subnet}}\)：\(\symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \OpenNeighborhood{x}\), and \(f(\lambda) \in U\)}\}\)と定義する．
+\(\symcal{D}\)の前順序\(\mathord{\preceq}\)を\(\tuple{\lambda, U} \preceq \tuple{\lambda', U'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(U \supseteq U'\)}\)と定める．
 このとき\(\symcal{D}\)は有向集合になることを示す．
 反射律と推移律は明らかである．
 上界の存在を示す．
@@ -627,8 +628,8 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(x\)が\(f\)の集積点なので，任意の\(U \in \OpenNeighborhood{x}\)に対して，ある\(\lambda_0 \in \Lambda\)で\(f(\lambda_0) \in U\)となるものが存在する．
 したがって\(\tuple{\xi, V} \succeq \tuple{\lambda_0, U}\)をみたす任意の\(\tuple{\xi, V} \in \symcal{D}\)について\(g(\xi, V) = \varphi(\xi) \in V \subseteq U\)となる．
 
-\noindent (\(\Leftarrow\)) 任意の\(\kappa \in \Lambda\)と\(U \in \OpenNeighborhood{x}\)をとる．
-\(f\)のサブネット\(g \colon \Xi \to X\)が\(x\)に収束するので，
+\(\text{\ref{compact-equiv-subnet}} \Rightarrow \text{\ref{compact-equiv-cluster}}\)：任意の\(\kappa \in \Lambda\)と\(U \in \OpenNeighborhood{x}\)をとる．
+\(f\)のあるサブネット\(g \colon \Xi \to X\)が\(x\)に収束するので，
 ある\(\xi_1 \in \Xi\)が存在して，任意の\(\xi \succeq \xi_1\)で\(g(\xi) \in U\)となる．
 
 \(g\)は共終な写像\(\varphi \colon \Lambda \to \Xi\)を用いて\(g = f \circ \varphi\)と表される．
