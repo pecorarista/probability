@@ -602,13 +602,13 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(X\)を位相空間，\(f \colon \Lambda \to X\)をネットとする．
 以下の2つは同値である．
 \begin{conditions}
-    \item\label{compact-equiv-cluster} \(x \in X\)がネット\(f\)の集積点である．
+    \item\label{compact-equiv-cluster} \(x \in X\)が\(f\)の集積点である．
     \item\label{compact-equiv-subnet} \(f\)のサブネットで\(x\)に収束するものが存在する．
 \end{conditions}
 \end{theorem}
 \end{thmbox}
 
-\begin{proof} \(\text{\ref{compact-equiv-cluster}} \Rightarrow \text{\ref{compact-equiv-subnet}}\)：\(\symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \OpenNeighborhood{x}\), and \(f(\lambda) \in U\)}\}\)と定義する．
+\begin{proof} \proofimplies{compact-equiv-cluster}{compact-equiv-subnet}\(\symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \OpenNeighborhood{x}\), and \(f(\lambda) \in U\)}\}\)と定義する．
 \(\symcal{D}\)の前順序\(\mathord{\preceq}\)を\(\tuple{\lambda, U} \preceq \tuple{\lambda', U'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(U \supseteq U'\)}\)と定める．
 このとき\(\symcal{D}\)は有向集合になることを示す．
 反射律と推移律は明らかである．
@@ -628,7 +628,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(x\)が\(f\)の集積点なので，任意の\(U \in \OpenNeighborhood{x}\)に対して，ある\(\lambda_0 \in \Lambda\)で\(f(\lambda_0) \in U\)となるものが存在する．
 したがって\(\tuple{\xi, V} \succeq \tuple{\lambda_0, U}\)をみたす任意の\(\tuple{\xi, V} \in \symcal{D}\)について\(g(\xi, V) = \varphi(\xi) \in V \subseteq U\)となる．
 
-\(\text{\ref{compact-equiv-subnet}} \Rightarrow \text{\ref{compact-equiv-cluster}}\)：任意の\(\kappa \in \Lambda\)と\(U \in \OpenNeighborhood{x}\)をとる．
+\proofimplies{compact-equiv-subnet}{compact-equiv-cluster}任意の\(\kappa \in \Lambda\)と\(U \in \OpenNeighborhood{x}\)をとる．
 \(f\)のあるサブネット\(g \colon \Xi \to X\)が\(x\)に収束するので，
 ある\(\xi_1 \in \Xi\)が存在して，任意の\(\xi \succeq \xi_1\)で\(g(\xi) \in U\)となる．
 
@@ -639,6 +639,63 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(\Xi\)が有向集合であるから\(\xi \succeq \xi_1\), \(\xi \succeq \xi_2\)をみたす\(\xi \in \Xi\)が存在する．
 この\(\xi\)について\(\varphi(\xi) \succeq \kappa\)かつ\(f(\varphi(\xi)) = g(\xi)\in U\)が成り立つ．
 したがって\(x\)は\(f\)の集積点である．
+\end{proof}
+
+\(X\)を位相空間とする．\(X\)の部分集合族\(\symcal{C}\)は
+その有限部分集合\(\widetilde{\symcal{C}}\)で\(\bigcap \widetilde{\symcal{C}} = \emptyset\)をみたすものが存在するとき，\keyword{有限交叉性}(finite intersection property)をもつという．
+
+\begin{thmbox}
+\begin{proposition}
+\(X\)を位相空間，\(\symcal{F}\)をその閉集合全体の集合とする．
+このとき次の2つは同値である．
+\begin{conditions}
+    \item\label{fip-compact} \(X\)がコンパクトである．
+    \item\label{fip-fip} \(\bigcap \symcal{A} = \emptyset\)をみたす任意の\(\symcal{A} \subseteq \symcal{F}\)が有限交叉性をもつ．
+\end{conditions}
+\end{proposition}
+\end{thmbox}
+
+\begin{proof} \proofimplies{fip-compact}{fip-fip}\(\symcal{F}\)の部分集合\(\symcal{A}\)で
+\begin{align*}
+    \bigcap \symcal{A} = \emptyset
+\end{align*}
+をみたすようなものをとる．
+\(\symcal{V} = \{ X \setminus A \mid A \in \symcal{A}\}\)とすると，これは開集合を元としてもつ集合である．
+またDe Morgan則から
+\begin{align}
+    X \setminus \bigcup \symcal{V}
+    = \bigcap \{X \setminus V \mid V \in \symcal{V}\}
+    = \bigcap \{A \mid A \in \symcal{A}\}
+    = \bigcap \symcal{A}
+    = \emptyset \eqlabel{fip-de-morgan}
+\end{align}
+が成り立つ．ゆえに\(X = \bigcup \symcal{V}\)であり，仮定から\(\{V_1, \ldots, V_n\} \subseteq \symcal{V}\)で
+\begin{align*}
+    X = \bigcup_{i = 1}^n V_i
+\end{align*}
+となるものが存在する．
+各\(i \in \{1, \ldots, n\}\)について\(A_i = X \setminus V_i\)とすると
+\begin{align*}
+    \bigcap_{i = 1}^n A_i
+    = \bigcap_{i = 1}^n (X \setminus V_i)
+    = X \setminus \bigcup_{i = 1}^n V_i
+    = \emptyset.
+\end{align*}
+
+\proofimplies{fip-fip}{fip-compact}\(\bigcap \symcal{A} = \emptyset\)をみたす任意の\(\symcal{A} \subseteq \symcal{F}\)をとる．
+\(\symcal{V} = \{X \setminus A \mid A \in \symcal{A}\}\)とすると，\eqref{fip-de-morgan}と同様，\(X \setminus \bigcup \symcal{V} = \bigcap \symcal{A} = \emptyset\)，すなわち\(X = \bigcup \symcal{V}\)が成り立つ．有限交叉性から\(\{A_1, \ldots, A_n\} \subseteq \symcal{A}\)で
+\begin{align*}
+    \bigcap_{i = 1}^n A_i = \emptyset
+\end{align*}
+となるものがとれる．
+各\(i \in \{1, \ldots, n\}\)について\(V_i = X \setminus A_i\)とすると
+\begin{align*}
+    X \setminus \bigcup_{i = 1}^n V_i
+    = \bigcap_{i = 1}^n (X \setminus V_i)
+    = \bigcap_{i = 1}^n A_i
+    = \emptyset, % \tag*{\qedhere}
+\end{align*}
+すなわち\(X = \bigcup_{i = 1}^n V_i\)が成り立つ．
 \end{proof}
 
 \end{document}
