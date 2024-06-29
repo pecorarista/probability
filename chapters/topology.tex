@@ -475,8 +475,8 @@ Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の
 \begin{thmbox}
 \begin{definition}
 ネット\(f\colon \Lambda \to X\)について，ある\(\lambda_0 \in \Lambda\)が存在して，任意の\(\lambda \succeq \lambda_0\)について\(f(\lambda) \in Y\)が成り立つとき，\(f\)は\keyword{最終的に\(Y\)に入る}\((f\) is eventually in \(Y)\)という．
-一般的な表記ではないが以降はこのことを\(\eventuallyin{f}{Y}\)と書く．
-点\(x \in X\)の任意の開近傍\(U\)について\(\eventuallyin{f}{U}\)が成り立つとき，
+一般的な表記ではないが以降はこのことを\(\iseventuallyin{f}{Y}\)と書く．
+点\(x \in X\)の任意の開近傍\(U\)について\(\iseventuallyin{f}{U}\)が成り立つとき，
 \keyword{\(\Family{x}\)は\(x\)に収束する}(\(\Family{x}\) converges to \(x\))といい，\(x_\lambda \to x\)と書く．
 この\(x\)を\(\Family{x}\)の\keyword{極限}(limit point)という．
 \end{definition}
@@ -547,8 +547,8 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 ネット\(f \colon \Lambda \to X\)は，どのような\(\lambda_0 \in \Lambda\)に対しても
 \(f(\lambda) \in Y\)となるような\(\lambda \succeq \lambda_0\)が存在するとき，
 \keyword{頻繁に\(Y\)に入る}\((f\) is frequently in \(Y)\))という．
-一般的な表記ではないが以降はこのことを\(\frequentlyin{f}{Y}\)と書く．
-ネット\(f\)が点\(x \in X\)の任意の近傍\(U\)について\(\frequentlyin{f}{U}\)をみたすとき，
+一般的な表記ではないが以降はこのことを\(\isfrequentlyin{f}{Y}\)と書く．
+ネット\(f\)が点\(x \in X\)の任意の近傍\(U\)について\(\isfrequentlyin{f}{U}\)をみたすとき，
 \(x\)を\(f\)の\keyword{集積点}(cluster point)という．
 \end{definition}
 \end{thmbox}
@@ -593,7 +593,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \begin{thmbox}
 \begin{definition}
 \(S\)を\(X\)の任意の部分集合とする．
-\(X\)のネット\(f\)が\(\eventuallyin{f}{S}\)または\(\eventuallyin{f}{X \setminus S}\)をみたすとき，\(f\)は\keyword{ユニバーサルネット}(universal net)であるという．
+\(X\)のネット\(f\)が最終的に\(S\)または\(X \setminus S\)に入るとき，\(f\)は\keyword{普遍的なネット}(universal net)であるという．
 \end{definition}
 \end{thmbox}
 
@@ -642,7 +642,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{proof}
 
 \(X\)を位相空間とする．\(X\)の部分集合族\(\symcal{C}\)は
-その有限部分集合\(\widetilde{\symcal{C}}\)で\(\bigcap \widetilde{\symcal{C}} = \emptyset\)をみたすものが存在するとき，\keyword{有限交叉性}(finite intersection property)をもつという．
+その有限部分集合\(\{C_1, \ldots, C_n\}\)で\(\bigcap_{i = 1}^n C_i  = \emptyset\)をみたすものが存在するとき，\keyword{有限交叉性}(finite intersection property)をもつという．
 
 \begin{thmbox}
 \begin{proposition}
@@ -696,6 +696,46 @@ Hausdorff空間においてネットが収束するならば，その極限は�
     = \emptyset, % \tag*{\qedhere}
 \end{align*}
 すなわち\(X = \bigcup_{i = 1}^n V_i\)が成り立つ．
+\end{proof}
+
+\begin{thmbox}
+\begin{theorem}
+位相空間\(X\)の任意のネット\(f \colon \Lambda \to X\)は普遍的なサブネットをもつ．
+\end{theorem}
+\end{thmbox}
+
+\begin{proof}
+集合\(\symfrak{A}\)\footnote{\emphchar{\(\symfrak{A}\)}はフラクトゥール(Fraktur)の\emphchar{A}．
+手書きの場合はジュッターリン筆記体(Sütterlinschrift)で\emphchar{{\kurrent A}}のように書く．}を次の2つの性質をもつ\(\symcal{A}\)全体の集合とする．
+\begin{conditions}
+    \item 任意の\(F \in \symcal{F}\)について\(f\)が最終的に\(F\)に入る．
+    \item 任意の\(F, F' \in \symcal{F}\)について\(F \cap F' \in \symcal{F}\)．
+\end{conditions}
+\end{proof}
+
+\begin{thmbox}
+\begin{theorem}
+位相空間\(X\)において以下の
+\begin{conditions}
+    \item\label{compact-net-compact} \(X\)がコンパクトである．
+    \item\label{compact-net-univ} 任意の普遍的なネット\(f\colon \Lambda \to X\)が収束する．
+    \item\label{compact-net-subnet} 任意のネット\(f \colon \Lambda \to X\)が収束するサブネットをもつ．
+\end{conditions}
+\end{theorem}
+\end{thmbox}
+
+\begin{proof} \proofimplies{compact-net-compact}{compact-net-univ}普遍ネット\(f\)が\(X\)のどのような元にも収束しないと仮定する．
+すると任意の\(x \in X\)についてある\(U \in \OpenNeighborhood{x}\)が存在して，
+
+
+\proofimplies{compact-net-univ}{compact-net-subnet}こんにちは
+
+
+\proofimplies{compact-net-subnet}{compact-net-compact}有限交叉性をもつような\(X\)の閉部分集合族をとり，それを\(\symcal{F}\)と表すことにする．
+\(\symcal{E}\)を
+\(E \succeq E' \Leftrightarrow E \subseteq E'\)と定める．
+
+
 \end{proof}
 
 \end{document}
