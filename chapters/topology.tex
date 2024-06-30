@@ -337,7 +337,7 @@
 \begin{conditions}
     \item\label{directed-set-reflex} （反射律）任意の\(\alpha \in A\)について\(\alpha \preceq \alpha\)．
     \item\label{directed-set-trans} （推移律）任意の\(\alpha, \beta, \gamma \in A\)について\(\alpha \preceq \beta\)かつ\(\beta \preceq \gamma\)ならば\(\alpha \preceq \gamma\)．
-    \item\label{directed-set-upper} （上界の存在） 任意の\(\alpha, \beta \in A\)に対して\(\alpha \preceq \gamma\)かつ\(\beta \preceq \gamma\)をみたす\(\gamma \in A\)が存在する．
+    \item\label{directed-set-upper} 任意の\(\alpha, \beta \in A\)に対して\(\alpha \preceq \gamma\)かつ\(\beta \preceq \gamma\)をみたす\(\gamma \in A\)が存在する．
 \end{conditions}
 \definitionlabel{directed-set}
 \end{definition}
@@ -354,7 +354,7 @@ preorderと呼んだりするほうがいいだろう．}．
 \begin{exa} 位相空間\(X\)の任意の点\(x\)をとる．
 集合\(\Neighborhood{x}\)に関係\(\mathord{\preceq}\)を\(N \supseteq N' \Leftrightarrow N' \preceq N\)で定める．
 これが反射律と推移律をみたすことは明らかである．
-上界の存在については，
+\definitionref{directed-set-uppper}~\ref{directed-set-upper}については，
 \(x\)の任意の近傍\(N_1, N_2\)について，
 \(N_1 \cap N_2\)をとると，これもまた\(x\)の近傍であり（\propositionref{neighborhood-properties}の\ref{neighborhood-cap}），\(N_1 \cap N_2 \subseteq N_1\)かつ\(N_1 \cap N_2 \subseteq N_2\)をみたすことからわかる．\examplelabel{neighborhood-directed-set}
 \end{exa}
@@ -612,7 +612,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(\symcal{D}\)の前順序\(\mathord{\preceq}\)を\(\tuple{\lambda, U} \preceq \tuple{\lambda', U'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(U \supseteq U'\)}\)と定める．
 このとき\(\symcal{D}\)は有向集合になることを示す．
 反射律と推移律は明らかである．
-上界の存在を示す．
+\definitionref{directed-set-uppper}~\ref{directed-set-upper}を示す．
 任意の\(\tuple{\lambda_1, U_1}, \tuple{\lambda_2, U_2} \in \symcal{D}\)をとる．
 \propositionref{neighborhood-properties}の\ref{neighborhood-cap}で見たように，
 \(U_3 := U_1 \cap U_2\)は\(U_3 \in \OpenNeighborhood{x}\), \(U_3 \succeq U_1\), \(U_3 \succeq U_2\)をみたす．
@@ -707,26 +707,38 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \begin{proof}
 集合\(\symfrak{A}\)\footnote{\emphchar{\(\symfrak{A}\)}はフラクトゥール(Fraktur)の\emphchar{A}．
 手書きの場合はジュッターリン筆記体(Sütterlinschrift)で\emphchar{{\itshape\suetterlin A}}のように書く．}を次の2つの性質をもつ\(\symcal{F}\)全体の集合とする．
-\begin{conditions}
-    \item 任意の\(F \in \symcal{F}\)について\(f\)が最終的に\(F\)に入る．
-    \item 任意の\(F, F' \in \symcal{F}\)について\(F \cap F' \in \symcal{F}\)．
-\end{conditions}
+\begin{inproofconditions}
+    \item\label{every-net-has-a-universal-subnet} 任意の\(F \in \symcal{F}\)について\(f\)が最終的に\(F\)に入る．
+    \item\label{every-net-has-a-universal-subnet-cap-closed} 任意の\(F, F' \in \symcal{F}\)について\(F \cap F' \in \symcal{F}\)．
+\end{inproofconditions}
 \(\{X\} \in \symfrak{A}\)より\(\symfrak{A} \neq \emptyset\)である．
-\(\symfrak{Z}\)上の半順序\(\mathord{\preceq}\)を\(\symcal{F} \preceq \symcal{F}' \Leftrightarrow \symcal{F} \subseteq \symcal{F}'\)で定義する．
+\(\symfrak{A}\)上の半順序\(\mathord{\preceq}\)を\(\symcal{F} \preceq \symcal{F}' \Leftrightarrow \symcal{F} \subseteq \symcal{F}'\)で定義する．
 \(\symfrak{C} \subseteq \symfrak{A}\)\footnote{\emphchar{\(\symfrak{C}\)}はフラクトゥールの\emphchar{C}．
 手書きの場合は\emphchar{{\itshape\suetterlin C}}のように書く．}が鎖（定義x）ならば，
 \(\bigcup \symfrak{C}\)は\(\symfrak{A}\)における\(\symfrak{C}\)の上界である．
 Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する．
 \begin{align*}
-    \symcal{E} = \{\tuple{\lambda, F} \mid
+    \symcal{D} = \{\tuple{\lambda, F} \mid
        \oxfordcomma{\lambda \in \Lambda}{F \in \symcal{F}_0}{f(\lambda) \in F}
     \}
 \end{align*}
-\(\symcal{E}\)上の関係\(\mathord{\preceq}\)を\(\tuple{\lambda, F} \preceq \tuple{\lambda', F'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(F \supseteq F'\)}\)で定義する．
-このとき\(\tuple{\symcal{E}, \mathord{\preceq}}\)は有向集合である．
-\(\mathord{\preceq}\)が反射律と推移律をみたすことは明らかである．
-上界の存在は\(A\)
+\(\symcal{D}\)上の関係\(\mathord{\preceq}\)を\(\tuple{\lambda, F} \preceq \tuple{\lambda', F'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(F \supseteq F'\)}\)で定義する．
+このとき\(\tuple{\symcal{D}, \mathord{\preceq}}\)は有向集合である．
+関係\(\mathord{\preceq}\)が反射律と推移律をみたすことは明らかである．
+\definitionref{directed-set}~\ref{directed-set-upper}を示す．
+任意の\(\tuple{\lambda_1, F_1}, \tuple{\lambda_2, F_2} \in \symcal{D}\)をとる．
+\(\symcal{F}_0 \in \symfrak{A}\)は\ref{every-net-has-a-universal-subnet-cap-closed}をみたすので，\(F_3 := F_1 \cap F_2 \in \symcal{F}_0\)が成り立つ．
+\ref{every-net-has-a-universal-subnet}より，ある\(\lambda_0 \in \Lambda\)が存在して，任意の\(\lambda \succeq \lambda_0\)で\(f(\lambda) \in F_3\)となる．
+\(\Lambda\)が有向集合であることから各\(i \in \{0, 1, 2\}\)について\(\lambda_3 \succeq \lambda_i\)をみたす\(\lambda_3\)が存在する．
+このとき\(\tuple{\lambda_3, F_3} \in \symcal{D}\)は\(\tuple{\lambda_3, F_3} \succeq \tuple{\lambda_1, F_1}\)かつ\(\tuple{\lambda_2, F_2} \succeq \tuple{\lambda_2, F_2}\)をみたす．
+
+写像\(\varphi \colon \symcal{D} \to \Lambda\)を\(\tuple{\lambda, F} \mapsto \lambda\)と定義すると\(g := f \circ \varphi\)は\(f\)のサブネットになることを示す．
+任意の\(\kappa \in \Lambda\)について\(\tuple{\kappa, X} \in \symcal{D}\)をとる．
+このとき\(\tuple{\xi, U} \succeq \tuple{\kappa, X}\)をみたす任意の\(\tuple{\xi, U}\)について\(\kappa \preceq \xi = \varphi(\xi, U)\)から共終性が成り立つ．
+
+
 \end{proof}
+
 
 \begin{thmbox}
 \begin{theorem}
