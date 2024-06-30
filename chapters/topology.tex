@@ -706,11 +706,26 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 
 \begin{proof}
 集合\(\symfrak{A}\)\footnote{\emphchar{\(\symfrak{A}\)}はフラクトゥール(Fraktur)の\emphchar{A}．
-手書きの場合はジュッターリン筆記体(Sütterlinschrift)で\emphchar{{\kurrent A}}のように書く．}を次の2つの性質をもつ\(\symcal{A}\)全体の集合とする．
+手書きの場合はジュッターリン筆記体(Sütterlinschrift)で\emphchar{{\itshape\suetterlin A}}のように書く．}を次の2つの性質をもつ\(\symcal{F}\)全体の集合とする．
 \begin{conditions}
     \item 任意の\(F \in \symcal{F}\)について\(f\)が最終的に\(F\)に入る．
     \item 任意の\(F, F' \in \symcal{F}\)について\(F \cap F' \in \symcal{F}\)．
 \end{conditions}
+\(\{X\} \in \symfrak{A}\)より\(\symfrak{A} \neq \emptyset\)である．
+\(\symfrak{Z}\)上の半順序\(\mathord{\preceq}\)を\(\symcal{F} \preceq \symcal{F}' \Leftrightarrow \symcal{F} \subseteq \symcal{F}'\)で定義する．
+\(\symfrak{C} \subseteq \symfrak{A}\)\footnote{\emphchar{\(\symfrak{C}\)}はフラクトゥールの\emphchar{C}．
+手書きの場合は\emphchar{{\itshape\suetterlin C}}のように書く．}が鎖（定義x）ならば，
+\(\bigcup \symfrak{C}\)は\(\symfrak{A}\)における\(\symfrak{C}\)の上界である．
+Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する．
+\begin{align*}
+    \symcal{E} = \{\tuple{\lambda, F} \mid
+       \oxfordcomma{\lambda \in \Lambda}{F \in \symcal{F}_0}{f(\lambda) \in F}
+    \}
+\end{align*}
+\(\symcal{E}\)上の関係\(\mathord{\preceq}\)を\(\tuple{\lambda, F} \preceq \tuple{\lambda', F'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(F \supseteq F'\)}\)で定義する．
+このとき\(\tuple{\symcal{E}, \mathord{\preceq}}\)は有向集合である．
+\(\mathord{\preceq}\)が反射律と推移律をみたすことは明らかである．
+上界の存在は\(A\)
 \end{proof}
 
 \begin{thmbox}
