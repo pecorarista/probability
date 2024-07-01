@@ -761,8 +761,60 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \proofimplies{compact-net-subnet}{compact-net-compact}有限交叉性をもつような\(X\)の閉部分集合族をとり，それを\(\symcal{F}\)と表すことにする．
 \(\symcal{E}\)を
 \(E \succeq E' \Leftrightarrow E \subseteq E'\)と定める．
+\end{proof}
+
+\begin{thmbox}
+\begin{proposition}
+\(f\)を\(X\)から\(Y\)への写像，
+\(A\)を\(X\)の部分集合
+\begin{conditions}
+    \item\label{f-increase} \(A \subseteq A' \Rightarrow f(A) \subseteq f(A')\).
+    \item\label{f-inv-increase} \(A \subseteq A' \Rightarrow f^{-1}(A) \subseteq f^{-1}(A')\).
+    \item\label{f-cup} \(
+        f \left(\bigcup_{\lambda \in \Lambda} V_\lambda \right)
+        = \bigcup_{\lambda \in \Lambda} f(V_\lambda)
+        \).
+    \item\label{f-inv-cup} \(
+        f^{-1} \left(\bigcup_{\lambda \in \Lambda} V_\lambda \right)
+        = \bigcup_{\lambda \in \Lambda} f^{-1}(V_\lambda)
+        \).
+    \item\label{f-f-inv-a} \(f(f^{-1}(A)) \subseteq A\).
+    \item\label{f-inv-f-a} \(f^{-1}(f(A)) \supseteq A\).
+\end{conditions}
+\propositionlabel{f-set}
+\end{proposition}
+\end{thmbox}
 
 
+\begin{thmbox}
+\begin{theorem}
+\(\tuple{X, \symcal{O}_X}, \tuple{Y, \symcal{O}_Y}\)を位相空間，\(f\colon X \to Y\)を連続写像とする．
+\(A \subseteq X\)がコンパクトならば像\(f(A) \subseteq Y\)もまたコンパクトである．
+\end{theorem}
+\end{thmbox}
+
+\begin{proof}
+\(\symcal{V} \subseteq \symcal{O}_Y\)を\(f(A)\)の任意の開被覆とする．
+\propositionref{f-set}~\ref{f-inv-cup}, \ref{f-inv-increase}, \ref{f-inv-f-a}より
+\begin{align*}
+    \bigcup_{V \in \symcal{V}} f^{-1}(V)
+    = f^{-1} \left(\bigcup  \symcal{V}\right)
+    \supseteq f^{-1}(f(A))
+    \supseteq A
+\end{align*}
+となるので，\(\symcal{U} = \{f^{-1}(V) \mid V \in \symcal{V}\}\)は\(A\)の開被覆である．
+\(A\)がコンパクトなので\(\{f^{-1}(V_1), \ldots, f^{-1}(V_n)\} \subseteq \symcal{U}\)が存在して
+\begin{align*}
+    A \subseteq \bigcup_{i = 1}^n f^{-1}(V_i)
+\end{align*}
+が成り立つ．したがって\propositionref{f-set}~\ref{f-increase}, \ref{f-cup}, \ref{f-f-inv-a}より
+\begin{align*}
+    f(A)
+    \subseteq f \left(\bigcup_{i = 1}^n f^{-1}(V_i)\right)
+    \subseteq \bigcup_{i = 1}^n f (f^{-1}(V_i))
+    = \bigcup_{i = 1}^n V_i
+\end{align*}
+となり，\(f(A)\)もまたコンパクトである．
 \end{proof}
 
 \end{document}
