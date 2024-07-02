@@ -35,7 +35,7 @@
             \bigcup_{\lambda \in \Lambda} \in \symcal{O}.
         \end{align}
 \end{conditions}
-集合\(X\)とその位相\(\symcal{O}\)の組\((X, \symcal{O})\)を\keyword{位相空間}(topological space)という．\definitionlabel{topology}
+集合\(X\)とその位相\(\symcal{O}\)の組\(\tuple{X, \symcal{O}}\)を\keyword{位相空間}(topological space)という．\definitionlabel{topology}
 \end{definition}
 \end{thmbox}
 
@@ -308,15 +308,6 @@
 
 直積\(X = \prod_{\lambda \in \Lambda} X_\lambda\)について，その位相としては特に断らない限り上で定義した\(\symcal{O}\)をとる．組\(\tuple{X, O}\)を\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)の\keyword{直積位相空間}(product topological space)と呼ぶ．
 
-
-\begin{thmbox}
-\begin{theorem}[（Tikhonovの定理）]
-\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)を位相空間の族とする．
-各\(\lambda \in \Lambda\)で\(X_\lambda\)がコンパクトならば，
-\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)の直積位相空間もまたコンパクトである．
-\end{theorem}
-\end{thmbox}
-
 \section{連続写像}
 \begin{thmbox}
 \begin{definition}
@@ -327,6 +318,67 @@
 \definitionlabel{topology-continuity}
 \end{definition}
 \end{thmbox}
+
+\section{コンパクト性}
+\begin{thmbox}
+\begin{definition}
+    位相空間\(\tuple{X, \symcal{O}}\)を位相空間とする．\(X\)の部分集合族\(\symcal{U}\)が
+\begin{align}
+    X = \bigcup \symcal{U}
+    \eqlabel{cover}
+\end{align}
+をみたすとき，\(\symcal{U}\)は\(X\)を\keyword{覆う}(\(\symcal{U}\) covers \(X\))\index{覆う@おおう}，あるいは
+\(\symcal{U}\)は\(X\)の\keyword{被覆}(cover)\index{被覆@ひふく}であるという．
+\eqref{cover}が成り立ち，かつ\(\symcal{U}\)の元がすべて開集合であるとき，
+すなわち\(\symcal{U} \subseteq \symcal{O}\)であるとき，
+\(\symcal{U}\)は\(X\)の\keyword{開被覆}(open cover)\index{かいひふく@開被覆}であるという．
+開被覆の部分集合\(\symcal{U}'\)が有限個の要素からなり，かつ\(X\)を覆うとき，
+\(\symcal{U}'\)は\keyword{有限部分被覆}(finite subcover)\index{有限部分被覆@ゆうげんぶぶんひふく}であるという．
+
+位相空間\(\tuple{X, \symcal{O}}\)の任意の開被覆\(\symcal{U}\)について，有限部分被覆\(\symcal{U}' \subseteq \symcal{U}\)が存在するとき，\(\tuple{X, \symcal{O}}\)は\keyword{コンパクト}(compact)である，あるいは\keyword{コンパクト空間}(compact space)であるという．
+\end{definition}
+\end{thmbox}
+
+\begin{exa} \(X\)を有限個の要素をもつ集合とする．
+このとき離散空間\(\tuple{X, \wp(X)}\)はコンパクトである．
+なぜならば，任意の開被覆\(\symcal{U}\)をとると，
+その要素の個数は\(\lvert\symcal{U}\rvert \leq \lvert \wp(X)\rvert \leq 2^{\lvert X \rvert}\)となるので，
+\(\symcal{U}\)自身が有限部分被覆になっているからである．
+
+一方で，\(X\)が無限個の要素をもつ場合，離散空間\(\tuple{X, \wp(X)}\)はコンパクトにはならない．なぜならば，開被覆として\(\symcal{U} = \{\{x\} \mid x \in X\}\)をとると，その有限個の要素からなる部分集合で\(X\)を覆うことはできないからである．
+\end{exa}
+
+
+\begin{thmbox}
+\begin{theorem}
+\(\tuple{X, \symcal{O}_X}, \tuple{Y, \symcal{O}_Y}\)を位相空間，\(f\colon X \to Y\)を連続写像とする．
+\(A \subseteq X\)がコンパクトならば像\(f(A) \subseteq Y\)もまたコンパクトである．
+\end{theorem}
+\end{thmbox}
+
+\begin{proof}
+\(\symcal{V} \subseteq \symcal{O}_Y\)を\(f(A)\)の任意の開被覆とする．
+\propositionref{f-set}~\ref{f-inv-cup}, \ref{f-inv-increase}, \ref{f-inv-f-a}より
+\begin{align*}
+    \bigcup_{V \in \symcal{V}} f^{-1}(V)
+    = f^{-1} \left(\bigcup  \symcal{V}\right)
+    \supseteq f^{-1}(f(A))
+    \supseteq A
+\end{align*}
+となるので，\(\symcal{U} = \{f^{-1}(V) \mid V \in \symcal{V}\}\)は\(A\)の開被覆である．
+\(A\)がコンパクトなので\(\{f^{-1}(V_1), \ldots, f^{-1}(V_n)\} \subseteq \symcal{U}\)が存在して
+\begin{align*}
+    A \subseteq \bigcup_{i = 1}^n f^{-1}(V_i)
+\end{align*}
+が成り立つ．したがって\propositionref{f-set}~\ref{f-increase}, \ref{f-cup}, \ref{f-f-inv-a}より
+\begin{align*}
+    f(A)
+    \subseteq f \left(\bigcup_{i = 1}^n f^{-1}(V_i)\right)
+    \subseteq \bigcup_{i = 1}^n f (f^{-1}(V_i))
+    = \bigcup_{i = 1}^n V_i
+\end{align*}
+となり，\(f(A)\)もまたコンパクトである．
+\end{proof}
 
 \section{ネット}
 \begin{thmbox}
@@ -345,8 +397,8 @@
 
 上の定義の\ref{directed-set-reflex}と\ref{directed-set-trans}は順序の公理から反対称律を除いたものである．
 この\(2\)つを満たす関係を\keyword{前順序}(preorder)と呼ぶ\footnote{%
-前順序を「ぜんじゅんじょ」と読んでしまうと全順序と紛らわしいので「まえじゅんじょ」と読んだり，
-preorderと呼んだりするほうがいいだろう．}．
+擬順序(quasiorder)と呼ぶこともある．
+「前順序」という用語を「ぜんじゅんじょ」と読んでしまうと全順序と紛らわしいので，英語のままpreorderと言ったほうがよいかもしれない．}．
 
 \begin{exa} \(\symbb{N}\), \(\symbb{Z}\), \(\symbb{Q}\), \(\symbb{R}\)はそれぞれ有向集合である．
 \end{exa}
@@ -365,8 +417,8 @@ preorderと呼んだりするほうがいいだろう．}．
 \end{definition}
 \end{thmbox}
 
-ネットはしばしば列や族と同様に\(\Family{x}\)のように書かれる．
-以降，厳密に使い分けることはせず，\(f, g\)のような表記と\(\Family{x}\)のような表記を併せて用いる．
+ネットはしばしば列や族と同様に\(\Familyl{x}\)のように書かれる．
+以降，厳密に使い分けることはせず，\(f, g\)のような表記と\(\Familyl{x}\)のような表記を併せて用いる．
 
 \begin{exa}
 Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の定義に用いられる\keyword{分割}(partition)\index{ぶんかつ@分割 partition}は有向集合の例である．
@@ -477,8 +529,8 @@ Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の
 ネット\(f\colon \Lambda \to X\)について，ある\(\lambda_0 \in \Lambda\)が存在して，任意の\(\lambda \succeq \lambda_0\)について\(f(\lambda) \in Y\)が成り立つとき，\(f\)は\keyword{最終的に\(Y\)に入る}\((f\) is eventually in \(Y)\)という．
 一般的な表記ではないが以降はこのことを\(\iseventuallyin{f}{Y}\)と書く．
 点\(x \in X\)の任意の開近傍\(U\)について\(\iseventuallyin{f}{U}\)が成り立つとき，
-\keyword{\(\Family{x}\)は\(x\)に収束する}(\(\Family{x}\) converges to \(x\))といい，\(x_\lambda \to x\)と書く．
-この\(x\)を\(\Family{x}\)の\keyword{極限}(limit point)という．
+\keyword{\(\Familyl{x}\)は\(x\)に収束する}(\(\Familyl{x}\) converges to \(x\))といい，\(x_\lambda \to x\)と書く．
+この\(x\)を\(\Familyl{x}\)の\keyword{極限}(limit point)という．
 \end{definition}
 \end{thmbox}
 
@@ -531,8 +583,8 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{thmbox}
 
 \begin{proof} \(X\)をHausdorff空間とする．
-任意の収束するネット\(\Family{x}\)をとり，その極限を\(x\)とする．
-また\(\Family{x}\)が\(x\)とは異なる点\(y\)にも収束すると仮定する．
+任意の収束するネット\(\Familyl{x}\)をとり，その極限を\(x\)とする．
+また\(\Familyl{x}\)が\(x\)とは異なる点\(y\)にも収束すると仮定する．
 \(X\)がHausdorff空間なので\(x\)の開近傍\(U\)と\(y\)の開近傍\(V\)で\(U \cap V = \emptyset\)であるようなものをとることができる．\(x_\lambda \to x\)より，ある\(\lambda_0 \in \Lambda\)が存在して，
 任意の\(\lambda \succeq \lambda_0\)で\(x_\lambda \in U\)が成り立つ．
 また\(x_\lambda \to y\)より，ある\(\lambda_0' \in \Lambda\)が存在して，
@@ -706,7 +758,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 
 \begin{proof}
 集合\(\symfrak{A}\)\footnote{\emphchar{\(\symfrak{A}\)}はフラクトゥール(Fraktur)の\emphchar{A}．
-手書きの場合はジュッターリン筆記体(Sütterlinschrift)で\emphchar{{\itshape\suetterlin A}}のように書く．}を次の2つの性質をもつ\(\symcal{F}\)全体の集合とする．
+手書きの場合はジュッターリン筆記体(Sütterlinschrift)で{\itshape\suetterlin A}のように書く．}を次の2つの性質をもつ\(\symcal{F}\)全体の集合とする．
 \begin{inproofconditions}
     \item\label{every-net-has-a-universal-subnet} 任意の\(F \in \symcal{F}\)について\(f\)が最終的に\(F\)に入る．
     \item\label{every-net-has-a-universal-subnet-cap-closed} 任意の\(F, F' \in \symcal{F}\)について\(F \cap F' \in \symcal{F}\)．
@@ -714,7 +766,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(\{X\} \in \symfrak{A}\)より\(\symfrak{A} \neq \emptyset\)である．
 \(\symfrak{A}\)上の半順序\(\mathord{\preceq}\)を\(\symcal{F} \preceq \symcal{F}' \Leftrightarrow \symcal{F} \subseteq \symcal{F}'\)で定義する．
 \(\symfrak{C} \subseteq \symfrak{A}\)\footnote{\emphchar{\(\symfrak{C}\)}はフラクトゥールの\emphchar{C}．
-手書きの場合は\emphchar{{\itshape\suetterlin C}}のように書く．}が鎖（定義x）ならば，
+手書きの場合は{\itshape\suetterlin C}のように書く．}が鎖（定義x）ならば，
 \(\bigcup \symfrak{C}\)は\(\symfrak{A}\)における\(\symfrak{C}\)の上界である．
 Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する．
 \begin{align*}
@@ -751,9 +803,22 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \end{theorem}
 \end{thmbox}
 
-\begin{proof} \proofimplies{compact-net-compact}{compact-net-univ}普遍ネット\(f\)が\(X\)のどのような元にも収束しないと仮定する．
-すると任意の\(x \in X\)についてある\(U \in \OpenNeighborhood{x}\)が存在して，
-
+\begin{proof} \proofimplies{compact-net-compact}{compact-net-univ}\(f\)が\(X\)のどのような元にも収束しないと仮定する．
+すなわちどのような\(x\)についても，そのある開近傍\(U_x\)が存在して，\(f\)が頻繁に\(X \setminus U_x\)に入る．
+このことと普遍性から\(f\)は最終的に\(X \setminus U_x\)に入る．
+したがってある\(\lambda_x \in \Lambda\)が存在して，任意の\(\lambda \succeq \lambda_x\)で\(f(\lambda_x) \in X \setminus U_x\)となる．
+\(\{U_x \mid x \in X\}\)は\(X\)の開被覆であり，\(X\)がコンパクトなので，\(\{U_{x_1}, \ldots, U_{x_n}\}\)が存在して
+\begin{align*}
+    X = \bigcup_{i = 1}^n U_{x_i}
+\end{align*}
+となる．\(\Lambda\)が有向集合なので各\(i \in \{1, \ldots, n\}\)について\(\kappa \succeq \lambda_{x_i}\)となる\(\kappa\)をとることができる．
+このとき
+\begin{align*}
+    f(\kappa) \in \bigcap_{i = 1}^n (X \setminus U_{x_i})
+              = X \setminus \bigcup_{i = 1}^n U_{x_i}
+              = \emptyset
+\end{align*}
+となるが，これは空集合の定義と矛盾する．
 
 \proofimplies{compact-net-univ}{compact-net-subnet}こんにちは
 
@@ -785,36 +850,13 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \end{proposition}
 \end{thmbox}
 
-
 \begin{thmbox}
-\begin{theorem}
-\(\tuple{X, \symcal{O}_X}, \tuple{Y, \symcal{O}_Y}\)を位相空間，\(f\colon X \to Y\)を連続写像とする．
-\(A \subseteq X\)がコンパクトならば像\(f(A) \subseteq Y\)もまたコンパクトである．
+\begin{theorem}[（Tikhonovの定理）]
+\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)を位相空間の族とする．
+各\(\lambda \in \Lambda\)で\(X_\lambda\)がコンパクトならば，
+\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)の直積位相空間もまたコンパクトである．
 \end{theorem}
 \end{thmbox}
 
-\begin{proof}
-\(\symcal{V} \subseteq \symcal{O}_Y\)を\(f(A)\)の任意の開被覆とする．
-\propositionref{f-set}~\ref{f-inv-cup}, \ref{f-inv-increase}, \ref{f-inv-f-a}より
-\begin{align*}
-    \bigcup_{V \in \symcal{V}} f^{-1}(V)
-    = f^{-1} \left(\bigcup  \symcal{V}\right)
-    \supseteq f^{-1}(f(A))
-    \supseteq A
-\end{align*}
-となるので，\(\symcal{U} = \{f^{-1}(V) \mid V \in \symcal{V}\}\)は\(A\)の開被覆である．
-\(A\)がコンパクトなので\(\{f^{-1}(V_1), \ldots, f^{-1}(V_n)\} \subseteq \symcal{U}\)が存在して
-\begin{align*}
-    A \subseteq \bigcup_{i = 1}^n f^{-1}(V_i)
-\end{align*}
-が成り立つ．したがって\propositionref{f-set}~\ref{f-increase}, \ref{f-cup}, \ref{f-f-inv-a}より
-\begin{align*}
-    f(A)
-    \subseteq f \left(\bigcup_{i = 1}^n f^{-1}(V_i)\right)
-    \subseteq \bigcup_{i = 1}^n f (f^{-1}(V_i))
-    = \bigcup_{i = 1}^n V_i
-\end{align*}
-となり，\(f(A)\)もまたコンパクトである．
-\end{proof}
 
 \end{document}
