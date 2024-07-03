@@ -383,13 +383,13 @@
 \section{ネット}
 \begin{thmbox}
 \begin{definition}
-空でない集合\(A\)上と，以下の\ref{directed-set-reflex}--\ref{directed-set-upper}を満たす
-関係\(\preceq\)の組\(\tuple{A, \preceq}\)を\keyword{有向集合}(directed set)という．
-関係\(\preceq\)が明らかな場合は\(\tuple{A, \preceq}\)を単に\(A\)と書く．
+空でない集合\(\Lambda\)上と，以下の\ref{directed-set-reflex}--\ref{directed-set-upper}を満たす
+関係\(\preceq\)の組\(\tuple{\Lambda, \preceq}\)を\keyword{有向集合}(directed set)という．
+関係\(\preceq\)が明らかな場合は\(\tuple{\Lambda, \preceq}\)を単に\(\Lambda\)と書く．
 \begin{conditions}
-    \item\label{directed-set-reflex} （反射律）任意の\(\alpha \in A\)について\(\alpha \preceq \alpha\)．
-    \item\label{directed-set-trans} （推移律）任意の\(\alpha, \beta, \gamma \in A\)について\(\alpha \preceq \beta\)かつ\(\beta \preceq \gamma\)ならば\(\alpha \preceq \gamma\)．
-    \item\label{directed-set-upper} 任意の\(\alpha, \beta \in A\)に対して\(\alpha \preceq \gamma\)かつ\(\beta \preceq \gamma\)をみたす\(\gamma \in A\)が存在する．
+    \item\label{directed-set-reflex} （反射律）任意の\(\lambda \in \Lambda\)について\(\lambda \preceq \lambda\)．
+    \item\label{directed-set-trans} （推移律）任意の\(\alpha, \beta, \gamma \in \Lambda\)について\(\alpha \preceq \beta\)かつ\(\beta \preceq \gamma\)ならば\(\alpha \preceq \gamma\)．
+    \item\label{directed-set-upper} 任意の\(\alpha, \beta \in \Lambda\)に対して\(\alpha \preceq \gamma\)かつ\(\beta \preceq \gamma\)をみたす\(\gamma \in \Lambda\)が存在する．
 \end{conditions}
 \definitionlabel{directed-set}
 \end{definition}
@@ -758,7 +758,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 
 \begin{proof}
 集合\(\symfrak{A}\)\footnote{\emphchar{\(\symfrak{A}\)}はフラクトゥール(Fraktur)の\emphchar{A}．
-手書きの場合はジュッターリン筆記体(Sütterlinschrift)で{\itshape\suetterlin A}のように書く．}を次の2つの性質をもつ\(\symcal{F}\)全体の集合とする．
+手書きの場合はジュッターリン筆記体(Sütterlinschrift)で\emphchar{\itshape\suetterlin A}のように書く．}を次の2つの性質をもつ\(\symcal{F}\)全体の集合とする．
 \begin{inproofconditions}
     \item\label{every-net-has-a-universal-subnet} 任意の\(F \in \symcal{F}\)について\(f\)が最終的に\(F\)に入る．
     \item\label{every-net-has-a-universal-subnet-cap-closed} 任意の\(F, F' \in \symcal{F}\)について\(F \cap F' \in \symcal{F}\)．
@@ -766,7 +766,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(\{X\} \in \symfrak{A}\)より\(\symfrak{A} \neq \emptyset\)である．
 \(\symfrak{A}\)上の半順序\(\mathord{\preceq}\)を\(\symcal{F} \preceq \symcal{F}' \Leftrightarrow \symcal{F} \subseteq \symcal{F}'\)で定義する．
 \(\symfrak{C} \subseteq \symfrak{A}\)\footnote{\emphchar{\(\symfrak{C}\)}はフラクトゥールの\emphchar{C}．
-手書きの場合は{\itshape\suetterlin C}のように書く．}が鎖（定義x）ならば，
+手書きの場合は\emphchar{\itshape\suetterlin C}のように書く．}が鎖（定義x）ならば，
 \(\bigcup \symfrak{C}\)は\(\symfrak{A}\)における\(\symfrak{C}\)の上界である．
 Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する．
 \begin{align*}
@@ -823,7 +823,10 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \proofimplies{compact-net-univ}{compact-net-subnet}こんにちは
 
 
-\proofimplies{compact-net-subnet}{compact-net-compact}有限交叉性をもつような\(X\)の閉部分集合族をとり，それを\(\symcal{F}\)と表すことにする．
+\proofimplies{compact-net-subnet}{compact-net-compact}\(\symcal{F}\)を有限交叉性をもつような\(X\)の閉部分集合族とする．
+\(\symcal{F}\)の部分集合族の
+
+
 \(\symcal{E}\)を
 \(E \succeq E' \Leftrightarrow E \subseteq E'\)と定める．
 \end{proof}
@@ -858,5 +861,21 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \end{theorem}
 \end{thmbox}
 
+\begin{proof}
+\(\Familyl{X}\)をコンパクト空間の族とし，\(f\colon \Lambda \to \prod_{\lambda \in \Lambda} X_\lambda\)を普遍的なネットとする．
+射影\(\pi_\xi \colon \prod_{\lambda \in \Lambda} X_\lambda \to X_\xi\)とする．
+任意の\(S \subseteq X_\xi\)
+\begin{align*}
+    & \prod_{\lambda \in \Lambda} X_\lambda \setminus (\pi_\xi^{-1}(S)) \\
+    & = \left\{
+        g \colon \Lambda \to \bigcup_{\lambda \in \Lambda} X_\lambda
+        \relmiddle{|}
+        g(\lambda) \in S \text{ for all } \lambda \in \Lambda \text{ and }
+        g(\xi) \not\in S
+    \right\} \\
+    &= \pi_{\xi}^{-1}(X_\xi \setminus S)
+\end{align*}
+
+\end{proof}
 
 \end{document}
