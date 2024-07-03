@@ -855,15 +855,15 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 
 \begin{thmbox}
 \begin{theorem}[（Tikhonovの定理）]
-\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)を位相空間の族とする．
+\(\Familyl{X}\)を位相空間の族とする．
 各\(\lambda \in \Lambda\)で\(X_\lambda\)がコンパクトならば，
-\({\tuple{\tuple{X_\lambda, \symcal{O}_\lambda}}}_{\lambda \in \Lambda}\)の直積位相空間もまたコンパクトである．
+直積位相空間\(X = \prod_{\lambda \in \Lambda} X_\lambda\)もまたコンパクトである．
 \end{theorem}
 \end{thmbox}
 
 \begin{proof}
-\(\Familyl{X}\)をコンパクト空間の族とし，\(f\colon \Lambda \to \prod_{\lambda \in \Lambda} X_\lambda\)を普遍的なネットとする．
-射影\(\pi_\xi \colon \prod_{\lambda \in \Lambda} X_\lambda \to X_\xi\)とする．
+\(f\colon \Lambda \to X\)を普遍的なネットとし，
+\(\pi_\xi \colon X \to X_\xi\)を\(\xi\)成分に関する射影とする．
 任意の\(S \subseteq X_\xi\)
 \begin{align*}
     & \prod_{\lambda \in \Lambda} X_\lambda \setminus (\pi_\xi^{-1}(S)) \\
