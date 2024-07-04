@@ -882,4 +882,22 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 任意の\(\xi \in \Lambda\)について\(X_\xi\)がコンパクトであることから，\theoremref{compact-net-equiv-props}~\proofimplies{compact-net-compact}{compact-net-univ}より，\(\pi_\xi \circ f\)はある\(x_\xi \in X_\xi\)に収束する．
 \end{proof}
 
+\begin{thmbox}
+\begin{proposition}
+\(\Familyl{X}\)を位相空間の族とし，
+\(\projection{\xi}\)を\(X := \prod_{\lambda \in \Lambda} X_\lambda\)から\(X_\xi\)への射影とする．
+ネット\(f \colon \Lambda \to X\)について以下の2つは同値である．
+\begin{conditions}
+    \item\label{net-whole-convergence} \(f\)が\(x := \Family{x}{\lambda}{\Lambda}\)に収束する．
+    \item\label{net-elementwise-convergence} 任意の\(\xi \in \Lambda\)について\(\projection{\xi} \circ f\)が\(x_\xi \in X_\xi\)に収束する．
+\end{conditions}
+\end{proposition}
+\end{thmbox}
+
+\begin{proof}\proofimplies{net-whole-convergence}{net-elementwise-convergence}：\(\projection{\xi} \circ f\)連続性により\(\projection{\xi} (x) = x_\xi\)
+
+\proofimplies{net-elementwise-convergence}{net-whole-convergence}：b
+
+\end{proof}
+
 \end{document}
