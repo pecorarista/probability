@@ -900,4 +900,30 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 
 \end{proof}
 
+\begin{thmbox}
+\begin{theorem}
+\(X, Y\)を位相空間とし，\(f\)を\(X\)から\(Y\)への写像とする．以下の2つは同値である．
+\begin{conditions}
+    \item\label{net-continuous} \(f\)が連続である．
+    \item\label{net-f-lim-x-lim-f-x} 任意の点\(x \in X\)と，
+        それに収束する任意のネット\(\varphi \colon \Lambda \to X\)について，
+        \(f \circ \varphi\)が\(f(x)\)に収束する．
+\end{conditions}
+\end{theorem}
+\end{thmbox}
+
+\begin{proof}
+\proofimplies{net-continuous}{net-f-lim-x-lim-f-x}
+ある\(x_0 \in X\)において\(f\)が連続でないと仮定する．
+このとき\(f(x_0)\)のある開近傍\(V\)が存在して，\(x_0\)のどのような開近傍\(U\)についても\(f(U) \not \subseteq V\)となる．
+すなわちある\(x_U \in U\)で\(f(x_U) \not\in V\)が成り立つ．
+点\(x\)の開近傍全体の集合\(\OpenNeighborhood{x}\)に前順序\(W \preceq W' \Leftrightarrow W \supseteq W'\)を定める．
+このとき\(\varphi \colon U \mapsto x_U\)はネットになる．
+
+\proofimplies{net-f-lim-x-lim-f-x}{net-continuous}
+
+\end{proof}
+
+\(f(\lim_{n \to \infty} x_n) = \lim_{n \to \infty} f(x_n)\)
+
 \end{document}
