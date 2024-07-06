@@ -919,8 +919,9 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 このとき\(f(x_0)\)のある開近傍\(V\)が存在して，\(x_0\)のどのような開近傍\(U\)についても\(f(U) \not \subseteq V\)となる．
 すなわちある\(x_U \in U\)で\(f(x_U) \not\in V\)が成り立つ．
 点\(x\)の開近傍全体の集合\(\OpenNeighborhood{x}\)に前順序\(W \preceq W' \Leftrightarrow W \supseteq W'\)を定めると，\exampleref{neighborhood-directed-set}で見たように\(\OpenNeighborhood{x}\)は有向集合となる．
-ネット\(g\)を\(g \colon U \mapsto x_U\)で定義すると，\(g\)は\(x_0\)に収束する．
-したがって\(f \circ g\)が\(f(x)\)に収束しない．
+ネット\(g\)を\(g \colon U \mapsto x_U\)で定義する．
+このとき\(x_U \to x_0\)であるが，仮定により\(f(x_U) \not\to f(x_0)\)である．
+これは\(f \circ g\)が\(f(x_0)\)に収束することと矛盾する．
 \end{proof}
 
 \end{document}
