@@ -10,16 +10,16 @@
 \nocite{uchida}
 \nocite{introduction-to-topology}
 
-\section{距離空間}
-\begin{thmbox}
-\begin{definition}
-\(\tuple{X, d_{X}}\)と\(\tuple{Y, d_{Y}}\)を距離空間とする．
-写像\(f\colon X \to Y\)が\keyword{点}\(x \in X\)\keyword{において連続}(continuous at \(x\))であるとは，
-任意の\(\varepsilon > 0\)に対して，ある\(\delta > 0\)が存在して，
-任意の\(x' \in X\)に対して，\(d_{X}(x', x) < \delta\)ならば\(d_{Y}(f(x'), f(x)) < \varepsilon\)となることをいう．
-\definitionlabel{dist-continuity}
-\end{definition}
-\end{thmbox}
+% \section{距離空間}
+% \begin{thmbox}
+% \begin{definition}
+% \(\tuple{X, d_{X}}\)と\(\tuple{Y, d_{Y}}\)を距離空間とする．
+% 写像\(f\colon X \to Y\)が\keyword{点}\(x \in X\)\keyword{において連続}(continuous at \(x\))であるとは，
+% 任意の\(\varepsilon > 0\)に対して，ある\(\delta > 0\)が存在して，
+% 任意の\(x' \in X\)に対して，\(d_{X}(x', x) < \delta\)ならば\(d_{Y}(f(x'), f(x)) < \varepsilon\)となることをいう．
+% \definitionlabel{dist-continuity}
+% \end{definition}
+% \end{thmbox}
 
 \section{位相空間}
 \begin{thmbox}
@@ -315,7 +315,30 @@
 写像\(f\colon X \to Y\)が点\(x \in X\)において連続であるとは，
 \(f(x)\)の\(\tuple{Y, \symcal{O}_{Y}}\)における任意の近傍\(V\)に対して，
 \(\tuple{X, \symcal{O}_{X}}\)における\(x\)のある近傍\(U\)が存在して，\(f(U) \subseteq V\)となることをいう．
-\definitionlabel{topology-continuity}
+\definitionlabel{topology-continuity-at-x}
+\end{definition}
+\end{thmbox}
+
+\begin{thmbox}
+\begin{corollary}
+写像\(f\colon X \to Y\)が点\(x \in X\)において連続であるとは，
+\(x\)の任意の近傍\(V\)について\(f^{-1}(V)\)が\(x\)の近傍となることである．
+\corollarylabel{topology-continuity-neighborhood}
+\end{corollary}
+\end{thmbox}
+
+\begin{proof}
+\refimpliesref{\definitionref{topology-continuity-at-x}}{\corollaryref{topology-continuity-neighborhood}}：\(f(x)\)の任意の近傍\(V\)について，\propositionref{f-set}の\ref{f-f-inv-a}より\(f(f^{-1}(V)) \subseteq V\)あ
+\end{proof}
+
+\begin{thmbox}
+\begin{definition}
+\(\tuple{X, \symcal{O}_X}\), \(\tuple{Y, \symcal{O}_Y}\)を位相空間とし，\(f\)を\(X\)から\(Y\)への写像とする．
+\begin{conditions}
+    \item 任意の\(O_Y \in \symcal{O}_Y\)について，\(f^{-1}(O_Y) \in \symcal{O}_X\)が成り立つ．
+    \item \(x\)を\(X\)の任意の点とする．
+        このとき\(\tuple{Y, \symcal{O}_Y}\)における\(f(x)\)の任意の近傍\(V\)
+\end{conditions}
 \end{definition}
 \end{thmbox}
 
@@ -660,7 +683,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{theorem}
 \end{thmbox}
 
-\begin{proof} \proofimplies{compact-equiv-cluster}{compact-equiv-subnet}：\(\symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \OpenNeighborhood{x}\), and \(f(\lambda) \in U\)}\}\)と定義する．
+\begin{proof} \refimpliesref{\ref{compact-equiv-cluster}}{\ref{compact-equiv-subnet}}：\(\symcal{D} = \{\tuple{\lambda, U} \mid \text{\(\lambda \in \Lambda\), \(U \in \OpenNeighborhood{x}\), and \(f(\lambda) \in U\)}\}\)と定義する．
 \(\symcal{D}\)の前順序\(\mathord{\preceq}\)を\(\tuple{\lambda, U} \preceq \tuple{\lambda', U'} \Leftrightarrow \text{\(\lambda \preceq \lambda'\) and \(U \supseteq U'\)}\)と定める．
 このとき\(\symcal{D}\)は有向集合になることを示す．
 反射律と推移律は明らかである．
@@ -680,7 +703,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \(x\)が\(f\)の集積点なので，任意の\(U \in \OpenNeighborhood{x}\)に対して，ある\(\lambda_0 \in \Lambda\)で\(f(\lambda_0) \in U\)となるものが存在する．
 したがって\(\tuple{\xi, V} \succeq \tuple{\lambda_0, U}\)をみたす任意の\(\tuple{\xi, V} \in \symcal{D}\)について\(g(\xi, V) = \varphi(\xi) \in V \subseteq U\)となる．
 
-\proofimplies{compact-equiv-subnet}{compact-equiv-cluster}：任意の\(\kappa \in \Lambda\)と\(U \in \OpenNeighborhood{x}\)をとる．
+\refimpliesref{\ref{compact-equiv-subnet}}{\ref{compact-equiv-cluster}}：任意の\(\kappa \in \Lambda\)と\(U \in \OpenNeighborhood{x}\)をとる．
 \(f\)のあるサブネット\(g \colon \Xi \to X\)が\(x\)に収束するので，
 ある\(\xi_1 \in \Xi\)が存在して，任意の\(\xi \succeq \xi_1\)で\(g(\xi) \in U\)となる．
 
@@ -707,7 +730,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{proposition}
 \end{thmbox}
 
-\begin{proof} \proofimplies{fip-compact}{fip-fip}：\(\symcal{F}\)の部分集合\(\symcal{A}\)で
+\begin{proof} \refimpliesref{\ref{fip-compact}}{\ref{fip-fip}}：\(\symcal{F}\)の部分集合\(\symcal{A}\)で
 \begin{align*}
     \bigcap \symcal{A} = \emptyset
 \end{align*}
@@ -734,7 +757,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
     = \emptyset.
 \end{align*}
 
-\proofimplies{fip-fip}{fip-compact}：\(\bigcap \symcal{A} = \emptyset\)をみたす任意の\(\symcal{A} \subseteq \symcal{F}\)をとる．
+\refimpliesref{\ref{fip-fip}}{\ref{fip-compact}}：\(\bigcap \symcal{A} = \emptyset\)をみたす任意の\(\symcal{A} \subseteq \symcal{F}\)をとる．
 \(\symcal{V} = \{X \setminus A \mid A \in \symcal{A}\}\)とすると，\eqref{fip-de-morgan}と同様，\(X \setminus \bigcup \symcal{V} = \bigcap \symcal{A} = \emptyset\)，すなわち\(X = \bigcup \symcal{V}\)が成り立つ．有限交叉性から\(\{A_1, \ldots, A_n\} \subseteq \symcal{A}\)で
 \begin{align*}
     \bigcap_{i = 1}^n A_i = \emptyset
@@ -804,7 +827,7 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \end{theorem}
 \end{thmbox}
 
-\begin{proof} \proofimplies{compact-net-compact}{compact-net-univ}：\(f\)が\(X\)のどのような元にも収束しないと仮定する．
+\begin{proof} \refimpliesref{\ref{compact-net-compact}}{\ref{compact-net-univ}}：\(f\)が\(X\)のどのような元にも収束しないと仮定する．
 すなわちどのような\(x\)についても，そのある開近傍\(U_x\)が存在して，\(f\)が頻繁に\(X \setminus U_x\)に入る．
 このことと普遍性から\(f\)は最終的に\(X \setminus U_x\)に入る．
 したがってある\(\lambda_x \in \Lambda\)が存在して，任意の\(\lambda \succeq \lambda_x\)で\(f(\lambda_x) \in X \setminus U_x\)となる．
@@ -821,10 +844,10 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \end{align*}
 となるが，これは空集合の定義と矛盾する．
 
-\proofimplies{compact-net-univ}{compact-net-subnet}：こんにちは
+\refimpliesref{\ref{compact-net-univ}}{\ref{compact-net-subnet}}：こんにちは
 
 
-\proofimplies{compact-net-subnet}{compact-net-compact}：\(\symcal{F}\)を有限交叉性をもつような\(X\)の閉部分集合族とする．
+\refimpliesref{\ref{compact-net-subnet}}{\ref{compact-net-compact}}：\(\symcal{F}\)を有限交叉性をもつような\(X\)の閉部分集合族とする．
 \(\symcal{F}\)の部分集合族の
 
 
@@ -879,7 +902,7 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \end{align*}
 と表すことができる．
 したがって\(f\)は最終的に\(\pi_\xi \circ f \colon \Lambda \to X_\xi\)は\(S\)または\(X_\xi \setminus S\)のいずれかに入る．
-任意の\(\xi \in \Lambda\)について\(X_\xi\)がコンパクトであることから，\theoremref{compact-net-equiv-props}~\proofimplies{compact-net-compact}{compact-net-univ}より，\(\pi_\xi \circ f\)はある\(x_\xi \in X_\xi\)に収束する．
+任意の\(\xi \in \Lambda\)について\(X_\xi\)がコンパクトであることから，\theoremref{compact-net-equiv-props}~\refimpliesref{\ref{compact-net-compact}}{\ref{compact-net-univ}}より，\(\pi_\xi \circ f\)はある\(x_\xi \in X_\xi\)に収束する．
 \end{proof}
 
 \begin{thmbox}
@@ -894,9 +917,9 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \end{proposition}
 \end{thmbox}
 
-\begin{proof}\proofimplies{net-whole-convergence}{net-elementwise-convergence}：\(\projection{\xi} \circ f\)連続性により\(\projection{\xi} (x) = x_\xi\)
+\begin{proof}\refimpliesref{\ref{net-whole-convergence}}{\ref{net-elementwise-convergence}}：\(\projection{\xi} \circ f\)連続性により\(\projection{\xi} (x) = x_\xi\)
 
-\proofimplies{net-elementwise-convergence}{net-whole-convergence}：b
+\refimpliesref{\ref{net-elementwise-convergence}}{\ref{net-whole-convergence}}：b
 
 \end{proof}
 
@@ -911,11 +934,11 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \end{thmbox}
 
 \begin{proof}
-\proofimplies{net-continuous}{net-f-lim-x-lim-f-x}：\(f\)が\(x_0 \in X\)で連続かつ\(g \to x_0\)ならば，\((f \circ g) \to f (x_0)\)を示す．
-\(f(x_0)\)の任意の近傍\(V\)をとると，連続性により\(f^{-1}(V)\)は\(x_0\)の開近傍である．
+\refimpliesref{\ref{net-continuous}}{\ref{net-f-lim-x-lim-f-x}}：\(f\)が\(x_0 \in X\)で連続かつ\(g \to x_0\)ならば，\((f \circ g) \to f (x_0)\)を示す．
+\(f(x_0)\)の任意の開近傍\(V\)をとると，連続性により\(f^{-1}(V)\)は\(x_0\)の開近傍である．
 \(g \to x_0\)より，ある\(\lambda_0\)が存在して\(\lambda \succeq \lambda_0\)ならば\(g(\lambda) \in f^{-1}(V)\)，すなわち\(f(g(\lambda)) \in f(f^{-1}(V)) \subseteq V\)が成り立つ．
 
-\proofimplies{net-f-lim-x-lim-f-x}{net-continuous}：\(x_0 \in X\)において\(f\)が連続でないと仮定する．
+\refimpliesref{\ref{net-f-lim-x-lim-f-x}}{\ref{net-continuous}}：\(x_0 \in X\)において\(f\)が連続でないと仮定する．
 このとき\(f(x_0)\)のある開近傍\(V\)が存在して，\(x_0\)のどのような開近傍\(U\)についても\(f(U) \not \subseteq V\)となる．
 すなわちある\(x_U \in U\)で\(f(x_U) \not\in V\)が成り立つ．
 点\(x\)の開近傍全体の集合\(\OpenNeighborhood{x}\)に前順序\(W \preceq W' \Leftrightarrow W \supseteq W'\)を定めると，\exampleref{neighborhood-directed-set}で見たように\(\OpenNeighborhood{x}\)は有向集合となる．
@@ -923,5 +946,7 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 このとき\(x_U \to x_0\)であるが，仮定により\(f(x_U) \not\to f(x_0)\)である．
 これは\(f \circ g\)が\(f(x_0)\)に収束することと矛盾する．
 \end{proof}
+
+
 
 \end{document}
