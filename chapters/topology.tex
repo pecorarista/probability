@@ -417,8 +417,8 @@
 \end{definition}
 \end{thmbox}
 
-ネットはしばしば列や族と同様に\(\Familyl{x}\)のように書かれる．
-以降，厳密に使い分けることはせず，\(f, g\)のような表記と\(\Familyl{x}\)のような表記を併せて用いる．
+ネットはしばしば列や族と同様に\(\FamilyLambda{x}\)のように書かれる．
+以降，厳密に使い分けることはせず，\(f, g\)のような表記と\(\FamilyLambda{x}\)のような表記を併せて用いる．
 
 \begin{exa}
 Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の定義に用いられる\keyword{分割}(partition)\index{ぶんかつ@分割 partition}は有向集合の例である．
@@ -529,8 +529,8 @@ Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の
 ネット\(f\colon \Lambda \to X\)について，ある\(\lambda_0 \in \Lambda\)が存在して，任意の\(\lambda \succeq \lambda_0\)について\(f(\lambda) \in Y\)が成り立つとき，\(f\)は\keyword{最終的に\(Y\)に入る}\((f\) is eventually in \(Y)\)という．
 一般的な表記ではないが以降はこのことを\(\iseventuallyin{f}{Y}\)と書く．
 点\(x \in X\)の任意の開近傍\(U\)について\(\iseventuallyin{f}{U}\)が成り立つとき，
-\keyword{\(\Familyl{x}\)は\(x\)に収束する}(\(\Familyl{x}\) converges to \(x\))といい，\(x_\lambda \to x\)と書く．
-この\(x\)を\(\Familyl{x}\)の\keyword{極限}(limit point)という．
+\keyword{\(\FamilyLambda{x}\)は\(x\)に収束する}(\(\FamilyLambda{x}\) converges to \(x\))といい，\(x_\lambda \to x\)と書く．
+この\(x\)を\(\FamilyLambda{x}\)の\keyword{極限}(limit point)という．
 \end{definition}
 \end{thmbox}
 
@@ -583,8 +583,8 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{thmbox}
 
 \begin{proof} \(X\)をHausdorff空間とする．
-任意の収束するネット\(\Familyl{x}\)をとり，その極限を\(x\)とする．
-また\(\Familyl{x}\)が\(x\)とは異なる点\(y\)にも収束すると仮定する．
+任意の収束するネット\(\FamilyLambda{x}\)をとり，その極限を\(x\)とする．
+また\(\FamilyLambda{x}\)が\(x\)とは異なる点\(y\)にも収束すると仮定する．
 \(X\)がHausdorff空間なので\(x\)の開近傍\(U\)と\(y\)の開近傍\(V\)で\(U \cap V = \emptyset\)であるようなものをとることができる．\(x_\lambda \to x\)より，ある\(\lambda_0 \in \Lambda\)が存在して，
 任意の\(\lambda \succeq \lambda_0\)で\(x_\lambda \in U\)が成り立つ．
 また\(x_\lambda \to y\)より，ある\(\lambda_0' \in \Lambda\)が存在して，
@@ -856,7 +856,7 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 
 \begin{thmbox}
 \begin{theorem}[（Tikhonovの定理）]
-\(\Familyl{X}\)を位相空間の族とする．
+\(\FamilyLambda{X}\)を位相空間の族とする．
 各\(\lambda \in \Lambda\)で\(X_\lambda\)がコンパクトならば，
 直積位相空間\(X = \prod_{\lambda \in \Lambda} X_\lambda\)もまたコンパクトである．
 \end{theorem}
@@ -884,7 +884,7 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 
 \begin{thmbox}
 \begin{proposition}
-\(\Familyl{X}\)を位相空間の族とし，
+\(\FamilyLambda{X}\)を位相空間の族とし，
 \(\projection{\xi}\)を\(X := \prod_{\lambda \in \Lambda} X_\lambda\)から\(X_\xi\)への射影とする．
 ネット\(f \colon \Lambda \to X\)について以下の2つは同値である．
 \begin{conditions}
@@ -904,26 +904,23 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 \begin{theorem}
 \(X, Y\)を位相空間とし，\(f\)を\(X\)から\(Y\)への写像とする．以下の2つは同値である．
 \begin{conditions}
-    \item\label{net-continuous} \(f\)が連続である．
-    \item\label{net-f-lim-x-lim-f-x} 任意の点\(x \in X\)と，
-        それに収束する任意のネット\(\varphi \colon \Lambda \to X\)について，
-        \(f \circ \varphi\)が\(f(x)\)に収束する．
+    \item\label{net-continuous} \(f\)が\(x_0 \in X\)において連続である．
+    \item\label{net-f-lim-x-lim-f-x} \(X\)のネット\(g\)が\(x_0\)に収束するならば\(Y\)のネット\(f \circ g\)が\(f (x_0)\)に収束する．
 \end{conditions}
 \end{theorem}
 \end{thmbox}
 
 \begin{proof}
-\proofimplies{net-continuous}{net-f-lim-x-lim-f-x}
-ある\(x_0 \in X\)において\(f\)が連続でないと仮定する．
+\proofimplies{net-continuous}{net-f-lim-x-lim-f-x}：\(f\)が\(x_0 \in X\)で連続かつ\(g \to x_0\)ならば，\((f \circ g) \to f (x_0)\)を示す．
+\(f(x_0)\)の任意の近傍\(V\)をとると，連続性により\(f^{-1}(V)\)は\(x_0\)の開近傍である．
+\(g \to x_0\)より，ある\(\lambda_0\)が存在して\(\lambda \succeq \lambda_0\)ならば\(g(\lambda) \in f^{-1}(V)\)，すなわち\(f(g(\lambda)) \in f(f^{-1}(V)) \subseteq V\)が成り立つ．
+
+\proofimplies{net-f-lim-x-lim-f-x}{net-continuous}：\(x_0 \in X\)において\(f\)が連続でないと仮定する．
 このとき\(f(x_0)\)のある開近傍\(V\)が存在して，\(x_0\)のどのような開近傍\(U\)についても\(f(U) \not \subseteq V\)となる．
 すなわちある\(x_U \in U\)で\(f(x_U) \not\in V\)が成り立つ．
-点\(x\)の開近傍全体の集合\(\OpenNeighborhood{x}\)に前順序\(W \preceq W' \Leftrightarrow W \supseteq W'\)を定める．
-このとき\(\varphi \colon U \mapsto x_U\)はネットになる．
-
-\proofimplies{net-f-lim-x-lim-f-x}{net-continuous}
-
+点\(x\)の開近傍全体の集合\(\OpenNeighborhood{x}\)に前順序\(W \preceq W' \Leftrightarrow W \supseteq W'\)を定めると，\exampleref{neighborhood-directed-set}で見たように\(\OpenNeighborhood{x}\)は有向集合となる．
+ネット\(g\)を\(g \colon U \mapsto x_U\)で定義すると，\(g\)は\(x_0\)に収束する．
+したがって\(f \circ g\)が\(f(x)\)に収束しない．
 \end{proof}
-
-\(f(\lim_{n \to \infty} x_n) = \lim_{n \to \infty} f(x_n)\)
 
 \end{document}

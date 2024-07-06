@@ -241,19 +241,23 @@
 \newcommand\NaturalNumber{\symbb{N}}
 \newcommand\Integer{\symbb{Z}}
 \newcommand\PositiveInteger{\symbb{N}_{\mathord{+}}}
-\newcommand\Sequence[2]{{\langle {#1}_{#2} \rangle}_{#2 \in \PositiveInteger}}
-\newcommand\Subsequence[1]{{\langle {#1}_{\varphi(n)} \rangle}_{n \in \PositiveInteger}}
-\newcommand\Sequencen[1]{{\langle {#1}_n \rangle}_{n \in \PositiveInteger}}
-\newcommand\SimpleSequencen[1]{{\langle {#1}_n \rangle}_{n}}
-\newcommand\Familyl[1]{{({#1}_\lambda)}_{\lambda \in \Lambda}}
-\newcommand\Family[3]{{({#1}_{#2})}_{#2 \in #3}}
+\newcommand\SequenceLikeOpen{\langle}
+\newcommand\SequenceLikeClose{\rangle}
+\newcommand\Sequence[2]{{\SequenceLikeOpen {#1}_{#2} \SequenceLikeClose}_{#2 \in \PositiveInteger}}
+\newcommand\Subsequence[1]{{\SequenceLikeOpen {#1}_{\varphi(n)} \SequenceLikeClose}_{n \in \PositiveInteger}}
+\newcommand\Sequencen[1]{{\SequenceLikeOpen {#1}_n \SequenceLikeClose}_{n \in \PositiveInteger}}
+\newcommand\SimpleSequencen[1]{{\SequenceLikeOpen {#1}_n \SequenceLikeClose}_{n}}
+\newcommand\Family[3]{{\SequenceLikeOpen {#1}_{#2} \SequenceLikeClose}_{#2 \in #3}}
+\newcommand\FamilyLambda[1]{{\SequenceLikeOpen {#1}_\lambda \SequenceLikeClose}_{\lambda \in \Lambda}}
+\newcommand\FamilySimple[1]{{\SequenceLikeOpen {#1} \SequenceLikeClose}_\lambda}
+\newcommand\FamilySimpleLambda[1]{{\SequenceLikeOpen {#1} \SequenceLikeClose}_\lambda}
 \newcommand\NonNegReal{\symbb{R}_{\mathord{+}}}
 \newcommand\PositiveReal{\symbb{R}_{\mathord{+}\mathord{+}}}
 \newcommand\Generatedtopology[1]{\tau\left[#1\right]}
-\newcommand\Neighborhood[1]{\symcal{N}(#1)}
-\newcommand\OpenNeighborhood[1]{\symcal{U}(#1)}
+\newcommand\Neighborhood[1]{\symcal{N}_{#1}}
+\newcommand\OpenNeighborhood[1]{\symcal{U}_{#1}}
 
-\newcommand\placeholder{\mathord{\cdot}}
+\newcommand\placeholder{\mathord{\bullet}}
 \newcommand\powerset[1]{\wp(#1)}
 \newcommand\inlinefrac[2]{#1\mathbin{/}#2}
 \newcommand\setcomp[1]{{#1}^{\mathsf{c}}}
