@@ -16,6 +16,7 @@
 \usepackage{tikz}
 \usepackage{tikz-qtree}
 \usepackage{pgfplots}
+\usepackage{luamplib}
 \usetikzlibrary{%
     patterns,
     intersections,
@@ -238,6 +239,9 @@
 \renewcommand{\headfont}{\bfseries\gtfamily\sffamily}
 
 \newcommand\tuple[1]{(#1)}
+\newcommand\coord[1]{(#1)}
+\newcommand\openinterval[1]{(#1)}
+\newcommand\absolute[1]{\lvert #1 \rvert}
 \newcommand\keyword[1]{{\bfseries\gtfamily #1}}
 \newcommand\emphchar[1]{\ltjalchar`‹\thinspace{#1}\thinspace\ltjalchar`›}
 

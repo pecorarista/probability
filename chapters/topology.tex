@@ -313,34 +313,46 @@
 \begin{definition}
 \(\tuple{X, \symcal{O}_{X}}\), \(\tuple{Y, \symcal{O}_{Y}}\)を位相空間とする．
 写像\(f\colon X \to Y\)が点\(x \in X\)において連続であるとは，
-\(f(x)\)の\(\tuple{Y, \symcal{O}_{Y}}\)における任意の近傍\(V\)に対して，
-\(\tuple{X, \symcal{O}_{X}}\)における\(x\)のある近傍\(U\)が存在して，\(f(U) \subseteq V\)となることをいう．
+\(f(x)\)の任意の近傍\(V \in \symcal{O}_Y\)に対して，
+\(x\)のある近傍\(U \in \symcal{O}_X\)が存在して，\(f(U) \subseteq V\)となることをいう．
 \definitionlabel{topology-continuity-at-x}
 \end{definition}
 \end{thmbox}
 
-\begin{thmbox}
-\begin{corollary}
-写像\(f\colon X \to Y\)が点\(x \in X\)において連続であるとは，
-\(x\)の任意の近傍\(V\)について\(f^{-1}(V)\)が\(x\)の近傍となることである．
-\corollarylabel{topology-continuity-neighborhood}
-\end{corollary}
-\end{thmbox}
-
-\begin{proof}
-\refimpliesref{\definitionref{topology-continuity-at-x}}{\corollaryref{topology-continuity-neighborhood}}：\(f(x)\)の任意の近傍\(V\)について，\propositionref{f-set}の\ref{f-f-inv-a}より\(f(f^{-1}(V)) \subseteq V\)あ
-\end{proof}
+\begin{exa} \(S^1\)を単位円周とする．図形\(T = S^1 \times S^1\)をトーラスという．
+\(f \colon T \to T, \tuple{\theta_1, \theta_2} \mapsto \tuple{\theta_1 + \alpha, \theta_2 + \beta}\)は連続写像である．
+\end{exa}
 
 \begin{thmbox}
 \begin{definition}
+写像\(f\colon X \to Y\)が任意の点\(x \in X\)において連続であるとき，\(f\)は\(X\)において連続であるという．
+\end{definition}
+\end{thmbox}
+
+
+\begin{thmbox}
+\begin{theorem}
 \(\tuple{X, \symcal{O}_X}\), \(\tuple{Y, \symcal{O}_Y}\)を位相空間とし，\(f\)を\(X\)から\(Y\)への写像とする．
 \begin{conditions}
     \item 任意の\(O_Y \in \symcal{O}_Y\)について，\(f^{-1}(O_Y) \in \symcal{O}_X\)が成り立つ．
     \item \(x\)を\(X\)の任意の点とする．
         このとき\(\tuple{Y, \symcal{O}_Y}\)における\(f(x)\)の任意の近傍\(V\)
 \end{conditions}
-\end{definition}
+\end{theorem}
 \end{thmbox}
+
+\begin{thmbox}
+\begin{proposition}
+写像\(f\colon X \to Y\)が点\(x \in X\)において連続であるとは，
+\(x\)の任意の近傍\(V\)について\(f^{-1}(V)\)が\(x\)の近傍となることである．
+\propositionlabel{topology-continuity-neighborhood}
+\end{proposition}
+\end{thmbox}
+
+\begin{proof}
+\refimpliesref{\definitionref{topology-continuity-at-x}}{\propositionref{topology-continuity-neighborhood}}：\(f(x)\)の任意の近傍\(V\)について，\propositionref{f-set}の\ref{f-f-inv-a}より\(f(f^{-1}(V)) \subseteq V\)が成り立つ．
+\end{proof}
+
 
 \section{コンパクト性}
 \begin{thmbox}
@@ -947,6 +959,55 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 これは\(f \circ g\)が\(f(x_0)\)に収束することと矛盾する．
 \end{proof}
 
+\mplibtextextlabel{enable}
+% https://tex.stackexchange.com/questions/624264/modular-transformation-in-tikz
+\begin{figure}
+    \centering
+    \begin{mplibcode}
+    beginfig(1);
 
+        pickup pencircle scaled .5bp;
+        path circum, curvefront, curveback;
+        circum = fullcircle rotated 45 xscaled 89 yscaled 55;
+        curvefront = subpath (4.1, 7.9) of fullcircle xscaled 45 yscaled 26 shifted 7 up;
+        curveback = subpath (0, 4) of fullcircle xscaled 45 yscaled 26 shifted 3 down
+            cutbefore subpath (2, 4) of curvefront cutafter subpath (0, 2) of curvefront;
+        path shadowback, shadowfront;
+        shadowback = buildcycle(point 1 of curveback {direction 1 of curveback} .. point 1/16 of curveback, curveback, reverse curveback);
+        shadowfront = buildcycle(circum scaled 33/32 rotated 4 shifted (-2, 2), reverse circum);
+
+        path ring, loop;
+
+        ring = circum xscaled 0.8 yscaled 0.65 shifted 7.5 up;
+        loop = reverse fullcircle rotated 90 xscaled 23.25 yscaled 14 rotated 47;
+        loop := loop shifted (point 4 of circum - point 6 of loop);
+
+        picture torus;
+        torus = image(
+            fill shadowback withcolor 7/8;
+            fill shadowfront withcolor 7/8;
+            draw circum;
+            draw curvefront;
+            draw curveback;
+        );
+
+        interim ahangle := 30;
+        interim ahlength := 3;
+        picture A;
+        A = image(
+            draw subpath (2, 6) of loop withcolor 7/8[2/3 red, white];
+            draw subpath (0, 2) of loop withcolor 2/3 red;
+            drawarrow subpath (6, 8) of loop withcolor 2/3 red;
+            label.lft("$\scriptstyle \theta_1$", point 0 of loop) withcolor 2/3 red;
+            draw subpath (3.6, 4.3) of ring withpen pencircle scaled 4 withcolor white;
+            drawarrow subpath (-2, 6) of ring withcolor 2/3 blue;
+            label.bot("$\scriptstyle \theta_2$", point 6 of ring) withcolor 2/3 blue;
+            draw torus;
+        );
+        draw A;
+
+    endfig;
+    \end{mplibcode}
+\end{figure}
 
 \end{document}
