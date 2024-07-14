@@ -10,16 +10,40 @@
 \nocite{uchida}
 \nocite{introduction-to-topology}
 
-% \section{距離空間}
-% \begin{thmbox}
-% \begin{definition}
-% \(\tuple{X, d_{X}}\)と\(\tuple{Y, d_{Y}}\)を距離空間とする．
-% 写像\(f\colon X \to Y\)が\keyword{点}\(x \in X\)\keyword{において連続}(continuous at \(x\))であるとは，
-% 任意の\(\varepsilon > 0\)に対して，ある\(\delta > 0\)が存在して，
-% 任意の\(x' \in X\)に対して，\(d_{X}(x', x) < \delta\)ならば\(d_{Y}(f(x'), f(x)) < \varepsilon\)となることをいう．
-% \definitionlabel{dist-continuity}
-% \end{definition}
-% \end{thmbox}
+位相(topology)は「近さ」というものを様々な数学の対象に与える道具である．
+これによって関数を元としてもつ集合について連続性や収束に関する議論が可能になる．
+ただし，一般的な位相の定義というのはかなり抽象的であり，すぐにその有用性を理解したり，利用に習熟したりするのは難しいと考えられる．
+その前段階として\(\symbb{R}^2\)における2点間の距離\(\tuple{\tuple{x_1, y_1}, \tuple{x_2, y_2}} \mapsto \sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}\)がもっている性質を抽出した「距離」というものを導入する．
+
+\section{距離空間}
+\begin{thmbox}
+\begin{definition}
+\(X\)を空でない集合とする．
+関数\(d\colon X \to X \to \symbb{R}\)が任意の\(x, y, z \in X\)について以下の\ref{distance-nonnegativity}--\ref{distance-triangle-inequality}をみたすとき，\(d\)を\(X\)上の\keyword{距離}(metric)という．
+\begin{conditions}
+    \item\label{distance-nonnegativity} （非負性）任意の\(x, y \in X\)について\(d(x, y) \geq 0\)が成り立つ．
+        また\(d(x, y) = 0\)が成り立つため必要十分条件は\(x = y\)が成り立つことである．
+    \item\label{distance-symmetry} （対称性）\(d(x, y) = d(y, x)\)
+    \item\label{distance-triangle-inequality} （三角不等式）\(d(x, z) \leq d(x, y) + d(y, z)\)．
+\end{conditions}
+\definitionlabel{distance}
+\end{definition}
+\end{thmbox}
+
+
+\footnotetext{ここで定義される距離(metric)を指す英語として``distance''もよく使われる．しかしその場合でも，距離空間については``metric space''というのが普通である．}
+
+\begin{thmbox}
+\begin{definition}
+\(\tuple{X, d_{X}}\)と\(\tuple{Y, d_{Y}}\)を距離空間とする．
+写像\(f\colon X \to Y\)が\keyword{点}\(x \in X\)\keyword{において連続}(continuous at \(x\))であるとは，
+任意の\(\varepsilon > 0\)に対して，ある\(\delta > 0\)が存在して，
+任意の\(x' \in X\)に対して，\(d_{X}(x', x) < \delta\)ならば\(d_{Y}(f(x'), f(x)) < \varepsilon\)となることをいう．
+\definitionlabel{dist-continuity}
+\end{definition}
+\end{thmbox}
+
+
 
 \section{位相空間}
 \begin{thmbox}
@@ -41,9 +65,13 @@
 
 \begin{thmbox}
 \begin{definition}
-\(\symbb{R}^n\)において
+誘導される位相という．
 \end{definition}
 \end{thmbox}
+
+\begin{exa}
+ユークリッド空間\(\symbb{R}\)
+\end{exa}
 
 \(X\)を集合とし，\(\symcal{O}_1\)と\(\symcal{O}_2\)をそれぞれ\(X\)の位相とする．
 \(\symcal{O}_1 \subseteq \symcal{O}_2\)が成り立つとき，
