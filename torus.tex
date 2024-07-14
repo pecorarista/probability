@@ -1,53 +1,48 @@
-\documentclass{standalone}
-% https://tex.stackexchange.com/questions/624264/modular-transformation-in-tikz
-\usepackage{luamplib}
+\documentclass[border=2mm,tikz]{standalone}
+\usepackage{xcolor}
+\definecolor{sRed}{HTML}{FF0033}
+\definecolor{sBlue}{HTML}{0095D9}
+\usetikzlibrary{calc, decorations.markings}
+
+\tikzset
+{%
+    my arrow/.style={%
+        decoration={%
+            markings,
+            mark=at position #1 with {\arrow{stealth}},
+        },
+        postaction={decorate}
+    },
+    pics/torus/.style={
+        code={%
+            \coordinate (-O) at (0, 0.75);
+            \coordinate (-A) at ($(-O)+(195:1.75cm and 1cm)$);
+            \coordinate (-B) at ($(-O)+(210:1.75cm and 1cm)$);
+            \coordinate (-C) at ($(-O)+(330:1.75cm and 1cm)$);
+            \coordinate (-D) at (250:3cm and 2cm);
+            \coordinate (-G) at ($(-O)+(290:1.75cm and 1cm)$);
+            \coordinate (-H) at (260:3cm and 2cm);
+            \fill[gray!20] (-A) arc (195:210:1.75cm and 1cm)
+                to [out=35,in=145] (-C)
+                to [out=140,in=30] (-A);
+            \fill[gray!20] (-D) arc (250:365:3cm and 2cm) to [out=250, in=10] cycle;
+            \draw[thick, black] (0, 0) ellipse (3cm and 2cm);
+            \draw[thick, black] (-B) to [out=35, in=145] (-C);
+            % front curve
+            \draw[thick, black] (-O) + (345:1.75cm and 1cm) arc (345:195:1.75cm and 1cm);
+        }
+    }
+}
+
 \begin{document}
-\mplibtextextlabel{enable}
-\begin{mplibcode}
-beginfig(1);
-    rgbcolor sred;
-    sred = (1.0, 0.0, 0.2);
-    rgbcolor sblue;
-    sblue = (0.0, 0.584, 0.851);
-
-    pickup pencircle scaled .3bp;
-    path circum, curvefront, curveback, shadowback, shadowfront;
-    circum = fullcircle rotated 45 xscaled 89 yscaled 55;
-    curvefront = subpath (4.1, 7.9) of fullcircle xscaled 45 yscaled 26 shifted 7 up;
-    curveback = subpath (0, 4) of fullcircle xscaled 45 yscaled 26 shifted 3 down
-        cutbefore subpath (2, 4) of curvefront cutafter subpath (0, 2) of curvefront;
-    shadowback  = buildcycle(point 1 of curveback {direction 1 of curveback} .. point 1/16 of curvefront, curvefront, reverse curveback);
-    shadowfront = buildcycle(circum scaled 33/32 rotated 4 shifted (-2, 2), reverse circum);
-
-    path ring, loop;
-
-    ring = circum xscaled 0.8 yscaled 0.65 shifted 7.5 up;
-    loop = reverse fullcircle rotated 90 xscaled 23.25 yscaled 14 rotated 47;
-    loop := loop shifted (point 4 of circum - point 6 of loop);
-
-    fill shadowback withcolor 7/8;
-    fill shadowfront withcolor 7/8;
-    draw circum;
-    draw curvefront;
-    draw curveback;
-
-    interim ahangle := 30;
-    interim ahlength := 3;
-
-    drawoptions(withcolor 7/8 sred dashed evenly);
-    draw subpath (2, 6) of loop;
-
-    drawoptions(withcolor sred);
-    drawarrow subpath (2, 0.5) of loop;
-    draw subpath (6, 8) of loop;
-    label.lft("$\scriptstyle \theta_1$", point 0 of loop) withcolor sred;
-    drawoptions(withpen pencircle scaled 2 withcolor white);
-    draw subpath (3.6, 4.3) of ring;
-
-    drawoptions(withcolor sblue);
-    drawarrow subpath (-2, 5.8) of ring;
-    label.bot("$\scriptstyle \theta_2$", point 6 of ring) withcolor sblue;
-
-endfig;
-\end{mplibcode}
+\begin{tikzpicture}[line cap=round]
+    \pic (T) at (0, 0) {torus};
+    \coordinate (-O) at (0, 0.75);
+    \coordinate (-E) at ($(-O)+(230:1.75cm and 1cm)$);
+    \coordinate (-F) at (220:3cm and 2cm);
+    \coordinate (A1) at ($(0, 0.3) + (0:2.28cm and 1.4cm)$);
+    \draw[sBlue, thick, -stealth] (A1) arc[start angle=0, end angle=340, x radius=2.28cm, y radius=1.4cm] node[xshift=0.35cm, yshift=0.1cm] {\(\theta_2\)};
+    \draw[sRed, thick, -stealth] (-F) arc [start angle=200, end angle=140, radius=0.72cm] node[above, midway, xshift=-0.25cm, yshift=0.2cm] {\(\theta_1\)};
+    \draw[sRed, thick] (-E) arc [start angle=80, end angle=130, radius=0.87cm];
+\end{tikzpicture}
 \end{document}
