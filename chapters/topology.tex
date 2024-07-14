@@ -319,9 +319,55 @@
 \end{definition}
 \end{thmbox}
 
-\begin{exa} \(S^1\)を単位円周とする．図形\(T = S^1 \times S^1\)をトーラスという．
-\(f \colon T \to T, \tuple{\theta_1, \theta_2} \mapsto \tuple{\theta_1 + \alpha, \theta_2 + \beta}\)は連続写像である．
+\begin{exa} \(S^1\)を単位円周とする．図形\(T^2 = S^1 \times S^1\)を\keyword{(2次元)トーラス}((2-dimensional) torus)という（\figref{torus}）．
+\(f \colon T^2 \to T^2, \tuple{\theta_1, \theta_2} \mapsto \tuple{\theta_1 + \alpha, \theta_2 + \beta}\)は連続写像である．
 \end{exa}
+
+\begin{figure}
+\centering
+\begin{tikzpicture}[
+    my arrow/.style={%
+        decoration={%
+            markings,
+            mark=at position #1 with {\arrow{stealth}},
+        },
+        postaction={decorate}
+    },
+    pics/torus/.style={
+        code={%
+            \coordinate (-O) at (0, 0.6);
+            \coordinate (-A) at ($(-O)+(200:1.5cm and 0.9cm)$);
+            \coordinate (-C) at ($(-O)+(330:1.5cm and 0.9cm)$);
+            \coordinate (-D) at (270:2.4cm and 1.4cm);
+            \coordinate (-G) at ($(-O)+(290:1.5cm and 0.9cm)$);
+            \coordinate (-H) at (260:2.4cm and 1.4cm);
+            \fill[gray!20] (-A) arc (200:210:1.5cm and 0.9cm)
+                to [out=35,in=145] (-C)
+                to [out=140,in=30] (-A);
+            \fill[gray!20] (-D) arc (270:350:2.4cm and 1.4cm) to [out=230, in=10] cycle;
+            % outer
+            \draw[thick, black] (0, 0) ellipse (2.4cm and 1.4cm);
+            % back curve
+            \coordinate (-B) at ($(-O)+(210:1.5cm and 0.9cm)$);
+            \draw[thick, black] (-B) to [out=35, in=145] (-C);
+            % front curve
+            \draw[thick, black] (-O) + (340:1.5cm and 0.9cm) arc (340:200:1.5cm and 0.9cm);
+        }
+    }
+]
+    \pic (T) at (0, 0) {torus};
+    \coordinate (-O) at (0, 0.6);
+    \coordinate (horiz) at ($(0, 0.4) + (0:1.8cm and 1.05cm)$);
+    \draw[sBlue, thick, -stealth] (horiz) arc[start angle=10, end angle=350, x radius=1.8cm, y radius=1cm] node[xshift=0.35cm, yshift=0.08cm] {\(\theta_2\)};
+
+    \coordinate (-E) at ($(-O)+(230:1.5cm and 0.9cm)$);
+    \coordinate (-F) at (230:2.4cm and 1.4cm);
+    \draw[sRed, thick, -stealth] (-F) arc [start angle=200, end angle=150, radius=0.72cm] node[above, midway, xshift=-0.25cm] {\(\theta_1\)};
+    \draw[sRed, thick] (-E) arc [start angle=100, end angle=135, radius=0.72cm];
+\end{tikzpicture}
+\caption{トーラス\(T^2 = S^1 \times S^1\)．}\figlabel{torus}
+\end{figure}
+
 
 \begin{thmbox}
 \begin{definition}
@@ -958,56 +1004,5 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 このとき\(x_U \to x_0\)であるが，仮定により\(f(x_U) \not\to f(x_0)\)である．
 これは\(f \circ g\)が\(f(x_0)\)に収束することと矛盾する．
 \end{proof}
-
-\mplibtextextlabel{enable}
-% https://tex.stackexchange.com/questions/624264/modular-transformation-in-tikz
-\begin{figure}
-    \centering
-    \begin{mplibcode}
-    beginfig(1);
-
-        pickup pencircle scaled .5bp;
-        path circum, curvefront, curveback;
-        circum = fullcircle rotated 45 xscaled 89 yscaled 55;
-        curvefront = subpath (4.1, 7.9) of fullcircle xscaled 45 yscaled 26 shifted 7 up;
-        curveback = subpath (0, 4) of fullcircle xscaled 45 yscaled 26 shifted 3 down
-            cutbefore subpath (2, 4) of curvefront cutafter subpath (0, 2) of curvefront;
-        path shadowback, shadowfront;
-        shadowback = buildcycle(point 1 of curveback {direction 1 of curveback} .. point 1/16 of curveback, curveback, reverse curveback);
-        shadowfront = buildcycle(circum scaled 33/32 rotated 4 shifted (-2, 2), reverse circum);
-
-        path ring, loop;
-
-        ring = circum xscaled 0.8 yscaled 0.65 shifted 7.5 up;
-        loop = reverse fullcircle rotated 90 xscaled 23.25 yscaled 14 rotated 47;
-        loop := loop shifted (point 4 of circum - point 6 of loop);
-
-        picture torus;
-        torus = image(
-            fill shadowback withcolor 7/8;
-            fill shadowfront withcolor 7/8;
-            draw circum;
-            draw curvefront;
-            draw curveback;
-        );
-
-        interim ahangle := 30;
-        interim ahlength := 3;
-        picture A;
-        A = image(
-            draw subpath (2, 6) of loop withcolor 7/8[2/3 red, white];
-            draw subpath (0, 2) of loop withcolor 2/3 red;
-            drawarrow subpath (6, 8) of loop withcolor 2/3 red;
-            label.lft("$\scriptstyle \theta_1$", point 0 of loop) withcolor 2/3 red;
-            draw subpath (3.6, 4.3) of ring withpen pencircle scaled 4 withcolor white;
-            drawarrow subpath (-2, 6) of ring withcolor 2/3 blue;
-            label.bot("$\scriptstyle \theta_2$", point 6 of ring) withcolor 2/3 blue;
-            draw torus;
-        );
-        draw A;
-
-    endfig;
-    \end{mplibcode}
-\end{figure}
 
 \end{document}
