@@ -10,6 +10,25 @@
 \nocite{uchida}
 \nocite{introduction-to-topology}
 
+\pgfplotsset{%
+    default/.style={%
+        width=\textwidth,
+        height=\textwidth,
+        axis lines=middle,
+        axis line style=thick,
+        xlabel={\(x\)},
+        ylabel={\(y\)},
+        xtick=\empty,
+        ytick=\empty,
+        xmin=-0.25,
+        xmax=2,
+        ymin=-0.25,
+        ymax=3,
+        samples=200,
+        clip=false
+    }
+}
+
 位相(topology)はある種の「近さ」を様々な数学の対象に与えるものである．
 これによって写像の始域や終域が写像や図形を元としてもつような集合であっても，連続性や収束を議論することが可能になる．
 しかし一般的な位相（空間）の定義はかなり抽象的であり，その有用性や利用法に俄に習熟するのは難しい．
@@ -37,60 +56,42 @@
 特に以下の例に示すような具体的な距離，ユークリッド距離やマンハッタン距離はそれぞれEuclidean distanceやManhattan distanceのように呼ばれることが多い．
 しかし距離空間についてはmetric spaceというのが普通である．
 
-\begin{exa} \(\symbb{R}^n\) \((n \in \PositiveInteger)\)の任意の\(2\)元\(x = (x_1, \ldots, x_n)\)と\(y = (y_1, \ldots, y_n)\)について
+\begin{exa} \(\symbb{R}^n\)の任意の\(2\)元\(u = (u_1, \ldots, u_n)\)と\(v = (v_1, \ldots, v_n)\)について
 \begin{align*}
-    d(x, y) = \sqrt{\sum_{i = 1}^n (x_i - y_i)^2}
+    d(u, v) = \sqrt{\sum_{i = 1}^n (u_i - v_i)^2}
 \end{align*}
 と定義すると\(d\)は距離の\(3\)条件（\definitionref{distance}の\ref{distance-nonnegativity}--\ref{distance-triangle-inequality}）をみたすことが確認できる（証明略）．この距離を\keyword{ユークリッド距離}(Euclidean distance)という．
 また組\(\tuple{\symbb{R}^n, d}\)を\keyword{（\(n\)次元）ユークリッド空間}(\(n\)-dimensional Euclidean space)という．
-\(\symbb{R}^n\)を距離空間として扱う場合，特に断らない限り，距離はユークリッド距離である．
+\(\symbb{R}^n\)を距離空間として扱う場合，特に断らない限り，距離はユークリッド距離とする．
 これは本書に限らず一般的な慣習である．
 \end{exa}
 
 \begin{figure}
-\centering
-\begin{tikzpicture}
-    \begin{axis}[
-        axis lines=middle,
-        axis line style=thick,
-        xlabel={$x$},
-        ylabel={$y$},
-        xtick=\empty,
-        ytick=\empty,
-        xmin=-0.5,
-        xmax=5,
-        ymin=-0.5,
-        ymax=4,
-        samples=200,
-        clip=false
-    ]
-    \node[xshift=-2.5mm, yshift=-2.5mm] (O) at (axis cs:0, 0) {$O$};
-
-    % vertical lines
-    \addplot[sLightGray, thick] coordinates {(0.5, -0.25) (0.5, 3.5)};
-    \addplot[sLightGray, thick] coordinates {(1.5, -0.25) (1.5, 3.5)};
-    \addplot[sLightGray, thick] coordinates {(2, -0.25) (2, 3.5)};
-    \addplot[sLightGray, thick] coordinates {(3.5, -0.25) (3.5, 3.5)};
-
-    % horizontal lines
-    \addplot[sLightGray, thick] coordinates {(-0.25, 0.5) (4, 0.5)};
-    \addplot[sLightGray, thick] coordinates {(-0.25, 1) (4, 1)};
-    \addplot[sLightGray, thick] coordinates {(-0.25, 2.25) (4, 2.25)};
-    \addplot[sLightGray, thick] coordinates {(-0.25, 2.75) (4, 2.75)};
-
-    \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=0pt, minimum size=0.8mm] (u) at (axis cs:0.5, 0.5) {};
-    \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=0pt, minimum size=0.8mm] (v) at (axis cs:3.5, 2.75) {};
-    \draw[thick] (u) -- (v);
-\end{axis}
-\end{tikzpicture}
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \input{figures/euclidean-distance.tex}
+    \caption{\(\symbb{R}^2\)におけるユークリッド距離．}\figlabel{euclidean-distance-and-manhattan-distance}
+\end{subfigure}
+\begin{subfigure}{0.5\textwidth}
+    \centering
+    \input{figures/manhattan-distance.tex}
+    \caption{\(\symbb{R}^2\)におけるマンハッタン距離．}\figlabel{euclidean-distance-and-manhattan-distance}
+\end{subfigure}
 \end{figure}
 
 \begin{exa}
-\(X\)を
-マンハッタン距離(Manhattan distance)という．
+\(\symbb{R}^2\)の任意の\(2\)点\(u = (u_1, u_2), v = (v_1, v_2)\)をとる．
+\figref{euclidean-distance-and-manhattan-distance}のように，
+\(2\)点間を\(x\)軸または\(y\)軸に平行に移動することしかできない場合，それらの距離は\(\absolute{u_1 - v_1} + \absolute{u_2 - v_2}\)とするのが自然である
+
+この距離を\keyword{マンハッタン距離}(Manhattan distance)という．
+\(\symbb{R}^n\)の任意の\(2\)点\(u = (u_1, \ldots, u_n), v = (v_1, \ldots, v_n)\)について
 \begin{align*}
-    d = \sum_{i = 1}^n \absolute{x_i - y_i}
+    d(u, v) = \sum_{i = 1}^n \absolute{u_i - v_i}
 \end{align*}
+は距離になる（証明略）．
+New York州のManhattanに代表される，
+
 \end{exa}
 
 \begin{exa}
