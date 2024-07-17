@@ -1,33 +1,36 @@
 \begin{tikzpicture}
-    \begin{axis}[default]
+    \begin{axis}[defaultplot]
     \node[xshift=-2.5mm, yshift=-2.5mm] (O) at (axis cs:0, 0) {\(O\)};
     % vertical lines
-    \addplot[sLightGray, thick] coordinates {(0.25, -0.25) (0.25, 2.5)};
-    \addplot[sLightGray, thick] coordinates {(0.5, -0.25) (0.5, 2.5)};
-    \addplot[sLightGray, thick] coordinates {(0.75, -0.25) (0.75, 2.5)};
-    \addplot[sLightGray, thick] coordinates {(1.0, -0.25) (1.0, 2.5)};
-    \addplot[sLightGray, thick] coordinates {(1.25, -0.25) (1.25, 2.5)};
-    \addplot[sLightGray, thick] coordinates {(1.5, -0.25) (1.5, 2.5)};
+    \addplot[sLightGray, thick] coordinates {(0.75, -0.25) (0.75, 4)};
+    \addplot[sLightGray, thick] coordinates {(1.5, -0.25) (1.5, 4)};
+    \addplot[sLightGray, thick] coordinates {(2, -0.25) (2, 4)};
+    \addplot[sLightGray, thick] coordinates {(3, -0.25) (3, 4)};
 
     % horizontal lines
-    \addplot[sLightGray, thick] coordinates {(-0.25, 0.5) (2, 0.5)};
-    \addplot[sLightGray, thick] coordinates {(-0.25, 1) (2, 1)};
-    \addplot[sLightGray, thick] coordinates {(-0.25, 1.5) (2, 1.5)};
-    \addplot[sLightGray, thick] coordinates {(-0.25, 2) (2, 2)};
+    \addplot[sLightGray, thick] coordinates {(-0.25, 0.5) (3.25, 0.5)};
+    \addplot[sLightGray, thick] coordinates {(-0.25, 1) (3.25, 1)};
+    \addplot[sLightGray, thick] coordinates {(-0.25, 1.5) (3.25, 1.5)};
+    \addplot[sLightGray, thick] coordinates {(-0.25, 2.25) (3.25, 2.25)};
+    \addplot[sLightGray, thick] coordinates {(-0.25, 3) (3.25, 3)};
+    \addplot[sLightGray, thick] coordinates {(-0.25, 3.5) (3.25, 3.5)};
 
     \draw[sRed, ultra thick, opacity=0.5]
-        (axis cs:0.5, 0.5) --
-        (axis cs:1, 0.5) --
-        (axis cs:1, 1) --
+        (axis cs:0.75, 0.5) --
+        (axis cs:1.5, 0.5) --
         (axis cs:1.5, 1) --
-        (axis cs:1.5, 1.5);
+        (axis cs:1.5, 1.5) --
+        (axis cs:2, 1.5) --
+        (axis cs:2, 2.25) --
+        (axis cs:3, 2.25) --
+        (axis cs:3, 3.5);
 
-    \node[xshift=0.84cm, yshift=-0.3cm] at (axis cs:0.5, 0.5) {\(u = \coord{u_1, u_2}\)};
-    \node[xshift=0.8cm, yshift=0.3cm] at (axis cs:1.5, 2.5) {\(v = \coord{v_1, v_2}\)};
+    \node[xshift=0.84cm, yshift=-0.25cm] at (axis cs:0.75, 0.5) {\(u = \coord{u_1, u_2}\)};
+    \node[xshift=0.8cm, yshift=0.25cm] at (axis cs:3, 3.5) {\(v = \coord{v_1, v_2}\)};
 
-    \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=0pt, minimum size=0.8mm] (u) at (axis cs:0.25, 0.25) {};
-    \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=0pt, minimum size=0.8mm] (v) at (axis cs:1.5, 2.25) {};
-    \draw[draw=none, text=sRed] (axis cs:1.5, 0.8) -- (axis cs:1.5, 1.9) node[midway, sloped] {\(\absolute{u_1 - v_1} + \absolute{u_2 - v_2}\)};
+    \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=0pt, minimum size=0.8mm] (u) at (axis cs:0.75, 0.5) {};
+    \node[circle, draw=black, fill=black, inner sep=0pt, outer sep=0pt, minimum size=0.8mm] (v) at (axis cs:3, 3.5) {};
+    \draw[draw=none, text=sRed] (axis cs:3.25, 0) -- (axis cs:3.25, 3.5) node[midway, sloped, below=0.05cm] {\(\absolute{u_1 - v_1} + \absolute{u_2 - v_2}\)};
 
 \end{axis}
 \end{tikzpicture}
