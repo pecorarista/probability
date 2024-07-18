@@ -1,7 +1,7 @@
 \documentclass{ltjsbook}
 \usepackage[%
     textwidth=40\zw,
-    lines=38,
+    lines=40,
     centering
 ]{geometry}
 \input{preamble}
@@ -95,75 +95,37 @@
 \begin{exa}
 地球上の\(2\)点間の距離を考える．
 地球は完全な球ではないが，ここでは単純化して半径\(R\)の球面とみなすことにしよう．
+球面上の任意の\(2\)点\(u, v \in \symbb{R}^3\)をとる．
+球面座標を用いてそれぞれ以下のように表されているとする．
+\begin{align*}
+    u = R \hat{u},
+    \quad
+    \hat{u} = \begin{pmatrix}
+        \sin \theta \cos \varphi \\
+        \sin \theta \sin \varphi \\
+        \cos \theta \\
+    \end{pmatrix},
+    \quad
+    v = R \hat{v},
+    \quad
+    \hat{v} = \begin{pmatrix}
+        \sin \theta \cos \varphi \\
+        \sin \theta \sin \varphi \\
+        \cos \theta \\
+    \end{pmatrix}.
+\end{align*}
+球の内部を移動することはできないので\(\coord{0, 0, 0}\)を中心とし，\(u\)と\(v\)を通る円周に沿って移動するのが「距離」になる．
+\begin{align*}
+    d(u, v) = r \cos^{-1}(\hat{u} \cdot \hat{v})
+\end{align*}
 球の内部を通ることはできないため，球面上の
 \keyword{大円距離}(great circle distance)という．
-\begin{align}
-    u = r \begin{pmatrix}
-        \cos \lambda \cos \delta \\
-        \sin \lambda \cos \delta  \\
-        \sin \delta \\
-    \end{pmatrix}
-\end{align}
 \end{exa}
 
 \begin{figure}
-\centering
-\tdplotsetmaincoords{60}{130}
-\begin{tikzpicture}[%
-    scale=3.7,
-    tdplot_main_coords
-]
-    \pgfmathsetmacro{\R}{1.0}
-
-    \pgfmathsetmacro\uanglephi{20}
-    \pgfmathsetmacro\uangletheta{50}
-
-    \pgfmathsetmacro\vanglephi{80}
-    \pgfmathsetmacro\vangletheta{40}
-
-    \coordinate (O) at (0, 0, 0);
-    \node[left=2] at (0, 0, 0) {\(O\)};
-    \tdplotsetcoord{U}{\R}{\uangletheta}{\uanglephi}
-    \tdplotsetcoord{V}{\R}{\vangletheta}{\vanglephi}
-
-    % PROJECTIONS
-    \draw[sLightGray, thin] plot[domain=0:90](
-        {\R * sin(\x) * cos(\uanglephi)},
-        {\R * sin(\x) * sin(\uanglephi)},
-        {\R * cos(\x)}
-    ) coordinate (projU);
-    \draw[sLightGray, thin] plot[domain=0:90](
-        {\R * sin(\x) * cos(\vanglephi)},
-        {\R * sin(\x) * sin(\vanglephi)},
-        {\R * cos(\x)}
-    ) coordinate (projV);
-    \draw[sLightGray, thin] plot[domain=0:90]({\R * cos(\x)}, {\R * sin(\x)}, 0);
-    \draw[sLightGray, thin] (O)  -- (projV);
-    \draw[sLightGray, thin] (O)  -- (projU);
-
-    \tdplotsetthetaplanecoords{\uanglephi}
-    \tdplotdrawarc[sBlue, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.18 * \R}{0}{\uangletheta}{left=4, above=-1}{\(\theta_1\)}
-    \tdplotsetthetaplanecoords{\vanglephi}
-    \tdplotdrawarc[sRed, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.22 * \R}{0}{\vangletheta}{right=3, above=-1}{\(\theta_2\)}
-
-    \tdplotdrawarc[sBlue, -stealth]{(O)}{0.2 * \R}{0}{\uanglephi} {below=-1}{\(\varphi_1\)}
-    \tdplotdrawarc[sRed, -stealth]{(O)}{0.45 * \R}{0}{\vanglephi} {below=-1}{\(\varphi_2\)}
-
-    \draw[thick,-stealth] (0, 0, 0) -- (1.2 * \R, 0, 0) node[left=1, above=2]{\(x\)};
-    \draw[thick,-stealth] (0, 0, 0) -- (0, 1.2 * \R, 0) node[above=2]{\(y\)};
-    \draw[thick,-stealth] (0, 0, 0) -- (0,0, 1.2 * \R) node[below=3, left=1]{\(z\)};
-
-    \tdplotdefinepoints(0, 0, 0)%
-        ({\R * sin(\uangletheta) * cos(\uanglephi)}, {\R * sin(\uangletheta) * sin(\uanglephi)}, {\R * cos(\uangletheta)})%
-        ({\R * sin(\vangletheta) * cos(\vanglephi)}, {\R * sin(\vangletheta) * sin(\vanglephi)}, {\R * cos(\vangletheta)})
-    \tdplotdrawpolytopearc[sGreen]{1}{anchor=west}{}
-
-    \draw[sBlue, -stealth] (O)  -- (U) node[above=4, left=2] {\(\hat{u}\)};
-    \draw[sRed, -stealth] (O)  -- (V) node [below=10, left=-3] {\(\hat{v}\)};
-
-    \node[sGreen, right=25, above=-5] at ({\R * sin(30) * cos(50)}, {\R * sin(30) * sin(50)}, {\R * cos(30)}) {\(r \cos^{-1} (\hat{u} \cdot \hat{v})\)};
-
-\end{tikzpicture}
+    \centering
+    \input{figures/great-circle.tex}
+    \caption{大円距離．}
 \end{figure}
 
 \begin{thmbox}
@@ -1165,5 +1127,40 @@ Zornの補題により\(\symfrak{A}\)の極大元\(\symcal{F}_0\)が存在する
 このとき\(x_U \to x_0\)であるが，仮定により\(f(x_U) \not\to f(x_0)\)である．
 これは\(f \circ g\)が\(f(x_0)\)に収束することと矛盾する．
 \end{proof}
+
+\begin{align*}
+    \gamma(t) =
+    \begin{pmatrix}
+        \sin \theta(t) \cos \varphi(t) \\
+        \sin \theta(t) \sin \varphi(t) \\
+        \cos \theta(t)
+    \end{pmatrix}
+\end{align*}
+\begin{align*}
+    \dot{\gamma}(t) =
+    \begin{pmatrix}
+        \dot{\theta} \cos \theta \cos \varphi - \dot{\varphi}\sin \theta \sin \varphi \\
+        \dot{\theta} \cos \theta \sin \varphi + \dot{\varphi}\sin \theta \cos \varphi \\
+        - \dot{\theta} \sin \theta
+    \end{pmatrix}
+\end{align*}
+\begin{align*}
+    \lVert \dot{\gamma}(t) \rVert^2
+        &= \dot{\theta}^2 \cos^2 \theta \cos^2 \varphi
+        - 2 \dot{\theta} \dot{\varphi} \cos \theta \cos \varphi \sin \theta  \sin \varphi
+        + \dot{\varphi}^2 \sin^2 \theta \sin^2 \varphi \\
+        &\mathrel{\hphantom{=}}{\relax} \mathbin{+} \dot{\theta}^2 \cos^2 \theta \sin^2 \varphi
+             + 2 \dot{\theta} \dot{\varphi} \cos \theta \sin \varphi \sin \theta  \cos \varphi
+            + \dot{\varphi}^2 \sin^2 \theta \cos^2 \varphi \\
+        &\mathrel{\hphantom{=}}{\relax} \mathbin{+} \dot{\theta}^2 \sin^2 \theta \\
+        &= \dot{\theta}^2 \cos^2 \theta (\cos^2\varphi + \sin^2 \varphi) + \dot{\varphi}^2 \sin^2 \theta (\sin^2 \varphi + \cos^2 \varphi) + \dot{\theta}^2 \sin^2 \theta \\
+        &= \dot{\theta}^2  + \dot{\varphi}^2 \sin^2 \theta \\
+\end{align*}
+
+\begin{align*}
+    \int_0^1 \lVert \dot{\gamma}(t) \rVert dt
+    = \int_0^1 \sqrt{(\dot{\theta}(t))^2  + (\dot{\varphi}(t))^2 \sin^2 \theta(t)} dt
+\end{align*}
+
 
 \end{document}
