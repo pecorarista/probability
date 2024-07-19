@@ -1,0 +1,56 @@
+\tdplotsetmaincoords{60}{130}
+\begin{tikzpicture}[%
+    scale=3.4,
+    tdplot_main_coords
+]
+    \pgfmathsetmacro{\R}{1.0}
+
+    \pgfmathsetmacro\uanglephi{20}
+    \pgfmathsetmacro\uangletheta{50}
+
+    \pgfmathsetmacro\vanglephi{80}
+    \pgfmathsetmacro\vangletheta{40}
+
+    \coordinate (O) at (0, 0, 0);
+    \node[left=2] at (0, 0, 0) {\(O\)};
+    \tdplotsetcoord{U}{\R}{\uangletheta}{\uanglephi}
+    \tdplotsetcoord{V}{\R}{\vangletheta}{\vanglephi}
+
+    % PROJECTIONS
+    \draw[sLightGray, thin] plot[domain=0:90](
+        {\R * sin(\x) * cos(\uanglephi)},
+        {\R * sin(\x) * sin(\uanglephi)},
+        {\R * cos(\x)}
+    ) coordinate (projU);
+    \draw[sLightGray, thin] plot[domain=0:90](
+        {\R * sin(\x) * cos(\vanglephi)},
+        {\R * sin(\x) * sin(\vanglephi)},
+        {\R * cos(\x)}
+    ) coordinate (projV);
+    \draw[sLightGray, thin] plot[domain=0:90]({\R * cos(\x)}, {\R * sin(\x)}, 0);
+    \draw[sLightGray, thin] (O)  -- (projV);
+    \draw[sLightGray, thin] (O)  -- (projU);
+
+    \tdplotsetthetaplanecoords{\uanglephi}
+    \tdplotdrawarc[sBlue, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.18 * \R}{0}{\uangletheta}{left=4, above=-1}{\(\theta_1\)}
+    \tdplotsetthetaplanecoords{\vanglephi}
+    \tdplotdrawarc[sRed, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.22 * \R}{0}{\vangletheta}{right=3, above=-1}{\(\theta_2\)}
+
+    \tdplotdrawarc[sBlue, -stealth]{(O)}{0.2 * \R}{0}{\uanglephi} {below=-1}{\(\varphi_1\)}
+    \tdplotdrawarc[sRed, -stealth]{(O)}{0.45 * \R}{0}{\vanglephi} {below=-1}{\(\varphi_2\)}
+
+    \draw[thick,-stealth] (0, 0, 0) -- (1.2 * \R, 0, 0) node[left=1, above=2]{\(x\)};
+    \draw[thick,-stealth] (0, 0, 0) -- (0, 1.2 * \R, 0) node[above=2]{\(y\)};
+    \draw[thick,-stealth] (0, 0, 0) -- (0,0, 1.2 * \R) node[below=3, left=1]{\(z\)};
+
+    \tdplotdefinepoints(0, 0, 0)%
+        ({\R * sin(\uangletheta) * cos(\uanglephi)}, {\R * sin(\uangletheta) * sin(\uanglephi)}, {\R * cos(\uangletheta)})%
+        ({\R * sin(\vangletheta) * cos(\vanglephi)}, {\R * sin(\vangletheta) * sin(\vanglephi)}, {\R * cos(\vangletheta)})
+    \tdplotdrawpolytopearc[sGreen]{1}{anchor=west}{}
+
+    \draw[sBlue, -stealth] (O)  -- (U) node[above=4, left=2] {\(\hat{u}\)};
+    \draw[sRed, -stealth] (O)  -- (V) node [below=10, left=-3] {\(\hat{v}\)};
+
+    \node[sGreen, right=25, above=-5] at ({\R * sin(30) * cos(50)}, {\R * sin(30) * sin(50)}, {\R * cos(30)}) {\(r \cos^{-1} (\hat{u} \cdot \hat{v})\)};
+
+\end{tikzpicture}
