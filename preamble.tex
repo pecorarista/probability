@@ -143,14 +143,23 @@
 \setrefstyle{corollary}{prefix=系}
 
 \newtheoremstyle{jplain}%
-    {0.6\baselineskip}%
-    {0.6\baselineskip}%
+    {\topsep}%
+    {\topsep}%
     {\normalfont}%
     {}%
     {\bfseries\gtfamily\sffamily}%
     {}%
     {5pt}%
     {\thmname{#1}\thmnumber{#2}\thmnote{#3}\ignorespaces}
+\newtheoremstyle{jspecial}%
+    {\topsep}%
+    {\topsep}%
+    {\normalfont}%
+    {}%
+    {\bfseries\gtfamily\sffamily}%
+    {}%
+    {5pt}%
+    {\thmname{#1}\thmnumber{#2\({}^{\symbf{*}}\)}\thmnote{#3}\ignorespaces}
 \theoremstyle{jplain}
 \newtheorem{theorem}{定理}[chapter]
 \newtheorem{proposition}[theorem]{命題}
@@ -162,6 +171,8 @@
 \newtheorem{numberedquote}[theorem]{引用}
 \renewcommand{\proofname}{証明}
 \renewcommand{\qedsymbol}{\rule{5pt}{10pt}}
+\theoremstyle{jspecial}
+\newtheorem{specialexample}[theorem]{例}
 
 \usepackage{tcolorbox}
 \tcbuselibrary{%
@@ -266,7 +277,7 @@
 \newcommand\Neighborhood[1]{\symcal{N}_{#1}}
 \newcommand\OpenNeighborhood[1]{\symcal{U}_{#1}}
 
-\newcommand\placeholder{\mathord{\bullet}}
+\newcommand\placeholder{\mathord{\text{\char"25CC}}}
 \newcommand\powerset[1]{\wp(#1)}
 \newcommand\inlinefrac[2]{#1\mathbin{/}#2}
 \newcommand\setcomp[1]{{#1}^{\mathsf{c}}}
@@ -275,7 +286,7 @@
 
 \DeclareMathOperator{\identity}{id}
 \DeclareMathOperator{\trace}{trace}
-\DeclareMathOperator{\len}{len}
+\DeclareMathOperator{\len}{length}
 \newcommand\symdiffsymbol{\mathord{\triangle}}
 \newcommand\symdiff[2]{#1\mathbin{\triangle}#2}
 \newfontfamily\treefont[ItalicFont={Roboto Light Italic}]{Roboto Light}

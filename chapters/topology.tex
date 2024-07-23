@@ -80,12 +80,12 @@
 \begin{minipage}{0.5\textwidth}
     \centering
     \input{figures/euclidean-distance.tex}
-    \caption{\(\symbb{R}^2\)におけるユークリッド距離．}\figlabel{euclidean-distance-and-manhattan-distance}
+    \caption{\(\symbb{R}^2\)におけるユークリッド距離．}\figlabel{euclidean-distance}
 \end{minipage}
 \begin{minipage}{0.5\textwidth}
     \centering
     \input{figures/manhattan-distance.tex}
-    \caption{\(\symbb{R}^2\)におけるマンハッタン距離．}\figlabel{euclidean-distance-and-manhattan-distance}
+    \caption{\(\symbb{R}^2\)におけるマンハッタン距離．}\figlabel{manhattan-distance}
 \end{minipage}
 \end{figure}
 
@@ -100,57 +100,160 @@
 と定めるとこれは距離の公理をみたす（証明略）．
 これを\keyword{マンハッタン距離}(Manhattan distance)という．
 この名前は碁盤の目状の都市として代表的であるアメリカ合衆国マンハッタンに由来する．
-
 \end{exa}
 
-\begin{exa}
-地球上の\(2\)点間の距離を考える．
-地球は完全な球ではないが，ここでは単純化して半径\(R\)の球面とみなすことにしよう．
-球面上の任意の\(2\)点\(u, v \in \symbb{R}^3\)をとる．
-球面座標を用いてそれぞれ以下のように表されているとする．
+\begin{specialexample}
+\(X\)を位相空間とする．
+\([a, b]\)を\(\symbb{R}\)の区間とする．
+連続写像\(\gamma\colon [a, b] \to X\)を\keyword{曲線}(curve)という．
+\(\gamma(a) = p\), \(\gamma(b) = q\)であるとき，\(\gamma\)を\(p\)から\(q\)への曲線という．
+% 区間\(I\)の\keyword{分割}(partition)とは\(a = t_0 < t_1 < \cdots < t_n = b\)を満たすような点の集合\(\{t_0, \ldots, t_n\}\)のことをいう．
+\(\tuple{M, g}\)をRiemann多様体とし，\(\gamma\)を区分的に滑らかな曲線とする．
+このとき\(\gamma\)の\keyword{長さ}(length)を
 \begin{align*}
-    u = R \hat{u},
-    \quad
-    \hat{u} = \begin{pmatrix}
+    L(\gamma) = \int_{a}^{b} \sqrt{g\left(\frac{d\gamma}{dt}(t), \frac{d\gamma}{dt}(t)\right)} dt
+\end{align*}
+と定義する．\(M\)が連結であるとき
+\begin{align*}
+    d_g(p, q) = \inf \{L(\gamma) \mid \text{\(\gamma \colon [a, b] \to M\)は\(p\)から\(q\)への曲線}\}
+\end{align*}
+で定義とすると\(d_g\)は距離の公理をみたし，したがって\(\tuple{M, d_g}\)は距離空間となる．
+\examplelabel{riemann-distance}
+\end{specialexample}
+
+\begin{specialexample}
+地球上の\(2\)地点間の距離を考える．
+地球の中を掘って進むわけにはいかないので，地表に沿った経路の中で最も短いものがそれらの距離としてふさわしい．
+地球を半径\(R\)の球によってモデル化する．
+北極点から測った緯度，すなわち球面座標における天頂角を余緯度(colatitude)といい，
+ここではそれを\(\theta\) \((0 \leq \theta \leq \pi)\)で表す．
+\begin{align*}
+    \theta = \begin{cases}
+        \displaystyle
+        \frac{\pi}{2} - \frac{\alpha^\circ}{180^\circ} \pi
+        & \text{北緯\(\alpha^\circ\)のとき，} \\[10pt]
+        \displaystyle
+        \frac{\pi}{2} + \frac{\alpha^\circ}{180^\circ} \pi
+        & \text{南緯\(\alpha^\circ\)のとき．}
+    \end{cases}
+\end{align*}
+経度(longitude)，すなわち球面座標における方位角を\(\lambda\) \((0 \leq \lambda < 2\pi)\)で表す．
+\begin{align*}
+    \lambda = \begin{cases}
+        \displaystyle
+        \frac{\beta^\circ}{180^\circ} \pi
+        & \text{東経\(\beta^\circ\)のとき，} \\[10pt]
+        \displaystyle
+        \pi - \frac{\beta^\circ}{180^\circ} \pi
+        & \text{西経\(\beta^\circ\)のとき．}
+    \end{cases}
+\end{align*}
+球面上の任意の\(2\)点\(p, q\)をそれぞれ
+\begin{align*}
+    p = R
+    \begin{pmatrix}
+        \sin \theta_1 \cos \lambda_1 \\
+        \sin \theta_1 \sin \lambda_1 \\
+        \cos \theta_1
+    \end{pmatrix}, \quad
+    q = R
+    \begin{pmatrix}
+        \sin \theta_2 \cos \lambda_2 \\
+        \sin \theta_2 \sin \lambda_2 \\
+        \cos \theta_2
+    \end{pmatrix}, \quad
+\end{align*}
+と表す．
+先に結論を述べると，\(p\)から\(q\)へ球面に沿って移動する経路で長さが最小となるのは，\(p, q\)そして球の中心\(\symup{O}\)によって定まる平面と，球面が交わってできる円の劣弧の長さ
+\begin{align}
+    d(p, q) = r \cos^{-1}\left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right) \eqlabel{great-circle-distance}
+\end{align}
+に等しい．
+このような円を大円(great circle)，\eqref{great-circle-distance}を\keyword{大円距離}(great circle distance)という（\figref{great-circle-distance}）．
+
+\begin{figure}
+    \centering
+    \input{figures/great-circle.tex}
+    \caption{大円距離．}
+\end{figure}
+
+確認したいことは以下の\(2\)つである．
+\begin{conditions}
+    \item\label{great-circle-distance-is-metric} \eqref{great-circle-distance}が距離の公理をみたすこと．
+    \item \(p\)から\(q\)へ球面に沿って移動する経路で長さが最小となるのは\(p, q\)で定まる大円の劣弧であること．
+\end{conditions}
+\ref{great-circle-distance-is-metric}を直接確認してもよいが，一般に図形（正確にはRiemann多様体）に沿った曲線で最も短いものが距離となることを示せば十分である．
+
+
+北極点を\(\symup{N}\)，南極点\(\symup{S}\)と表す．
+任意の点\(p \in S^2 \setminus \{\symup{N}, \symup{S}\}\)はパラメーター表示\(X \colon \symbb{R}^2 \to S^2\)と包含写像\(\iota \colon S^2 \to \symbb{R}^3\)を用いて
+\begin{align*}
+    (\iota \circ X) \colon
+    \begin{pmatrix}
+        \theta \\
+        \varphi
+    \end{pmatrix}
+    \mapsto
+    \begin{pmatrix}
         \sin \theta \cos \varphi \\
         \sin \theta \sin \varphi \\
-        \cos \theta \\
+        \cos \theta
+    \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+    \iota \circ \varphi^{-1}\colon
+    \begin{pmatrix}
+        \theta \\
+        \varphi
+    \end{pmatrix}
+    \mapsto
+    \begin{pmatrix}
+        \sin \theta \cos \varphi \\
+        \sin \theta \sin \varphi \\
+        \cos \theta
+    \end{pmatrix}
+\end{align*}
+aa
+\begin{align*}
+    \frac{\partial X}{\partial \theta}
+    =
+    \begin{pmatrix}
+        \cos \theta \cos \varphi \\
+        \cos \theta \sin \varphi \\
+        - \sin \theta
     \end{pmatrix},
     \quad
-    v = R \hat{v},
-    \quad
-    \hat{v} = \begin{pmatrix}
+    \frac{\partial \gamma}{\partial \varphi}
+    =
+    \begin{pmatrix}
+        - \sin \theta \sin \varphi \\
+        \sin \theta \cos \varphi \\
+        0
+    \end{pmatrix},
+\end{align*}
+\begin{gather*}
+    u \colon [0, 1] \to [0, \pi] \times [0, 2 \pi) , \quad
+    u \colon t \mapsto
+    \begin{pmatrix}
+        \theta(t) \\
+        \varphi(t)
+    \end{pmatrix}, \\
+    c \colon
+    [0, \pi] \times [0, 2 \pi) \to S, \quad
+    c \colon
+    \begin{pmatrix}
+        \theta \\
+        \varphi
+    \end{pmatrix}
+    \mapsto
+    \begin{pmatrix}
         \sin \theta \cos \varphi \\
         \sin \theta \sin \varphi \\
-        \cos \theta \\
-    \end{pmatrix}.
-\end{align*}
-球の内部を移動することはできないので\(\coord{0, 0, 0}\)を中心とし，\(u\)と\(v\)を通る円周に沿って移動するのが「距離」になる．
-\begin{align*}
-    d(u, v) = r \cos^{-1}(\hat{u} \cdot \hat{v})
-\end{align*}
-球の内部を通ることはできないため，球面上の
-\keyword{大円距離}(great circle distance)という．
-
-\(S^2\)の
-\(2\)点\(p, q\)をとる．
-集合\(G(p, q)\)を以下の\ref{geodesic-example-0-1}--\ref{geodesic-example-c1}をみたす写像\(\gamma \colon [0, 1] \to \symbb{R}^3\)全体の集合とする．
-\begin{conditions}
-    \item\label{geodesic-example-0-1} \(\gamma(0) = p\)かつ\(\gamma(1) = q\)．
-    \item\label{geodesic-example-s2} 任意の\(t \in [0, 1]\)について\(\gamma(t) \in S^2\)．
-    \item\label{geodesic-example-c1} \(\gamma\)は連続微分可能である．
-        すなわち\(\gamma\)は\([0, 1]\)において微分可能であり，
-        導関数\(\dot{\gamma}\)は\([0, 1]\)において連続である．
-\end{conditions}
-\(p\)と\(q\)について
-\begin{align*}
-    d(p, q) = \inf \left\{ \int_0^1 \lVert \dot{\gamma}(t) \rVert dt \relmiddle{|} \gamma \in G(p, q) \right\}
-\end{align*}
-とすると，これは距離の公理をみたす（証明略）．
-距離を与える曲線を求めるのは典型的な変分問題である．
-\(p\)を北極とする．
-以下でこの問題を解く．
-\(\gamma\)上の点は余緯度を\(\theta\)，経度を\(\varphi\)として
+        \cos \theta
+    \end{pmatrix}
+\end{gather*}
+曲線\(\gamma = c \circ u\)
 \begin{align*}
     \gamma(t) =
     \begin{pmatrix}
@@ -159,17 +262,10 @@
         \cos \theta(t)
     \end{pmatrix}
 \end{align*}
-と表すことができる．
-以降スペースの都合上\(\theta(t), \varphi(t)\)を単に\(\theta, \varphi\)と書く．
-導関数は
-\begin{align*}
-    \dot{\gamma}(t) =
-    \begin{pmatrix}
-        \dot{\theta} \cos \theta \cos \varphi - \dot{\varphi}\sin \theta \sin \varphi \\
-        \dot{\theta} \cos \theta \sin \varphi + \dot{\varphi}\sin \theta \cos \varphi \\
-        - \dot{\theta} \sin \theta
-    \end{pmatrix}
-\end{align*}
+と定義する．
+ここで\(\theta(t), \varphi(t)\)はそれぞれ時刻\(t\)における\(\gamma(t)\)の余緯度\((0 \leq \theta(t) \leq \pi)\)と経度\((0 \leq \varphi(t) < 2\pi)\)である．
+\(\gamma\)上の点\(p\)において
+局所座標\((\theta, \varphi)\)
 である．したがって被積分関数の\(2\)乗は
 \begin{align*}
     \lVert \dot{\gamma}(t) \rVert^2
@@ -242,13 +338,7 @@
 戻らないので\(\theta(t) > 0\)としてよい．
 \(\dot{\varphi}(t) = 0\)となる．
 
-\end{exa}
-
-\begin{figure}
-    \centering
-    \input{figures/great-circle.tex}
-    \caption{大円距離．}
-\end{figure}
+\end{specialexample}
 
 \begin{thmbox}
 \begin{definition}
@@ -747,18 +837,17 @@
 以降，厳密に使い分けることはせず，\(f, g\)のような表記と\(\FamilyLambda{x}\)のような表記を併せて用いる．
 
 \begin{exa}
-Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の定義に用いられる\keyword{分割}(partition)\index{ぶんかつ@分割 partition}は有向集合の例である．
-分割とは，区間\(I = [a, b]\)が与えられたとき，\(a = x_0 < x_1 < \cdots < x_n = b\)を満たすような点の集合\(\{x_0, \ldots, x_n\}\)のことをいう．
+区間の分割は有向集合の例である．
 2つの分割\(\Delta = \{x_0, \ldots, x_n\}\)と\(\Delta' = \{y_0, \ldots, y_m\}\)について\(\Delta \subseteq \Delta' \)が成り立つとき，\(\Delta'\)は\(\Delta\)の\keyword{細分}(refinement)\index{さいぶん@細分 refinement}であるという．
 \(\Delta'\)が\(\Delta\)の細分であるとき関係\(\Delta \preceq \Delta'\)が成り立つと定める．このとき\(I\)の分割全体の集合は有向集合である．有向集合の定義\ref{directed-set-reflex}と\ref{directed-set-trans}が成り立つのは明らかである．
 \ref{directed-set-upper}については，分割\(\Delta\)と\(\Delta'\)が与えられたとき，\(\Delta \cup \Delta'\)の元を用いた分割\(\Delta^*\)について\(\Delta \preceq \Delta^*\)と\(\Delta' \preceq \Delta^*\)となることからわかる．
 
-閉区間\(I\)上で定義される実数値関数\(f\)について，\(I\)の分割\(\Delta = (x_0, \ldots, x_n)\)による\keyword{過剰和}(upper sum)と\keyword{不足和}(lower sum)（\figref{partition-of-interval}）を以下で定義する：
+Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の定義に用いられる過剰和(upper sum)と不足和(lower sum)はネットの例である．
+閉区間\(I\)上で定義される実数値関数\(f\)について，\(I\)の分割\(\Delta = \{x_0, \ldots, x_n\})\)による過剰和と不足和（\figref{partition-of-interval}）を以下で定義する：
 \begin{gather}
     U(f, \Delta) := \sum_{i = 1}^n \sup \{ f(x) \mid x \in [x_{i - 1}, x_i] \} (x_i - x_{i - 1}), \\
     L(f, \Delta) := \sum_{i = 1}^n \inf \{ f(x) \mid x \in [x_{i - 1}, x_i] \} (x_i - x_{i - 1}).
 \end{gather}
-このとき\(\Delta \mapsto U(f, \Delta)\), \(\Delta \mapsto L(f, \Delta)\)はそれぞれネットになっている．
 \end{exa}
 
 \pgfmathdeclarefunction{curve}{1}{%

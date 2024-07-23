@@ -5,7 +5,7 @@
 ]
     \pgfmathsetmacro{\R}{1.0}
 
-    \pgfmathsetmacro\uanglephi{20}
+    \pgfmathsetmacro\uanglephi{25}
     \pgfmathsetmacro\uangletheta{50}
 
     \pgfmathsetmacro\vanglephi{80}
@@ -30,14 +30,14 @@
     \draw[sLightGray, thin] plot[domain=0:90]({\R * cos(\x)}, {\R * sin(\x)}, 0);
     \draw[sLightGray, thin] (O)  -- (projV);
     \draw[sLightGray, thin] (O)  -- (projU);
+    \tdplotdrawarc[sRed, -stealth]{(O)}{0.45 * \R}{0}{\vanglephi} {below=-1}{\(\lambda_2\)}
 
     \tdplotsetthetaplanecoords{\uanglephi}
     \tdplotdrawarc[sBlue, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.18 * \R}{0}{\uangletheta}{left=4, above=-1}{\(\theta_1\)}
     \tdplotsetthetaplanecoords{\vanglephi}
     \tdplotdrawarc[sRed, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.22 * \R}{0}{\vangletheta}{right=3, above=-1}{\(\theta_2\)}
 
-    \tdplotdrawarc[sBlue, -stealth]{(O)}{0.2 * \R}{0}{\uanglephi} {below=-1}{\(\varphi_1\)}
-    \tdplotdrawarc[sRed, -stealth]{(O)}{0.45 * \R}{0}{\vanglephi} {below=-1}{\(\varphi_2\)}
+    \tdplotdrawarc[sBlue, -stealth]{(O)}{0.2 * \R}{0}{\uanglephi} {below=-1}{\(\lambda_1\)}
 
     \draw[thick,-stealth] (0, 0, 0) -- (1.2 * \R, 0, 0) node[left=1, above=2]{\(x\)};
     \draw[thick,-stealth] (0, 0, 0) -- (0, 1.2 * \R, 0) node[above=2]{\(y\)};
@@ -48,9 +48,9 @@
         ({\R * sin(\vangletheta) * cos(\vanglephi)}, {\R * sin(\vangletheta) * sin(\vanglephi)}, {\R * cos(\vangletheta)})
     \tdplotdrawpolytopearc[sGreen]{1}{anchor=west}{}
 
-    \draw[sBlue, -stealth] (O)  -- (U) node[above=4, left=2] {\(\hat{u}\)};
-    \draw[sRed, -stealth] (O)  -- (V) node [below=10, left=-3] {\(\hat{v}\)};
+    \draw[sBlue, -stealth] (O)  -- (U) node[above=4, left=2] {\(p\)};
+    \draw[sRed, -stealth] (O)  -- (V) node [below=10, left=-3] {\(q\)};
 
-    \node[sGreen, right=25, above=-5] at ({\R * sin(30) * cos(50)}, {\R * sin(30) * sin(50)}, {\R * cos(30)}) {\(r \cos^{-1} (\hat{u} \cdot \hat{v})\)};
+    \node[sGreen, right=25, above=-5] at ({\R * sin(30) * cos(50)}, {\R * sin(30) * sin(50)}, {\R * cos(30)}) {\(\displaystyle r \cos^{-1} \left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right)\)};
 
 \end{tikzpicture}
