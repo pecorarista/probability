@@ -42,7 +42,6 @@
 
 \usepackage{emoji}
 \usepackage{framed}
-
 \usepackage[
     % no-math
 ]{fontspec}
@@ -173,6 +172,18 @@
 \renewcommand{\qedsymbol}{\rule{5pt}{10pt}}
 \theoremstyle{jspecial}
 \newtheorem{specialexample}[theorem]{例}
+
+\usepackage{lua-ul}
+\newunderlinetype\beginUnderWavy[\number\dimexpr1ex]{\cleaders\hbox{%
+\setlength\unitlength{.3ex}%
+\begin{picture}(4,0)(0,1)
+\thicklines
+\color{red}%
+\qbezier(0,0)(1,1)(2,0)
+\qbezier(2,0)(3,-1)(4,0)
+\end{picture}%
+}}
+\NewDocumentCommand\underWavy{+m}{{\beginUnderWavy#1}}
 
 \usepackage{tcolorbox}
 \tcbuselibrary{%

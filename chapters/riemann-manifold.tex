@@ -1,0 +1,183 @@
+\documentclass[../main.tex]{subfiles}
+\begin{document}
+\mainchapter{多様体}
+
+\(X\)を位相空間とする．
+\([a, b]\)を\(\symbb{R}\)の区間とする．
+連続写像\(\gamma\colon [a, b] \to X\)を\keyword{曲線}(curve)という．
+\(\gamma(a) = p\), \(\gamma(b) = q\)であるとき，\(\gamma\)を\(p\)から\(q\)への曲線という．
+% 区間\(I\)の\keyword{分割}(partition)とは\(a = t_0 < t_1 < \cdots < t_n = b\)を満たすような点の集合\(\{t_0, \ldots, t_n\}\)のことをいう．
+\(\tuple{M, g}\)をRiemann多様体とし，\(\gamma\)を区分的に滑らかな曲線とする．
+このとき\(\gamma\)の\keyword{長さ}(length)を
+\begin{align*}
+    L(\gamma) = \int_{a}^{b} \sqrt{g\left(\frac{d\gamma}{dt}(t), \frac{d\gamma}{dt}(t)\right)} dt
+\end{align*}
+と定義する．\(M\)が連結であるとき
+\begin{align*}
+    d_g(p, q) = \inf \{L(\gamma) \mid \text{\(\gamma \colon [a, b] \to M\)は\(p\)から\(q\)への曲線}\}
+\end{align*}
+で定義とすると\(d_g\)は距離の公理をみたし，したがって\(\tuple{M, d_g}\)は距離空間となる．
+
+
+確認したいことは以下の\(2\)つである．
+\begin{conditions}
+    \item\label{great-circle-distance-is-metric} \eqref{great-circle-distance}が距離の公理をみたすこと．
+    \item \(p\)から\(q\)へ球面に沿って移動する経路で長さが最小となるのは\(p, q\)で定まる大円の劣弧であること．
+\end{conditions}
+\ref{great-circle-distance-is-metric}を直接確認してもよいが，一般に図形（正確にはRiemann多様体）に沿った曲線で最も短いものが距離となることを示せば十分である．
+
+
+北極点を\(\symup{N}\)，南極点\(\symup{S}\)と表す．
+任意の点\(p \in S^2 \setminus \{\symup{N}, \symup{S}\}\)はパラメーター表示\(X \colon \symbb{R}^2 \to S^2\)と包含写像\(\iota \colon S^2 \to \symbb{R}^3\)を用いて
+\begin{align*}
+    (\iota \circ X) \colon
+    \begin{pmatrix}
+        \theta \\
+        \varphi
+    \end{pmatrix}
+    \mapsto
+    \begin{pmatrix}
+        \sin \theta \cos \varphi \\
+        \sin \theta \sin \varphi \\
+        \cos \theta
+    \end{pmatrix}
+\end{align*}
+
+\begin{align*}
+    \iota \circ \varphi^{-1}\colon
+    \begin{pmatrix}
+        \theta \\
+        \varphi
+    \end{pmatrix}
+    \mapsto
+    \begin{pmatrix}
+        \sin \theta \cos \varphi \\
+        \sin \theta \sin \varphi \\
+        \cos \theta
+    \end{pmatrix}
+\end{align*}
+aa
+\begin{align*}
+    \frac{\partial X}{\partial \theta}
+    =
+    \begin{pmatrix}
+        \cos \theta \cos \varphi \\
+        \cos \theta \sin \varphi \\
+        - \sin \theta
+    \end{pmatrix},
+    \quad
+    \frac{\partial \gamma}{\partial \varphi}
+    =
+    \begin{pmatrix}
+        - \sin \theta \sin \varphi \\
+        \sin \theta \cos \varphi \\
+        0
+    \end{pmatrix},
+\end{align*}
+\begin{gather*}
+    u \colon [0, 1] \to [0, \pi] \times [0, 2 \pi) , \quad
+    u \colon t \mapsto
+    \begin{pmatrix}
+        \theta(t) \\
+        \varphi(t)
+    \end{pmatrix}, \\
+    c \colon
+    [0, \pi] \times [0, 2 \pi) \to S, \quad
+    c \colon
+    \begin{pmatrix}
+        \theta \\
+        \varphi
+    \end{pmatrix}
+    \mapsto
+    \begin{pmatrix}
+        \sin \theta \cos \varphi \\
+        \sin \theta \sin \varphi \\
+        \cos \theta
+    \end{pmatrix}
+\end{gather*}
+曲線\(\gamma = c \circ u\)
+\begin{align*}
+    \gamma(t) =
+    \begin{pmatrix}
+        \sin \theta(t) \cos \varphi(t) \\
+        \sin \theta(t) \sin \varphi(t) \\
+        \cos \theta(t)
+    \end{pmatrix}
+\end{align*}
+と定義する．
+ここで\(\theta(t), \varphi(t)\)はそれぞれ時刻\(t\)における\(\gamma(t)\)の余緯度\((0 \leq \theta(t) \leq \pi)\)と経度\((0 \leq \varphi(t) < 2\pi)\)である．
+\(\gamma\)上の点\(p\)において
+局所座標\((\theta, \varphi)\)
+である．したがって被積分関数の\(2\)乗は
+\begin{align*}
+    \lVert \dot{\gamma}(t) \rVert^2
+        &= \dot{\theta}^2 \cos^2 \theta \cos^2 \varphi
+        - 2 \dot{\theta} \dot{\varphi} \cos \theta \cos \varphi \sin \theta  \sin \varphi
+        + \dot{\varphi}^2 \sin^2 \theta \sin^2 \varphi \\
+        &\mathrel{\hphantom{=}}{\relax} \mathbin{+} \dot{\theta}^2 \cos^2 \theta \sin^2 \varphi
+             + 2 \dot{\theta} \dot{\varphi} \cos \theta \sin \varphi \sin \theta  \cos \varphi
+            + \dot{\varphi}^2 \sin^2 \theta \cos^2 \varphi \\
+        &\mathrel{\hphantom{=}}{\relax} \mathbin{+} \dot{\theta}^2 \sin^2 \theta \\
+        &= \dot{\theta}^2 \cos^2 \theta (\cos^2\varphi + \sin^2 \varphi) + \dot{\varphi}^2 \sin^2 \theta (\sin^2 \varphi + \cos^2 \varphi) + \dot{\theta}^2 \sin^2 \theta \\
+        &= \dot{\theta}^2  + \dot{\varphi}^2 \sin^2 \theta
+\end{align*}
+となる．\(F \colon [0, 1] \times \symbb{R}^2 \times \symbb{R}^2 \to \symbb{R}\)を
+\begin{align*}
+    F\left(t,
+        \begin{pmatrix} \theta(t) \\ \varphi(t) \end{pmatrix},
+        \begin{pmatrix} \dot{\theta}(t) \\ \dot{\varphi}(t) \end{pmatrix}\right) =
+        \sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}
+\end{align*}
+と定義する．この問題のEuler--Lagrange方程式は
+\begin{gather*}
+    \begin{pmatrix}
+        \displaystyle
+        \frac{\partial}{\partial \theta} F
+        &
+        \displaystyle
+        \frac{\partial}{\partial \varphi} F
+    \end{pmatrix}
+    -
+    \frac{d}{dt}
+    \begin{pmatrix}
+        \displaystyle
+        \frac{\partial}{\partial \dot{\theta}} F
+        &
+        \displaystyle
+        \frac{\partial}{\partial \dot{\varphi}} F
+    \end{pmatrix}
+    = 0
+    \\
+    \begin{pmatrix}
+        \displaystyle
+        \frac{\dot{\varphi}^2 \sin \theta \cos \theta}{\sqrt{\dot{\theta}^2 + \dot{\varphi}^2 \sin^2 \theta}}
+        &
+        0
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        \displaystyle
+        \frac{d}{dt}
+        \frac{\dot{\theta}}{\sqrt{\dot{\theta}^2 + \dot{\varphi}^2 \sin^2 \theta}}
+        &
+        \displaystyle
+        \frac{d}{dt}
+        \frac{\dot{\varphi} \sin^2\theta}{\sqrt{\dot{\theta}^2 + \dot{\varphi}^2 \sin^2 \theta}}
+    \end{pmatrix}
+\end{gather*}
+で与えられる．第\(2\)成分について
+\begin{align*}
+    \int_0^t 0 dt =
+        \frac{\dot{\varphi}(t) \sin^2\theta(t)}{\sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}}
+        -
+        \frac{\dot{\varphi}(0) \sin^2\theta(0)}{\sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(0)}}
+\end{align*}
+\(t = 0\)を北極にとれば
+\begin{align*}
+    \frac{\dot{\varphi}(t) \sin^2\theta(t)}{\sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}}
+    = 0
+\end{align*}
+戻らないので\(\theta(t) > 0\)としてよい．
+\(\dot{\varphi}(t) = 0\)となる．
+
+\end{document}
