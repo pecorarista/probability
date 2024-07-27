@@ -18,8 +18,8 @@
         y=1cm,
         axis lines=middle,
         axis line style=thick,
-        xlabel={\(x\)},
-        ylabel={\(y\)},
+        xlabel={},
+        ylabel={},
         xtick=\empty,
         ytick=\empty,
         xmin=-0.25,
@@ -31,7 +31,7 @@
     }
 }
 
-\(2\)次元直交座標上の点\((x_1, y_1)\)と\((x_2, y_2)\)の距離は\(\sqrt{(x_1 - x_2)^2 + (y_1 - y_2)^2}\)で定義された．
+\(2\)次元直交座標上の点\(x = (x_1, x_1)\)と\(y = (y_1, y_2)\)の距離は\(\sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2}\)で定義された．
 これがみたす性質を抽出を元に一般的な距離(metric)が定義される．
 
 \section{距離空間}
@@ -64,11 +64,11 @@
 この\(d\)を\keyword{離散距離}(discrete distance)という．
 \end{exa}
 
-\begin{exa} \(\symbb{R}^n\)の任意の\(2\)元\(u = (u_1, \ldots, u_n)\)と\(v = (v_1, \ldots, v_n)\)について
+\begin{exa} \(\symbb{R}^n\)の任意の\(2\)元\(x = (x_1, \ldots, x_n)\)と\(y = (y_1, \ldots, y_n)\)について
 \begin{align*}
-    d(u, v) = \sqrt{\sum_{i = 1}^n (u_i - v_i)^2}
+    d(x, y) = \sqrt{\sum_{i = 1}^n (x_i - y_i)^2}
 \end{align*}
-と定義すると\(d\)は距離の公理をみたす（証明略）．この距離を\keyword{ユークリッド距離}(Euclidean distance)という．
+と定義すると\(d\)は距離の公理をみたす（証明略）．この距離を\keyword{ユークリッド距離}(Euclidean distance)という\figref{euclidean-distance}．
 また組\(\tuple{\symbb{R}^n, d}\)を\keyword{（\(n\)次元）ユークリッド空間}(\(n\)-dimensional Euclidean space)という．
 \(\symbb{R}^n\)を距離空間として扱う場合，特に断らない限り，距離はユークリッド距離をとる．
 \end{exa}
@@ -87,12 +87,12 @@
 \end{figure}
 
 \begin{exa}
-\(\symbb{R}^2\)の任意の\(2\)点\(u = (u_1, u_2), v = (v_1, v_2)\)をとる．
+\(\symbb{R}^2\)の任意の\(2\)点\(x = (x_1, x_2), y = (y_1, y_2)\)をとる．
 \figref{manhattan-distance}のように，
-\(2\)点間を\(x\)軸または\(y\)軸に平行に移動することしかできない場合，それらの距離は\(\absolute{u_1 - v_1} + \absolute{u_2 - v_2}\)とするのが自然である．
-一般に\(\symbb{R}^n\)の任意の\(2\)点\(u = (u_1, \ldots, u_n), v = (v_1, \ldots, v_n)\)について
+\(2\)点間を水平方向または鉛直方向にしか移動できない場合，それらの距離は\(\absolute{x_1 - y_1} + \absolute{x_2 - y_2}\)とするのが自然である．
+一般に\(\symbb{R}^n\)の任意の\(2\)点\(x = (x_1, \ldots, x_n), y = (y_1, \ldots, y_n)\)について
 \begin{align*}
-    d(u, v) = \sum_{i = 1}^n \absolute{u_i - v_i}
+    d(x, y) = \sum_{i = 1}^n \absolute{x_i - y_i}
 \end{align*}
 と定めるとこれは距離の公理をみたす（証明略）．
 これを\keyword{マンハッタン距離}(Manhattan distance)という．
@@ -102,8 +102,29 @@
 \begin{specialexample}
 地球上の\(2\)地点間の距離を考える．
 地球の中を掘って進むわけにはいかないので，地表に沿った経路の中で最も短いものがそれらの距離としてふさわしい．
-地球を半径\(R\)の球によってモデル化する．
-北極点から測った緯度，すなわち球面座標における天頂角を余緯度(colatitude)といい，
+地表を単位球面
+\begin{align*}
+    S^2 = \left\{ \begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \symbb{R}^3 \relmiddle{|} \sqrt{x^2 + y^2 + z^2} = 1 \right\}
+\end{align*}
+によってモデル化する．
+\(S^2\)上に\(2\)点\(p, q\)をとる．
+このとき\(p\)から\(q\)へ球面に沿って移動する経路で長さが最小となるのは，\(p, q\)そして\(S^2\)の中心\(\symup{O}\)によって定まる平面と，球面が交わってできる円の劣弧の長さ
+\begin{align}
+    d(p, q) = r \cos^{-1}\left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right) \eqlabel{great-circle-distance}
+\end{align}
+に等しい．
+一般に球面とその中心を通る平面の交わってできる円を\keyword{大円}(great circle)という．
+また\eqref{great-circle-distance}で定まる距離を\keyword{大円距離}(great circle distance)という（\figref{great-circle-distance}）．
+\begin{figure}
+    \centering
+    \input{figures/great-circle.tex}
+    \caption{大円距離．}
+    \figlabel{great-circle-distance}
+\end{figure}
+
+\(2\)点を結ぶ球面上の曲線の中で長さが最小となるのはそれらによって定まる大円の劣弧となることを示す．
+ここで地球（単位球面）と球面座標の対応を明示しておく．
+原点\(\origin\)を中心として北極点\(\symup{N} = (0, 0, 1)\)から測った角度，すなわち球面座標における天頂角は，測地学などの文脈で余緯度(colatitude)と呼ばれる．
 ここではそれを\(\theta\) \((0 \leq \theta \leq \pi)\)で表す．
 \begin{align*}
     \theta = \begin{cases}
@@ -115,9 +136,9 @@
         & \text{南緯\(\alpha^\circ\)のとき．}
     \end{cases}
 \end{align*}
-経度(longitude)，すなわち球面座標における方位角を\(\lambda\) \((0 \leq \lambda < 2\pi)\)で表す．
+また経度(longitude)，すなわち球面座標における方位角\(\varphi\) \((0 \leq \varphi < 2\pi)\)を以下のようにとる．
 \begin{align*}
-    \lambda = \begin{cases}
+    \varphi = \begin{cases}
         \displaystyle
         \frac{\beta^\circ}{180^\circ} \pi
         & \text{東経\(\beta^\circ\)のとき，} \\[10pt]
@@ -126,34 +147,215 @@
         & \text{西経\(\beta^\circ\)のとき．}
     \end{cases}
 \end{align*}
-球面上の任意の\(2\)点\(p, q\)をそれぞれ
+大円の劣弧が最短距離を与えることを示すにあたり，始点\(p\)を\(\symup{N}\)としても一般性を失わない．
+もう少し詳しく述べると，\(p\)の余緯度が\(\theta\)，経度が\(\varphi\)であるとき，\(z\)軸まわりに\(-\varphi\)だけ回転させる行列\(R_z(-\varphi)\)と，\(y\)軸まわりに\(-\theta\)だけ回転させる行列\(R_y(-\theta)\)を\(S^2\)の点全体に作用させて曲線を求め，逆の回転を施せば
+\(p = \symup{N}\)から\(p\)とは異なる点\(q\)への曲線\(\gamma \colon [0, 1] \to S^2\)を，連続微分可能な関数\(\theta \colon [0, 1] \to [0, \pi], \varphi \colon [0, 1] \to \symbb{R}\)を用いて
 \begin{align*}
-    p = R
-    \begin{pmatrix}
-        \sin \theta_1 \cos \lambda_1 \\
-        \sin \theta_1 \sin \lambda_1 \\
-        \cos \theta_1
-    \end{pmatrix}, \quad
-    q = R
-    \begin{pmatrix}
-        \sin \theta_2 \cos \lambda_2 \\
-        \sin \theta_2 \sin \lambda_2 \\
-        \cos \theta_2
-    \end{pmatrix}, \quad
+    \gamma \colon t \mapsto
+        \begin{pmatrix}
+            \sin \theta(t) \cos \varphi(t) \\
+            \sin \theta(t) \sin \varphi(t) \\
+            \cos \theta(t)
+        \end{pmatrix}
 \end{align*}
-と表す．
-先に結論を述べると，\(p\)から\(q\)へ球面に沿って移動する経路で長さが最小となるのは，\(p, q\)そして球の中心\(\symup{O}\)によって定まる平面と，球面が交わってできる円の劣弧の長さ
-\begin{align}
-    d(p, q) = R \cos^{-1}\left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right) \eqlabel{great-circle-distance}
-\end{align}
-に等しい．
-このような円を\keyword{大円}(great circle)といい，\eqref{great-circle-distance}で定まる距離を\keyword{大円距離}(great circle distance)という（\figref{great-circle-distance}）．
-\begin{figure}
-    \centering
-    \input{figures/great-circle.tex}
-    \caption{大円距離．}
-    \figlabel{great-circle-distance}
-\end{figure}
+と定義する．
+このとき曲線の長さ\(L(\gamma)\)は
+\begin{align*}
+    L(\gamma) = \int_0^1 \sqrt{D\gamma(t) \cdot D\gamma(t)} dt
+\end{align*}
+で求められる．
+\begin{align*}
+    \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
+    =
+    \begin{pmatrix}
+        \cos \theta \cos \varphi \\
+        \cos \theta \sin \varphi \\
+        - \sin \theta
+    \end{pmatrix},
+    \quad
+    \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
+    =
+    \begin{pmatrix}
+        - \sin \theta \sin \varphi \\
+        \sin \theta \cos \varphi \\
+        0
+    \end{pmatrix}
+\end{align*}
+であるから，
+\begin{align*}
+    \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
+    \cdot
+    \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
+    &=
+    \begin{pmatrix}
+        \cos \theta \cos \varphi \\
+        \cos \theta \sin \varphi \\
+        - \sin \theta
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+        \cos \theta \cos \varphi \\
+        \cos \theta \sin \varphi \\
+        - \sin \theta
+    \end{pmatrix} \\
+    &= \cos^2 \theta \cos^2 \varphi
+        + \cos^2 \theta \sin^2 \varphi
+        + \sin^2 \theta \\
+    &= 1,
+\end{align*}
+\begin{align*}
+    \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
+    \cdot
+    \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
+    &=
+    \begin{pmatrix}
+        - \sin \theta \sin \varphi \\
+        \sin \theta \cos \varphi \\
+        0
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+        - \sin \theta \sin \varphi \\
+        \sin \theta \cos \varphi \\
+        0
+    \end{pmatrix} \\
+    &= \sin^2 \theta \sin^2 \varphi + \sin^2 \theta \cos^2 \varphi \\
+    &= \sin^2 \theta,
+\end{align*}
+\begin{align*}
+    \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
+    \cdot
+    \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
+    &=
+    \begin{pmatrix}
+        \cos \theta \cos \varphi \\
+        \cos \theta \sin \varphi \\
+        - \sin \theta
+    \end{pmatrix}
+    \cdot
+    \begin{pmatrix}
+        - \sin \theta \sin \varphi \\
+        \sin \theta \cos \varphi \\
+        0
+    \end{pmatrix} \\
+    &= - \cos \theta \cos \varphi \sin \theta \sin \varphi
+       + \cos \theta \sin \varphi \sin \theta \cos \varphi \\
+    &= 0.
+\end{align*}
+したがって被積分関数を\(F \colon [0, 1] \times \symbb{R}^2 \times \symbb{R}^2 \to \symbb{R}\)とすると
+\begin{align*}
+    & F\left(
+        t,
+        \begin{pmatrix}
+            \theta(t) \\
+            \varphi(t)
+        \end{pmatrix},
+        \begin{pmatrix}
+            \dot{\theta}(t) \\
+            \dot{\varphi}(t) \\
+        \end{pmatrix}
+    \right) \\
+    &= \sqrt{D\gamma(t) \cdot D\gamma(t)} \\
+    &=
+    \sqrt{%
+        \begin{pmatrix}
+            \dot{\theta}(t) & \dot{\varphi}(t)
+        \end{pmatrix}
+        \begin{pmatrix}
+            \displaystyle
+            \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
+            &
+            \displaystyle
+            \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
+        \end{pmatrix}^{\transpose}
+        \begin{pmatrix}
+            \displaystyle
+            \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
+            &
+            \displaystyle
+            \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
+        \end{pmatrix}
+        \begin{pmatrix}
+            \dot{\theta}(t) \\ \dot{\varphi}(t)
+        \end{pmatrix}
+    } \\
+    &=
+    \sqrt{%
+        \begin{pmatrix}
+            \dot{\theta}(t) & \dot{\varphi}(t)
+        \end{pmatrix}
+        \begin{pmatrix}
+            1 & 0 \\
+            0 & \sin^2 \theta(t) \\
+        \end{pmatrix}
+        \begin{pmatrix}
+            \dot{\theta}(t) \\ \dot{\varphi}(t)
+        \end{pmatrix}
+    } \\
+    &= \sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}.
+\end{align*}
+ただしドット\(\dot{\placeholder}\)は\(t\)に関する導関数を表す．
+この問題のEuler--Lagrange方程式は
+\begin{align*}
+    \begin{pmatrix}
+        \displaystyle
+        \frac{\partial F}{\partial \theta}
+        &
+        \displaystyle
+        \frac{\partial F}{\partial \varphi}
+    \end{pmatrix}
+    -
+    \frac{d}{dt}
+    \begin{pmatrix}
+        \displaystyle
+        \frac{\partial F}{\partial \dot{\theta}}
+        &
+        \displaystyle
+        \frac{\partial F}{\partial \dot{\varphi}}
+    \end{pmatrix}
+    = 0
+\end{align*}
+であり，成分ごとに計算して
+\begin{align*}
+    \begin{cases}
+        \displaystyle
+        \frac{%
+            (\dot{\varphi}(t))^2 \sin \theta(t) \cos \theta(t)
+        }{%
+            \sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}
+        }
+        =
+        \frac{d}{dt}
+        \frac{%
+            \dot{\theta}(t)
+        }{%
+            \sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}
+        } \\[10pt]
+        \displaystyle
+        0 =
+        \frac{d}{dt}
+        \frac{%
+            \dot{\varphi}(t) \sin^2\theta(t)
+        }{%
+            \sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}
+        }
+    \end{cases}
+\end{align*}
+を得る．第\(2\)式から
+\begin{align*}
+        \frac{\dot{\varphi}(t) \sin^2\theta(t)}{\sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}}
+        =
+        \frac{\dot{\varphi}(0) \sin^2\theta(0)}{\sqrt{(\dot{\theta}(0))^2 + (\dot{\varphi}(0))^2 \sin^2 \theta(0)}}
+\end{align*}
+が成り立ち，\(\theta(0) = 0\)と併せて\(\dot{\varphi}(t) \sin^2\theta(t) = 0\)がわかる．
+\(t > 0\)において\(\sin \theta(t) > 0\)であるから，結局\(\dot{\varphi}(t) = 0\)である．
+これは\(\gamma\)が\(p\)と\(q\)を通る大円の劣弧であることを表す．
+
+一般的にRimann多様体\(\tuple{M, g}\)において
+\begin{gather*}
+    d_g(p, q) = \inf \{ L(\gamma) \mid \text{\(\gamma \colon [a, b] \to M\)は\(p\)から\(q\)への区分的に滑らかな曲線}\}, \\
+    L(\gamma) = \int_{a}^{b} \sqrt{g\left(\frac{d\gamma}{dt}, \frac{d\gamma}{dt}\right)} dt
+\end{gather*}
 \end{specialexample}
 
 実数値関数の\(\varepsilon\)--\(\delta\)論法を用いた連続性の定義は次のように一般化される．
@@ -470,6 +672,8 @@
 \definitionlabel{topology-continuity-at-x}
 \end{definition}
 \end{thmbox}
+
+具体的な写像
 
 \begin{exa} \(S^1\)を単位円周とする．図形\(T^2 = S^1 \times S^1\)を\keyword{(2次元)トーラス}((2-dimensional) torus)という（\figref{torus}）．
 \(f \colon T^2 \to T^2, \tuple{\theta_1, \theta_2} \mapsto \tuple{\theta_1 + \alpha, \theta_2 + \beta}\)は連続写像である．

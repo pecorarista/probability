@@ -3,7 +3,7 @@
     scale=3.4,
     tdplot_main_coords
 ]
-    \pgfmathsetmacro{\R}{1.0}
+    \pgfmathsetmacro{\r}{1.0}
 
     \pgfmathsetmacro\uanglephi{25}
     \pgfmathsetmacro\uangletheta{50}
@@ -12,45 +12,46 @@
     \pgfmathsetmacro\vangletheta{40}
 
     \coordinate (O) at (0, 0, 0);
-    \node[left=2] at (0, 0, 0) {\(O\)};
-    \tdplotsetcoord{U}{\R}{\uangletheta}{\uanglephi}
-    \tdplotsetcoord{V}{\R}{\vangletheta}{\vanglephi}
+    \node[left=2] at (0, 0, 0) {\(\origin\)};
+    \node[above=5, right=2] at (0, 0, 1) {\(\symup{N}\)};
+    \tdplotsetcoord{U}{\r}{\uangletheta}{\uanglephi}
+    \tdplotsetcoord{V}{\r}{\vangletheta}{\vanglephi}
 
     % PROJECTIONS
     \draw[sLightGray, thin] plot[domain=0:90](
-        {\R * sin(\x) * cos(\uanglephi)},
-        {\R * sin(\x) * sin(\uanglephi)},
-        {\R * cos(\x)}
+        {\r * sin(\x) * cos(\uanglephi)},
+        {\r * sin(\x) * sin(\uanglephi)},
+        {\r * cos(\x)}
     ) coordinate (projU);
     \draw[sLightGray, thin] plot[domain=0:90](
-        {\R * sin(\x) * cos(\vanglephi)},
-        {\R * sin(\x) * sin(\vanglephi)},
-        {\R * cos(\x)}
+        {\r * sin(\x) * cos(\vanglephi)},
+        {\r * sin(\x) * sin(\vanglephi)},
+        {\r * cos(\x)}
     ) coordinate (projV);
-    \draw[sLightGray, thin] plot[domain=0:90]({\R * cos(\x)}, {\R * sin(\x)}, 0);
+    \draw[sLightGray, thin] plot[domain=0:90]({\r * cos(\x)}, {\r * sin(\x)}, 0);
     \draw[sLightGray, thin] (O)  -- (projV);
     \draw[sLightGray, thin] (O)  -- (projU);
-    \tdplotdrawarc[sRed, -stealth]{(O)}{0.45 * \R}{0}{\vanglephi} {below=-1}{\(\lambda_2\)}
+    \tdplotdrawarc[sRed, -stealth]{(O)}{0.45 * \r}{0}{\vanglephi} {below=-1}{\(\varphi_2\)}
 
     \tdplotsetthetaplanecoords{\uanglephi}
-    \tdplotdrawarc[sBlue, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.18 * \R}{0}{\uangletheta}{left=4, above=-1}{\(\theta_1\)}
+    \tdplotdrawarc[sBlue, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.18 * \r}{0}{\uangletheta}{left=4, above=-1}{\(\theta_1\)}
     \tdplotsetthetaplanecoords{\vanglephi}
-    \tdplotdrawarc[sRed, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.22 * \R}{0}{\vangletheta}{right=3, above=-1}{\(\theta_2\)}
+    \tdplotdrawarc[sRed, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.22 * \r}{0}{\vangletheta}{right=3, above=-1}{\(\theta_2\)}
 
-    \tdplotdrawarc[sBlue, -stealth]{(O)}{0.2 * \R}{0}{\uanglephi} {below=-1}{\(\lambda_1\)}
+    \tdplotdrawarc[sBlue, -stealth]{(O)}{0.2 * \r}{0}{\uanglephi} {below=-1}{\(\varphi_1\)}
 
-    \draw[thick,-stealth] (0, 0, 0) -- (1.2 * \R, 0, 0) node[left=1, above=2]{\(x\)};
-    \draw[thick,-stealth] (0, 0, 0) -- (0, 1.2 * \R, 0) node[above=2]{\(y\)};
-    \draw[thick,-stealth] (0, 0, 0) -- (0,0, 1.2 * \R) node[below=3, left=1]{\(z\)};
+    \draw[thick,-stealth] (0, 0, 0) -- (1.2 * \r, 0, 0) node[left=1, above=2]{};
+    \draw[thick,-stealth] (0, 0, 0) -- (0, 1.2 * \r, 0) node[above=2]{};
+    \draw[thick,-stealth] (0, 0, 0) -- (0,0, 1.2 * \r) node[below=3, left=1]{};
 
     \tdplotdefinepoints(0, 0, 0)%
-        ({\R * sin(\uangletheta) * cos(\uanglephi)}, {\R * sin(\uangletheta) * sin(\uanglephi)}, {\R * cos(\uangletheta)})%
-        ({\R * sin(\vangletheta) * cos(\vanglephi)}, {\R * sin(\vangletheta) * sin(\vanglephi)}, {\R * cos(\vangletheta)})
+        ({\r * sin(\uangletheta) * cos(\uanglephi)}, {\r * sin(\uangletheta) * sin(\uanglephi)}, {\r * cos(\uangletheta)})%
+        ({\r * sin(\vangletheta) * cos(\vanglephi)}, {\r * sin(\vangletheta) * sin(\vanglephi)}, {\r * cos(\vangletheta)})
     \tdplotdrawpolytopearc[sGreen]{1}{anchor=west}{}
 
     \draw[sBlue, -stealth] (O)  -- (U) node[above=4, left=2] {\(p\)};
     \draw[sRed, -stealth] (O)  -- (V) node [below=10, left=-3] {\(q\)};
 
-    \node[sGreen, right=25, above=-5] at ({\R * sin(30) * cos(50)}, {\R * sin(30) * sin(50)}, {\R * cos(30)}) {\(\displaystyle r \cos^{-1} \left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right)\)};
+    \node[sGreen, right=25, above=-5] at ({\r * sin(30) * cos(50)}, {\r * sin(30) * sin(50)}, {\r * cos(30)}) {\(\displaystyle r \cos^{-1} \left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right)\)};
 
 \end{tikzpicture}
