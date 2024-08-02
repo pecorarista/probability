@@ -102,15 +102,15 @@
 \begin{specialexample}
 地球上の\(2\)地点間の距離を考える．
 地球の中を掘って進むわけにはいかないので，地表に沿った経路の中で最も短いものがそれらの距離としてふさわしい．
-地表を球面
+地表を半径\(R > 0\)の球面
 \begin{align*}
-    S^2(R) = \left\{ \begin{pmatrix} x \\ x \\ x \end{pmatrix} \in \symbb{R}^3 \relmiddle{|} \sqrt{x^2 + y^2 + z^2} = R \right\}
+    S^2(R) = \left\{ \begin{pmatrix} x \\ y \\ z \end{pmatrix} \in \symbb{R}^3 \relmiddle{|} \sqrt{x^2 + y^2 + z^2} = R \right\}
 \end{align*}
 によってモデル化する．
 \(S^2(R)\)上に\(2\)点\(p, q\)をとる．
-このとき\(p\)から\(p\)へ球面に沿って移動する経路で長さが最小となるのは，\(p, q\)そして\(S^2\)の中心\(\symup{O}\)によって定まる平面と，球面が交わってできる円の劣弧の長さ
+このとき\(p\)から\(p\)へ球面に沿って移動する経路で長さが最小となるのは，\(p, q, \symup{O} = (0, 0, 0)\)によって定まる平面と，球面が交わってできる円の劣弧の長さ
 \begin{align}
-    d(p, q) = R \cos^{-1}\left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right) \eqlabel{great-circle-distance}
+    d(p, q) = R \arccos\left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right) \eqlabel{great-circle-distance}
 \end{align}
 に等しい．
 一般に球面とその中心を通る平面が交わってできる円を\keyword{大円}(great circle)という．
@@ -380,14 +380,42 @@
 \begin{align*}
     L(\gamma) = \int_{0}^{1} \sqrt{g\left(\frac{d\gamma}{dt}(t), \frac{d\gamma}{dt}(t)\right)} dt
 \end{align*}
-\begin{align*}
+
+\begin{align}
     d_g(p, q) = \inf \{L(\gamma) \mid \gamma \in \Omega(p, q)\}
-\end{align*}
-任意の\(\gamma_1 \in \Omega(p, r)\)と\(\gamma_2 \in \Omega(r, q)\)
-\(\gamma = \gamma_1 + \gamma_2\)
+\end{align}
+\keyword{Riemann距離}(Riemannian distance)という．
+Riemann metricといってしまうと，それはRiemann計量を指すため注意が必要である．
+
+
+\eqref{great-circle-distance}が距離の公理をみたすことを示す．
+以下\(p, q, r\)は\(S^2(R) \subseteq \symbb{R}^3\)の点とする．
+最初に非負性を示す．任意の\(x \in [-1 , 1]\)について
 \begin{align*}
-    d(x, z) < \inf \{L(\gamma) \mid \gamma \in \Omega(x, y)\}
+    0 \leq \arccos x \leq \pi
 \end{align*}
+から\(d(p, q) \geq 0\)である．
+\(d(p, q) = 0\)となるのは\(p \cdot q = \lVert p \rVert \lVert q \rVert\)が成立するときかつそのときに限る．
+これはCauchy--Schwarzの不等式において等号が成立する条件と同値であり，ある\(\lambda > 0\)が存在して\(p = \lambda q\)が成り立つということを意味する．
+両辺のノルムをとると\(\lambda = 1\)がわかる．
+したがって\(p = q\)が\(d(p, q) = 0\)の必要充分条件である．
+対称性は\(\symbb{R}^3\)の内積が可換であることから明らかである．
+最後に三角不等式を示す．
+大円距離はRiemann距離の一例であるからRiemann距離について示せばよい．
+任意の\(p, q, r\in M, \gamma_1 \in \Omega(p, r), \gamma_2 \in \Omega(r, q)\)をとる．
+下限の定義から，任意の\(\varepsilon > 0\)について\(\gamma_1 \in \Omega(p, r), \gamma_2 \in \Omega(r, q)\)が存在して
+\begin{gather*}
+    L(\gamma_1) < d_g(p, r) + \frac{\varepsilon}{2},
+    \quad
+    L(\gamma_2) < d_g(r, q) + \frac{\varepsilon}{2}
+\end{gather*}
+が成り立つ．したがって
+\begin{align*}
+    d_g(p, q) \leq L(\gamma_1 + \gamma_2)
+            = L(\gamma_1) + L(\gamma_2)
+            < d_g(p, r) + d_g(r, q) + \varepsilon.
+\end{align*}
+\(\varepsilon > 0\)が任意であったから三角不等式\(d_g(p, q) \leq d_g(p, r) + d_g(r, q)\)が成り立つ．
 
 \end{specialexample}
 
