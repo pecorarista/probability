@@ -5,52 +5,52 @@
 ]
     \pgfmathsetmacro{\r}{1.0}
 
-    \pgfmathsetmacro\uanglephi{25}
-    \pgfmathsetmacro\uangletheta{50}
+    \pgfmathsetmacro\panglephi{25}
+    \pgfmathsetmacro\pangletheta{50}
 
-    \pgfmathsetmacro\vanglephi{80}
-    \pgfmathsetmacro\vangletheta{40}
+    \pgfmathsetmacro\qanglephi{80}
+    \pgfmathsetmacro\qangletheta{40}
 
     \coordinate (O) at (0, 0, 0);
     \node[left=2] at (0, 0, 0) {\(\origin\)};
     \node[above=5, right=2] at (0, 0, 1) {\(\symup{N}\)};
-    \tdplotsetcoord{U}{\r}{\uangletheta}{\uanglephi}
-    \tdplotsetcoord{V}{\r}{\vangletheta}{\vanglephi}
+    \tdplotsetcoord{P}{\r}{\pangletheta}{\panglephi}
+    \tdplotsetcoord{Q}{\r}{\qangletheta}{\qanglephi}
 
     % PROJECTIONS
     \draw[sLightGray, thin] plot[domain=0:90](
-        {\r * sin(\x) * cos(\uanglephi)},
-        {\r * sin(\x) * sin(\uanglephi)},
-        {\r * cos(\x)}
-    ) coordinate (projU);
-    \draw[sLightGray, thin] plot[domain=0:90](
-        {\r * sin(\x) * cos(\vanglephi)},
-        {\r * sin(\x) * sin(\vanglephi)},
+        {\r * sin(\x) * cos(\qanglephi)},
+        {\r * sin(\x) * sin(\qanglephi)},
         {\r * cos(\x)}
     ) coordinate (projV);
     \draw[sLightGray, thin] plot[domain=0:90]({\r * cos(\x)}, {\r * sin(\x)}, 0);
-    \draw[sLightGray, thin] (O)  -- (projV);
-    \draw[sLightGray, thin] (O)  -- (projU);
-    \tdplotdrawarc[sRed, -stealth]{(O)}{0.45 * \r}{0}{\vanglephi} {below=-1}{\(\varphi_2\)}
+    \draw[sLightGray, thin] (O)  -- ({\r * cos(\panglephi)}, {\r * sin(\panglephi)}, 0);
+    \draw[sLightGray, thin] (O)  -- ({\r * cos(\qanglephi)}, {\r * sin(\qanglephi)}, 0);
+    \tdplotdrawarc[sRed, -stealth]{(O)}{0.45 * \r}{0}{\qanglephi} {below=-1}{\(\varphi_2\)}
+    \draw[sLightGray, thin] plot[domain=0:90](
+        {\r * sin(\x) * cos(\panglephi)},
+        {\r * sin(\x) * sin(\panglephi)},
+        {\r * cos(\x)}
+    ) coordinate (projP);
 
-    \tdplotsetthetaplanecoords{\uanglephi}
-    \tdplotdrawarc[sBlue, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.18 * \r}{0}{\uangletheta}{left=4, above=-1}{\(\theta_1\)}
-    \tdplotsetthetaplanecoords{\vanglephi}
-    \tdplotdrawarc[sRed, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.22 * \r}{0}{\vangletheta}{right=3, above=-1}{\(\theta_2\)}
+    \tdplotsetthetaplanecoords{\panglephi}
+    \tdplotdrawarc[sBlue, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.18 * \r}{0}{\pangletheta}{left=4, above=-1}{\(\theta_1\)}
+    \tdplotsetthetaplanecoords{\qanglephi}
+    \tdplotdrawarc[sRed, -stealth, tdplot_rotated_coords]{(0, 0, 0)}{0.22 * \r}{0}{\qangletheta}{right=3, above=-1}{\(\theta_2\)}
 
-    \tdplotdrawarc[sBlue, -stealth]{(O)}{0.2 * \r}{0}{\uanglephi} {below=-1}{\(\varphi_1\)}
+    \tdplotdrawarc[sBlue, -stealth]{(O)}{0.2 * \r}{0}{\panglephi} {below=-1}{\(\varphi_1\)}
 
     \draw[thick,-stealth] (0, 0, 0) -- (1.2 * \r, 0, 0) node[left=1, above=2]{};
     \draw[thick,-stealth] (0, 0, 0) -- (0, 1.2 * \r, 0) node[above=2]{};
     \draw[thick,-stealth] (0, 0, 0) -- (0,0, 1.2 * \r) node[below=3, left=1]{};
 
     \tdplotdefinepoints(0, 0, 0)%
-        ({\r * sin(\uangletheta) * cos(\uanglephi)}, {\r * sin(\uangletheta) * sin(\uanglephi)}, {\r * cos(\uangletheta)})%
-        ({\r * sin(\vangletheta) * cos(\vanglephi)}, {\r * sin(\vangletheta) * sin(\vanglephi)}, {\r * cos(\vangletheta)})
+        ({\r * sin(\pangletheta) * cos(\panglephi)}, {\r * sin(\pangletheta) * sin(\panglephi)}, {\r * cos(\pangletheta)})%
+        ({\r * sin(\qangletheta) * cos(\qanglephi)}, {\r * sin(\qangletheta) * sin(\qanglephi)}, {\r * cos(\qangletheta)})
     \tdplotdrawpolytopearc[sGreen]{1}{anchor=west}{}
 
-    \draw[sBlue, -stealth] (O)  -- (U) node[above=4, left=2] {\(p\)};
-    \draw[sRed, -stealth] (O)  -- (V) node [below=10, left=-3] {\(q\)};
+    \draw[sBlue, -stealth] (O)  -- (P) node[above=4, left=2] {\(p\)};
+    \draw[sRed, -stealth] (O)  -- (Q) node [below=10, left=-3] {\(q\)};
 
     \node[sGreen, right=40, above=-5] at ({\r * sin(30) * cos(50)}, {\r * sin(30) * sin(50)}, {\r * cos(30)}) {\(\displaystyle R \arccos \left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right)\)};
 
