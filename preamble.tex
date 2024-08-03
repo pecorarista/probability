@@ -9,7 +9,6 @@
 \usepackage{amssymb}
 \usepackage{amsthm}
 \usepackage{cases}
-% \usepackage{mtpro2}
 \usepackage{bussproofs}
 \usepackage[
     math-style=ISO
@@ -52,16 +51,6 @@
     scale=0.95
 ]{luatexja-preset}
 
-\usepackage{polyglossia}
-\setdefaultlanguage{japanese}
-\setotherlanguages{english,french,german,russian,hebrew,greek}
-
-\usepackage{covington}
-\setglossoptions{%
-    fstl=\normalfont\upshape\rmfamily\mcfamily,
-    enquotetl=false,
-}
-
 \usepackage{luatexja-ruby}
 % \setmainfont[%
 %     Extension=.otf,
@@ -74,23 +63,23 @@
 % ]{NewCM10}
 \setmainfont[%
     Extension=.ttf,
-    UprightFont=*MT,
-    ItalicFont=*-ItalicMT,
-    BoldFont=*-BoldMT,
-    BoldItalicFont=*-BoldItalicMT,
+    UprightFont=*,
+    ItalicFont=*i,
+    BoldFont=*bd,
+    BoldItalicFont=*bi,
     Ligatures=Discretionary
-]{TimesNewRomanPS}
+]{times}
 % \setmainfont{STIX Two Text}
 \setsansfont[
-    Extension=.ttf,
-    UprightFont=*-Regular,
-    BoldFont=*-Medium
-]{Roboto}
+    Extension=.otf,
+    UprightFont=*-Light,
+    BoldFont=*-Roman,
+]{FrutigerLTStd}
 % \setmathfont[
 %    math-style=ISO,
 %    StylisticSet=1
 % ]{STIX Two Math}
-\setmathfont{NewCMMath-Book.otf}
+\setmathfont{NewComputerModernMath-Book}
 \setmathfont[%
     range={%
         cal,
@@ -118,6 +107,20 @@
     alxspmode={`/,allow},
     alxspmode={`#,allow},
     alxspmode={92,allow} % backslash
+}
+
+\newfontfamily\phoneticfont{Times LT Std Phonetic}
+\newfontfamily\treefont[ItalicFont={Roboto Light Italic}]{Roboto Light}
+\newfontfamily\suetterlin{Suetterlin-HJZ-Italic-1911.ttf}
+\newfontfamily\cjkfont{Hiragino Mincho ProN}
+\newfontfamily\cjkfontsf{Hiragino Kaku Gothic ProN}
+\newfontfamily\cjkfonttt{Hiragino Maru Gothic ProN}
+
+\usepackage{covington}
+\setglossoptions{%
+    fsii=\normalfont\upshape\phoneticfont,
+    fstl=\normalfont\upshape\rmfamily\mcfamily,
+    enquotetl=false,
 }
 
 \usepackage{wtref}
@@ -301,8 +304,6 @@
 \DeclareMathOperator{\len}{length}
 \newcommand\symdiffsymbol{\mathord{\triangle}}
 \newcommand\symdiff[2]{#1\mathbin{\triangle}#2}
-\newfontfamily\treefont[ItalicFont={Roboto Light Italic}]{Roboto Light}
-\newfontfamily\suetterlin{Suetterlin-HJZ-Italic-1911.ttf}
 \newcommand\formallang[1]{{\treefont\itshape #1}}
 
 \newcommand\header[1]{\multicolumn{1}{c}{\bfseries\gtfamily #1}}
