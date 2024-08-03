@@ -7,6 +7,7 @@
 \input{preamble}
 \begin{document}
 \mainchapter{位相}
+
 \nocite{uchida}
 \nocite{introduction-to-topology}
 
@@ -32,13 +33,13 @@
 }
 
 \(2\)次元直交座標上の点\(x = (x_1, x_1)\)と\(y = (y_1, y_2)\)の距離は\(\sqrt{(x_1 - y_1)^2 + (x_2 - y_2)^2}\)で定義された．
-これがみたす性質を抽出を元に一般的な距離(metric)が定義される．
+これがみたす性質を逆に定義として一般的な距離が定義される．
 
 \section{距離空間}
 \begin{thmbox}
 \begin{definition}
 \(X\)を空でない集合とする．
-    関数\(d\colon X \times X \to \symbb{R}\)が以下の\ref{distance-nonnegativity}--\ref{distance-triangle-inequality}をみたすとき，\(d\)を\(X\)上の\keyword{距離}(metric)という．
+関数\(d\colon X \times X \to \symbb{R}\)が以下の\ref{distance-nonnegativity}--\ref{distance-triangle-inequality}をみたすとき，\(d\)を\(X\)上の\keyword{距離}(metric)または\keyword{距離関数}(distance function)という．
 \begin{conditions}
     \item\label{distance-nonnegativity} （非負性）任意の\(x, y \in X\)について\(d(x, y) \geq 0\)が成り立つ．
         また\(d(x, y) = 0\)となるのは\(x = y\)のとき，かつそのときに限る．
@@ -110,11 +111,11 @@
 \(S^2(R)\)上に\(2\)点\(p, q\)をとる．
 このとき\(p\)から\(p\)へ球面に沿って移動する経路で長さが最小となるのは，\(p, q, \symup{O} = (0, 0, 0)\)によって定まる平面と，球面が交わってできる円の劣弧の長さ
 \begin{align}
-    d(p, q) = R \arccos\left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right) \eqlabel{great-circle-distance}
+    d(p, q) = R \arccos\left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right) \mathlabel{great-circle-distance}
 \end{align}
 に等しい．
 一般に球面とその中心を通る平面が交わってできる円を\keyword{大円}(great circle)という．
-また\eqref{great-circle-distance}で定まる距離を\keyword{大円距離}(great circle distance)という（\figref{great-circle-distance}）．
+また\mathref{great-circle-distance}で定まる距離を\keyword{大円距離}(great circle distance)という（\figref{great-circle-distance}）．
 \begin{figure}
     \centering
     \input{figures/great-circle.tex}
@@ -173,14 +174,14 @@
         \dot{\varphi}(t)
     \end{pmatrix}
     \neq 0
-    \eqlabel{great-circle-regular}
+    \mathlabel{great-circle-regular}
 \end{align}
 であると仮定する．これは直感的にいうと「停まらない」ということである．
 また最短で結ぶ曲線を求めるので\(\gamma\)は自身と交わらない，すなわち単射であると仮定してよい．
 曲線の長さ\(L(\gamma)\)は
 \begin{align}
     L(\gamma) = \int_{0}^{1} \sqrt{\frac{d\gamma}{dt}(t) \cdot \frac{d\gamma}{dt}(t)} dt
-    \eqlabel{great-circle-length-integral}
+    \mathlabel{great-circle-length-integral}
 \end{align}
 で求められる．
 \begin{align*}
@@ -263,7 +264,7 @@
 \end{align*}
 以降，表記を簡潔にするため，ニュートンの記法(Newton's notation)を用いる．
 これは関数\(f\colon t \mapsto \placeholder\)の\(t\)に関する導関数を\(\dot{f}\)のように表すものである．
-\eqref{great-circle-length-integral}の被積分関数を\(F \colon [0, 1] \times \symbb{R}^2 \times \symbb{R}^2 \to \symbb{R}\)とすると
+\mathref{great-circle-length-integral}の被積分関数を\(F \colon [0, 1] \times \symbb{R}^2 \times \symbb{R}^2 \to \symbb{R}\)とすると
 \begin{align*}
     & F\left(
         t,
@@ -334,7 +335,7 @@
     \end{pmatrix}
     = 0
 \end{align*}
-である．\eqref{great-circle-regular}と\(t > 0\)において\(\sin \theta(t) > 0\)であるから，成分ごとに計算して
+である．\mathref{great-circle-regular}と\(t > 0\)において\(\sin \theta(t) > 0\)であるから，成分ごとに計算して
 \begin{numcases}
     \displaystyle
     \frac{%
@@ -348,7 +349,7 @@
         \dot{\theta}(t)
     }{%
         \sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}
-    } \eqlabel{great-circle-ode1} \\[10pt]
+    } \mathlabel{great-circle-ode1} \\[10pt]
     \displaystyle
     0 =
     \frac{d}{dt}
@@ -356,9 +357,9 @@
         \dot{\varphi}(t) \sin^2\theta(t)
     }{%
         \sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}
-    } \eqlabel{great-circle-ode2}
+    } \mathlabel{great-circle-ode2}
 \end{numcases}
-を得る．\eqref{great-circle-ode2}から
+を得る．\mathref{great-circle-ode2}から
 \begin{align*}
     \frac{\dot{\varphi}(t) \sin^2\theta(t)}{\sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}}
     =
@@ -388,7 +389,7 @@
 Riemann metricといってしまうと，それはRiemann計量を指すため注意が必要である．
 
 
-\eqref{great-circle-distance}が距離の公理をみたすことを示す．
+\mathref{great-circle-distance}が距離の公理をみたすことを示す．
 以下\(p, q, r\)は\(S^2(R) \subseteq \symbb{R}^3\)の点とする．
 最初に非負性を示す．任意の\(x \in [-1 , 1]\)について
 \begin{align*}
@@ -823,11 +824,11 @@ Riemann metricといってしまうと，それはRiemann計量を指すため�
     位相空間\(\tuple{X, \symcal{O}}\)を位相空間とする．\(X\)の部分集合族\(\symcal{U}\)が
 \begin{align}
     X = \bigcup \symcal{U}
-    \eqlabel{cover}
+    \mathlabel{cover}
 \end{align}
 をみたすとき，\(\symcal{U}\)は\(X\)を\keyword{覆う}(\(\symcal{U}\) covers \(X\))\index{覆う@おおう}，あるいは
 \(\symcal{U}\)は\(X\)の\keyword{被覆}(cover)\index{被覆@ひふく}であるという．
-\eqref{cover}が成り立ち，かつ\(\symcal{U}\)の元がすべて開集合であるとき，
+\mathref{cover}が成り立ち，かつ\(\symcal{U}\)の元がすべて開集合であるとき，
 すなわち\(\symcal{U} \subseteq \symcal{O}\)であるとき，
 \(\symcal{U}\)は\(X\)の\keyword{開被覆}(open cover)\index{かいひふく@開被覆}であるという．
 開被覆の部分集合\(\symcal{U}'\)が有限個の要素からなり，かつ\(X\)を覆うとき，
@@ -1216,7 +1217,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
     = \bigcap \{X \setminus V \mid V \in \symcal{V}\}
     = \bigcap \{A \mid A \in \symcal{A}\}
     = \bigcap \symcal{A}
-    = \emptyset \eqlabel{fip-de-morgan}
+    = \emptyset \mathlabel{fip-de-morgan}
 \end{align}
 が成り立つ．ゆえに\(X = \bigcup \symcal{V}\)であり，仮定から\(\{V_1, \ldots, V_n\} \subseteq \symcal{V}\)で
 \begin{align*}
@@ -1232,7 +1233,7 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{align*}
 
 \refimpliesref{\ref{fip-fip}}{\ref{fip-compact}}：\(\bigcap \symcal{A} = \emptyset\)をみたす任意の\(\symcal{A} \subseteq \symcal{F}\)をとる．
-\(\symcal{V} = \{X \setminus A \mid A \in \symcal{A}\}\)とすると，\eqref{fip-de-morgan}と同様，\(X \setminus \bigcup \symcal{V} = \bigcap \symcal{A} = \emptyset\)，すなわち\(X = \bigcup \symcal{V}\)が成り立つ．有限交叉性から\(\{A_1, \ldots, A_n\} \subseteq \symcal{A}\)で
+\(\symcal{V} = \{X \setminus A \mid A \in \symcal{A}\}\)とすると，\mathref{fip-de-morgan}と同様，\(X \setminus \bigcup \symcal{V} = \bigcap \symcal{A} = \emptyset\)，すなわち\(X = \bigcup \symcal{V}\)が成り立つ．有限交叉性から\(\{A_1, \ldots, A_n\} \subseteq \symcal{A}\)で
 \begin{align*}
     \bigcap_{i = 1}^n A_i = \emptyset
 \end{align*}
