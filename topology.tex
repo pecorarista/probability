@@ -48,7 +48,7 @@
 \end{conditions}
 \ref{distance-nonnegativity}--\ref{distance-triangle-inequality}をまとめて\keyword{距離の公理}という．
 集合\(X\)と距離\(d\)の組\(\tuple{X, d}\)を\keyword{距離空間}(metric space)という．
-距離\(d\)がどのようなものか明らかな場合，単に\(\tuple{X, d}\)を\(X\)と書く．
+距離\(d\)がどのようなものか明らかな場合，\(\tuple{X, d}\)を単に\(X\)と書く．
 \definitionlabel{distance}
 \end{definition}
 \end{thmbox}
@@ -56,23 +56,23 @@
 距離を指す英単語として，より日常的な語であるdistanceもよく用いられる．
 しかしそれはdistance between \(x\) and \(y\)やEuclidean distanceのように具体的な距離を指す場合に限られ，一般の距離を指す場合は専らmetricが用いられる．
 
-\begin{exa}
+\begin{example}
 \(X\)を空でない集合とする．このとき
 \begin{align*}
     d(x, y) =  \begin{cases} 1 & \text{if \(x = y\),} \\ 0 & \text{otherwise.} \end{cases}
 \end{align*}
 は距離の公理をみたす（証明略）．
 この\(d\)を\keyword{離散距離}(discrete distance)という．
-\end{exa}
+\end{example}
 
-\begin{exa} \(\symbb{R}^n\)の任意の\(2\)元\(x = (x_1, \ldots, x_n)\)と\(y = (y_1, \ldots, y_n)\)について
+\begin{example} \(\symbb{R}^n\)の任意の\(2\)元\(x = (x_1, \ldots, x_n)\)と\(y = (y_1, \ldots, y_n)\)について
 \begin{align*}
     d(x, y) = \sqrt{\sum_{i = 1}^n (x_i - y_i)^2}
 \end{align*}
 と定義すると\(d\)は距離の公理をみたす（証明略）．この距離を\keyword{ユークリッド距離}(Euclidean distance)という\figref{euclidean-distance}．
 また組\(\tuple{\symbb{R}^n, d}\)を\keyword{（\(n\)次元）ユークリッド空間}(\(n\)-dimensional Euclidean space)という．
 \(\symbb{R}^n\)を距離空間として扱う場合，特に断らない限り，距離はユークリッド距離をとる．
-\end{exa}
+\end{example}
 
 \begin{figure}
 \begin{minipage}{0.5\textwidth}
@@ -87,7 +87,7 @@
 \end{minipage}
 \end{figure}
 
-\begin{exa}
+\begin{example}
 \(\symbb{R}^2\)の任意の\(2\)点\(x = (x_1, x_2), y = (y_1, y_2)\)をとる．
 \figref{manhattan-distance}のように，
 \(2\)点間を水平方向または鉛直方向にしか移動できない場合，それらの距離は\(\absolute{x_1 - y_1} + \absolute{x_2 - y_2}\)とするのが自然である．
@@ -98,9 +98,9 @@
 と定めるとこれは距離の公理をみたす（証明略）．
 これを\keyword{マンハッタン距離}(Manhattan distance)という．
 この名前は碁盤の目状の都市として代表的であるアメリカ合衆国マンハッタンに由来する．
-\end{exa}
+\end{example}
 
-\begin{specialexample}
+\begin{example}
 地球上の\(2\)地点間の距離を考える．
 地球の中を掘って進むわけにはいかないので，地表に沿った経路の中で最も短いものがそれらの距離としてふさわしい．
 地表を半径\(R > 0\)の球面
@@ -109,7 +109,7 @@
 \end{align*}
 によってモデル化する．
 \(S^2(R)\)上に\(2\)点\(p, q\)をとる．
-このとき\(p\)から\(p\)へ球面に沿って移動する経路で長さが最小となるのは，\(p, q, \symup{O} = (0, 0, 0)\)によって定まる平面と，球面が交わってできる円の劣弧の長さ
+このとき\(p\)から\(p\)へ球面に沿って移動する経路で長さが最小となるのは，\(3\)点\(p, q, \origin = (0, 0, 0)\)により定まる平面と，それが球面と交わってできる円の劣弧（\(p, q\)が互いに対蹠点であるときは半円）の長さ
 \begin{align}
     d(p, q) = R \arccos\left(\frac{p}{\lVert p \rVert} \cdot \frac{q}{\lVert q \rVert}\right) \mathlabel{great-circle-distance}
 \end{align}
@@ -124,7 +124,51 @@
 \end{figure}
 球面に沿って移動する経路で長さが最短になるのが大円の劣弧になること，
 および\mathref{great-circle-distance}が距離の公理をみたすことは\chapterref{geodesic}で示す．
-\end{specialexample}
+\end{example}
+
+距離を使って写像の連続性や列の収束などを定義することができる．
+それらの実用的な例を多く挙げるため，先にノルムというものを導入しておく．
+ノルムとは端的にいえばベクトルの長さである．
+
+\begin{thmbox}
+\begin{definition}
+\(X\)を\(\symbb{K}\)上のベクトル空間とする．
+\(X\)上の実数値関数\(\lVert \placeholder \rVert\colon x \mapsto \lVert x \rVert\)が次の\ref{norm--nonnegativity}--\ref{norm-triangle-inequality}をみたすとき，これを\(X\)上の\keyword{ノルム}(norm)という．
+\begin{conditions}
+    \item\label{norm-nonnegativity} 任意の\(x \in X\)で\(\lVert x \rVert \geq 0\)が成り立つ．
+        また\(\lVert x \rVert = 0\)となるための必要十分条件は\(x = 0\)であることである．
+    \item\label{norm-scalar} 任意の\(\lambda \in \symbb{K}\)と\(x \in X\)について
+        \(\lVert \lambda x \rVert = \lvert \lambda \rvert \lVert x \rVert\)
+        が成り立つ．
+    \item\label{norm-triangle-inequality} （三角不等式，劣加法性）任意の\(x, y \in X\)について\(\lVert x + y \rVert \leq \lVert x \rVert + \lVert y \rVert\)が成り立つ．
+\end{conditions}
+\ref{norm-nonnegativity}--\ref{norm-triangle-inequality}をまとめて\keyword{ノルムの公理}という．
+\(X\)とそのノルムの組\(\tuple{X, \lVert \placeholder \rVert}\)を\keyword{ノルム空間}(normed space)という．\(\lVert \placeholder \rVert\)がどのようなものか明らかな場合，\(\tuple{X, \lVert \placeholder \rVert}\)を単に\(X\)と書く．
+\end{definition}
+\end{thmbox}
+
+\begin{example} \(\symbb{R}^n\)をベクトル空間とみなす．任意の元\(x = (x_1, \ldots, x_n)\)について
+\begin{align*}
+    \lVert x \rVert = \sqrt{\sum_{i = 1}^n x_i^2}
+\end{align*}
+と定義すると\(\lVert \placeholder \rVert\)はノルムの公理をみたす（証明略）．このノルムを\keyword{ユークリッドノルム}(Euclidean norm)という．
+\(\symbb{R}^n\)をノルム空間として扱う場合，特に断らない限り，ノルムはユークリッドノルムをとる．
+\end{example}
+
+\begin{example} 列
+
+\end{example}
+
+ノルムによって距離が定まる．
+
+\begin{thmbox}
+\begin{definition}
+a
+\end{definition}
+\end{thmbox}
+
+a
+
 
 実数値関数の\(\varepsilon\)--\(\delta\)論法を用いた連続性の定義は次のように一般化される．
 
@@ -137,7 +181,6 @@
 \definitionlabel{dist-continuity}
 \end{definition}
 \end{thmbox}
-
 
 \section{位相空間}
 \begin{thmbox}
@@ -163,9 +206,9 @@
 \end{definition}
 \end{thmbox}
 
-\begin{exa}
+\begin{example}
 ユークリッド空間\(\symbb{R}\)
-\end{exa}
+\end{example}
 
 \(X\)を集合とし，\(\symcal{O}_1\)と\(\symcal{O}_2\)をそれぞれ\(X\)の位相とする．
 \(\symcal{O}_1 \subseteq \symcal{O}_2\)が成り立つとき，
@@ -339,11 +382,11 @@
 \end{definition}
 \end{thmbox}
 
-\begin{exa}
+\begin{example}
 ユークリッド空間\(\symbb{R}^2\)の点\(x\)をとる．
 \(r\)を任意の正の実数として\(N = [x - r, x + r]^2\)と定める．
 このとき例えば開集合\(U = B(x, \inlinefrac{r}{2})\)をとると\(x \in U\)かつ\(U \subseteq N\)が成り立つので，\(N\)は\(x\)の近傍である（\figref{neighborhood}）．\examplelabel{neighborhood}
-\end{exa}
+\end{example}
 
 \begin{figure}
     \centering
@@ -443,9 +486,9 @@
 
 具体的な写像
 
-\begin{exa} \(S^1\)を単位円周とする．図形\(T^2 = S^1 \times S^1\)を\keyword{(2次元)トーラス}((2-dimensional) torus)という（\figref{torus}）．
+\begin{example} \(S^1\)を単位円周とする．図形\(T^2 = S^1 \times S^1\)を\keyword{(2次元)トーラス}((2-dimensional) torus)という（\figref{torus}）．
 \(f \colon T^2 \to T^2, \tuple{\theta_1, \theta_2} \mapsto \tuple{\theta_1 + \alpha, \theta_2 + \beta}\)は連続写像である．
-\end{exa}
+\end{example}
 
 \begin{figure}
 \centering
@@ -544,14 +587,14 @@
 \end{definition}
 \end{thmbox}
 
-\begin{exa} \(X\)を有限個の要素をもつ集合とする．
+\begin{example} \(X\)を有限個の要素をもつ集合とする．
 このとき離散空間\(\tuple{X, \wp(X)}\)はコンパクトである．
 なぜならば，任意の開被覆\(\symcal{U}\)をとると，
 その要素の個数は\(\lvert\symcal{U}\rvert \leq \lvert \wp(X)\rvert \leq 2^{\lvert X \rvert}\)となるので，
 \(\symcal{U}\)自身が有限部分被覆になっているからである．
 
 一方で，\(X\)が無限個の要素をもつ場合，離散空間\(\tuple{X, \wp(X)}\)はコンパクトにはならない．なぜならば，開被覆として\(\symcal{U} = \{\{x\} \mid x \in X\}\)をとると，その有限個の要素からなる部分集合で\(X\)を覆うことはできないからである．
-\end{exa}
+\end{example}
 
 
 \begin{thmbox}
@@ -605,16 +648,16 @@
 擬順序(quasiorder)と呼ぶこともある．
 「前順序」という用語を「ぜんじゅんじょ」と読んでしまうと全順序と紛らわしいので，英語のままpreorderと言ったほうがよいかもしれない．}．
 
-\begin{exa} \(\symbb{N}\), \(\symbb{Z}\), \(\symbb{Q}\), \(\symbb{R}\)はそれぞれ有向集合である．
-\end{exa}
+\begin{example} \(\symbb{N}\), \(\symbb{Z}\), \(\symbb{Q}\), \(\symbb{R}\)はそれぞれ有向集合である．
+\end{example}
 
-\begin{exa} 位相空間\(X\)の任意の点\(x\)をとる．
+\begin{example} 位相空間\(X\)の任意の点\(x\)をとる．
 集合\(\Neighborhood{x}\)に関係\(\mathord{\preceq}\)を\(N \supseteq N' \Leftrightarrow N' \preceq N\)で定める．
 これが反射律と推移律をみたすことは明らかである．
 \definitionref{directed-set-uppper}~\ref{directed-set-upper}については，
 \(x\)の任意の近傍\(N_1, N_2\)について，
 \(N_1 \cap N_2\)をとると，これもまた\(x\)の近傍であり（\propositionref{neighborhood-properties}の\ref{neighborhood-cap}），\(N_1 \cap N_2 \subseteq N_1\)かつ\(N_1 \cap N_2 \subseteq N_2\)をみたすことからわかる．\examplelabel{neighborhood-directed-set}
-\end{exa}
+\end{example}
 
 \begin{thmbox}
 \begin{definition}
@@ -625,7 +668,7 @@
 ネットはしばしば列や族と同様に\(\FamilyLambda{x}\)のように書かれる．
 以降，厳密に使い分けることはせず，\(f, g\)のような表記と\(\FamilyLambda{x}\)のような表記を併せて用いる．
 
-\begin{exa}
+\begin{example}
 区間の分割は有向集合の例である．
 2つの分割\(\Delta = \{x_0, \ldots, x_n\}\)と\(\Delta' = \{y_0, \ldots, y_m\}\)について\(\Delta \subseteq \Delta' \)が成り立つとき，\(\Delta'\)は\(\Delta\)の\keyword{細分}(refinement)\index{さいぶん@細分 refinement}であるという．
 \(\Delta'\)が\(\Delta\)の細分であるとき関係\(\Delta \preceq \Delta'\)が成り立つと定める．このとき\(I\)の分割全体の集合は有向集合である．有向集合の定義\ref{directed-set-reflex}と\ref{directed-set-trans}が成り立つのは明らかである．
@@ -637,7 +680,7 @@ Riemann\footnote{\pronunciation{Riemann}{de}{ˈʀiːman}{リーマン}}積分の
     U(f, \Delta) := \sum_{i = 1}^n \sup \{ f(x) \mid x \in [x_{i - 1}, x_i] \} (x_i - x_{i - 1}), \\
     L(f, \Delta) := \sum_{i = 1}^n \inf \{ f(x) \mid x \in [x_{i - 1}, x_i] \} (x_i - x_{i - 1}).
 \end{gather}
-\end{exa}
+\end{example}
 
 \pgfmathdeclarefunction{curve}{1}{%
     \pgfmathparse{1.7 * sin(0.72 * deg(#1)) + 2.2}%
@@ -809,10 +852,10 @@ Hausdorff空間においてネットが収束するならば，その極限は�
 \end{definition}
 \end{thmbox}
 
-\begin{exa}
+\begin{example}
 ネット\(f\colon \PositiveInteger \to \symbb{R}\)を\(x_n = n + (-1)^n n\)と定義する．
 このとき\(0\)は\(f\)の集積点である．
-\end{exa}
+\end{example}
 
 
 列\(\Sequencen{x}\)の部分列(subsequence)は，狭義単調増加関数\(\varphi\colon\PositiveInteger\to\PositiveInteger\)を用いて\(\Subsequence{x}\)と表されるような列のことである．

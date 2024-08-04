@@ -52,15 +52,6 @@
 ]{luatexja-preset}
 
 \usepackage{luatexja-ruby}
-% \setmainfont[%
-%     Extension=.otf,
-%     UprightFont=*-Book,
-%     UprightFont=*-Regular,
-%     ItalicFont=*-Italic,
-%     BoldFont=*-Bold,
-%     BoldItalicFont=*-BoldItalic,
-%     SmallCapsFeatures={Numbers=OldStyle},
-% ]{NewCM10}
 \setmainfont[%
     Extension=.ttf,
     UprightFont=*,
@@ -69,16 +60,11 @@
     BoldItalicFont=*bi,
     Ligatures=Discretionary
 ]{times}
-% \setmainfont{STIX Two Text}
 \setsansfont[
     Extension=.otf,
     UprightFont=*-Light,
     BoldFont=*-Roman,
 ]{FrutigerLTStd}
-% \setmathfont[
-%    math-style=ISO,
-%    StylisticSet=1
-% ]{STIX Two Math}
 \setmathfont{NewComputerModernMath-Book}
 \setmathfont[%
     range={%
@@ -109,16 +95,44 @@
     alxspmode={92,allow} % backslash
 }
 
-\newfontfamily\phoneticfont{Times LT Std Phonetic}
 \newfontfamily\treefont[ItalicFont={Roboto Light Italic}]{Roboto Light}
 \newfontfamily\suetterlin{Suetterlin-HJZ-Italic-1911.ttf}
-\newfontfamily\cjkfont{Hiragino Mincho ProN}
-\newfontfamily\cjkfontsf{Hiragino Kaku Gothic ProN}
-\newfontfamily\cjkfonttt{Hiragino Maru Gothic ProN}
+
+\newtheoremstyle{jplain}%
+    {\topsep}%
+    {\topsep}%
+    {\normalfont}%
+    {}%
+    {\bfseries\gtfamily\sffamily}%
+    {}%
+    {5pt}%
+    {\thmname{#1}\thmnumber{#2}\thmnote{#3}\ignorespaces}
+\newtheoremstyle{jspecial}%
+    {\topsep}%
+    {\topsep}%
+    {\normalfont}%
+    {}%
+    {\bfseries\gtfamily\sffamily}%
+    {}%
+    {5pt}%
+    {\thmname{#1}\thmnumber{#2\({}^{\symbf{*}}\)}\thmnote{#3}\ignorespaces}
+\theoremstyle{jplain}
+\newtheorem{theorem}{定理}[chapter]
+\newtheorem{proposition}[theorem]{命題}
+\newtheorem{lemma}[theorem]{補題}
+\newtheorem{definition}[theorem]{定義}
+\newtheorem{example}[theorem]{例}
+\newtheorem{axiom}[theorem]{公理}
+\newtheorem{corollary}[theorem]{系}
+\newtheorem{numberedquote}[theorem]{引用}
+\renewcommand{\proofname}{証明}
+\renewcommand{\qedsymbol}{\rule{5pt}{10pt}}
+\theoremstyle{jspecial}
+\newtheorem{specialexample}[theorem]{例}
 
 \usepackage{covington}
 \setglossoptions{%
-    fsii=\normalfont\upshape\phoneticfont,
+    fsii=\normalfont\upshape,
     fstl=\normalfont\upshape\rmfamily\mcfamily,
     enquotetl=false,
 }
@@ -147,49 +161,19 @@
 \newref{corollary}
 \setrefstyle{corollary}{prefix=系}
 
-\newtheoremstyle{jplain}%
-    {\topsep}%
-    {\topsep}%
-    {\normalfont}%
-    {}%
-    {\bfseries\gtfamily\sffamily}%
-    {}%
-    {5pt}%
-    {\thmname{#1}\thmnumber{#2}\thmnote{#3}\ignorespaces}
-\newtheoremstyle{jspecial}%
-    {\topsep}%
-    {\topsep}%
-    {\normalfont}%
-    {}%
-    {\bfseries\gtfamily\sffamily}%
-    {}%
-    {5pt}%
-    {\thmname{#1}\thmnumber{#2\({}^{\symbf{*}}\)}\thmnote{#3}\ignorespaces}
-\theoremstyle{jplain}
-\newtheorem{theorem}{定理}[chapter]
-\newtheorem{proposition}[theorem]{命題}
-\newtheorem{lemma}[theorem]{補題}
-\newtheorem{definition}[theorem]{定義}
-\newtheorem{exa}[theorem]{例}
-\newtheorem{axiom}[theorem]{公理}
-\newtheorem{corollary}[theorem]{系}
-\newtheorem{numberedquote}[theorem]{引用}
-\renewcommand{\proofname}{証明}
-\renewcommand{\qedsymbol}{\rule{5pt}{10pt}}
-\theoremstyle{jspecial}
-\newtheorem{specialexample}[theorem]{例}
 
-\usepackage{lua-ul}
-\newunderlinetype\beginUnderWavy[\number\dimexpr1ex]{\cleaders\hbox{%
-\setlength\unitlength{.3ex}%
-\begin{picture}(4,0)(0,1)
-\thicklines
-\color{red}%
-\qbezier(0,0)(1,1)(2,0)
-\qbezier(2,0)(3,-1)(4,0)
-\end{picture}%
-}}
-\NewDocumentCommand\underWavy{+m}{{\beginUnderWavy#1}}
+% 波線
+% \usepackage{lua-ul}
+% \newunderlinetype\beginUnderWavy[\number\dimexpr1ex]{\cleaders\hbox{%
+% \setlength\unitlength{.3ex}%
+% \begin{picture}(4,0)(0,1)
+% \thicklines
+% \color{red}%
+% \qbezier(0,0)(1,1)(2,0)
+% \qbezier(2,0)(3,-1)(4,0)
+% \end{picture}%
+% }}
+% \NewDocumentCommand\underWavy{+m}{{\beginUnderWavy#1}}
 
 \usepackage{tcolorbox}
 \tcbuselibrary{%
@@ -277,19 +261,21 @@
 
 \newcommand\NaturalNumber{\symbb{N}}
 \newcommand\Integer{\symbb{Z}}
+\newcommand\Real{\symbb{R}}
+\newcommand\Complex{\symbb{C}}
 \newcommand\PositiveInteger{\symbb{N}_{\mathord{+}}}
+\newcommand\NonNegativeReal{\symbb{R}_{\mathord{+}}}
+\newcommand\PositiveReal{\symbb{R}_{\mathord{+}\mathord{+}}}
+
 \newcommand\SequenceLikeOpen{\langle}
 \newcommand\SequenceLikeClose{\rangle}
 \newcommand\Sequence[2]{{\SequenceLikeOpen {#1}_{#2} \SequenceLikeClose}_{#2 \in \PositiveInteger}}
-\newcommand\Subsequence[1]{{\SequenceLikeOpen {#1}_{\varphi(n)} \SequenceLikeClose}_{n \in \PositiveInteger}}
 \newcommand\Sequencen[1]{{\SequenceLikeOpen {#1}_n \SequenceLikeClose}_{n \in \PositiveInteger}}
-\newcommand\SimpleSequencen[1]{{\SequenceLikeOpen {#1}_n \SequenceLikeClose}_{n}}
+\newcommand\Subsequence[1]{{\SequenceLikeOpen {#1}_{\varphi(n)} \SequenceLikeClose}_{n \in \PositiveInteger}}
 \newcommand\Family[3]{{\SequenceLikeOpen {#1}_{#2} \SequenceLikeClose}_{#2 \in #3}}
+
 \newcommand\FamilyLambda[1]{{\SequenceLikeOpen {#1}_\lambda \SequenceLikeClose}_{\lambda \in \Lambda}}
-\newcommand\FamilySimple[1]{{\SequenceLikeOpen {#1} \SequenceLikeClose}_\lambda}
-\newcommand\FamilySimpleLambda[1]{{\SequenceLikeOpen {#1} \SequenceLikeClose}_\lambda}
-\newcommand\NonNegReal{\symbb{R}_{\mathord{+}}}
-\newcommand\PositiveReal{\symbb{R}_{\mathord{+}\mathord{+}}}
+
 \newcommand\Generatedtopology[1]{\tau\left[#1\right]}
 \newcommand\Neighborhood[1]{\symcal{N}_{#1}}
 \newcommand\OpenNeighborhood[1]{\symcal{U}_{#1}}
