@@ -8,8 +8,8 @@
 \begin{document}
 \mainchapter{代数学}
 
-この章では代数学の用語について紹介する．
-その主たる目的は以降の章でそれらを用いて説明を簡略にすることであり，代数学の詳細については深入りしない．
+この章では代数学の基本的な用語について紹介する．
+その主たる目的は以降の章で説明を簡略にするためであり，代数学の本格的な内容には踏み込まない．
 
 \section{代表的な代数構造}
 
@@ -32,8 +32,10 @@
 集合\(X\)の部分集合\(S\)と\(X\)上の\(n\)項演算\(f\)が与えられたとき，
 任意の\(x_1, \ldots, x_n \in S\)について\(f(x_1, \ldots, x_n) \in S\)が成り立つ，
 すなわち\(f(S^n) \subseteq S\)であるとき，
-\keyword{\(S\)は\(f\)について閉じている}(\(S\) is closed under \(f\))
-あるいは\keyword{\(f\)-閉}(\(f\)-closed)であるという．
+\keyword{\(S\)は\(f\)について閉じている}(\(S\) is closed under \(f\)\kern.1em)あるいは\keyword{\(f\)-閉}(\(f\)-closed)であるという．
+
+\begin{example} 通常の意味での自然数，整数，有理数，実数，複素数の加法や乗法は，それぞれ\(\NaturalNumber, \Integer, \Rational, \Real, \Complex\)上の\(2\)項演算である．
+\end{example}
 
 \begin{example} \(\Integer\)の部分集合\(\NaturalNumber\)は，加法\(\mathord{+}\)について閉じている．
 しかし1項演算\(\mathord{-}\colon n \mapsto -n\)については閉じていない．
@@ -41,29 +43,62 @@
 \end{example}
 
 \begin{thmbox}
-\begin{definition} 集合\(X\)とその上の演算\(\mathord{\cdot}\colon S \times S \to S\)が以下の条件をみたすとき，組\(\langle X, \mathord{\cdot} \rangle\)を\keyword{モノイド}(monoid)という：
+\begin{definition} 集合\(X\)とその上の演算\(\mathord{\cdot}\colon S \times S \to S\)が以下の条件をみたすとき，組\(\tuple{X, \mathord{\cdot}, e}\)を\keyword{モノイド}(monoid)という．
 \begin{conditions}
     \item （結合律）\(X\)の任意の元\(a, b, c\)に対して，\((a \cdot b) \cdot c = a \cdot (b \cdot c)\)が成り立つ．
     \item （単位元の存在）\(X\)の元\(e\)が存在して，\(S\)の任意の元に対して\(e \cdot a = a \cdot e = a\)が成り立つ．
 \end{conditions}
-さらに次の可換律をみたすとき，\(\langle X, \mathord{\cdot} \rangle\)を\keyword{可換モノイド}(commutative monoid)という：
+さらに次の可換律をみたすとき，\(\tuple{X, \mathord{\cdot}, e}\)を\keyword{可換モノイド}(commutative monoid)という．
 \begin{conditions}[resume]
     \item （可換律）\(X\)の任意の元\(a, b\)に対して，\(a \cdot b = b \cdot a\)が成り立つ．
 \end{conditions}
+演算や単位元がどのようなものか明らかな場合，\(\tuple{X, \mathord{\cdot}, e}\)を単に\(X\)と書く．
 \end{definition}
 \end{thmbox}
 
-モノイド\(\langle X, \mathord{\star} \rangle\)の単位元が\(e\)であるとき，それを\(\tuple{ X, \mathord{\star}, e }\)のように表すこともある．
-どのような演算や単位元を考えているのか，書き手・読み手間あるいは話し手・聞き手間で共有されている場合，集合と同じく単に\(X\)と表すことが多い．以下この種の注釈は省く．
-
-\begin{example} 整数全体の集合\(\Integer\)とその上の通常の加法\(\mathord{+}\)の組\(\tuple{\Integer, \mathord{+} }\)はモノイドである．
+\begin{example} 整数全体の集合\(\Integer\)とその上の通常の加法\(\mathord{+}\)の組\(\tuple{\Integer, \mathord{+}, 0}\)は可換モノイドである．
 \end{example}
 
-\begin{example} アルファベット\(\Sigma\)のKleeneスター\(\Sigma^{\mathord{*}}\)（\eqref{kleene-star}），連結（\eqref{concatenation}），空文字列（\eqref{empty-string}）からなる3つ組\(\langle \Sigma^{\mathord{*}}, \doubleplus, \varepsilon \rangle\)はモノイドである．
+\begin{example} \(\symbb{R}\)の元からなる\(n\)次正方行列全体の集合を\(\symcal{M}_{\Real}(n)\)と書くことにする．
+\(\tuple{\symcal{M}_{\Real}(n), \tuple{A, B} \mapsto AB, I}\)はモノイドであるが，可換モノイドではない．例えば
+\begin{align*}
+    \begin{pmatrix}
+        1 & 2 \\
+        0 & 1
+    \end{pmatrix}
+    \begin{pmatrix}
+        3 & 0 \\
+        1 & 2
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        5 & 4 \\
+        0 & 2
+    \end{pmatrix},
+    \quad
+    \begin{pmatrix}
+        3 & 0 \\
+        1 & 2
+    \end{pmatrix}
+    \begin{pmatrix}
+        1 & 2 \\
+        0 & 1
+    \end{pmatrix}
+    =
+    \begin{pmatrix}
+        3 & 6 \\
+        1 & 4
+    \end{pmatrix}
+\end{align*}
+である．
+\end{example}
+
+\begin{example} アルファベット\(\Sigma\)のKleeneスター（\mathref{kleene-star}），連結（\mathref{concatenation}），空文字列の組\(\tuple{\Sigma^{\mathord{*}}, \doubleplus, \varepsilon}\)はモノイドである．
 \end{example}
 
 \begin{thmbox}
-\begin{definition} 以下の性質をみたすとき，組\(\langle X, \mathord{+}, \mathord{\cdot} \rangle\)を\keyword{半環}(semiring)\index{半環 semiring@はんかん}という．
+\begin{definition}
+以下の性質をみたすとき，組\(\tuple{X, \mathord{+}, \mathord{\cdot}}\)を\keyword{半環}(semiring)\index{半環 semiring@はんかん}という．
 \begin{conditions}
     \item \(\langle X, \mathord{+}, 0 \rangle\)は可換モノイドである．
     \item \(\langle X, \mathord{\cdot}, 1 \rangle\)はモノイドである．
@@ -252,7 +287,7 @@
 したがって集合半環は全体集合を含んでいれば代数学の意味での半環でもあり，
 そうでなければ代数学の意味での半環にはあと一歩足りないということになる．
 
-\begin{figure}[h]
+\begin{figure}[ht]
     \centering
     \begin{tikzpicture}[draw opacity=1, fill opacity=0.4, text opacity=1]
         \draw[thick] (-2.35, 1.9) rectangle (2.35, -1.9);
@@ -290,7 +325,7 @@
         \emptyset          & \text{\((a, b] \subseteq (c, d]\)のとき，} \\
         (a, c] \cup (d, b] & \text{\((a, b] \supseteq (c, d]\)のとき，} \\
         (a, c] \cup (b, d] & \text{それ以外のとき}
-        \eqlabel{setminus-cases}
+        \mathlabel{setminus-cases}
     \end{cases}
 \end{align}
 からわかる．
