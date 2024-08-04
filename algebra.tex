@@ -1,11 +1,15 @@
-\documentclass[../main.tex]{subfiles}
+\documentclass{ltjsbook}
+\usepackage[%
+    textwidth=40\zw,
+    lines=40,
+    centering
+]{geometry}
+\input{preamble}
 \begin{document}
 \mainchapter{代数学}
 
 この章では代数学の用語について紹介する．
-その目的は以降の章でそれらを用いて説明を簡略にすることである．
-したがって用語に親しむために最低限の具体例の提示は行うものの，
-代数学的におもしろい部分にはほとんど踏み込まないことをご了承いただきたい．
+その主たる目的は以降の章でそれらを用いて説明を簡略にすることであり，代数学の詳細については深入りしない．
 
 \section{代表的な代数構造}
 
@@ -31,10 +35,10 @@
 \keyword{\(S\)は\(f\)について閉じている}(\(S\) is closed under \(f\))
 あるいは\keyword{\(f\)-閉}(\(f\)-closed)であるという．
 
-\begin{exa} \(\Integer\)の部分集合\(\NaturalNumber\)は，加法\(\mathord{+}\)について閉じている．
+\begin{example} \(\Integer\)の部分集合\(\NaturalNumber\)は，加法\(\mathord{+}\)について閉じている．
 しかし1項演算\(\mathord{-}\colon n \mapsto -n\)については閉じていない．
 例えば\(-1 \not\in \NaturalNumber\)である．
-\end{exa}
+\end{example}
 
 \begin{thmbox}
 \begin{definition} 集合\(X\)とその上の演算\(\mathord{\cdot}\colon S \times S \to S\)が以下の条件をみたすとき，組\(\langle X, \mathord{\cdot} \rangle\)を\keyword{モノイド}(monoid)という：
@@ -52,11 +56,11 @@
 モノイド\(\langle X, \mathord{\star} \rangle\)の単位元が\(e\)であるとき，それを\(\tuple{ X, \mathord{\star}, e }\)のように表すこともある．
 どのような演算や単位元を考えているのか，書き手・読み手間あるいは話し手・聞き手間で共有されている場合，集合と同じく単に\(X\)と表すことが多い．以下この種の注釈は省く．
 
-\begin{exa} 整数全体の集合\(\Integer\)とその上の通常の加法\(\mathord{+}\)の組\(\tuple{\Integer, \mathord{+} }\)はモノイドである．
-\end{exa}
+\begin{example} 整数全体の集合\(\Integer\)とその上の通常の加法\(\mathord{+}\)の組\(\tuple{\Integer, \mathord{+} }\)はモノイドである．
+\end{example}
 
-\begin{exa} アルファベット\(\Sigma\)のKleeneスター\(\Sigma^{\mathord{*}}\)（\eqref{kleene-star}），連結（\eqref{concatenation}），空文字列（\eqref{empty-string}）からなる3つ組\(\langle \Sigma^{\mathord{*}}, \doubleplus, \varepsilon \rangle\)はモノイドである．
-\end{exa}
+\begin{example} アルファベット\(\Sigma\)のKleeneスター\(\Sigma^{\mathord{*}}\)（\eqref{kleene-star}），連結（\eqref{concatenation}），空文字列（\eqref{empty-string}）からなる3つ組\(\langle \Sigma^{\mathord{*}}, \doubleplus, \varepsilon \rangle\)はモノイドである．
+\end{example}
 
 \begin{thmbox}
 \begin{definition} 以下の性質をみたすとき，組\(\langle X, \mathord{+}, \mathord{\cdot} \rangle\)を\keyword{半環}(semiring)\index{半環 semiring@はんかん}という．
@@ -111,7 +115,7 @@
 \end{definition}
 
 
-\begin{exa} 正の無限大を含む実数全体の集合\(\symbb{R} \cup \{\infty\}\)上の加法\(\land\)を
+\begin{example} 正の無限大を含む実数全体の集合\(\symbb{R} \cup \{\infty\}\)上の加法\(\land\)を
 \begin{align*}
     a \land b = \min \{a, b\}
 \end{align*}
@@ -134,7 +138,7 @@
     &= (a \mathbin{\ast} b) \land (a \mathbin{\ast} c).
 \end{align*}
     加法単位元\(\infty\)は任意の\(a \in \symbb{R} \cup \{\infty\}\)について\(a \mathbin{\ast} \infty = a + \infty = \infty\)をみたすので\(\symbb{R}\cup\{\infty\}\)を消す．したがって\(\tuple{ \symbb{R} \cup \{\infty\}, \mathord{\land}, \mathord{\ast} }\)は半環である．この半環をトロピカル半環(tropical semiring)という．
-\end{exa}
+\end{example}
 
 \begin{thmbox}
 \begin{definition}[（ベクトル空間）]
