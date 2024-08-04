@@ -163,17 +163,10 @@
 
 
 % 波線
-% \usepackage{lua-ul}
-% \newunderlinetype\beginUnderWavy[\number\dimexpr1ex]{\cleaders\hbox{%
-% \setlength\unitlength{.3ex}%
-% \begin{picture}(4,0)(0,1)
-% \thicklines
-% \color{red}%
-% \qbezier(0,0)(1,1)(2,0)
-% \qbezier(2,0)(3,-1)(4,0)
-% \end{picture}%
-% }}
-% \NewDocumentCommand\underWavy{+m}{{\beginUnderWavy#1}}
+\usepackage{%
+    luacolor,
+    lua-ul
+}
 
 \usepackage{tcolorbox}
 \tcbuselibrary{%

@@ -71,7 +71,7 @@
 \end{align*}
 と定義すると\(d\)は距離の公理をみたす（証明略）．この距離を\keyword{ユークリッド距離}(Euclidean distance)という\figref{euclidean-distance}．
 また組\(\tuple{\symbb{R}^n, d}\)を\keyword{（\(n\)次元）ユークリッド空間}(\(n\)-dimensional Euclidean space)という．
-\(\symbb{R}^n\)を距離空間として扱う場合，特に断らない限り，距離はユークリッド距離をとる．
+\underLine[color=sRed]{\(\symbb{R}^n\)を距離空間として扱う場合，特に断らない限り，距離はユークリッド距離をとる}．
 \end{example}
 
 \begin{figure}
@@ -133,14 +133,14 @@
 \begin{thmbox}
 \begin{definition}
 \(X\)を\(\symbb{K}\)上のベクトル空間とする．
-\(X\)上の実数値関数\(\lVert \placeholder \rVert\colon x \mapsto \lVert x \rVert\)が次の\ref{norm--nonnegativity}--\ref{norm-triangle-inequality}をみたすとき，これを\(X\)上の\keyword{ノルム}(norm)という．
+\(X\)上の実数値関数\(\lVert \placeholder \rVert\colon x \mapsto \lVert x \rVert\)が次の\ref{norm-nonnegativity}--\ref{norm-triangle-inequality}をみたすとき，これを\(X\)上の\keyword{ノルム}(norm)という．
 \begin{conditions}
-    \item\label{norm-nonnegativity} 任意の\(x \in X\)で\(\lVert x \rVert \geq 0\)が成り立つ．
+    \item\label{norm-nonnegativity} （非負性）任意の\(x \in X\)で\(\lVert x \rVert \geq 0\)が成り立つ．
         また\(\lVert x \rVert = 0\)となるための必要十分条件は\(x = 0\)であることである．
-    \item\label{norm-scalar} 任意の\(\lambda \in \symbb{K}\)と\(x \in X\)について
+    \item\label{norm-homogenity}（斉次性） 任意の\(\lambda \in \symbb{K}\)と\(x \in X\)について
         \(\lVert \lambda x \rVert = \lvert \lambda \rvert \lVert x \rVert\)
         が成り立つ．
-    \item\label{norm-triangle-inequality} （三角不等式，劣加法性）任意の\(x, y \in X\)について\(\lVert x + y \rVert \leq \lVert x \rVert + \lVert y \rVert\)が成り立つ．
+    \item\label{norm-triangle-inequality} （劣加法性）任意の\(x, y \in X\)について\(\lVert x + y \rVert \leq \lVert x \rVert + \lVert y \rVert\)が成り立つ．
 \end{conditions}
 \ref{norm-nonnegativity}--\ref{norm-triangle-inequality}をまとめて\keyword{ノルムの公理}という．
 \(X\)とそのノルムの組\(\tuple{X, \lVert \placeholder \rVert}\)を\keyword{ノルム空間}(normed space)という．\(\lVert \placeholder \rVert\)がどのようなものか明らかな場合，\(\tuple{X, \lVert \placeholder \rVert}\)を単に\(X\)と書く．
@@ -155,19 +155,31 @@
 \(\symbb{R}^n\)をノルム空間として扱う場合，特に断らない限り，ノルムはユークリッドノルムをとる．
 \end{example}
 
-\begin{example} 列
+\begin{example} \(X\)をコンパクトHausdorff空間とし，\(C(X, \symbb{K})\)をX上の\(\symbb{K}\)値連続関数全体の集合とする．
+\end{example}
 
+\begin{example} コンパクト集合\(X\)上の連続関数\(C(X, \Real)\)
 \end{example}
 
 ノルムによって距離が定まる．
 
 \begin{thmbox}
-\begin{definition}
-a
-\end{definition}
+\begin{proposition}
+\(\tuple{X, \lVert \placeholder \rVert}\)をノルム空間とする．このとき\(d\colon X \times X \times \to \symbb{R}\)を
+\begin{align}
+    d(x, y) = \lVert x - y \rVert \mathlabel{norm-distance}
+\end{align}
+と定義すると，これは距離の公理をみたす．
+\end{proposition}
 \end{thmbox}
 
-a
+\begin{proof}
+非負性はノルムの非負性から明らかである．
+対称性は斉次性から\(d(x, y) = \lVert x - y \rVert = \lVert - (y - x)\rVert = \lvert -1 \rvert \lVert y - x \rVert = d(y, x)\)と示される．
+三角不等式は劣加法性から\(d(x, y) = \lVert x - y \rVert = \lVert x - z + z - y \rVert \leq \lVert x - z \rVert + \lVert z - y \rVert = d(x, z) + d(z, y)\)と示される．
+\end{proof}
+
+以降\underLine[color=sRed]{ノルム空間は常に\mathref{norm-distance}で定義される距離関数を備えた距離空間とみなす}．
 
 
 実数値関数の\(\varepsilon\)--\(\delta\)論法を用いた連続性の定義は次のように一般化される．
