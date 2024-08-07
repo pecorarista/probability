@@ -36,13 +36,20 @@
     \end{cases}
 \end{align*}
 北極点\(\symup{N} = (0, 0, 1)\)と南極点\(\symup{S} = (0, 0, -1)\)は表し方が一意でないことに注意する．
-
-大円の劣弧が最短距離を与えることを示すにあたり，始点\(p\)を\(\symup{N}\)としても一般性を失わない．
-例えば\(p\)の余緯度が\(\theta\)，経度が\(\varphi\)であるとする．
-\(\symbb{R}^3\)の点を\(z\)軸まわりに\(-\varphi\)だけ回転させる行列\(R_z(-\varphi)\)と，\(y\)軸まわりに\(-\theta\)だけ回転させる行列\(R_y(-\theta)\)の合成\(A := R_y(-\theta) R_z(-\varphi)\)は長さを保つ．
-変換後の\(\symup{N} = Ap\)と\(Aq\)を最短で結ぶ曲線上の点を求め，それに逆の変換\(A^{-1} = R_z(\varphi)R_y(\theta)\)を作用させて元の\(p, q\)を最短で結ぶ曲線が得られる．
-\(x = \symup{N}\)から\(p\)とは異なる点\(q\)への曲線\(\gamma \colon [0, 1] \to S^2\)をとる．
-これは連続微分可能な関数\(\theta \colon [0, 1] \to [0, \pi], \varphi \colon [0, 1] \to \symbb{R}\)を用いて
+極を含む本初子午線は
+\begin{align*}
+    M = \left\{\begin{pmatrix} \sin \theta \\ 0 \\ \cos \theta \end{pmatrix} \in {\Real}^3 \relmiddle{|} 0 \leq \theta \leq \pi\right\}
+\end{align*}
+と表される．
+相違なる\(2\)点\(p, q \in S^2 \setminus M\)をとる．
+\(p\)から\(q\)への\footnote{%
+曲線\(\gamma\colon [a, b] \to {\Real}^n\)が\(p\)から\(q\)への曲線であるとは，\(\gamma(a) = p\)かつ\(\gamma(b) = q\)をみたすことをいう．
+}正則\footnote{%
+曲線\(\gamma\colon [a, b] \to {\Real}^n\)が正則(regular)であるとは\(t \in [a, b]\)において\(\dot{\gamma}(t) \neq 0\)であることをいう．
+}で滑らかな\footnote{%
+曲線\(\gamma\colon [a, b] \to {\Real}^n\)が滑らか(smooth)であるとは，\(\gamma\)が\([a, b]\)において\(C^\infty\)級であることをいう．
+}曲線\(\gamma \colon [0, 1] \to S^2\)を，
+\(\theta \colon [0, 1] \to (0, \pi)\)と\(\varphi\colon [0, 1] \to (0, 2\pi)\)を用いて
 \begin{align*}
     \gamma \colon t \mapsto
         \begin{pmatrix}
@@ -51,26 +58,18 @@
             \cos \theta(t)
         \end{pmatrix}
 \end{align*}
-と表されているとする．
-また任意の\(t \in [0, 1]\)で
+と表す．
+\(p, q\)を最短で結ぶ曲線を求めるので\(\gamma\)は自身と交わらない，すなわち単射であると仮定する．
+このとき，\(\gamma\)の長さ\(L(\gamma)\)は
 \begin{align}
-    \begin{pmatrix}
-        \dot{\theta}(t) \\
-        \dot{\varphi}(t)
-    \end{pmatrix}
-    \neq 0
-    \mathlabel{great-circle-regular}
-\end{align}
-であると仮定する．これは直感的にいうと「停まらない」ということである．
-また最短で結ぶ曲線を求めるので\(\gamma\)は自身と交わらない，すなわち単射であると仮定してよい．
-曲線の長さ\(L(\gamma)\)は
-\begin{align}
-    L(\gamma) = \int_{0}^{1} \sqrt{\frac{d\gamma}{dt}(t) \cdot \frac{d\gamma}{dt}(t)} dt
+    L(\gamma) = \int_{0}^{1} \lVert \dot{\gamma}(t) \rVert  dt
     \mathlabel{great-circle-length-integral}
 \end{align}
-で求められる．
+で求められる．\(\gamma\)の\(\theta, \varphi\)に関する偏導関数を
+\(\partial_\theta, \partial_\varphi\)と略記することにする．
 \begin{align*}
-    \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
+    \partial_\theta
+    = \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
     =
     \begin{pmatrix}
         \cos \theta \cos \varphi \\
@@ -78,19 +77,18 @@
         - \sin \theta
     \end{pmatrix},
     \quad
-    \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
+    \partial_\varphi
+    = \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
     =
     \begin{pmatrix}
         - \sin \theta \sin \varphi \\
         \sin \theta \cos \varphi \\
         0
-    \end{pmatrix}
+    \end{pmatrix}.
 \end{align*}
-であるから，
+これらの内積をあらかじめ計算しておくと
 \begin{align*}
-    \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
-    \cdot
-    \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
+    \partial_\theta \cdot \partial_\theta
     &=
     \begin{pmatrix}
         \cos \theta \cos \varphi \\
@@ -109,9 +107,7 @@
     &= 1,
 \end{align*}
 \begin{align*}
-    \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
-    \cdot
-    \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
+    \partial_\varphi \cdot \partial_\varphi
     &=
     \begin{pmatrix}
         - \sin \theta \sin \varphi \\
@@ -128,9 +124,7 @@
     &= \sin^2 \theta,
 \end{align*}
 \begin{align*}
-    \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
-    \cdot
-    \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
+    \partial_\theta \cdot \partial_\varphi
     &=
     \begin{pmatrix}
         \cos \theta \cos \varphi \\
@@ -147,57 +141,23 @@
        + \cos \theta \sin \varphi \sin \theta \cos \varphi \\
     &= 0.
 \end{align*}
-積分の計算中に現れる行列の積をあらかじめ計算しておくと
-\begin{align*}
-    \begin{pmatrix}
-        \displaystyle
-        \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
-        &
-        \displaystyle
-        \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
-    \end{pmatrix}^{\transpose}
-    \begin{pmatrix}
-        \displaystyle
-        \frac{\partial \gamma}{\partial \theta}(\theta, \varphi)
-        &
-        \displaystyle
-        \frac{\partial \gamma}{\partial \varphi}(\theta, \varphi)
-    \end{pmatrix}
-    =
-    \begin{pmatrix}
-        1 & 0 \\
-        0 & \sin^2 \theta(t) \\
-    \end{pmatrix}
-\end{align*}
-となる．
-\(s\)を
-\begin{align*}
-    s = \int_0^t
-        \sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}
-    dt
-\end{align*}
-と置くと
-\begin{align*}
-    \frac{ds}{dt} = \sqrt{(\dot{\theta}(t))^2 + (\dot{\varphi}(t))^2 \sin^2 \theta(t)}.
-\end{align*}
-以降，表記を簡潔にするため，ニュートンの記法(Newton's notation)を用いる．
-これは関数\(f\colon t \mapsto \placeholder\)の\(t\)に関する導関数を\(\dot{f}\)のように表すものである．
-\mathref{great-circle-length-integral}の被積分関数を\(F \colon [0, 1] \times \symbb{R}^2 \times \symbb{R}^2 \to \symbb{R}\)は
-\begin{align*}
-    F\left(
-        s,
-        \begin{pmatrix}
-            \theta(t(s)) \\
-            \varphi(t(s))
-        \end{pmatrix},
-        \begin{pmatrix}
-            \dot{\theta}(t(s)) \\
-            \dot{\varphi}(t(s)) \\
+これらの結果を用いると被積分関数は以下のように計算できる．
+\begin{align}
+    \lVert \dot{\gamma}(t) \rVert^2
+    &= \dot{\gamma}(t) \cdot \dot{\gamma}(t) \notag \\
+    &= \begin{pmatrix}
+            \dot{\theta} & \dot{\varphi}
         \end{pmatrix}
-    \right)
-    &=
-    \sqrt{%
         \begin{pmatrix}
+            \partial_\theta \\ \partial_\varphi
+        \end{pmatrix}
+        \begin{pmatrix}
+            \partial_\theta & \partial_\varphi
+        \end{pmatrix}
+        \begin{pmatrix}
+            \dot{\theta} \\ \dot{\varphi}
+        \end{pmatrix} \notag \\
+    &= \begin{pmatrix}
             \dot{\theta} & \dot{\varphi}
         \end{pmatrix}
         \begin{pmatrix}
@@ -206,12 +166,39 @@
         \end{pmatrix}
         \begin{pmatrix}
             \dot{\theta} \\ \dot{\varphi}
-        \end{pmatrix}
-    } \\
-    &= \sqrt{\dot{\theta}^2 + \dot{\varphi}^2 \sin^2 \theta}.
+        \end{pmatrix} \notag \\
+    &=  \dot{\theta}^2 + \dot{\varphi}^2 \sin^2 \theta \mathlabel{great-circle-dot-gamma}
+\end{align}
+正則性の仮定により\(\lVert \dot{\gamma}(t) \rVert^2 > 0\)である．
+関数\(s \colon [0, 1] \to [0, L(\gamma)]\)を
+\begin{align*}
+    s \colon t \mapsto \int_0^t \lVert \dot{\gamma}(\tau) \rVert d\tau
 \end{align*}
+と定義する．逆関数定理より，\(t\)を\(s\)を用いて\(t(s)\)のように表すことができて，これは
+\begin{align*}
+    \frac{dt}{ds}(s)
+    = \frac{1}{\dfrac{ds}{dt}(t(s))}
+    = \frac{1}{\lVert \dot{\gamma}(t) \rVert}
+\end{align*}
+をみたす．
+このようなパラメーターの置き換えを弧長によるパラメーター付け(arc length parametrization)という．
+\begin{align}
+    \lVert \dot{\gamma}(t(s)) \rVert
+    = \left\lVert \frac{d\gamma}{dt}(t(s)) \frac{1}{\dfrac{ds}{dt}(t)} \right\rVert
+    = \left\lvert \frac{1}{\lVert \dot{\gamma}(t) \rVert} \right\rvert \lVert \dot{\gamma}(t) \rVert
+    = 1
+\end{align}
 この問題のEuler--Lagrange方程式は
 \begin{align*}
+    \frac{d}{ds}
+    \begin{pmatrix}
+        \displaystyle
+        \frac{\partial F}{\partial \theta'}
+        &
+        \displaystyle
+        \frac{\partial F}{\partial \varphi'}
+    \end{pmatrix}
+    -
     \begin{pmatrix}
         \displaystyle
         \frac{\partial F}{\partial \theta}
@@ -219,53 +206,23 @@
         \displaystyle
         \frac{\partial F}{\partial \varphi}
     \end{pmatrix}
-    -
-    \frac{d}{ds}
-    \begin{pmatrix}
-        \displaystyle
-        \frac{\partial F}{\partial \dot{\theta}}
-        &
-        \displaystyle
-        \frac{\partial F}{\partial \dot{\varphi}}
-    \end{pmatrix}
     = 0
 \end{align*}
-である．
-\mathref{great-circle-regular}と\(t > 0\)において\(\sin \theta(t) > 0\)であるから，成分ごとに計算して
+である．成分ごとに計算を進めて
 \begin{numcases}
-    \displaystyle
-    \frac{%
-        \dot{\varphi}^2 \sin \theta \cos \theta
-    }{%
-        \dfrac{ds}{dt}
-    }
-    =
-    \frac{d}{ds}
-    \frac{%
-        \dot{\theta}
-    }{%
-        \dfrac{ds}{dt}
-    } \mathlabel{great-circle-ode1} \\[10pt]
-    \displaystyle
-    0 =
-    \frac{d}{ds}
-    \frac{%
-        \dot{\varphi}(t) \sin^2\theta(t)
-    }{%
-        \dfrac{ds}{dt}
-    } \mathlabel{great-circle-ode2}
+    {}
+    \theta'' = (\varphi')^2 \sin \theta \cos \theta \mathlabel{great-circle-ode1} \\
+    \frac{d}{ds}(\varphi' \sin^2 \theta) = 0 \mathlabel{great-circle-ode2}
 \end{numcases}
-を得る．
+を得る．\mathref{great-circle-ode2}より\(C\)を定数として
 \begin{align*}
-    \text{（\mathref{great-circle-ode1}の右辺）}
-    = \frac{d}{dt}\left(\frac{d \theta}{dt}\frac{1}{\displaystyle \frac{ds}{dt}}\right)
-    = \frac{d}{dt}\left(\frac{d\theta}{ds}(t(s))\right)
+    \varphi' \sin^2 \theta = C
 \end{align*}
+が成り立つ．これを\mathref{great-circle-ode1}に代入して
 \begin{align*}
-    \text{（\mathref{great-circle-ode2}の右辺）}
-    = \frac{d}{dt}\left(\frac{d \varphi}{dt}\frac{1}{\displaystyle \frac{ds}{dt}}\sin^2 \theta(t(s))\right)
-    = \frac{d}{dt}\left(\frac{d \varphi}{ds}(t(s)) \sin^2 \theta(t(s))\right)
+    \theta'' = C^2 \frac{\cos \theta}{\sin^3 \theta}
 \end{align*}
+
 
 \mathref{great-circle-ode2}から
 \begin{align*}
