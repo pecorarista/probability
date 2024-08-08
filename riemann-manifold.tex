@@ -60,6 +60,33 @@
 \end{proposition}
 \end{thmbox}
 
+\begin{proof}
+\(t = \tau(s)\)
+\begin{align*}
+    \int_{s_0}^{s_1} \left\lVert \frac{d(\gamma \circ \tau)}{ds}\right\rVert ds
+    &= \int_{s_0}^{s_1} \left\lVert \frac{d\gamma}{dt}(\tau(s)) \frac{d\tau}{ds}(s) \right\rVert ds \\
+    &= \int_{t_0}^{t_1} \left\lVert \frac{d\gamma}{dt}(t) \frac{1}{\dfrac{ds}{dt}(t)} \right\rVert \frac{ds}{dt}(t) dt \\
+    &= \int_{t_0}^{t_1} \left\lVert \frac{d\gamma}{dt}(t) \right\rVert dt
+\end{align*}
+\end{proof}
+
+\begin{thmbox}
+\begin{proposition}
+\(\gamma \colon [a, b] \to {\Real}^n\)を\(C^1\)級曲線とする．
+\(s\colon [a, b] \to {\Real}\)を
+\begin{align*}
+    s(t) = \int_{t_0}^t \left\lVert \dot{\gamma}(\xi) \right\rVert d\xi
+\end{align*}
+で定義する．このとき\(\lVert \gamma' (s) \rVert = 1\)が成り立つ．
+\end{proposition}
+\end{thmbox}
+
+\begin{proof}
+\begin{align*}
+    \lVert \gamma'(s) \rVert = \left\lVert \frac{d(\gamma \circ s)}{ds} \right\rVert
+\end{align*}
+\end{proof}
+
 \(2\)点を結ぶ球面上の曲線の中で長さが最小となるのはそれらによって定まる大円の劣弧となることを示す．
 計算を簡単にするため\(R = 1\)とする．
 地球\(S^2 = S^2(1)\)上の点を球面座標\(\tuple{r, \theta, \varphi}\)で表すことを考える．
