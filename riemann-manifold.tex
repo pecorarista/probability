@@ -8,6 +8,58 @@
 \begin{document}
 \mainchapter{多様体}
 
+\(a\)を任意の実数，\(b\)を\(b > a\)をみたす任意の実数とする．
+区間\([a, b]\)から\({\Real}^n\)（一般には位相空間）への写像を\keyword{曲線}(curve)という．
+区間\([a, b]\)を始域とする曲線\(\gamma\)について\(\gamma(a)\)を\(\gamma\)の始点，\(\gamma(b)\)を終点という．
+\(p\)を始点，\(q\)を終点とする曲線を\(p\)から\(q\)への曲線という．
+\(n\)を任意の自然数とする．
+\(\gamma\)の\(n\)階までの導関数\(\gamma^{(n)}\)が存在し，\(\gamma^{(n)}\)が連続であるとき，すなわち\(C^n\)級であるとき，\(\gamma\)は\(C^n\)級曲線であるという．
+任意の\(n\)で
+\keyword{滑らか}(smooth)であるという．
+
+\begin{example} \(\gamma\colon [a, b] \to {\Real}^2\)を
+\begin{align*}
+    \gamma(\theta) = \begin{pmatrix}
+        \cos t \\
+        \sin t
+    \end{pmatrix}
+\end{align*}
+\end{example}
+
+\begin{thmbox}
+\begin{proposition}
+\(k_1, k_2\)を定数とする．
+\(C^1\)級曲線\(\gamma \colon [a, b] \to {\Real}^n\)が\(\lVert \dot{\gamma}(t) \rVert = k_1\)をみたすならば以下が成り立つ．
+\begin{align}
+    \left(\int_a^b \lVert \dot{\gamma}(t) \rVert dt \right)^2
+    = k_2 \int_a^b \lVert \dot{\gamma}(t) \rVert^2 dt.
+    \mathlabel{l2-cauchy-schwarz-for-length}
+\end{align}
+\end{proposition}
+\end{thmbox}
+
+\begin{proof} \(\dot{\gamma}\)とノルムの連続性により\(t \mapsto \lVert \dot{\gamma}(t) \rVert, t \mapsto \lVert \dot{\gamma}(t) \rVert^2\)もまた連続であり，したがって可積分である．
+\(f\colon t \mapsto \lVert \dot{\gamma}(t) \rVert\)と定数関数\(g \colon t \to 1\)について\(L^2([a, b])\)におけるCauchy--Schwarzの不等式から
+\begin{gather}
+    \left\lvert \int_a^b f(t) g(t) dt \right\rvert \leq \sqrt{\int_a^b \lvert f(t) \rvert^2 dt} \sqrt{\int_a^b \lvert g(t) \rvert^2 dt} \notag \\
+    \left\lvert \int_a^b \lVert \dot{\gamma}(t) \rVert dt \right\rvert \leq \sqrt{b - a} \sqrt{\int_a^b \lvert \dot{\gamma}(t) \rvert^2 dt} \mathlabel{l2-cauchy-schwarz-for-length-intermediate}.
+\end{gather}
+\(f = k_1 = k_1 g\)であるから，\mathref{l2-cauchy-schwarz-for-length-intermediate}において等号が成立する．
+\mathref{l2-cauchy-schwarz-for-length-intermediate}の両辺を\(2\)乗し，\(k_2 = b - a\)とすれば\mathref{l2-cauchy-schwarz-for-length}が得られる．
+\end{proof}
+
+\begin{thmbox}
+\begin{proposition}
+曲線\(\gamma\colon [a, b] \to {\Real}^n\)が
+パラメーター\(\gamma\)
+\(\psi\colon t \to s\)
+\begin{align*}
+    \int_a^b \lVert \dot{\gamma}(t) \rVert dt
+    = \int_a^b \lVert \gamma'(s) \rVert ds
+\end{align*}
+\end{proposition}
+\end{thmbox}
+
 \(2\)点を結ぶ球面上の曲線の中で長さが最小となるのはそれらによって定まる大円の劣弧となることを示す．
 計算を簡単にするため\(R = 1\)とする．
 地球\(S^2 = S^2(1)\)上の点を球面座標\(\tuple{r, \theta, \varphi}\)で表すことを考える．
@@ -42,9 +94,7 @@
 \end{align*}
 と表される．
 相違なる\(2\)点\(p, q \in S^2 \setminus M\)をとる．
-\(p\)から\(q\)への\footnote{%
-曲線\(\gamma\colon [a, b] \to {\Real}^n\)が\(p\)から\(q\)への曲線であるとは，\(\gamma(a) = p\)かつ\(\gamma(b) = q\)をみたすことをいう．
-}正則\footnote{%
+\(p\)から\(q\)への正則\footnote{%
 曲線\(\gamma\colon [a, b] \to {\Real}^n\)が正則(regular)であるとは\(t \in [a, b]\)において\(\dot{\gamma}(t) \neq 0\)であることをいう．
 }で滑らかな\footnote{%
 曲線\(\gamma\colon [a, b] \to {\Real}^n\)が滑らか(smooth)であるとは，\(\gamma\)が\([a, b]\)において\(C^\infty\)級であることをいう．
