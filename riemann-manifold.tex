@@ -8,26 +8,39 @@
 \begin{document}
 \mainchapter{多様体}
 
-\(a\)を任意の実数，\(b\)を\(b > a\)をみたす任意の実数とする．
-区間\([a, b]\)から\({\Real}^n\)（一般には位相空間）への写像を\keyword{曲線}(curve)という．
-区間\([a, b]\)を始域とする曲線\(\gamma\)について\(\gamma(a)\)を\(\gamma\)の始点，\(\gamma(b)\)を終点という．
+閉区間\(I := [a, b] \subseteq {\Real}\)から\({\Real}^n\)（一般には位相空間）への写像を\keyword{曲線}(curve)という．
+像\(\gamma(I)\)を指して曲線ということがある．
+\(\gamma(a)\)を\(\gamma\)の始点，\(\gamma(b)\)を\(\gamma\)の終点という．
 \(p\)を始点，\(q\)を終点とする曲線を\(p\)から\(q\)への曲線という．
 \(n\)を任意の自然数とする．
-\(\gamma\)の\(n\)階までの導関数\(\gamma^{(n)}\)が存在し，\(\gamma^{(n)}\)が連続であるとき，すなわち\(C^n\)級であるとき，\(\gamma\)は\(C^n\)級曲線であるという．
-任意の\(n\)で
-\keyword{滑らか}(smooth)であるという．
+\(\gamma\)の\(m\)階までの導関数\(D^m \gamma\)が存在し，\(D^m \gamma\)が連続であるとき，すなわち\(C^m\)級であるとき，\(\gamma\)は\(C^m\)級曲線であるという．
+\(\gamma\)が必要なだけ微分できる，すなわち\(C^\infty\)級であるとき，\(\gamma\)は\keyword{滑らか}(smooth)であるという．
+\(C^1\)級曲線\(\gamma\colon I \to \symbb{R}^n\)が\(t \in I\)において\(D\gamma(t) \neq 0\)をみたすとき，\(\gamma\)は\keyword{正則}(regular)であるという．
 
-\begin{example} \(a, b\)を\(0\)ではない定数とする．
-\({\Real}\)の閉区間から\({\Real}^3\)への写像\(\gamma\)を以下のように定義する．
+\begin{example} \(r\)と\(m\)を正の定数とする．
+次で定められる曲線\(\gamma \colon [a, b] \to {\Real}^n\)を常螺旋(ordinary helix)という．
 \begin{align*}
     \gamma(t) = \begin{pmatrix}
-        a \cos t \\
-        a \sin t \\
-        b t
+        r \cos t \\
+        r \sin t \\
+        m t
     \end{pmatrix}.
 \end{align*}
-これは螺旋(helix)と呼ばれる曲線である．
+これは
+\begin{align*}
+    D\gamma(t) = \begin{pmatrix}
+        - r \sin t \\
+        r \cos t \\
+        m
+    \end{pmatrix} \neq 0
+\end{align*}
+をみたすので正則な曲線である．
 \end{example}
+
+\(\gamma_1 \colon I \to {\Real}^n\)と\(\gamma_2 \colon J \to {\Real}^n\)を\(C^1\)級曲線とする．
+\(C^1\)級狭義単調増加関数\(\psi \colon I \to J\)で\(\gamma_2 = \gamma_1 \circ \psi\)となるようなものが存在することを\(\gamma_1 \sim \gamma_2\)と表すと，関係\(\sim\)は同値関係である．
+これは逆関数定理より\(\psi^{-1}\)
+\(\psi\)は曲線（の像）\(\tilde{\gamma} := \gamma_1([t_0, t_1]) = \gamma_2([s_0, s_1])\)の同値なパラメーターであるという．
 
 \begin{thmbox}
 \begin{proposition}
