@@ -9,7 +9,7 @@
 \mainchapter{多様体}
 
 閉区間\(I := [a, b] \subseteq {\Real}\)から\({\Real}^n\)（一般には位相空間）への写像を\keyword{曲線}(curve)という．
-像\(\gamma(I)\)を指して曲線ということがある．
+像\(\gamma(I)\)を指して曲線ということもある．
 \(\gamma(a)\)を\(\gamma\)の始点，\(\gamma(b)\)を\(\gamma\)の終点という．
 \(p\)を始点，\(q\)を終点とする曲線を\(p\)から\(q\)への曲線という．
 \(n\)を任意の自然数とする．
@@ -18,7 +18,7 @@
 \(C^1\)級曲線\(\gamma\colon I \to \symbb{R}^n\)が\(t \in I\)において\(D\gamma(t) \neq 0\)をみたすとき，\(\gamma\)は\keyword{正則}(regular)であるという．
 
 \begin{example} \(r\)と\(m\)を正の定数とする．
-次で定められる曲線\(\gamma \colon [a, b] \to {\Real}^n\)を常螺旋(ordinary helix)という．
+次で定められる曲線\(\gamma \colon I \to {\Real}^n\)を常螺旋(ordinary helix)という．
 \begin{align*}
     \gamma(t) = \begin{pmatrix}
         r \cos t \\
@@ -40,7 +40,22 @@
 \(\gamma_1 \colon I \to {\Real}^n\)と\(\gamma_2 \colon J \to {\Real}^n\)を\(C^1\)級曲線とする．
 \(C^1\)級狭義単調増加関数\(\psi \colon I \to J\)で\(\gamma_2 = \gamma_1 \circ \psi\)となるようなものが存在することを\(\gamma_1 \sim \gamma_2\)と表すと，関係\(\sim\)は同値関係である．
 これは逆関数定理より\(\psi^{-1}\)
-\(\psi\)は曲線（の像）\(\tilde{\gamma} := \gamma_1([t_0, t_1]) = \gamma_2([s_0, s_1])\)の同値なパラメーターであるという．
+\(\psi\)は曲線（の像）\(\tilde{\gamma} := \gamma_1(I) = \gamma_2(J)\)の同値なパラメーターであるという．
+
+\begin{example} \(\gamma_1 \colon [0, \pi] \to {\Real}^2\)と\(\gamma_2 \colon [0, \inlinefrac{\pi}{2}] \to {\Real}^2\)をそれぞれ
+\begin{align*}
+    \gamma_1(\theta) = \begin{pmatrix}
+        \cos \theta \\
+        \sin \theta
+    \end{pmatrix},
+    \quad
+    \gamma_2(\theta) = \begin{pmatrix}
+        \cos 2 \theta \\
+        \sin 2 \theta
+    \end{pmatrix}
+\end{align*}
+で定めると\(\psi \colon \theta \mapsto 2 \theta\)によって\(\gamma_1 \circ \psi = \gamma_2\)となるので，これらは同値な曲線である．
+\end{example}
 
 \begin{thmbox}
 \begin{proposition}
