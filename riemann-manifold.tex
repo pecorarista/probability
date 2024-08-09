@@ -17,13 +17,16 @@
 任意の\(n\)で
 \keyword{滑らか}(smooth)であるという．
 
-\begin{example} \(\gamma\colon [a, b] \to {\Real}^2\)を
+\begin{example} \(a, b\)を\(0\)ではない定数とする．
+\({\Real}\)の閉区間から\({\Real}^3\)への写像\(\gamma\)を以下のように定義する．
 \begin{align*}
-    \gamma(\theta) = \begin{pmatrix}
-        \cos t \\
-        \sin t
-    \end{pmatrix}
+    \gamma(t) = \begin{pmatrix}
+        a \cos t \\
+        a \sin t \\
+        b t
+    \end{pmatrix}.
 \end{align*}
+これは螺旋(helix)と呼ばれる曲線である．
 \end{example}
 
 \begin{thmbox}
@@ -42,7 +45,7 @@
 \(f\colon t \mapsto \lVert \dot{\gamma}(t) \rVert\)と定数関数\(g \colon t \to 1\)について\(L^2([a, b])\)におけるCauchy--Schwarzの不等式から
 \begin{gather}
     \left\lvert \int_a^b f(t) g(t) dt \right\rvert \leq \sqrt{\int_a^b \lvert f(t) \rvert^2 dt} \sqrt{\int_a^b \lvert g(t) \rvert^2 dt} \notag \\
-    \left\lvert \int_a^b \lVert \dot{\gamma}(t) \rVert dt \right\rvert \leq \sqrt{b - a} \sqrt{\int_a^b \lvert \dot{\gamma}(t) \rvert^2 dt} \mathlabel{l2-cauchy-schwarz-for-length-intermediate}.
+    \left\lvert \int_a^b \lVert \dot{\gamma}(t) \rVert dt \right\rvert \leq \sqrt{b - a} \sqrt{\int_a^b \lVert \dot{\gamma}(t) \rVert^2 dt} \mathlabel{l2-cauchy-schwarz-for-length-intermediate}.
 \end{gather}
 \(f = k_1 = k_1 g\)であるから，\mathref{l2-cauchy-schwarz-for-length-intermediate}において等号が成立する．
 \mathref{l2-cauchy-schwarz-for-length-intermediate}の両辺を\(2\)乗し，\(k_2 = b - a\)とすれば\mathref{l2-cauchy-schwarz-for-length}が得られる．
